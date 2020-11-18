@@ -1,0 +1,24 @@
+.topic-chart-pie-left-container {
+  height: 380px;
+  width: 100%;
+  background: #F9F9FB;
+}
+
+.topic-chart-pie-left-title {
+  padding: 20px 0 20px 2.5%;
+}
+
+.topic-chart-pie-left-title h4 {
+  border-left: 2px solid #EEBD08;
+  padding-left: 10px;
+}
+
+.topic-chart-pie-left-content {
+  width: 90%;
+  height: 280px;
+  margin: 0 auto;
+}
+.topic-chart-middle-spin-container{
+  line-height: 380px;
+  text-align: center;
+}

@@ -1,0 +1,20 @@
+.stat-chart-keyword-container {
+  height: 480px;
+  width: 49%;
+  background: #F9F9FB;
+  margin: 20px 0;
+}
+.stat-chart-keyword-title {
+  padding: 20px 0 20px 2.5%;
+}
+
+.stat-chart-keyword-title h4 {
+  border-left: 2px solid #EEBD08;
+  padding-left: 10px;
+}
+
+.stat-chart-keyword-content {
+  width: 95%;
+  height: 400px;
+  margin: 0 auto;
+}

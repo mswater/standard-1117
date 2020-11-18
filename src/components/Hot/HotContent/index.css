@@ -1,0 +1,132 @@
+.hot-content {
+  width: 1152px;
+  margin: 0 auto;
+  padding-top: 50px;
+  min-height: 500px;
+}
+
+.hot-content-main {
+  width: 920px;
+  padding-left: 35px;
+}
+
+.hot-content-slider {
+  width: 230px;
+}
+
+.hot-content-topic {
+  padding-bottom: 25px;
+}
+
+.hot-content-topic span {
+  color: #cbd2d8;
+  font-size: 19px;
+  font-family: Arial;
+  font-weight: 500;
+}
+
+.hot-content-topic h2 {
+  color: #333333;
+}
+
+.hot-content-topic li {
+  font-size: 16px;
+  color: #555555;
+}
+
+.hot-content-slider .menu {
+  width: 230px;
+  border-top: 2px solid #0572B8;
+  border-bottom: 2px solid #0572B8
+}
+
+.hot-content-slider .ant-menu-item {
+  border-bottom: 1px dashed #F0F0F0;
+  height: 52px;
+  width: 100%;
+}
+
+/****
+  推荐阅读
+****/
+.hot-reading {
+  margin-top: 50px;
+}
+
+.hot-reading-topic {
+  background-color: #A6CCE7;
+  padding: 10px 20px;
+  color: #FEFEFE;
+  font-size: 16px;
+}
+
+.hot-reading-topic > img {
+  margin-right: 5px;
+}
+
+.hot-reading-list {
+  color: #496678;
+  margin-left: 20px;
+  overflow-y: scroll;
+  height: 402px;
+}
+
+.hot-reading-list li {
+  padding: 8px 10px;
+  border-bottom: 2px dotted #f0f0f0;
+  list-style: square;
+}
+
+.hot-reading-list li:last-child {
+  border: none;
+}
+
+.hot-reading-list li p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
+}
+
+.hot-reading-list li p > a {
+  font-size: 12px;
+  color: #555555;
+}
+
+.hot-reading-list li:hover a {
+  text-decoration: underline;
+}
+
+.hot-reading-list li span {
+  font-size: 11px;
+  color: #757474;
+}
+
+.hot-reading .more {
+  border-bottom: 2px solid #A6CCE7;
+}
+
+.hot-reading .more > a {
+  display: block;
+  padding: 10px 20px;
+  text-align: right;
+  font-size: 12px;
+}
+
+.hot-reading .more > a:hover {
+  text-decoration: underline;
+  color: #2C88C3;
+  cursor: pointer;
+}
+.spin{
+  text-align: center;
+  padding: 30px 50px;
+  margin: 20px 0;
+}
+.hot-content-none{
+  text-align: center;
+  line-height: 10;
+  font-size: 16px;
+}

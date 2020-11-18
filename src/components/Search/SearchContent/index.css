@@ -1,0 +1,14 @@
+.search-content {
+  width: 1152px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+.search-content-main {
+  width: 100%;
+}
+
+.search-content-query-select .query-top .anticon svg{
+  color:#D1D1D1;
+  margin-right:15px;
+}

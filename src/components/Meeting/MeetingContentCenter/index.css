@@ -1,0 +1,28 @@
+.meeting-content-center{
+  width: 100%;
+  margin-top: 20px;
+  background-color: #F2F3F6;
+}
+
+.meeting-search-btn{
+  display: flex;
+  margin-top:20px;
+}
+.meeting-search-btn .search-by-topic{
+  width:40%;
+  margin-right:10px;
+}
+.meeting-search-btn>span{
+  width: 10%;
+  line-height: 2;
+}
+.meeting-search-btn .search-by-date{
+  width:58%;
+}
+.search-by-date-picker{
+  width:75%;
+  margin-right:10px;
+}
+.meeting-search-btn .search-by-date>button{
+  margin-right:0;
+}

@@ -1,0 +1,19 @@
+.hot-chart-top-container {
+  height: 380px;
+  width: 100%;
+  background: #F9F9FB;
+}
+
+.hot-chart-top-title {
+  padding: 20px  0 20px 2.5%;
+}
+
+.hot-chart-top-title h4 {
+  border-left: 2px solid #EEBD08;
+  padding-left: 10px;
+}
+.hot-chart-top-content{
+  width: 95%;
+  height: 300px;
+  margin: 0 auto;
+}

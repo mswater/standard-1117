@@ -1,0 +1,51 @@
+.hot-content-top{
+  width: 100%;
+}
+.hot-content-top-class>div:nth-of-type(1) button {
+  outline: none;
+  border: none;
+  line-height: 36px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: transparent;
+}
+
+.hot-content-top-class>div:nth-of-type(1) button:nth-of-type(1) {
+  color: #0572B8;
+}
+.hot-content-top-class>span{
+  color:#ddd;
+}
+.hot-content-top-class button i {
+  margin-right: 5px;
+}
+
+.hot-content-top-class .ant-input-lg,
+.hot-content-top-class .ant-btn-lg{
+  font-size: 14px;
+}
+
+.hot-content-top-date span{
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.hot-content-top-date span:nth-of-type(1){
+  color: #0572B8;
+}
+
+.hot-content-top-date span:nth-of-type(2),
+.hot-content-top-date span:nth-of-type(3){
+  border-left: 1px solid #000;
+}
+
+.hot-content-top-class .ant-input-suffix .anticon svg{
+  color:#D1D1D1;
+  margin-right:15px;
+}
+
+.ant-input-affix-wrapper .ant-input:not(:last-child) {
+  padding-right: 50px;
+}
+

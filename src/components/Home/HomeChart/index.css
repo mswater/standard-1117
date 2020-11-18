@@ -1,0 +1,16 @@
+.home-chart-container {
+  height: 380px;
+  width: 100%;
+  background: #F9F9FB;
+}
+.home-chart-middle-spin-container{
+  height: 380px;
+  width: 100%;
+  background: #F9F9FB;
+  margin: 20px 0;
+}
+.home-chart {
+  width: 100%;
+  height: 270px;
+  background-color: #ffffff;
+}

@@ -1,0 +1,25 @@
+.back-top-show{
+  width: 45px;
+  height: 45px;
+  font-size: 14px;
+  position: fixed;
+  top: 80%;
+  left:95%;
+  display: block;
+}
+
+.back-top-none{
+  width: 45px;
+  height: 45px;
+  font-size: 14px;
+  position: fixed;
+  top: 80%;
+  right: 200px;
+  display: none;
+}
+
+.back-top-show:hover{
+  cursor: pointer;
+}
+
+

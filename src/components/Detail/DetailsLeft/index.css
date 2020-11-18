@@ -1,0 +1,51 @@
+.hot-details-left{
+  width:77.5%;
+  font-size: 14px;
+}
+.hot-details-left .spin{
+  text-align: center;
+  line-height: 3;
+}
+.hot-details-title{
+  text-align: center;
+  background-color: #F2F3F4;
+  margin:50px 0;
+  padding:20px 0;
+}
+.hot-details-title p>span{
+  margin:0 15px;
+}
+.hot-details-title p>span:nth-child(3){
+  display: inline-block;
+  text-align: right
+}
+
+.hot-details{
+  line-height: 30px;
+  text-indent: 2em;
+  min-height: 300px;
+  font-size: 14px;
+  user-select: none;
+}
+.hot-details span{
+  font-size: 14px !important;
+  display: inline;
+  font-weight: normal!important;
+
+}
+.hot-details .MsoNormal img{
+  display:block;
+}
+.hot-details img{
+  display: inline-block;
+}
+.hot-details-img{
+  text-align: right;
+  margin:60px 0 90px;
+}
+.hot-details-img .social-share .social-share-icon {
+  border-radius: 0;
+}
+.declare{
+  color: #b2b2b2;
+}

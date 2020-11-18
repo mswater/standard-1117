@@ -1,0 +1,10 @@
+.hot-tabs .top-img{
+  width:100%;
+  height:123px;
+}
+.hot-tabs .to-top{
+  font-size: 14px;
+  position: fixed;
+  top: 500px;
+  right: 200px;
+}

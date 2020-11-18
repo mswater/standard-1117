@@ -1,0 +1,26 @@
+.hot-chart-middle-container,
+.hot-chart-middle-spin-container{
+  height: 380px;
+  width: 100%;
+  background: #F9F9FB;
+  margin: 20px 0;
+}
+.hot-chart-middle-spin-container{
+  line-height: 380px;
+  text-align: center;
+}
+
+.hot-chart-middle-title {
+  padding: 20px 0 20px 2.5%;
+}
+
+.hot-chart-middle-title h4 {
+  border-left: 2px solid #EEBD08;
+  padding-left: 10px;
+}
+
+.hot-chart-middle-content {
+  width: 80%;
+  height: 280px;
+  margin: 0 auto;
+}

@@ -1,0 +1,80 @@
+.home-carousel .ant-carousel .slick-slide {
+  text-align: center;
+  height:360px;
+  line-height: 360px;
+  overflow: hidden;
+  position: relative;
+}
+.home-carousel .ant-carousel .slick-dots {
+  position: absolute;
+  bottom: 30px;
+  display: block;
+  width: 100%;
+  height: 3px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  list-style: none;
+}
+.home-carousel .ant-carousel .slick-dots li.slick-active button {
+  background: #FFC038;
+  opacity: 1;
+  width:8px;
+  border-radius: 50%;
+}
+
+.home-carousel .ant-carousel .slick-dots li button {
+  border: 0;
+  cursor: pointer;
+  background: #fff;
+  opacity: 0.3;
+  display: block;
+  width:8px;
+  height: 8px;
+  outline: none;
+  font-size: 0;
+  color: transparent;
+  transition: all 0.5s;
+  padding: 0;
+  border-radius: 50%;
+}
+.home-carousel .ant-carousel .slick-slide .img-box{
+  width: 100%;
+  min-height: 360px;
+  overflow: hidden;
+  position: relative;
+}
+.home-carousel .ant-carousel .slick-slide .img-box>a{
+  height: 360px;
+  display: block;
+}
+.home-carousel .ant-carousel .slick-slide .img-box>a img{
+  width: 100%;
+  min-height: 360px;
+  height:100%;
+}
+
+@media screen and (max-width: 1440px) {
+  .home-carousel .ant-carousel .slick-slide {
+    text-align: center;
+    height:270px;
+    line-height: 270px;
+    overflow: hidden;
+    position: relative;
+  }
+  .home-carousel .ant-carousel .slick-slide .img-box{
+    width: 100%;
+    min-height: 270px;
+    overflow: hidden;
+    position: relative;
+  }
+  .home-carousel .ant-carousel .slick-slide .img-box>a{
+    height: 270px;
+    display: block;
+  }
+  .home-carousel .ant-carousel .slick-slide .img-box>a img{
+    width: 100%;
+    min-height: 270px;
+    height:100%;
+  }
+}

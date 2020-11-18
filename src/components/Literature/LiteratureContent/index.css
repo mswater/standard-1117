@@ -1,0 +1,48 @@
+.literature-content {
+  width: 1152px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.literature-content-main {
+  width: 920px;
+  padding-left: 35px;
+}
+
+.literature-content-slider {
+  width: 230px;
+}
+
+.literature-content-topic {
+  padding-bottom: 25px;
+}
+
+.literature-content-topic span {
+  color: #cbd2d8;
+  font-size: 17px;
+  font-family: Arial;
+  font-weight: 500;
+}
+
+.literature-content-topic h2 {
+  color: #333333;
+}
+
+.literature-content-topic li {
+  font-size: 16px;
+  color: #555555;
+}
+
+.literature-content-slider .menu {
+  width: 230px;
+  border-top: 2px solid #0572B8;
+  border-bottom: 2px solid #0572B8
+}
+
+.literature-content-slider .ant-menu-item {
+  border-bottom: 1px dashed #F0F0F0;
+  height: 40px;
+  width: 100%;
+}
+
+

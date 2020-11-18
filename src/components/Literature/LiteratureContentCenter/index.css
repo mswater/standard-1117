@@ -1,0 +1,47 @@
+.literature-content-center{
+  width: 100%;
+  margin-top: 20px;
+  background-color: #F2F3F6;
+}
+
+.literature-content-center button{
+  width: 50%;
+  height: 39px;
+  cursor: pointer;
+  font-weight:bold;
+  line-height: 39px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #F2F3F6;
+  background-color: transparent;
+}
+
+.literature-content-center button:nth-of-type(1){
+  border-bottom: 1px solid #0572B8;
+  color: #0572B8;
+}
+.literature-search-btn{
+  display: flex;
+  margin-top:20px;
+}
+.literature-search-btn .search-by-topic{
+  width:40%;
+  margin-right:10px;
+}
+.literature-search-btn>span{
+  width: 10%;
+  line-height: 2;
+}
+.literature-search-btn .ant-input-suffix .anticon svg{
+  color:#D1D1D1;
+}
+.literature-search-btn .search-by-date{
+  width:58%;
+}
+.literature-search-btn.search-by-date-picker{
+  width:75%;
+  margin-right:10px;
+}
+.literature-search-btn .search-by-date>button{
+  margin-right:0;
+}

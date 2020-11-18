@@ -1,0 +1,74 @@
+.analysis-top{
+  height: 40px;
+  margin-bottom: 25px;
+  background-color: #f0f0f0;
+  width: 100%;
+  border-bottom: 2px solid #D1D1D1;
+}
+
+.analysis-top-wrap{
+  width: 1000px;
+  margin: 0 auto;
+  height: 40px;
+  position: relative;
+}
+
+.analysis-top-wrap i{
+  position: absolute;
+  font-size: 40px;
+  cursor: pointer;
+  color: #cccccc;
+  top: 0;
+}
+
+.analysis-top-wrap i:first-child {
+  left: -50px;
+}
+
+.analysis-top-wrap i:last-child {
+  right: -50px;
+}
+
+.analysis-top-box{
+  height: 40px;
+  width: 1000px;
+  overflow: hidden;
+}
+
+.analysis-top-list{
+  height: 40px;
+  -webkit-transition: margin-left .5s ease-in-out;
+  -moz-transition: margin-left .5s ease-in-out;
+  -ms-transition: margin-left .5s ease-in-out;
+  -o-transition: margin-left .5s ease-in-out;
+  transition: margin-left .5s ease-in-out;
+}
+
+.analysis-top-btn {
+  width: 250px;
+  height: 40px;
+  float: left;
+  padding-left: 25px;
+}
+
+.analysis-top-btn button{
+  width: 200px;
+  height: 40px;
+  outline: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: #D1D1D1;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.analysis-top-list .analysis-top-btn:first-child button{
+  background-color: #F6BD4E;
+}

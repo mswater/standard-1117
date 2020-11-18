@@ -1,0 +1,186 @@
+.meeting-content-query {
+  width: 100%;
+}
+
+.meeting-content-query-class {
+  padding: 20px 0 0;
+}
+
+.meeting-content-query-class > div:nth-of-type(1) button {
+  outline: none;
+  border: none;
+  line-height: 36px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 400;
+  background-color: transparent;
+}
+
+.meeting-content-query-class > div:nth-of-type(1) button:nth-of-type(1) {
+  color: #0572B8;
+}
+
+.meeting-content-query-class > span {
+  color: #ddd;
+}
+
+.meeting-content-query-class button i {
+  margin-right: 5px;
+}
+
+.meeting-content-query-class .ant-input-lg,
+.meeting-content-query-class .ant-btn-lg {
+  font-size: 14px;
+}
+
+.meeting-content-query-date span {
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.meeting-content-query-date span:nth-of-type(1) {
+  color: #0572B8;
+}
+
+.meeting-content-query-date span:nth-of-type(2),
+.meeting-content-query-date span:nth-of-type(3) {
+  border-left: 1px solid #000;
+}
+
+.meeting-content-query-select {
+  margin: 20px 0;
+  border-top: 1px solid #0572B8;
+  border-bottom: 1px solid #0572B8;
+}
+
+.meeting-content-check-top-sort>div:nth-of-type(1){
+  color: #2E2E2E;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.meeting-content-check-top-result {
+  color: #999999;
+}
+
+.meeting-content-check-top-sort>div:nth-of-type(2) button{
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+}
+
+.meeting-content-check-top-sort>div:nth-of-type(2) button i{
+  color: #fff;
+}
+
+.meeting-content-check-top-sort>div:nth-of-type(2) button:nth-of-type(1),
+.meeting-content-check-top-sort>div:nth-of-type(2) button:nth-of-type(1) i{
+  color: #0572B8;
+}
+
+.meeting-content-check-center{
+  padding-top: 20px;
+}
+.meeting-content-check-center .noList{
+  margin: 50px auto;
+  display: block;
+}
+.meeting-content-check-item-title:hover span{
+  color:#0572B8;
+}
+.meeting-content-address{
+  color:#595959;
+}
+.meeting-content-address:hover{
+  color:#595959;
+}
+.meeting-content-check-item-text{
+  margin-top: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
+}
+
+.meeting-content-check-item{
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e5e5;
+}
+.meeting-content-check-item-click .read-num:hover{
+  cursor: default;
+}
+.meeting-content-check-item:hover,
+.meeting-content-check-item:hover .meeting-content-check-item-click button{
+  background-color: #FBFBFB;
+}
+
+.meeting-content-check-download button{
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+}
+
+.meeting-content-check-item-bottom{
+  margin-top: 28px;
+  color: #999999;
+}
+.meeting-content-info{
+  display: flex;
+}
+.meeting-address{
+  width: 210px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  height: 18px;
+}
+
+.meeting-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(3),
+.meeting-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(5),
+.meeting-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(7){
+  margin-left: 20px;
+}
+
+.meeting-content-check-item-click button{
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+}
+
+.meeting-content-check-item-click button:nth-of-type(2){
+  margin-left: 30px;
+}
+
+.meeting-content-check-pagination{
+  padding-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.meeting-content-check-pagination button{
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: #fff;
+}
+
+.meeting-content-check{
+  padding-bottom: 50px;
+}
+
+.meeting-content-check-item-title .meeting-content-title-link{
+  font-size:16px;
+  font-weight:bold;
+  color:#4D4C4C;
+}
+.meeting-content-check-item-title:hover .meeting-content-title-link{
+  color:#0572B8;
+}
