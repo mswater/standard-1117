@@ -1,0 +1,125 @@
+/**
+  index header class
+ */
+.index-header{
+  width:100%;
+  height:435px;
+  background:rgba(63, 178, 244, 1) center no-repeat;
+}
+.index-header-bg{
+  width:100%;
+  height:435px;
+  background:url("../../images/index-header-bg.jpg") center center no-repeat;
+  background-size:auto 100%;
+}
+.index-header-con{
+  width:1200px;
+  height:435px;
+  margin:0 auto;
+}
+.index-header-con .top-l{
+  float:left;
+  margin-top:43px;
+}
+.index-header-con .top-r{
+  float:right;
+  margin-top:53px;
+  height:30px;
+}
+.index-header-con .top-r div{
+  display:inline-block;
+  height:30px;
+  line-height:30px;
+  font-size:12px;
+  color:rgba(255,255,255,.8);
+}
+.index-header-con .top-r .user-info button{
+  display:inline-block;
+  width:62px;
+  height:22px;
+  line-height:22px;
+  padding:0;
+  border:solid 1px rgba(255,255,255,.36);
+  background:none;
+}
+
+/**
+  nav class
+ */
+.index-nav{
+  width:100%;
+  height:54px;
+  background:rgba(44,156,213,1);
+}
+.index-nav-con{
+  width:1200px;
+  height:54px;
+  margin:0 auto;
+}
+.index-nav-con li{
+  display:inline-block;
+  width:171px;
+  height:54px;
+}
+.index-nav-con li:last-child{
+  width:174px;
+}
+.index-nav-con li.current{
+  background:rgba(131,217,97,1);
+}
+.index-nav-con li a{
+  display:inline-block;
+  width:100%;
+  height:20px;
+  line-height:20px;
+  margin-top:17px;
+  text-align:center;
+  font-size:14px;
+  color:rgba(255,255,255,1);
+  border-left:solid 2px rgba(56,168,225,1);
+}
+.index-nav-con li:last-child a{
+  border-right:solid 2px rgba(56,168,225,1);
+}
+.index-nav-con li.current a{
+  border-left-color:rgba(131,217,97,1);
+}
+.index-nav-con li:last-child.current a{
+  border-right-color:rgba(131,217,97,1);
+}
+/**
+  index content class
+ */
+.index-con-with-bg{
+  width:100%;
+  background:url("../../images/index-con-bg.jpg") center bottom no-repeat;
+  background-size:100% auto;
+}
+/**
+  industry class
+ */
+.industry-trends{
+  width:1200px;
+  height:640px;
+  margin:0 auto;
+}
+.subject-topics{
+  width:1200px;
+  height:550px;
+  margin:0 auto;
+}
+.industry-trends ul, .subject-topics ul{
+  margin-top:50px;
+}
+.conference{
+  width:700px;
+}
+.subject-news{
+  width:400px;
+}
+.index-con-last{
+  width:1200px;
+  margin:0 auto;
+}
+
+

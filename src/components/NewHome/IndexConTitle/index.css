@@ -1,0 +1,20 @@
+.ms-main-title{
+  height:48px;
+  margin-top:50px;
+  text-align:center;
+}
+.ms-main-title h1{
+  line-height:25px;
+  margin-bottom:0;
+  font-size:26px;
+  font-weight:bold;
+  color:rgba(56,71,78,1)
+}
+.ms-main-title h2{
+  line-height:20px;
+  margin-bottom:0;
+  margin-top:-4px;
+  font-size:26px;
+  font-weight:bold;
+  color:rgba(214,226,232,.75);
+}

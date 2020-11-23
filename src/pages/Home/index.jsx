@@ -84,8 +84,6 @@ class Home extends React.Component{
     fetchMeeting();
   }
 
-
-
   render() {
     return (
       <div className="home" ref={node => this.node = node}>

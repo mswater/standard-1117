@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Home from "./../pages/Home/index.jsx";
+import Home from "./../pages/NewHome/index.jsx";
 import Hot from "../pages/Hot/index.jsx";
 import Details from "../pages/Details/index.jsx";
 import Tabs from "../pages/Tabs/index.jsx";
