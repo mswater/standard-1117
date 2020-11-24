@@ -81,7 +81,7 @@ const devConfig = {
 
   devServer: {
     host: "127.0.0.1",
-    port: "8011",
+    port: "8012",
     stats: "errors-only",
     contentBase: BUILD_PATH,
     hot: true,

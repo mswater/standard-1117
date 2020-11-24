@@ -1,47 +1,3 @@
-/**
-  index header class
- */
-.index-header{
-  width:100%;
-  height:435px;
-  background:rgba(63, 178, 244, 1) center no-repeat;
-}
-.index-header-bg{
-  width:100%;
-  height:435px;
-  background:url("../../images/index-header-bg.jpg") center center no-repeat;
-  background-size:auto 100%;
-}
-.index-header-con{
-  width:1200px;
-  height:435px;
-  margin:0 auto;
-}
-.index-header-con .top-l{
-  float:left;
-  margin-top:43px;
-}
-.index-header-con .top-r{
-  float:right;
-  margin-top:53px;
-  height:30px;
-}
-.index-header-con .top-r div{
-  display:inline-block;
-  height:30px;
-  line-height:30px;
-  font-size:12px;
-  color:rgba(255,255,255,.8);
-}
-.index-header-con .top-r .user-info button{
-  display:inline-block;
-  width:62px;
-  height:22px;
-  line-height:22px;
-  padding:0;
-  border:solid 1px rgba(255,255,255,.36);
-  background:none;
-}
 
 /**
   nav class
@@ -111,15 +67,64 @@
 .industry-trends ul, .subject-topics ul{
   margin-top:50px;
 }
-.conference{
-  width:700px;
-}
-.subject-news{
-  width:400px;
-}
 .index-con-last{
   width:1200px;
   margin:0 auto;
 }
-
-
+.conference-information{
+  width:700px;
+  height:500px;
+}
+.subject-news{
+  width:400px;
+  height:500px;
+}
+.single-more{
+  float:right;
+  height:24px;
+  line-height:24px;
+  font-size:14px;
+  color:rgba(56,71,78,1);
+}
+footer{
+  width:100%;
+  height:288px;
+  margin-top:40px;
+  border-top:solid 8px rgba(52,161,218,1);
+  background:rgba(48,59,65,1);
+}
+.footer-con{
+  width:1200px;
+  margin:0 auto;
+  padding-top:65px;
+}
+.footer-con ul{
+  width:875px;
+}
+.footer-con li{
+  display:inline-block;
+  list-style:none;
+}
+.footer-con li a{
+  display:block;
+  width:105px;
+  height:42px;
+  line-height:42px;
+  font-size:13px;
+  color:rgba(255,255,255,.6);
+  text-align:center;
+  border:solid 1px rgba(64,67,69,1);
+  border-right:none;
+}
+.footer-con li:last-child a{
+  border-right:solid 1px rgba(64,67,69,1);
+}
+.footer-con li a:hover{
+  background:rgba(54,65,71,1);
+}
+.footer-con .company-info{
+  margin-top:50px;
+  font-size:13px;
+  color:rgba(255,255,255,.6);
+  text-align:center;
+}

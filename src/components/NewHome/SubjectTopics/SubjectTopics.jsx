@@ -17,53 +17,67 @@ class SubjectTopics extends React.Component{
   }
 
   render() {
+    const topicsList = [
+      {
+        "img":subjectIcon1,
+        "ch":"作物科学",
+        "en":"CROP SCIENCE"
+      },
+      {
+        "img":subjectIcon2,
+        "ch":"园艺科学",
+        "en":"HORTICULTURE SCIENCE"
+      },
+      {
+        "img":subjectIcon3,
+        "ch":"畜牧科学",
+        "en":"LIVESTOCK SCIENCE"
+      },
+      {
+        "img":subjectIcon4,
+        "ch":"兽医科学",
+        "en":"VETERINARY SCIENCE"
+      },
+      {
+        "img":subjectIcon5,
+        "ch":"植物保护科学",
+        "en":"PLANT PROTECTION SCIENCE"
+      },
+      {
+        "img":subjectIcon6,
+        "ch":"农业资源与环境科学",
+        "en":"AGRICULTURAL RESOURCES AND ENVIRONMENTAL SCIENCE"
+      },
+      {
+        "img":subjectIcon7,
+        "ch":"农业机械与工程科学",
+        "en":"AGRICULTURAL MACHINERY AND ENGINEERING SCIENCE"
+      },
+      {
+        "img":subjectIcon8,
+        "ch":"农产品质量与加工科学",
+        "en":"AGRICULTURAL PRODUCT QUALITY AND PROCESSING SCIENCE"
+      },
+      {
+        "img":subjectIcon9,
+        "ch":"农业信息与经济科学",
+        "en":"AGRICULTURAL INFORMATION AND ECONOMIC SCIENCE"
+      },
+    ];
     return (
       <ul className="clear">
-        <li className="clear">
-          <label><img src={subjectIcon1} alt="作物科学" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear">
-          <label><img src={subjectIcon2} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear no-mr">
-          <label><img src={subjectIcon3} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear">
-          <label><img src={subjectIcon4} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear">
-          <label><img src={subjectIcon5} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear no-mr">
-          <label><img src={subjectIcon6} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear">
-          <label><img src={subjectIcon7} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear">
-          <label><img src={subjectIcon8} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
-        <li className="clear no-mr">
-          <label><img src={subjectIcon9} alt="" /></label>
-          <h2>作物科学</h2>
-          <h3>CROP SCIENCE</h3>
-        </li>
+        {
+          topicsList.map((item, index) => {
+            const clsName = (index + 1) % 3 === 0 ? "clear no-mr" : "clear";
+            return (
+              <li className={clsName} key={item.en}>
+                <label><img src={item.img} alt={item.ch} /></label>
+                <h2>{item.ch}</h2>
+                <h3>{item.en}</h3>
+              </li>
+            );
+          })
+        }
       </ul>
     );
   }

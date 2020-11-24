@@ -16,7 +16,7 @@
   float:left;
   width:48px;
   height:48px;
-  margin:35px 0 0 65px;
+  margin:35px 0 0 40px;
 }
 .subject-topics label img{
   display:inline-block;
@@ -33,9 +33,10 @@
 }
 .subject-topics li h3{
   float:left;
-  width:180px;
+  width:250px;
   line-height:14px;
   margin:3px 0 0 15px;
   font-size:14px;
-  color:rgba(135,140,142,1);
+  color:rgba(135,140,142,.6);
+  font-weight:normal;
 }

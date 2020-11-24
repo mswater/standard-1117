@@ -1,0 +1,20 @@
+.subject-news ul{
+  margin-top:80px;
+  margin-bottom:15px;
+}
+.subject-news li{
+  height:32px;
+  line-height:32px;
+  margin-top:25px;
+  font-size:16px;
+  color:rgba(81,78,78,1);
+}
+.subject-news li label{
+  display:block;
+  width:160px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.subject-news li .tx-r{
+  text-align:right;
+}
