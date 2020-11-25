@@ -88,12 +88,9 @@ class ForgotPassword extends React.Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
               <div className="forgot-title">
-                行业信息监测与分析系统
+                农业科技热点监测系统
               </div>
             </Form.Item>
-            <div className="forgot-info">
-              请输入手机号进行验证
-            </div>
             <Form.Item label="手机号" labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
               {getFieldDecorator("phone", {
                 rules: [{ required: true, message: "请您输入手机号" }],

@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { Form } from "antd";
 
 import "./index.css";
 import NewHeader from "../../components/NewHome/NewHeader/NewHeader.jsx";
@@ -147,6 +146,6 @@ export default connect(
   mapStateToProps,
   {
   },
-)(withRouter(Form.create()(Home)));
+)(withRouter(Home));
 
 

@@ -87,12 +87,9 @@ class NewPassword extends React.Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
               <div className="forgot-title">
-                行业信息监测与分析系统
+                农业科技热点监测系统
               </div>
             </Form.Item>
-            <div className="forgot-info">
-              请重置密码
-            </div>
             <Form.Item label="新密码" labelCol={{ span: 5 }} wrapperCol={{ span: 19 }}>
               {getFieldDecorator("password", {
                 rules: [

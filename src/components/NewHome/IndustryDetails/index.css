@@ -55,6 +55,7 @@
   height:24px;
   overflow:hidden;
   text-overflow:ellipsis;
+  cursor:pointer;
 }
 .industry-trends li .detail-r a span{
   float:right;

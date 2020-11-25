@@ -52,7 +52,7 @@ class Login extends React.Component {
           <Form onSubmit={this.handleSubmit} className="login-form">
             <Form.Item>
               <div className="login-title">
-                行业信息监测与分析系统
+                农业科技热点监测系统
               </div>
             </Form.Item>
             <Form.Item label="账号" labelCol={{ span: 4 }} wrapperCol={{ span: 20 }}>
@@ -76,7 +76,7 @@ class Login extends React.Component {
                 />,
               )}
             </Form.Item>
-            <Form.Item>
+            <Form.Item className="small-item">
               {getFieldDecorator("remember", {
                 valuePropName: "checked",
                 initialValue: false,
