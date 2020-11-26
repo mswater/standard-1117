@@ -42,10 +42,10 @@
 
 .hot-content-top-class .ant-input-suffix .anticon svg{
   color:#D1D1D1;
-  margin-right:15px;
 }
-
-.ant-input-affix-wrapper .ant-input:not(:last-child) {
-  padding-right: 50px;
+.hot-content-top-class .fr{
+  line-height:36px;
+  font-size:13px;
+  color: rgba(52, 53, 57, 1);
 }
 

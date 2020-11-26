@@ -37,6 +37,7 @@ const init = {
   hotProListFlag: false,
   hotResetButtonFlag: false,
   hotWeiboTypeFlag: false,
+  hotLanguageTypeFlag: false,
   hotSearchQuery: [],
   hotThemeSearch:"",
   hotCheckedNum:{},
@@ -136,6 +137,11 @@ const hotReducer = (state = init, action) => {
       return {
         ...state,
         hotWeiboTypeFlag: action.payload,
+      };
+    case "SAVE_HOT_RESET_LANGUAGE_FLAG":
+      return {
+        ...state,
+        hotLanguageTypeFlag: action.payload,
       };
     case "SAVE_HOT_SEARCH_QUERY":
       return {

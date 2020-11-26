@@ -1,10 +1,12 @@
 import React from "react";
-import { Icon, Input } from "antd";
+import moment from "moment";
+import { Icon, Input, DatePicker} from "antd";
 
 import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
 
 const { Search } = Input;
+const { RangePicker } = DatePicker;
 
 /* eslint-disable no-nested-ternary */
 class HotContentTop extends React.Component {
@@ -107,7 +109,7 @@ class HotContentTop extends React.Component {
 
 
   // 主题内检索
-  searchQuery = (value) => {
+  searchQuery = (type, value, dateStrings) => {
     const {
       fetchHotContentList,
       hot:{
@@ -120,8 +122,16 @@ class HotContentTop extends React.Component {
     } = this.props;
     const readingId = localStorage.getItem("readingId");
     const hotContact = localStorage.getItem("hotContact");
+    let searchDate;
+    let searchWord;
+    if(type === "date"){
+      searchDate = dateStrings;
+    }else if(type === "word"){
+      searchWord = value;
+    }
     const params = {
-      searchKey:value,
+      searchDate,
+      searchKey:searchWord,
       hId: Number(readingId),
       sourceType:Number(hotContact),
       webList:hotWeiboTypeFlag ? [] : (hotProListFlag ? []
@@ -135,11 +145,18 @@ class HotContentTop extends React.Component {
       pageSize:10
     };
     fetchHotThemeSearchFlag(true);
-    fetchHotThemeSearch(value);
+    fetchHotThemeSearch({
+      searchDate,
+      searchKey:searchWord
+    });
     // 调用接口
     fetchHotContentList(params);
   };
 
+  disabledDate(current) {
+    // Can not select days after today
+    return current && current > moment().endOf("day");
+  }
 
   checkType() {
     /* eslint-disable no-param-reassign */
@@ -210,14 +227,23 @@ class HotContentTop extends React.Component {
           </div>
           <div className="fr">
             {(!hotClassType && classType === 1 || hotClassType === "1" && classType === 1) ? (
-              <Search
-                placeholder="请输入您想要搜索的内容..."
-                enterButton="主题内搜索"
-                size="default"
-                allowClear
-                style={{width: "390px"}}
-                onSearch={this.searchQuery}
-              />
+              <div>
+                <label>发布时间：</label>
+                <RangePicker
+                  disabledDate={this.disabledDate}
+                  style={{width: "230px", marginRight: "20px"}}
+                  onChange={(value, dateStrings) => this.searchQuery("date", value, dateStrings)}
+                />
+                <label>检索词：</label>
+                <Search
+                  placeholder="请输入搜索内容"
+                  enterButton="主题内搜索"
+                  size="default"
+                  allowClear
+                  style={{width: "250px"}}
+                  onSearch={(value) => this.searchQuery("word", value)}
+                />
+              </div>
             ) : (
               <div className="hot-content-top-date" ref={(ref) => {this.timeType = ref;}}>
                 <span onClick={() => {return this.dateLink(1);}}>一周</span>

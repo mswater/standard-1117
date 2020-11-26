@@ -21,6 +21,7 @@ class HotContentCenter extends React.Component {
       fetchHotProList,
       fetchHotResetButton,
       fetchHotResetWeibo,
+      fetchHotResetLanguage,
       fetchHotSearchValue,
       hot:{
         hotThemeSearch
@@ -44,6 +45,7 @@ class HotContentCenter extends React.Component {
     handlerIndex(0);
     fetchHotSearchValue();
     fetchHotResetWeibo(false);
+    fetchHotResetLanguage(false);
     fetchHotProList(false);
     fetchHotResetButton(true);
     fetchHotContentList(params);

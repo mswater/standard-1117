@@ -68,12 +68,7 @@ class Home extends React.Component{
         <div className="index-con-with-bg">
           <div className="industry-trends">
             <IndexConTitle title={titleList.industry}/>
-            <ul className="clear">
-              <IndustryDetails className="fl" />
-              <IndustryDetails className="fr" />
-              <IndustryDetails className="fl" />
-              <IndustryDetails className="fr" />
-            </ul>
+            <IndustryDetails />
           </div>
           <div className="subject-topics">
             <IndexConTitle title={titleList.subject}/>

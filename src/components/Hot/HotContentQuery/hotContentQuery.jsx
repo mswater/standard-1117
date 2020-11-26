@@ -6,6 +6,7 @@ import noData from "../../../images/nodata.png";
 
 const { Search } = Input;
 let weiboArr = ["原创微博", "转发微博"];
+let languageArr = ["中文", "英文"];
 
 class HotContentQuery extends React.Component {
   constructor(props) {
@@ -143,12 +144,13 @@ class HotContentQuery extends React.Component {
   };
 
   // 地区判断
-  proListFunc = (flag, type) => {
+  proListFunc = (tag) => {
     const {
       fetchHotContentList,
       fetchHotProList,
       fetchHotResetButton,
       fetchHotResetWeibo,
+      fetchHotResetLanguage,
       fetchHotSearchValue,
       hot:{
         hotThemeSearch
@@ -163,15 +165,40 @@ class HotContentQuery extends React.Component {
       hId: Number(readingId),
       sourceType:Number(hotContact),
       webList:[],
-      proList:flag ? ["全部"] : [],
+      proList:(tag === "地区分布") ? ["全部"] : [],
       order:"desc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10
     };
+    let languageFlag;
+    let weiboFlag;
+    let otherFlag;
+    switch (tag){
+      case "语种分类":
+        languageFlag = true;
+        weiboFlag = false;
+        otherFlag = false;
+        break;
+      case "微博类型":
+        weiboFlag = true;
+        languageFlag = false;
+        otherFlag = false;
+        break;
+      case "地区分布":
+        otherFlag = true;
+        weiboFlag = false;
+        languageFlag = false;
+        break;
+      default:
+        otherFlag = false;
+        weiboFlag = false;
+        languageFlag = false;
+    }
     fetchHotSearchValue();
-    fetchHotResetWeibo(type);
-    fetchHotProList(flag);
+    fetchHotResetWeibo(weiboFlag);
+    fetchHotProList(otherFlag);
+    fetchHotResetLanguage(languageFlag);
     fetchHotResetButton(false);
     fetchHotContentList(params);
     handlerIndex(0);
@@ -205,13 +232,14 @@ class HotContentQuery extends React.Component {
     fetchHotSearchQuery();
     fetchHotContentList(params);
     weiboArr =  ["原创微博", "转发微博"];
+    languageArr = ["中文", "英文"];
   };
 
   sourceArr = () => {
     // renderContactNumber 判断是什么类型 1资讯 2微博 3微信
     const renderContactNumber = localStorage.getItem("hotContact");
     if (parseInt(renderContactNumber, 0) === 1) {
-      return ["来源网站", "地区分布"];
+      return ["来源网站", "语种分类", "地区分布"];
     }
     if (parseInt(renderContactNumber, 0) === 2) {
       return ["来源用户", "微博类型", "地区分布"];
@@ -219,7 +247,7 @@ class HotContentQuery extends React.Component {
     if (parseInt(renderContactNumber, 0) === 3) {
       return ["来源公众号", "地区分布"];
     }
-    return ["来源网站", "地区分布"];
+    return ["来源网站", "语种分类", "地区分布"];
   };
 
   // 直接点击，安徽等检索
@@ -322,6 +350,7 @@ class HotContentQuery extends React.Component {
         hotContentListData,
         hotProListFlag,
         hotWeiboTypeFlag,
+        hotLanguageTypeFlag,
         fetchHotContentListLoading,
         hotSearchValue
       },
@@ -330,6 +359,7 @@ class HotContentQuery extends React.Component {
     const webList = ["全部"].concat(hotContentListData.webList);
     const proList = ["全部"].concat(hotContentListData.proList);
     const weiboArrList = ["全部"].concat(weiboArr);
+    const languageList = ["全部"].concat(languageArr);
     const searchWeb = webList && webList.map((cur, index) => {
       return (
         <div
@@ -363,19 +393,33 @@ class HotContentQuery extends React.Component {
         </div>
       );
     });
+    const searchLanguage = languageList && languageList.map((cur, index) => {
+      return (
+        <div
+          key={index.toString()}
+          onClick={() => this.searchItem(cur,index)}
+          className={`fl ${index === clickIndex ? "current" : ""}`}
+        >
+          {cur}
+        </div>
+      );
+    });
     const item = this.sourceArr() && this.sourceArr().map((cur, index) => {
       return (
         <button
           type="button"
           key={index.toString()}
-          onClick={() => this.proListFunc(cur === "地区分布", cur === "微博类型")}
+          onClick={() => this.proListFunc(cur)}
         >
           <span>{cur}</span><Icon type="up" />
         </button>
       );
     });
     /* eslint-disable no-nested-ternary */
-    const queryList = hotProListFlag ? searchPro : (hotWeiboTypeFlag ? searchWeibo : searchWeb);
+    const queryList = hotProListFlag ?
+      searchPro : (hotWeiboTypeFlag ?
+        searchWeibo : (hotLanguageTypeFlag ?
+          searchLanguage : searchWeb));
     return (
       <div className="hot-content-query">
         <div className="hot-content-query-class clear">
@@ -391,7 +435,7 @@ class HotContentQuery extends React.Component {
         </div>
         <div className="hot-content-query-select">
           <div className="query-top clear">
-            {(!hotWeiboTypeFlag) && (
+            {(!(hotWeiboTypeFlag || hotLanguageTypeFlag)) && (
               <Search
                 value={hotSearchValue}
                 placeholder="请输入搜索内容..."

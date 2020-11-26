@@ -248,6 +248,16 @@ export const fetchHotResetWeibo = (params) => {
 };
 
 /**
+ * 热点 判断是否是语种分类
+ */
+
+export const fetchHotResetLanguage = (params) => {
+  return (dispatch) => {
+    dispatch({type: "SAVE_HOT_RESET_LANGUAGE_FLAG", payload: params});
+  };
+};
+
+/**
  * 热点 模糊搜索重新渲染
  */
 
