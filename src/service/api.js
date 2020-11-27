@@ -66,7 +66,7 @@ export const getHotWords = async (pageNum = 1, pageSize = 6) => {
  * @param {number} pageNum 页数
  * @param {number} pageSize 一页显示多少条
  */
-export const getHotInformation = async (pageNum = 1, pageSize = 6) => {
+export const getHotInformation = async (pageNum = 1, pageSize = 5) => {
   return axios.get(`/hot/hotInformation/${pageNum}/${pageSize}`);
 };
 /**

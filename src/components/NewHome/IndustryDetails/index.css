@@ -41,15 +41,18 @@
   float:right;
   width:395px;
 }
-.industry-trends li .detail-r a{
-  display:inline-block;
+.industry-trends li .detail-r .per-item{
+  display:block;
   height:24px;
   line-height:24px;
   font-size:14px;
   color:rgba(56,71,78,1);
-  margin-bottom:17px;
+  margin-bottom:15px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
-.industry-trends li .detail-r a label{
+.industry-trends li .detail-r label{
   float:left;
   width:275px;
   height:24px;
@@ -57,7 +60,7 @@
   text-overflow:ellipsis;
   cursor:pointer;
 }
-.industry-trends li .detail-r a span{
+.industry-trends li .detail-r .per-item span{
   float:right;
   width:118px;
   height:24px;

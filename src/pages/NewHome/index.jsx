@@ -10,11 +10,28 @@ import SubjectTopics from "../../components/NewHome/SubjectTopics/SubjectTopics.
 import Conference from "../../components/NewHome/Conference/Conference.jsx";
 import SubjectNews from "../../components/NewHome/SubjectNews/SubjectNews.jsx";
 
+import {
+  fetchHotTopic,
+  fetchHotInformation,
+} from "../../store/action/HomeAction.js";
+
 class Home extends React.Component{
 
   constructor(props){
     super(props);
     this.state = {};
+  }
+
+  componentDidMount() {
+    this.node.scrollIntoView();
+    const {
+      fetchHotTopic,
+      fetchHotInformation,
+    } = this.props;
+    // 热点监测
+    fetchHotTopic();
+    // 热门资讯
+    fetchHotInformation();
   }
 
   render(){
@@ -38,7 +55,7 @@ class Home extends React.Component{
     };
 
     return (
-      <div>
+      <div ref={node => this.node = node}>
         <NewHeader />
         <nav className="index-nav">
           <ul className="index-nav-con">
@@ -68,7 +85,7 @@ class Home extends React.Component{
         <div className="index-con-with-bg">
           <div className="industry-trends">
             <IndexConTitle title={titleList.industry}/>
-            <IndustryDetails />
+            <IndustryDetails {...this.props} />
           </div>
           <div className="subject-topics">
             <IndexConTitle title={titleList.subject}/>
@@ -140,6 +157,8 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
+    fetchHotTopic,
+    fetchHotInformation
   },
 )(withRouter(Home));
 
