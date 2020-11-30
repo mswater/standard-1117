@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
 import "./index.css";
-import NewHeader from "../../components/NewHome/NewHeader/NewHeader.jsx";
+import NewHeader from "../../components/Common/Header/NewHeader.jsx";
+import Nav from "../../components/Common/Nav/nav.jsx";
 import IndustryDetails from "../../components/NewHome/IndustryDetails/IndustryDetails.jsx";
 import IndexConTitle from "../../components/NewHome/IndexConTitle/IndexConTitle.jsx";
 import SubjectTopics from "../../components/NewHome/SubjectTopics/SubjectTopics.jsx";
@@ -57,31 +58,7 @@ class Home extends React.Component{
     return (
       <div ref={node => this.node = node}>
         <NewHeader />
-        <nav className="index-nav">
-          <ul className="index-nav-con">
-            <li className="current">
-              <a>首页</a>
-            </li>
-            <li>
-              <a>行业动态</a>
-            </li>
-            <li>
-              <a>会议信息</a>
-            </li>
-            <li>
-              <a>学科专题</a>
-            </li>
-            <li>
-              <a>学科快讯</a>
-            </li>
-            <li>
-              <a>资料共享</a>
-            </li>
-            <li>
-              <a>关于我们</a>
-            </li>
-          </ul>
-        </nav>
+        <Nav />
         <div className="index-con-with-bg">
           <div className="industry-trends">
             <IndexConTitle title={titleList.industry}/>

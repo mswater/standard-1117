@@ -9,7 +9,6 @@ import Nav from "../../components/Common/Nav/nav.jsx";
 import TopicContent from "../../components/Topic/TopicContent/topicContent.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
-import topImg from "../../images/topImg.png";
 
 
 import {
@@ -73,7 +72,6 @@ class Topic extends React.Component{
       <div className="topic" ref={node => this.node = node}>
         <Header />
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <TopicContent {...this.props}/>
         <SubFooter />
         <BackTop />

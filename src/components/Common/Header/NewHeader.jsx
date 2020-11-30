@@ -1,21 +1,19 @@
 import React from "react";
+import "./index.css";
+import { Input } from "antd";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { fetchHeaderSearch } from "../../../store/action/HomeAction.js";
-import {  fetchSearch,fetchSearchThemeSearchFlag } from "../../../store/action/SearchAction.js";
-import {  fetchGetExit } from "../../../store/action/LoginAction.js";
-
-import "./index.css";
+import { fetchSearch,fetchSearchThemeSearchFlag } from "../../../store/action/SearchAction.js";
+import { fetchGetExit } from "../../../store/action/LoginAction.js";
 import logo from "../../../images/nky-logo.png";
 
-class Header extends React.Component {
+const { Search } = Input;
+
+class NewHeader extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {
-    };
-  }
-
-  componentDidMount(){
+    this.state = {};
   }
 
   loginLinkFunc = () => {
@@ -27,6 +25,7 @@ class Header extends React.Component {
       fetchGetExit(history);
     }
   };
+
 
   searchContent = (value) => {
     const {
@@ -78,14 +77,15 @@ class Header extends React.Component {
 
 
 
-  render() {
+  render(){
     const token = localStorage.getItem("token");
+    const { headerSearchContent } = this.props;
     const realname = localStorage.getItem("realname");
     const roleName = localStorage.getItem("roleName");
     return (
-      <header className="index-header normal-header">
-        <div className="normal-header-bg">
-          <div className="index-header-con normal-header-con clear">
+      <header className="index-header">
+        <div className="index-header-bg">
+          <div className="index-header-con clear">
             <div className="top-l logo">
               <img alt="logo" src={logo}/>
             </div>
@@ -112,6 +112,14 @@ class Header extends React.Component {
                 </a>
               </div>
             </div>
+            <div className="index-search-top">
+              <Search
+                placeholder="请输入检索词..."
+                value={headerSearchContent}
+                onChange={this.searchChange}
+                onSearch={this.searchContent}
+              />
+            </div>
           </div>
         </div>
       </header>
@@ -121,7 +129,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    headerSearchContent: state.home.headerSearchContent
   };
 };
 
@@ -133,4 +141,4 @@ export default connect(
     fetchGetExit,
     fetchSearchThemeSearchFlag,
   },
-)(withRouter(Header));
+)(withRouter(NewHeader));

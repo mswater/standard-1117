@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { siblings, getPortfolioCode, getDetailsPortfolioCode } from "../../../lib/tools/utils.js";
+import { getPortfolioCode, getDetailsPortfolioCode } from "../../../lib/tools/utils.js";
 
 import "./index.css";
 
@@ -11,145 +11,64 @@ class Nav extends React.Component {
     this.state={};
   }
 
-  componentDidMount() {
-    this.addEvent();
-  }
-
   navLinkFunc = (href) => {
     const { history } = this.props;
     history.push(href);
   };
 
-  navToPersonal = (token) =>{
-    window.open(`/managecenter/homepage?uid=${token}`,"_self");
-  };
+  // navToPersonal = (token) =>{
+  //   window.open(`/managecenter/homepage?uid=${token}`,"_self");
+  // };
 
   navToBrief = (token) =>{
     window.open(`/managecenter/brief?uid=${token}`,"_self");
   };
-
-
-
-  checkType() {
-    /* eslint-disable no-param-reassign */
-    siblings(this).forEach((item, index, arr) => {
-      arr[index].style.backgroundColor = "#208CE0";
-    });
-    this.style.backgroundColor = "#ffc038";
-  }
-
-  addEvent() {
-    const { box } = this;
-    const arr = box.children;
-    const ways = [];
-    for (let i = 0; i < arr.length - 1; i += 1) {
-      ways.push(arr[i]);
-    }
-    Array.prototype.forEach.call(ways, (item) => {
-      item.addEventListener("click", this.checkType);
-    });
-  }
 
   render() {
     const headerRouter = getPortfolioCode();
     const detailsRouter = getDetailsPortfolioCode();
     const token = localStorage.getItem("token");
     return (
-      <div className="header-bottom">
-        <div
-          className="header-link"
-          ref={(ref) => {this.box = ref;}}
-        >
-          <div
-            onClick={() => {
-              return this.navLinkFunc("/");
-            }}
-            style={
-              headerRouter === "" ?
-                { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
+      <nav className="index-nav">
+        <ul className="index-nav-con">
+          <li
+            className={headerRouter === "" ? "current" : ""}
+          >
+            <a onClick={() => this.navLinkFunc("/")}>
+              首页
+            </a>
+          </li>
+          <li
+            className={
+              (headerRouter === "topic" || detailsRouter === "topic" || headerRouter === "tags") ?
+                "current" : ""
             }
           >
-            首页
-          </div>
-          <div
-            onClick={() => {
-              return this.navLinkFunc("/hot");
-            }}
-            style={
-              (headerRouter === "hot" || detailsRouter === "hot" || headerRouter === "tabs") ?
-                { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
-            }
+            <a onClick={() => this.navLinkFunc("/topic")}>
+              行业动态
+            </a>
+          </li>
+          <li>
+            <a>会议信息</a>
+          </li>
+          <li>
+            <a>学科专题</a>
+          </li>
+          <li
+            className={headerRouter === "stat" ? "current" : ""}
           >
-            热点监测
-          </div>
-          <div
-            onClick={() => {
-              return this.navLinkFunc("/topic");
-            }}
-            style={
-              (headerRouter === "topic" || detailsRouter === "topic" || headerRouter === "tags")
-                ? { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
-            }
-          >
-            专题监测
-          </div>
-          <div
-            onClick={() => {
-              return this.navLinkFunc("/literature");
-            }}
-            style={
-              headerRouter === "literature" ?
-                { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
-            }
-          >
-            文献中心
-          </div>
-          <div
-            onClick={() => {
-              return this.navLinkFunc("/analysis");
-            }}
-            style={
-              headerRouter === "analysis" ?
-                { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
-            }
-          >
-            行业分析
-          </div>
-          <div
-            onClick={() => {
-              return this.navToBrief(token);
-            }}
-            style={
-              headerRouter === "report" ?
-                { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
-            }
-          >
-            行业简报
-          </div>
-          <div
-            onClick={() => {
-              return this.navLinkFunc("/stat");
-            }}
-            style={
-              headerRouter === "stat" ?
-                { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
-            }
-          >
-            来源统计
-          </div>
-          <div
-            onClick={() => {
-              return this.navToPersonal(token);
-            }}
-            style={
-              headerRouter === "personal" ?
-                { backgroundColor: "#ffc038" } : { backgroundColor: "#208CE0" }
-            }
-          >
-            个人主页
-          </div>
-        </div>
-      </div>
+            <a onClick={() => this.navToBrief(token)}>
+              学科快讯
+            </a>
+          </li>
+          <li>
+            <a>资料共享</a>
+          </li>
+          <li>
+            <a>关于我们</a>
+          </li>
+        </ul>
+      </nav>
     );
   }
 }

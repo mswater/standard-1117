@@ -8,7 +8,6 @@ import Nav from "../../components/Common/Nav/nav.jsx";
 import HotContent from "../../components/Hot/HotContent/hotContent.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
-import topImg from "../../images/topImg.png";
 
 
 import {
@@ -78,7 +77,6 @@ class Hot extends React.Component {
       <div className="hot" ref={node => this.node = node}>
         <Header/>
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <HotContent {...this.props}/>
         <SubFooter/>
         <BackTop />
