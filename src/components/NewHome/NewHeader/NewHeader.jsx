@@ -28,7 +28,7 @@ class NewHeader extends React.Component{
               </div>
             </div>
             <div className="index-search-top">
-              <input type="text" defaultValue="请输入检索词..." />
+              <input type="text" placeholder="请输入检索词..." />
               <button type="button"><img src={searchIcon} alt="搜索"/></button>
             </div>
           </div>

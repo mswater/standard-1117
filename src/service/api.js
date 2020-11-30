@@ -82,7 +82,7 @@ export const getHotTopic = async (pageSize = 10) => {
  * @param {number} pageNum 页数
  * @param {number} pageSize 一页显示多少条
  */
-export const getBriefReport = async (pageNum = 1,pageSize = 6) => {
+export const getBriefReport = async (pageNum = 1,pageSize = 5) => {
   return axios.get(`/brief/report/${pageNum}/${pageSize}`);
 };
 

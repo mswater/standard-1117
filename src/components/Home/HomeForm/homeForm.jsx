@@ -20,15 +20,15 @@ class HomeForm extends React.Component{
   };
 
   render() {
-    const token = localStorage.getItem("token");
-    const {
-      home:{
-        reportData,
-        statData,
-        fetchBriefReportLoading,
-        fetchStatLoading,
-      }
-    } = this.props;
+      const token = localStorage.getItem("token");
+      const {
+        home:{
+          reportData,
+          statData,
+          fetchBriefReportLoading,
+          fetchStatLoading,
+        }
+      } = this.props;
     /* eslint-disable no-nested-ternary */
     const firstItem = reportData && reportData.map((cur, index) => {
       return (

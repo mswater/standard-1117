@@ -51,7 +51,7 @@ class IndustryDetails extends React.Component{
           onClick={() => {return this.hotDetails(cur.id);}}
         >
           <label>{cur.fArticleTitle}</label>
-          <span>{(cur.fArticleTime || "").split(" ").splice(0,1)}</span>
+          <span>{cur.fArticleTime}</span>
         </div>
       );
     });
@@ -60,7 +60,10 @@ class IndustryDetails extends React.Component{
         {industryList.map((item, index) => {
           const clsName = index % 2 === 0 ? "fl" : "fr";
           return (
-            <li className={clsName}>
+            <li
+              key={index.toString()}
+              className={clsName}
+            >
               <div className="sub-title">
                 <label>{item.title}</label>
                 <a>MORE&gt;&gt;</a>

@@ -1,7 +1,5 @@
 import React from "react";
 import { Menu, Spin } from "antd";
-/* eslint-disable */
-import book from "../../../images/book.png";
 import HotContentTop from "../HotContentTop/hotContentTop.jsx";
 import HotContentCenter from "../HotContentCenter/hotContentCenter.jsx";
 import HotContentQuery from "../HotContentQuery/hotContentQuery.jsx";
@@ -28,9 +26,6 @@ class HotContent extends React.Component{
     });
   };
 
-  componentDidMount() {
-  }
-
   handleClick = (e) => {
     const { history } = this.props;
     history.push("/hot");
@@ -39,13 +34,15 @@ class HotContent extends React.Component{
 
   idFormat  = (data) => {
     const arr = [];
-    // /* eslint-disable array-callback-return */
-    // /* eslint-disable no-unused-expressions */
-    data && data.map((cur, index) => {
-      if (index === 0) {
-        arr.push(`${cur.id}`);
-      }
-    });
+    arr.push(data && data[0].id);
+    /**
+     * 旧有逻辑，因eslint报错而修改  20201130-mswater
+     */
+    // data && data.map((cur, index) => {
+    //   if (index === 0) {
+    //     arr.push(`${cur.id}`);
+    //   }
+    // });
     return arr;
   };
 
@@ -108,28 +105,20 @@ class HotContent extends React.Component{
     const {
       hot:{
         hotListData,
-        sugReadingData:{
-          readingList
-        },
         fetchHotListLoading,
       }
     } = this.props;
     const firstItem = hotListData && hotListData.map(cur => {
       return (
-        <Menu.Item
-          key={cur.id.toString()}
-          onClick={() => {return this.handleReading(cur.id);}}
-        >
+        <Menu.Item key={cur.id.toString()} onClick={() => {return this.handleReading(cur.id);}}>
           {cur.keyName}
         </Menu.Item>
       );
     });
     return (
       <div className="hot-content clear">
-        {
-          (hotListData && hotListData.length>0)
-          ?
-            (<div className="clear">
+        {(hotListData && hotListData.length>0) ? (
+          <div className="clear">
             <div className="hot-content-slider fl">
               <div className="hot-content-topic">
                 <span>HOTPOTS MONITORING</span>
@@ -149,40 +138,42 @@ class HotContent extends React.Component{
             <div className="hot-content-main fl">
               <HotContentTop {...this.props}/>
               {(!hotClassType || parseInt(hotClassType, 0) === 1) ?
-                [
-                  <HotContentCenter
-                    key="HotContentCenter"
-                    handlerIndex={this.handlerIndex}
-                    clickIndex={clickIndex}
-                    {...this.props}
-                  />,
-                  <HotContentQuery
-                    key="HotContentQuery"
-                    handlerIndex={this.handlerIndex}
-                    clickIndex={clickIndex}
-                    {...this.props}
-                  />,
-                  <HotContentCheck key="HotContentCheck" {...this.props}/>]
-                : [<HotChartTop key="HotChartTop" {...this.props}/>,
+                [<HotContentCenter
+                  key="HotContentCenter"
+                  handlerIndex={this.handlerIndex}
+                  clickIndex={clickIndex}
+                  {...this.props}
+                />, <HotContentQuery
+                  key="HotContentQuery"
+                  handlerIndex={this.handlerIndex}
+                  clickIndex={clickIndex}
+                  {...this.props}
+                />, <HotContentCheck
+                  key="HotContentCheck"
+                  {...this.props}
+                />
+                ] : [<HotChartTop key="HotChartTop" {...this.props}/>,
                   <HotChartMiddle key="HotChartMiddle" {...this.props}/>,
                   <div key="HotChartBottom" className="clear">
                     <HotChartPieLeft key="HotChartPieLeft" {...this.props}/>
                     <HotChartPieRight key="HotChartPieRight" {...this.props}/>
-                  </div>]}
+                  </div>
+                ]}
             </div>
-          </div>)
-            : (<div className="hot-content-none">
-              暂无监测信息，点击
-              <a
-                href={`/managecenter/keywords/list?uid=${token}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                分类管理
-              </a>
-              创建我的热点
-            </div>)
-        }
+          </div>
+        ) : (
+          <div className="hot-content-none">
+            暂无监测信息，点击
+            <a
+              href={`/managecenter/keywords/list?uid=${token}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              分类管理
+            </a>
+            创建我的热点
+          </div>
+        )}
       </div>
     );
   }

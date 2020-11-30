@@ -11,7 +11,7 @@ import Conference from "../../components/NewHome/Conference/Conference.jsx";
 import SubjectNews from "../../components/NewHome/SubjectNews/SubjectNews.jsx";
 
 import {
-  fetchHotTopic,
+  fetchBriefReport,
   fetchHotInformation,
 } from "../../store/action/HomeAction.js";
 
@@ -25,11 +25,11 @@ class Home extends React.Component{
   componentDidMount() {
     this.node.scrollIntoView();
     const {
-      fetchHotTopic,
+      fetchBriefReport,
       fetchHotInformation,
     } = this.props;
-    // 热点监测
-    fetchHotTopic();
+    // 简报
+    fetchBriefReport();
     // 热门资讯
     fetchHotInformation();
   }
@@ -99,7 +99,7 @@ class Home extends React.Component{
           </div>
           <div className="subject-news fr">
             <IndexConTitle title={titleList.news}/>
-            <SubjectNews />
+            <SubjectNews {...this.props} />
           </div>
         </div>
         <footer>
@@ -157,8 +157,8 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    fetchHotTopic,
-    fetchHotInformation
+    fetchBriefReport,
+    fetchHotInformation,
   },
 )(withRouter(Home));
 
