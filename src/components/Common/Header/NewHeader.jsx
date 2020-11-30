@@ -19,7 +19,7 @@ class NewHeader extends React.Component{
   loginLinkFunc = () => {
     /* eslint-disable no-restricted-globals */
     const { history,fetchGetExit } = this.props;
-    const mesFlag=confirm("确定退出吗?");
+    const mesFlag = confirm("确定退出吗?");
     if(mesFlag === true){
       history.push("/login");
       fetchGetExit(history);
@@ -80,7 +80,7 @@ class NewHeader extends React.Component{
   render(){
     const token = localStorage.getItem("token");
     const { headerSearchContent } = this.props;
-    const realname = localStorage.getItem("realname");
+    const realName = localStorage.getItem("realName");
     const roleName = localStorage.getItem("roleName");
     return (
       <header className="index-header">
@@ -93,7 +93,7 @@ class NewHeader extends React.Component{
               <div className="user-info">
                 <span>欢迎您！
                   <a href={`/managecenter/user/editUser/1?uid=${token}`}>
-                    {realname}
+                    {realName}
                   </a>
                 </span>
                 <button type="button" onClick={() => {return this.loginLinkFunc();}}>

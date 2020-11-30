@@ -1,9 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { fetchHeaderSearch } from "../../../store/action/HomeAction.js";
-import {  fetchSearch,fetchSearchThemeSearchFlag } from "../../../store/action/SearchAction.js";
-import {  fetchGetExit } from "../../../store/action/LoginAction.js";
+import { fetchGetExit } from "../../../store/action/LoginAction.js";
 
 import "./index.css";
 import logo from "../../../images/nky-logo.png";
@@ -21,66 +19,16 @@ class Header extends React.Component {
   loginLinkFunc = () => {
     /* eslint-disable no-restricted-globals */
     const { history,fetchGetExit } = this.props;
-    const mesFlag=confirm("确定退出吗?");
+    const mesFlag = confirm("确定退出吗?");
     if(mesFlag === true){
       history.push("/login");
       fetchGetExit(history);
     }
   };
 
-  searchContent = (value) => {
-    const {
-      history,
-      fetchHeaderSearch,
-      fetchSearch,
-      fetchSearchThemeSearchFlag
-    } = this.props;
-    const searchContact = localStorage.getItem("searchContact");
-    const params = {
-      type:!Number(searchContact) ? 1 : Number(searchContact),
-      starTime: "",
-      endTime: "",
-      searchKey: value,
-      webList: [],
-      proList: [],
-      timeOrder: "",
-      browseOrder: "",
-      relevantOrder: "",
-      transpondOrder: "",
-      commentOrder: "",
-      likeOrder: "",
-      mettingOrder: "",
-      blogType:[],
-      pageNum: 1,
-      pageSize: 10
-    };
-
-    if(value!== ""){
-      params.relevantOrder = "desc";
-    }else{
-      params.timeOrder = "desc";
-    }
-    fetchSearch(params);
-    history.push({
-      pathname: "/search",
-    });
-    fetchSearchThemeSearchFlag(true);
-    // 存储搜索的值
-    fetchHeaderSearch(value);
-  };
-
-  searchChange = (e) => {
-    const {
-      fetchHeaderSearch,
-    } = this.props;
-    fetchHeaderSearch(e.target.value);
-  };
-
-
-
   render() {
     const token = localStorage.getItem("token");
-    const realname = localStorage.getItem("realname");
+    const realName = localStorage.getItem("realName");
     const roleName = localStorage.getItem("roleName");
     return (
       <header className="index-header normal-header">
@@ -93,7 +41,7 @@ class Header extends React.Component {
               <div className="user-info">
                 <span>欢迎您！
                   <a href={`/managecenter/user/editUser/1?uid=${token}`}>
-                    {realname}
+                    {realName}
                   </a>
                 </span>
                 <button type="button" onClick={() => {return this.loginLinkFunc();}}>
@@ -128,9 +76,6 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    fetchHeaderSearch,
-    fetchSearch,
     fetchGetExit,
-    fetchSearchThemeSearchFlag,
   },
 )(withRouter(Header));

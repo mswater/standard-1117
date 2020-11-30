@@ -20,7 +20,7 @@ export const fetchGetLogin = (params, _history) => {
         if (response.status === 200 && response.data.status === "OK") {
           _history.push("/");
           localStorage.setItem("token", response.headers.token);
-          localStorage.setItem("realname", response.data.data.realname);
+          localStorage.setItem("realName", response.data.data.realname);
           localStorage.setItem("roleName", response.data.data.roleName);
           window.location.reload();
           dispatch({ type: "SAVE_GET_LOGIN", payload: response.data.data });
