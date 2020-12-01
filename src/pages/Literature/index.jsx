@@ -5,7 +5,6 @@ import { withRouter } from "react-router";
 import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
-import topImg from "../../images/topImg.png";
 import LiteratureContent from "../../components/Literature/LiteratureContent/literatureContent.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
@@ -96,7 +95,6 @@ class Literature extends React.Component{
       <div className="literature" ref={node => this.node = node}>
         <Header />
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <LiteratureContent {...this.props}/>
         <SubFooter />
         <BackTop />

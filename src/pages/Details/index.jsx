@@ -8,7 +8,6 @@ import Nav from "../../components/Common/Nav/nav.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
 import DetailsContent from "../../components/Detail/DetailsContent/detailsContent.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
-import topImg from "../../images/topImg.png";
 
 import {
   fetchArticleDetail,
@@ -48,7 +47,6 @@ class Details extends React.Component{
       <div className="hot" ref={node => this.node = node}>
         <Header />
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <DetailsContent {...this.props}/>
         <SubFooter />
         <BackTop />

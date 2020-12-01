@@ -5,7 +5,6 @@ import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
-import topImg from "../../images/topImg.png";
 
 import "./index.css";
 import AnalysisContent from "../../components/Analysis/AnalysisContent/analysisContent.jsx";
@@ -95,7 +94,6 @@ class Analysis extends React.Component{
       <div className="analysis" ref={node => this.node = node}>
         <Header />
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <AnalysisContent {...this.props}/>
         <SubFooter />
         <BackTop />

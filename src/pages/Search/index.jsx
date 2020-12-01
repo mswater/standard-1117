@@ -9,7 +9,6 @@ import Nav from "../../components/Common/Nav/nav.jsx";
 import SearchContent from "../../components/Search/SearchContent/searchContent.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
-import topImg from "../../images/topImg.png";
 import {
   fetchSearch,
   fetchSearchProList,
@@ -107,7 +106,6 @@ class Search extends React.Component{
       <div className="search" ref={node => this.node = node}>
         <Header />
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <SearchContent {...this.props}/>
         <SubFooter />
         <BackTop />

@@ -6,7 +6,6 @@ import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
-import topImg from "../../images/topImg.png";
 import MeetingContent from "../../components/Meeting/MeetingContent/meetingContent.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
@@ -77,7 +76,6 @@ class Meeting extends React.Component{
       <div className="meeting" ref={node => this.node = node}>
         <Header />
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <MeetingContent {...this.props}/>
         <SubFooter />
         <BackTop />

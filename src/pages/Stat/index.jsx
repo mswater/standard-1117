@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
 import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
-import topImg from "../../images/topImg.png";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
 import "./index.css";
@@ -38,7 +37,6 @@ class Stat extends React.Component{
       <div className="stat" ref={node => this.node = node}>
         <Header />
         <Nav />
-        <img src={topImg} className="top-img" alt=""/>
         <StatContent {...this.props}/>
         <SubFooter />
         <BackTop />

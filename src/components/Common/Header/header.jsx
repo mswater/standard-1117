@@ -49,14 +49,14 @@ class Header extends React.Component {
                 </button>
               </div>
               <div>
-                <a className="personal-index">个人首页</a>|
+                <a className="personal-index">个人首页</a>
                 <a
                   className="backstage"
                   rel="noopener noreferrer"
                   href={`/managecenter/center/list?uid=${token}`}
                   target="_blank"
                 >
-                  {roleName === "管理员" ? "管理中心" : ""}
+                  {roleName === "管理员" ? "|管理中心" : ""}
                 </a>
               </div>
             </div>
