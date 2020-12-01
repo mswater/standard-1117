@@ -125,13 +125,13 @@ a {
   -webkit-backface-visibility: hidden;
   text-decoration: none;
 }
-a:link{color:rgba(255,255,255,1);text-decoration:none; }
+a:link{text-decoration:none; }
 
-a:visited{color:rgba(255,255,255,1);text-decoration:none; }
+a:visited{text-decoration:none; }
 
-a:hover{color:rgba(255,255,255,1);text-decoration:none;}
+a:hover{text-decoration:none;}
 
-a:active{color:rgba(255,255,255,1);text-decoration:none;}
+a:active{text-decoration:none;}
 p {
   margin-bottom: 0 !important;
 }
