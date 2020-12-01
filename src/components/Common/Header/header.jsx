@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { fetchGetExit } from "../../../store/action/LoginAction.js";
 import "./index.css";
 import logo from "../../../images/nky-logo.png";
 import UserInfo from "./UserInfo.jsx";
@@ -41,6 +40,5 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    fetchGetExit,
   },
 )(withRouter(Header));

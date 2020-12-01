@@ -1,4 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import { Modal, Button} from "antd";
+import { fetchGetExit } from "../../../store/action/LoginAction.js";
+
+const { confirm } = Modal;
 
 class UserInfo extends React.Component{
   constructor(props) {
@@ -6,15 +12,20 @@ class UserInfo extends React.Component{
     this.state = {};
   }
 
-  loginLinkFunc = () => {
-    /* eslint-disable no-restricted-globals */
-    const { history,fetchGetExit } = this.props;
-    const mesFlag = confirm("确定退出吗?");
-    if(mesFlag === true){
-      history.push("/login");
-      fetchGetExit(history);
-    }
-  };
+  showConfirm() {
+    const {history, fetchGetExit} = this.props;
+    confirm({
+      title: "确定要退出吗?",
+      content: "",
+      onOk() {
+        history.push("/login");
+        fetchGetExit(history);
+      },
+      onCancel() {
+        console.log("Cancel Exit");
+      },
+    });
+  }
 
   render() {
     const token = localStorage.getItem("token");
@@ -24,17 +35,21 @@ class UserInfo extends React.Component{
       <div className="top-r">
         <div className="user-info">
           <span>欢迎您！
-            <a
-              rel="noopener noreferrer"
-              href={`/managecenter/user/editUser/1?uid=${token}`}
-              target="_blank"
-            >
-              {realName}
-            </a>
+            {realName ?
+              (
+                <a
+                  rel="noopener noreferrer"
+                  href={`/managecenter/user/editUser/1?uid=${token}`}
+                  target="_blank"
+                >
+                  {realName}
+                </a>
+              ) : "游客"}
           </span>
-          <button type="button" onClick={() => this.loginLinkFunc()}>
-            退出
-          </button>
+          {realName ?
+            (
+              <Button onClick={() => this.showConfirm()}>退出</Button>
+            ) : ""}
         </div>
         <div>
           <a
@@ -45,18 +60,33 @@ class UserInfo extends React.Component{
           >
             个人首页
           </a>
-          <a
-            className="backstage"
-            rel="noopener noreferrer"
-            href={`/managecenter/center/list?uid=${token}`}
-            target="_blank"
-          >
-            {roleName === "管理员" ? "|管理中心" : ""}
-          </a>
+          |
+          {roleName === "管理员" ?
+            (
+              <a
+                className="backstage"
+                rel="noopener noreferrer"
+                href={`/managecenter/center/list?uid=${token}`}
+                target="_blank"
+              >
+                管理中心
+              </a>
+            ) : ""}
         </div>
       </div>
     );
   }
 }
 
-export default UserInfo;
+const mapStateToProps = (state) => {
+  return {
+    ...state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {
+    fetchGetExit,
+  },
+)(withRouter(UserInfo));
