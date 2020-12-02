@@ -16,10 +16,6 @@ class Nav extends React.Component {
     history.push(href);
   };
 
-  // navToPersonal = (token) =>{
-  //   window.open(`/managecenter/homepage?uid=${token}`,"_self");
-  // };
-
   navToBrief = (token) =>{
     window.open(`/managecenter/brief?uid=${token}`,"_self");
   };
@@ -64,8 +60,12 @@ class Nav extends React.Component {
           <li>
             <a>资料共享</a>
           </li>
-          <li>
-            <a>关于我们</a>
+          <li
+            className={headerRouter === "aboutus" ? "current" : ""}
+          >
+            <a onClick={() => this.navLinkFunc("/aboutus")}>
+              关于我们
+            </a>
           </li>
         </ul>
       </nav>

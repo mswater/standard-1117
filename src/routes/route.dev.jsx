@@ -16,6 +16,7 @@ import ForgotPassword from "./../pages/ForgotPassword/index.jsx";
 import NewPassword from "./../pages/NewPassword/index.jsx";
 import Meeting from "./../pages/Meeting/index.jsx";
 import Search from "./../pages/Search/index.jsx";
+import AboutUs from "../pages/AboutUs/index.jsx";
 import { routesAuthority } from "./../lib/tools/utils.js";
 
 const role = localStorage.getItem("token");
@@ -99,6 +100,11 @@ const DevRouter = () => {
         exact
         path="/details/tabs"
         component={routesAuthority(role ? Tabs : Login)}
+      />
+      <Route
+        exact
+        path="/aboutus"
+        component={routesAuthority(AboutUs)}
       />
       <Route path="*" render={() => {return <Redirect to="/" />;}} />
     </Switch>

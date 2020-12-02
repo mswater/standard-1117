@@ -124,7 +124,6 @@ class Home extends React.Component{
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
     home: state.home,
