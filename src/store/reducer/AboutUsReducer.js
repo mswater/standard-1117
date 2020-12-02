@@ -1,5 +1,5 @@
 const init = {
-  selectedMenuItem:""
+  selectedMenuItem:"1"
 };
 const aboutUsReducer = (state = init, action) => {
   switch (action.type) {

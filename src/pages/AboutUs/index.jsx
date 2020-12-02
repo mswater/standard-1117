@@ -4,8 +4,23 @@ import { withRouter } from "react-router";
 import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
-
 import {changeMenuItem,} from "../../store/action/AboutUsAction.js";
+import SystemIntro from "../../components/AboutUs/SystemIntro.jsx";
+import Copyright from "../../components/AboutUs/Copyright.jsx";
+import ContactUs from "../../components/AboutUs/ContactUs.jsx";
+
+function ShowContent(props){
+  if(props.seledItem === "1"){
+    return <SystemIntro />;
+  }
+  if(props.seledItem === "2"){
+    return <Copyright />;
+  }
+  if(props.seledItem === "3"){
+    return <ContactUs />;
+  }
+  return "";
+}
 
 class AboutUs extends React.Component{
   constructor(props) {
@@ -20,6 +35,7 @@ class AboutUs extends React.Component{
     changeMenuItem(params);
   }
 
+
   render() {
     const {
       aboutus : {
@@ -30,8 +46,8 @@ class AboutUs extends React.Component{
       <div>
         <Header />
         <Nav />
-        <div className="normal-main-with-bg clear">
-          <div className="normal-main-con">
+        <div className="normal-main-with-bg">
+          <div className="normal-main-con clear">
             <div className="left-menu fl">
               <h1>-&nbsp;关于我们&nbsp;-</h1>
               <ul>
@@ -60,6 +76,9 @@ class AboutUs extends React.Component{
                   </a>
                 </li>
               </ul>
+            </div>
+            <div className="about-us-con fr">
+              <ShowContent seledItem={selectedMenuItem}/>
             </div>
           </div>
         </div>
