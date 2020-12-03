@@ -230,6 +230,7 @@ class HotContentTop extends React.Component {
               <div>
                 <label>发布时间：</label>
                 <RangePicker
+                  defaultPickerValue={[null,moment()]}
                   disabledDate={this.disabledDate}
                   style={{width: "230px", marginRight: "20px"}}
                   onChange={(value, dateStrings) => this.searchQuery("date", value, dateStrings)}

@@ -8,6 +8,7 @@ import {changeMenuItem,} from "../../store/action/AboutUsAction.js";
 import SystemIntro from "../../components/AboutUs/SystemIntro.jsx";
 import Copyright from "../../components/AboutUs/Copyright.jsx";
 import ContactUs from "../../components/AboutUs/ContactUs.jsx";
+import Footer from "../../components/Common/Footer/footer.jsx";
 
 function ShowContent(props){
   if(props.seledItem === "1"){
@@ -82,6 +83,7 @@ class AboutUs extends React.Component{
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -10,6 +10,7 @@ import IndexConTitle from "../../components/NewHome/IndexConTitle/IndexConTitle.
 import SubjectTopics from "../../components/NewHome/SubjectTopics/SubjectTopics.jsx";
 import Conference from "../../components/NewHome/Conference/Conference.jsx";
 import SubjectNews from "../../components/NewHome/SubjectNews/SubjectNews.jsx";
+import Footer from "../../components/Common/Footer/footer.jsx";
 
 import {
   fetchBriefReport,
@@ -79,46 +80,7 @@ class Home extends React.Component{
             <SubjectNews {...this.props} />
           </div>
         </div>
-        <footer>
-          <div className="footer-con">
-            <div className="clear">
-              <ul className="fl">
-                <li>
-                  <a>首页</a>
-                </li>
-                <li>
-                  <a>行业动态</a>
-                </li>
-                <li>
-                  <a>会议信息</a>
-                </li>
-                <li>
-                  <a>学科专题</a>
-                </li>
-                <li>
-                  <a>学科快讯</a>
-                </li>
-                <li>
-                  <a>资料共享</a>
-                </li>
-                <li>
-                  <a>关于我们</a>
-                </li>
-                <li>
-                  <a>个人主页</a>
-                </li>
-              </ul>
-              <div className="relation-link fr">
-                <select defaultValue="default">
-                  <option value="default">友情链接</option>
-                  <option value="1">中科院</option>
-                  <option value="2">中科院</option>
-                </select>
-              </div>
-            </div>
-            <p className="company-info">主办单位：中国农业科学院农业信息研究所&emsp;&emsp;&emsp;技术支持：同方知网（北京）技术有限公司</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     );
   }
