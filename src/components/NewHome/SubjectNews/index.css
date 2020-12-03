@@ -10,12 +10,13 @@
   display:block;
   height:32px;
   line-height:32px;
-  font-size:16px;
+  font-size:14px;
   color:rgba(81,78,78,1);
 }
 .subject-news li label{
   width:240px;
   height:32px;
+  font-size:16px;
   overflow:hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
