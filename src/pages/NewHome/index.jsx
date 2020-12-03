@@ -73,7 +73,7 @@ class Home extends React.Component{
         <div className="index-con-last clear">
           <div className="conference-information fl">
             <IndexConTitle title={titleList.conference}/>
-            <Conference />
+            <Conference {...this.props}/>
           </div>
           <div className="subject-news fr">
             <IndexConTitle title={titleList.news}/>

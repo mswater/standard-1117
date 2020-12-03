@@ -48,6 +48,8 @@ const init = {
   // 首页会议
   meetingHomeData:[],
   headerSearchContent: "",
+  // 会议tab 默认国内
+  conferenceTab:"home",
 };
 const homeReducer = (state = init, action) => {
   switch (action.type) {
@@ -187,6 +189,11 @@ const homeReducer = (state = init, action) => {
       return {
         ...state,
         headerSearchContent: action.payload,
+      };
+    case "CHANGE_CONFERENCE_TAB":
+      return {
+        ...state,
+        conferenceTab: action.payload,
       };
     default:
       return state;

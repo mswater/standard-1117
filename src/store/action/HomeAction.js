@@ -258,3 +258,12 @@ export const fetchHeaderSearch= (str = "") => {
   };
 };
 
+/**
+ * 切换会议tab
+ */
+export const changeConferenceTab = (params) => {
+  return (dispatch) => {
+    dispatch({type: "CHANGE_CONFERENCE_TAB", payload: params});
+  };
+};
+
