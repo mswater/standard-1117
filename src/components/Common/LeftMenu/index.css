@@ -1,0 +1,50 @@
+.left-menu{
+  width:220px;
+}
+.left-menu h1{
+  line-height:48px;
+  font-size:24px;
+  color:rgba(51,51,51,1);
+  font-weight:normal;
+}
+.left-menu ul{
+  width:214px;
+  margin-top:12px;
+  border-top:solid 2px rgba(44,156,213,1);
+  border-bottom:solid 2px rgba(44,156,213,1);
+  background:rgba(248,249,250,1);
+}
+.left-menu li,.left-menu .ant-menu-inline > .ant-menu-item{
+  height:58px;
+  line-height:58px;
+  list-style:none;
+  padding:0;
+  margin:0;
+  border-bottom:dashed 1px rgba(181,181,181,1);
+  overflow:visible;
+}
+.left-menu .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected{
+  background:none;
+}
+.left-menu li:last-child,.left-menu .ant-menu-inline > .ant-menu-item:last-child{
+  border-bottom:none;
+}
+.left-menu li a{
+  display:block;
+  width:220px;
+  height:58px;
+  line-height:58px;
+  font-size:16px;
+  color:rgba(85,85,85,1);
+  padding-left:22px;
+}
+.left-menu .ant-menu-inline > .ant-menu-item a{
+  margin-left:-24px;
+}
+.left-menu li a.current, .left-menu .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected a{
+  color:rgba(255,255,255,1);
+  background:url("../../../images/left-menu-bg.png") center bottom no-repeat;
+}
+.left-menu .ant-menu-inline .ant-menu-selected::after, .left-menu .ant-menu-inline .ant-menu-item-selected::after{
+  opacity:0;
+}

@@ -8,7 +8,6 @@ import HotChartTop from  "../HotChartTop/hotChartTop.jsx";
 import HotChartMiddle from  "../HotChartMiddle/hotChartMiddle.jsx";
 import HotChartPieLeft from "../HotChartPieLeft/hotChartPieLeft.jsx";
 import HotChartPieRight from "../HotChartPieRight/hotChartPieRight.jsx";
-
 import "./index.css";
 
 class HotContent extends React.Component{
@@ -110,70 +109,69 @@ class HotContent extends React.Component{
     } = this.props;
     const firstItem = hotListData && hotListData.map(cur => {
       return (
-        <Menu.Item key={cur.id.toString()} onClick={() => {return this.handleReading(cur.id);}}>
-          {cur.keyName}
+        <Menu.Item key={cur.id.toString()}>
+          <a onClick={() => {return this.handleReading(cur.id);}}>{cur.keyName}</a>
         </Menu.Item>
       );
     });
     return (
-      <div className="hot-content clear">
-        {(hotListData && hotListData.length>0) ? (
-          <div className="clear">
-            <div className="hot-content-slider fl">
-              <div className="hot-content-topic">
-                <span>HOTPOTS MONITORING</span>
-                <h2>-热点监测-</h2>
+      <div className="hot-content-with-bg">
+        <div className="normal-main-con clear">
+          {(hotListData && hotListData.length>0) ? (
+            <div className="clear">
+              <div className="left-menu fl">
+                <h1>-&nbsp;热点监测&nbsp;-</h1>
+                {fetchHotListLoading ?  <div className="spin"><Spin /></div> :
+                  <Menu
+                    onClick={this.handleClick}
+                    className="menu"
+                    defaultSelectedKeys={hotContent ? [`${hotContent}`] : [`${hotListData[0].id}`]}
+                    mode="inline"
+                  >
+                    {firstItem}
+                  </Menu>
+                }
               </div>
-              {fetchHotListLoading ?  <div className="spin"><Spin /></div> :
-                <Menu
-                  onClick={this.handleClick}
-                  className="menu"
-                  defaultSelectedKeys={hotContent ? [`${hotContent}`] : [`${hotListData[0].id}`]}
-                  mode="inline"
-                >
-                  {firstItem}
-                </Menu>
-              }
+              <div className="hot-content-main fl">
+                <HotContentTop {...this.props}/>
+                {(!hotClassType || parseInt(hotClassType, 0) === 1) ?
+                  [<HotContentCenter
+                    key="HotContentCenter"
+                    handlerIndex={this.handlerIndex}
+                    clickIndex={clickIndex}
+                    {...this.props}
+                  />, <HotContentQuery
+                    key="HotContentQuery"
+                    handlerIndex={this.handlerIndex}
+                    clickIndex={clickIndex}
+                    {...this.props}
+                  />, <HotContentCheck
+                    key="HotContentCheck"
+                    {...this.props}
+                  />
+                  ] : [<HotChartTop key="HotChartTop" {...this.props}/>,
+                    <HotChartMiddle key="HotChartMiddle" {...this.props}/>,
+                    <div key="HotChartBottom" className="clear">
+                      <HotChartPieLeft key="HotChartPieLeft" {...this.props}/>
+                      <HotChartPieRight key="HotChartPieRight" {...this.props}/>
+                    </div>
+                  ]}
+              </div>
             </div>
-            <div className="hot-content-main fl">
-              <HotContentTop {...this.props}/>
-              {(!hotClassType || parseInt(hotClassType, 0) === 1) ?
-                [<HotContentCenter
-                  key="HotContentCenter"
-                  handlerIndex={this.handlerIndex}
-                  clickIndex={clickIndex}
-                  {...this.props}
-                />, <HotContentQuery
-                  key="HotContentQuery"
-                  handlerIndex={this.handlerIndex}
-                  clickIndex={clickIndex}
-                  {...this.props}
-                />, <HotContentCheck
-                  key="HotContentCheck"
-                  {...this.props}
-                />
-                ] : [<HotChartTop key="HotChartTop" {...this.props}/>,
-                  <HotChartMiddle key="HotChartMiddle" {...this.props}/>,
-                  <div key="HotChartBottom" className="clear">
-                    <HotChartPieLeft key="HotChartPieLeft" {...this.props}/>
-                    <HotChartPieRight key="HotChartPieRight" {...this.props}/>
-                  </div>
-                ]}
+          ) : (
+            <div className="hot-content-none">
+              暂无监测信息，点击
+              <a
+                href={`/managecenter/keywords/list?uid=${token}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                分类管理
+              </a>
+              创建我的热点
             </div>
-          </div>
-        ) : (
-          <div className="hot-content-none">
-            暂无监测信息，点击
-            <a
-              href={`/managecenter/keywords/list?uid=${token}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              分类管理
-            </a>
-            创建我的热点
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }

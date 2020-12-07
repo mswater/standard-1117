@@ -1,8 +1,16 @@
+@import "../../../components/Common/LeftMenu/index.css";
+
+.hot-content-with-bg{
+  width:100%;
+  background:url(../../../images/normal-content-bg.jpg) center center no-repeat;
+  background-size:cover;
+}
 .hot-content {
   width: 1200px;
   margin: 0 auto;
   padding-top: 50px;
   min-height: 500px;
+  background:rgba(255,255,255,1);
 }
 
 .hot-content-main {
