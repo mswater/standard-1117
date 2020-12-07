@@ -73,7 +73,7 @@ export const getHotInformation = async (pageNum = 1, pageSize = 5) => {
  * 热点监测
  * @param {number} pageSize 一页显示多少条
  */
-export const getHotTopic = async (pageSize = 10) => {
+export const getHotTopic = async (pageSize = 5) => {
   return axios.get(`/hot/hotTopic/${pageSize}`);
 };
 

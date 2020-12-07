@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { getPortfolioCode, getDetailsPortfolioCode } from "../../../lib/tools/utils.js";
+import { getPortfolioCode, } from "../../../lib/tools/utils.js";
 
 import "./index.css";
 
@@ -16,14 +16,8 @@ class Nav extends React.Component {
     history.push(href);
   };
 
-  navToBrief = (token) =>{
-    window.open(`/managecenter/brief?uid=${token}`,"_self");
-  };
-
   render() {
     const headerRouter = getPortfolioCode();
-    const detailsRouter = getDetailsPortfolioCode();
-    const token = localStorage.getItem("token");
     return (
       <nav className="index-nav">
         <ul className="index-nav-con">
@@ -36,24 +30,27 @@ class Nav extends React.Component {
           </li>
           <li
             className={
-              (headerRouter === "topic" || detailsRouter === "topic" || headerRouter === "tags") ?
-                "current" : ""
+              (headerRouter === "hot") ? "current" : ""
             }
           >
-            <a onClick={() => this.navLinkFunc("/topic")}>
+            <a onClick={() => this.navLinkFunc("/hot")}>
               行业动态
             </a>
           </li>
-          <li>
-            <a>会议信息</a>
+          <li
+            className={headerRouter === "meeting" ? "current" : ""}
+          >
+            <a onClick={() => this.navLinkFunc("/meeting")}>
+              会议信息
+            </a>
           </li>
           <li>
             <a>学科专题</a>
           </li>
           <li
-            className={headerRouter === "stat" ? "current" : ""}
+            className={headerRouter === "report" ? "current" : ""}
           >
-            <a onClick={() => this.navToBrief(token)}>
+            <a onClick={() => this.navLinkFunc("/report")}>
               学科快讯
             </a>
           </li>

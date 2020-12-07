@@ -8,7 +8,6 @@ import Topic from "../pages/Topic/index.jsx";
 import Literature from "../pages/Literature/index.jsx";
 import Analysis from "../pages/Analysis/index.jsx";
 import Stat from "../pages/Stat/index.jsx";
-import BriefReport from "../pages/BriefReport/index.jsx";
 import Personal from "../pages/Personal/index.jsx";
 import NotFound from "./../pages/404/index.jsx";
 import Login from "./../pages/Login/index.jsx";
@@ -17,6 +16,7 @@ import NewPassword from "./../pages/NewPassword/index.jsx";
 import Meeting from "./../pages/Meeting/index.jsx";
 import Search from "./../pages/Search/index.jsx";
 import AboutUs from "../pages/AboutUs/index.jsx";
+import Report from "../pages/Report/index.jsx";
 import { routesAuthority } from "./../lib/tools/utils.js";
 
 const role = localStorage.getItem("token");
@@ -68,7 +68,7 @@ const DevRouter = () => {
       <Route
         exact
         path="/report"
-        component={routesAuthority(BriefReport, NotFound)}
+        component={routesAuthority(Report, NotFound)}
       />
       <Route
         exact

@@ -24,10 +24,10 @@ class SubjectNews extends React.Component{
     const newsItem = reportData && reportData.map((cur, index) => {
       return (
         <li
-          rel="noopener noreferrer"
           key={index.toString()}
         >
           <a
+            rel="noopener noreferrer"
             className="clear"
             onClick={() => this.newsDetails(cur.title)}
           >

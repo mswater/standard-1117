@@ -18,69 +18,83 @@ class IndustryDetails extends React.Component{
     window.open(`${url}/detail/${detailId}`,"_blank");
   };
 
+  hotLinkFunc = (hotId) => {
+    const { history } = this.props;
+    localStorage.setItem("hotContent", hotId);
+    localStorage.setItem("readingId", hotId);
+    history.push("/hot");
+  };
+
   render() {
     const {
       home: {
-        infoData,
-        fetchHotInformationLoading,
+        fetchHotTopicLoading,
+        hotData,
       }
     } = this.props;
     const industryList = [
       {
-        "title": "政策法规",
         "img": industryImg1,
       },
       {
-        "title": "新闻资讯",
         "img": industryImg2,
       },
       {
-        "title": "项目信息",
         "img": industryImg3,
       },
       {
-        "title": "专业报告",
         "img": industryImg4,
       },
     ];
-    const industryItems = infoData && infoData.map((cur, index) => {
+    const industryItems = hotData && hotData.map((cur, index) => {
+      const clsName = index % 2 === 0 ? "fl" : "fr";
+      const industryDetailsList = cur.contentList;
+      const industryDetails = industryDetailsList
+        && industryDetailsList.map((detailsItem, index2) => {
+          return (
+            <div
+              className="per-item clear"
+              key={index2.toString()}
+              onClick={() => {return this.hotDetails(detailsItem.id);}}
+            >
+              <label>{detailsItem.fArticleTitle}</label>
+              <span>{detailsItem.fArticleTime}</span>
+            </div>
+          );
+        });
+      const imgSrc = index < 4 ? industryList[index].img : "";
       return (
-        <div
-          className="per-item clear"
+        <li
           key={index.toString()}
-          onClick={() => {return this.hotDetails(cur.id);}}
+          className={clsName}
         >
-          <label>{cur.fArticleTitle}</label>
-          <span>{cur.fArticleTime}</span>
-        </div>
+          <div className="sub-title">
+            <label>{cur.name}</label>
+            <a
+              rel="noopener noreferrer"
+              onClick={() => {return this.hotLinkFunc(cur.hid);}}
+            >
+              MORE&gt;&gt;
+            </a>
+          </div>
+          <div className="industry-detail clear">
+            <div className="detail-l">
+              <img src={imgSrc} alt={cur.name}/>
+            </div>
+            <div className="detail-r">
+              {industryDetails}
+            </div>
+          </div>
+        </li>
       );
+
     });
     return (
       <ul className="clear">
-        {industryList.map((item, index) => {
-          const clsName = index % 2 === 0 ? "fl" : "fr";
-          return (
-            <li
-              key={index.toString()}
-              className={clsName}
-            >
-              <div className="sub-title">
-                <label>{item.title}</label>
-                <a>MORE&gt;&gt;</a>
-              </div>
-              <div className="industry-detail clear">
-                <div className="detail-l">
-                  <img src={item.img} alt={item.title}/>
-                </div>
-                <div className="detail-r">
-                  {fetchHotInformationLoading ?
-                    <div className="spin"><Spin /></div> :
-                    industryItems}
-                </div>
-              </div>
-            </li>
-          );
-        })}
+        {fetchHotTopicLoading ?
+          <div className="spin"><Spin /></div> :
+          industryItems
+        }
       </ul>
     );
   }

@@ -13,8 +13,8 @@ import SubjectNews from "../../components/NewHome/SubjectNews/SubjectNews.jsx";
 import Footer from "../../components/Common/Footer/footer.jsx";
 
 import {
+  fetchHotTopic,
   fetchBriefReport,
-  fetchHotInformation,
 } from "../../store/action/HomeAction.js";
 
 class Home extends React.Component{
@@ -27,13 +27,13 @@ class Home extends React.Component{
   componentDidMount() {
     this.node.scrollIntoView();
     const {
+      fetchHotTopic,
       fetchBriefReport,
-      fetchHotInformation,
     } = this.props;
+    // 热点监测
+    fetchHotTopic();
     // 简报
     fetchBriefReport();
-    // 热门资讯
-    fetchHotInformation();
   }
 
   render(){
@@ -95,8 +95,8 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
+    fetchHotTopic,
     fetchBriefReport,
-    fetchHotInformation,
   },
 )(withRouter(Home));
 

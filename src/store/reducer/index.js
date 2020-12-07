@@ -10,6 +10,7 @@ import meetingReducer from "./MeetingReducer.js";
 import searchReducer from "./SearchReducer.js";
 import analyseReducer from "./AnalyseReducer.js";
 import aboutUsReducer from "./AboutUsReducer.js";
+import reportReducer from "./ReportReducer.js";
 
 const rootReducer = combineReducers({
   home: homeReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   search:searchReducer,
   analyse:analyseReducer,
   aboutus:aboutUsReducer,
+  report:reportReducer,
 });
 
 export default rootReducer;

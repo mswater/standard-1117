@@ -66,9 +66,9 @@ const Stat = Loadable({
   },
 });
 
-const BriefReport = Loadable({
+const Report = Loadable({
   loader: () => {
-    return import(/* webpackChunkName: "brief" */ "../pages/BriefReport/index.jsx");
+    return import(/* webpackChunkName: "brief" */ "../pages/Report/index.jsx");
   },
   loading() {
     return <div>Loading...</div>;
@@ -132,7 +132,7 @@ const ProdRouter = () => {
       <Route
         exact
         path="/report"
-        component={routesAuthority(BriefReport, NotFound)}
+        component={routesAuthority(Report, NotFound)}
       />
       <Route
         exact
