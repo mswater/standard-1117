@@ -406,3 +406,14 @@ export const getResetPassword = async (params) => {
   return axios.post("/userCor/resetPassword",params);
 };
 
+
+/**
+ *  获取学科快讯数据 POST： /brief/briefList
+ *  searchCont String 检索词
+ *  pageNum Integer 页码 （默认1）
+ *  pageSize Integer 显示数量（默认10）
+ */
+export const getReportList = async (params) => {
+  return axios.post("/brief/briefList",params);
+};
+

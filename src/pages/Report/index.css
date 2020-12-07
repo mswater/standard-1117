@@ -1,0 +1,67 @@
+.report-con{
+  width:1200px;
+  margin:0 auto;
+  padding-top:40px;
+}
+.report-top{
+  height:36px;
+}
+.report-search{
+  width:330px;
+}
+.report-search .ant-btn{
+  border:solid 1px rgba(44,156,213,1);
+  background:rgba(44,156,213,1);
+}
+.report-top .new-report{
+  display:block;
+  width:95px;
+  height:32px;
+  line-height:32px;
+  text-align:center;
+  font-size:14px;
+  color:rgba(255,255,255,1);
+  border-radius:4px;
+  background:rgba(44,156,213,1);
+}
+.report-list{
+  margin-top:30px;
+}
+.report-list-header{
+  height:36px;
+  border-top:2px solid rgba(44,156,213,1);
+  border-bottom:1px solid rgba(44,156,213,1);
+}
+.report-list-header span{
+  display:inline-block;
+  line-height:36px;
+  text-align:center;
+  font-size:14px;
+  color:rgba(44,156,213,1);
+}
+.report-list .w10{
+  width:10%;
+}
+.report-list .w30{
+  width:30%;
+}
+.report-list ul{
+
+}
+.report-list li{
+  height:50px;
+  list-style:none;
+  border-bottom:1px dashed #dcdcdc;
+}
+.report-list li span{
+  float:left;
+  height:50px;
+  line-height:50px;
+  text-align:center;
+  font-size:14px;
+  color:rgba(42,40,40,1);
+}
+.report-list li span.download{
+  cursor:pointer;
+  background:url("../../images/brief-report.png") center center no-repeat;
+}
