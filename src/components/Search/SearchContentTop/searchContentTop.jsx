@@ -121,10 +121,10 @@ class SearchContentTop extends React.Component {
     return (
       <div className="search-content-top">
         <div className="search-search-btn clear">
-          <span>筛选条件:</span>
-          <span>检索词</span>
+          <span className="fl">筛选条件:</span>
+          <span className="fl">检索词</span>
           <div
-            style={{ margin: 0 ,color:"#3787C1",width: 560}}
+            style={{ margin: 0 ,color:"#3787C1",width: 500}}
             className="search-by-topic fl"
           >
             <span className="search-box">
@@ -132,21 +132,19 @@ class SearchContentTop extends React.Component {
             </span>
             {(headerSearchContent) && (<Icon type="close-circle" onClick={this.deleteSearch} />)}
           </div>
-          <span>发布时间：</span>
-          <div
-            style={{ marginBottom: 16,position: "relative"}}
-            className="search-by-date fr"
-            ref={ref => {this.calendarBox = ref;}}
-          >
-            <RangePicker
-              placeholder={["开始日期", "结束日期"]}
-              allowClear
-              value={this.dateValue(searchDate)}
-              onChange={this.onChange}
-              className="search-by-date-picker"
-              getCalendarContainer={() => this.calendarBox}
-            />
-            <Button type="primary" onClick={() => {return this.confirmSearch();}}>确定</Button>
+          <div className="search-by-date fr">
+            <span className="fl">发布时间：</span>
+            <div ref={ref => {this.calendarBox = ref;}}>
+              <RangePicker
+                placeholder={["开始日期", "结束日期"]}
+                allowClear
+                value={this.dateValue(searchDate)}
+                onChange={this.onChange}
+                className="search-by-date-picker"
+                getCalendarContainer={() => this.calendarBox}
+              />
+              <Button type="primary" onClick={() => {return this.confirmSearch();}}>确定</Button>
+            </div>
           </div>
         </div>
       </div>

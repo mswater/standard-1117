@@ -1,8 +1,6 @@
-.search-content-top{
-  width: 1920px;
-}
+
 .search-content-top .search-search-btn{
-  display: flex;
+  line-height:36px;
   margin-top:20px;
   width:100%;
 }
@@ -35,7 +33,7 @@
 /*}*/
 
 .search-content-top .search-search-btn .search-by-date{
-  width:50%;
+  width:40%;
 }
 .search-content-top .search-search-btn .ant-input:hover {
   box-shadow: none;
@@ -59,7 +57,7 @@
 }
 
 .search-content-top .search-by-date-picker{
-  width:35%;
+  width:330px;
   margin-right:10px;
 }
 .search-content-top .search-search-btn .search-by-date>button{
