@@ -2,8 +2,6 @@ import React from "react";
 import MeetingContentCenter from "../MeetingContentCenter/meetingContentCenter.jsx";
 import MeetingContentQuery from "../MeetingContentQuery/meetingContentQuery.jsx";
 import MeetingContentCheck from  "../MeetingContentCheck/meetingContentCheck.jsx";
-
-
 import "./index.css";
 
 class MeetingContent extends React.Component{

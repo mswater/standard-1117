@@ -1,9 +1,5 @@
 import React from "react";
-
-import "./index.css";
 import DetailsLeft from "../DetailsLeft/detailsLeft.jsx";
-import DetailsRight from "../DetailsRight/detailsRight.jsx";
-
 
 class DetailsContent extends React.Component {
 
@@ -13,9 +9,8 @@ class DetailsContent extends React.Component {
   render() {
     return (
       <div className="normal-main-with-bg">
-        <div className="hot-details-content clear">
+        <div className="normal-main-con clear">
           <DetailsLeft {...this.props}/>
-          <DetailsRight {...this.props}/>
         </div>
       </div>
     );
