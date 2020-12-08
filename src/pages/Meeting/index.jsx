@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
-import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
+import Footer from "../../components/Common/Footer/footer.jsx";
 import MeetingContent from "../../components/Meeting/MeetingContent/meetingContent.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
@@ -77,7 +77,7 @@ class Meeting extends React.Component{
         <Header />
         <Nav />
         <MeetingContent {...this.props}/>
-        <SubFooter />
+        <Footer />
         <BackTop />
       </div>
     );
@@ -85,7 +85,8 @@ class Meeting extends React.Component{
 }
 const mapStateToProps = (state) => {
   return {
-    meeting:state.meeting
+    meeting:state.meeting,
+    home:state.home,
   };
 };
 

@@ -14,6 +14,13 @@ class SubjectNews extends React.Component{
     window.open(`${url}/managecenter/upload/${title}.pdf?uid=${token}`,"_blank");
   };
 
+  goReportPage = () => {
+    const { props } = this;
+    props.history.push({
+      pathname: "/report",
+    });
+  };
+
   render(){
     const {
       home:{
@@ -45,7 +52,12 @@ class SubjectNews extends React.Component{
           : (
             <div>
               <ul>{newsItem}</ul>
-              <a className="single-more">MORE&gt;&gt;</a>
+              <a
+                className="single-more"
+                onClick={() => {return this.goReportPage();}}
+              >
+                MORE&gt;&gt;
+              </a>
             </div>
           )
         }

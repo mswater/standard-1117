@@ -288,12 +288,18 @@ class MeetingContentQuery extends React.Component {
   }
 
   render() {
-    const { meeting: {
-      meetingData,
-      meetingProListFlag,
-      fetchMeetingListLoading,
-      meetingSearchValue
-    }} = this.props;
+    const {
+      home: {
+        conferenceTab
+      },
+      meeting: {
+        meetingData,
+        meetingProListFlag,
+        fetchMeetingListLoading,
+        meetingSearchValue
+      }
+    } = this.props;
+    console.log(conferenceTab, "from index meeting");
     const {clickIndex} = this.state;
     const webList = ["全部"].concat(meetingData.webList);
     const proList = ["全部"].concat(meetingData.proList);

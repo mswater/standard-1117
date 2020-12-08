@@ -15,6 +15,7 @@ import Footer from "../../components/Common/Footer/footer.jsx";
 import {
   fetchHotTopic,
   fetchBriefReport,
+  fetchMeeting,
 } from "../../store/action/HomeAction.js";
 
 class Home extends React.Component{
@@ -29,11 +30,14 @@ class Home extends React.Component{
     const {
       fetchHotTopic,
       fetchBriefReport,
+      fetchMeeting,
     } = this.props;
     // 热点监测
     fetchHotTopic();
     // 简报
     fetchBriefReport();
+    // 会议
+    fetchMeeting();
   }
 
   render(){
@@ -97,6 +101,7 @@ export default connect(
   {
     fetchHotTopic,
     fetchBriefReport,
+    fetchMeeting,
   },
 )(withRouter(Home));
 

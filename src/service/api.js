@@ -130,7 +130,7 @@ export const getStat = async (type = 1) => {
  * 首页会议 GET：  /meeting/meeting/{pageSize}
  * @param {number} pageSize 一页显示多少条
  */
-export const getMeeting = async (pageSize = 5) => {
+export const getMeeting = async (pageSize = 3) => {
   return axios.get(`/meeting/meeting/${pageSize}`);
 };
 
