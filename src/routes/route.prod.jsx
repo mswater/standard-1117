@@ -39,24 +39,6 @@ const Literature = Loadable({
   },
 });
 
-const Analysis = Loadable({
-  loader: () => {
-    return import(/* webpackChunkName: "analyse" */ "../pages/Analysis/index.jsx");
-  },
-  loading() {
-    return <div>Loading...</div>;
-  },
-});
-
-const Stat = Loadable({
-  loader: () => {
-    return import(/* webpackChunkName: "stat" */ "../pages/Stat/index.jsx");
-  },
-  loading() {
-    return <div>Loading...</div>;
-  },
-});
-
 const Report = Loadable({
   loader: () => {
     return import(/* webpackChunkName: "brief" */ "../pages/Report/index.jsx");
@@ -104,16 +86,6 @@ const ProdRouter = () => {
         exact
         path="/literature"
         component={routesAuthority(role ? Literature : Login, NotFound)}
-      />
-      <Route
-        exact
-        path="/analysis"
-        component={routesAuthority(role ? Analysis : Login, NotFound)}
-      />
-      <Route
-        exact
-        path="/stat"
-        component={routesAuthority(role ? Stat : Login, NotFound)}
       />
       <Route
         exact
