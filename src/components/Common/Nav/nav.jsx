@@ -56,8 +56,12 @@ class Nav extends React.Component {
               学科快讯
             </a>
           </li>
-          <li>
-            <a>资料共享</a>
+          <li
+            className={headerRouter === "literature" ? "current" : ""}
+          >
+            <a onClick={() => this.navLinkFunc("/literature")}>
+              资料共享
+            </a>
           </li>
           <li
             className={headerRouter === "aboutus" ? "current" : ""}

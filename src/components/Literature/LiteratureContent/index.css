@@ -1,8 +1,4 @@
-.literature-content {
-  width: 1152px;
-  margin: 0 auto;
-  padding-top: 50px;
-}
+@import "../../../components/Common/LeftMenu/index.css";
 
 .literature-content-main {
   width: 920px;

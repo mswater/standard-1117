@@ -2,7 +2,6 @@ import React from "react";
 import  moment from "moment";
 import "moment/locale/zh-cn";
 import { Input, Select,DatePicker,Button } from "antd";
-import { siblings } from "../../../lib/tools/utils";
 
 import "./index.css";
 
@@ -19,10 +18,6 @@ class LiteratureContentCenter extends React.Component {
       endTime: ""
     };
     this.searchTheme = "";
-  }
-
-  componentDidMount() {
-    this.addEvent();
   }
 
   contactFunc = (type) => {
@@ -139,30 +134,6 @@ class LiteratureContentCenter extends React.Component {
     fetchLiteratureContentList(params);
   };
 
-  checkType() {
-    /* eslint-disable no-param-reassign */
-    siblings(this).forEach((item, index, arr) => {
-      arr[index].style.color = "#515256";
-      arr[index].style.borderBottom = "1px solid #F2F3F6";
-    });
-    this.style.color = "#0572B8";
-    this.style.borderBottom = "1px solid #0572B8";
-  }
-
-  addEvent() {
-    const { classWay } = this;
-    const arr = classWay.children;
-    const ways = [];
-    for (let i = 0; i < arr.length; i += 1) {
-      ways.push(arr[i]);
-    }
-    Array.prototype.forEach.call(ways, (item) => {
-      item.addEventListener("click", this.checkType);
-    });
-  }
-
-
-
   render() {
     const { selectValue } = this.state;
     const { literature: { literatureDate, literatureSearchValue } } = this.props;
@@ -180,37 +151,8 @@ class LiteratureContentCenter extends React.Component {
         <Option value="摘要">摘要</Option>
       </Select>
     );
-    const literatureContact = localStorage.getItem("literatureContact");
     return (
       <div>
-        <div className="literature-content-center" ref={(ref) => {this.classWay = ref;}}>
-          <button
-            type="button"
-            style={
-              (!literatureContact || literatureContact === "4") ? {
-                borderBottom:"1px solid #0572B8", color: "#0572B8"
-              } : {
-                borderBottom:"1px solid #F2F3F6", color: "#515256"
-              }
-            }
-            onClick={() => {return this.contactFunc(4);}}
-          >
-            国内
-          </button>
-          <button
-            type="button"
-            style={
-              literatureContact === "5" ? {
-                borderBottom:"1px solid #0572B8", color: "#0572B8"
-              } : {
-                borderBottom:"1px solid #F2F3F6", color: "#515256"
-              }
-            }
-            onClick={() => {return this.contactFunc(5);}}
-          >
-            海外
-          </button>
-        </div>
         <div className="literature-search-btn">
           <div
             style={{ marginBottom: 16 }}

@@ -1,13 +1,11 @@
 import React from "react";
 import { Menu, Spin } from "antd";
 import LiteratureContentCenter from "../LiteratureContentCenter/literatureContentCenter.jsx";
-import LiteratureContentQuery from "../LiteratureContentQuery/literatureContentQuery.jsx";
 import LiteratureContentCheck from  "../LiteratureContentCheck/literatureContentCheck.jsx";
 
 
 import "./index.css";
 /* eslint-disable no-nested-ternary */
-const { SubMenu } = Menu;
 class LiteratureContent extends React.Component{
   constructor(props) {
     super(props);
@@ -157,8 +155,6 @@ class LiteratureContent extends React.Component{
 
 
   render() {
-    const literatureContent = localStorage.getItem("literatureContent");
-    const literatureOpenKeyId = localStorage.getItem("literatureOpenKeyId");
     const {
       literature:{
         literatureListData,
@@ -166,72 +162,31 @@ class LiteratureContent extends React.Component{
       }
     } = this.props;
     const firstItem = literatureListData && literatureListData.map(cur => {
-      if(cur.childrenKeyWords.length === 0) {
-        return(
-          <Menu.Item
-            key={cur.id.toString()}
-            title={cur.keyName}
-            onClick={() => {return this.handleParentId(cur.id);}}
-          >
-            {cur.keyName}
-          </Menu.Item>
-        );
-      }
-      return (
-        <SubMenu
-          onTitleClick={() => {return this.handleMenu(cur.childrenKeyWords);}}
-          key={cur.id}
-          title={<span>{cur.keyName}</span>}
+      return(
+        <Menu.Item
+          key={cur.id.toString()}
+          title={cur.keyName}
         >
-          {cur.childrenKeyWords.map((child)=>{
-            return(
-              <Menu.Item
-                key={child.id.toString()}
-                onClick={() => {return this.handleId(child.id);}}
-                title={child.keyName}
-              >
-                -{child.keyName}
-              </Menu.Item>
-            );
-          })}
-        </SubMenu>
+          <a onClick={() => {return this.handleParentId(cur.id);}}>{cur.keyName}</a>
+        </Menu.Item>
       );
     });
     return (
-      <div className="literature-content clear">
-        <div className="literature-content-slider fl">
-          <div className="literature-content-topic">
-            <span>DOCUMENTATION CENTER</span>
-            <h2>- 文献中心 -</h2>
-          </div>
-          {fetchLiteratureListLoading ? <div className="spin"><Spin/></div> :
-            <div className="topic-menu">
-              <Menu
-                mode="inline"
-                selectedKeys={
-                  literatureContent ?
-                    [`${literatureContent}`] :
-                    (literatureContent === "" ? "" : ["421"])
-                }
-                onOpenChange={this.onOpenChange}
-                onClick={this.handleClick}
-                openKeys={literatureOpenKeyId  ? [`${literatureOpenKeyId}`] : [] }
-                style={{ width: 256 }}
-              >
-                <Menu.Item
-                  key=""
-                  onClick={() => {return this.handleParentId("");}}
-                >
-                  全部
-                </Menu.Item>
-                {firstItem}
-              </Menu>
-            </div>
+      <div className="normal-main-con clear">
+        <div className="left-menu fl">
+          <h1>-&nbsp;资料共享&nbsp;-</h1>
+          {fetchLiteratureListLoading ?  <div className="spin"><Spin /></div> :
+            <Menu
+              onClick={this.handleClick}
+              className="menu"
+              mode="inline"
+            >
+              {firstItem}
+            </Menu>
           }
         </div>
         <div className="literature-content-main fl">
           <LiteratureContentCenter {...this.props}/>
-          <LiteratureContentQuery {...this.props}/>
           <LiteratureContentCheck {...this.props}/>
         </div>
       </div>

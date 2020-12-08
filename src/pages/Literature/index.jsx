@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-
 import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
 import LiteratureContent from "../../components/Literature/LiteratureContent/literatureContent.jsx";
-import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
+import Footer from "../../components/Common/Footer/footer.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
 import {
@@ -96,7 +95,7 @@ class Literature extends React.Component{
         <Header />
         <Nav />
         <LiteratureContent {...this.props}/>
-        <SubFooter />
+        <Footer />
         <BackTop />
       </div>
     );
