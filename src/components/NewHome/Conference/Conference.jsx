@@ -42,9 +42,9 @@ class Conference extends React.Component{
       }
     } = this.props;
     const homeConference = meetingHomeData && meetingHomeData.map((cur, index) => {
-      console.log(cur, index);
       return (
         <li
+          key={index.toString()}
           onMouseEnter={this.changeActiveItem}
           className={index === 0 ? "active clear" : "clear"}
         >
@@ -61,9 +61,9 @@ class Conference extends React.Component{
       );
     });
     const aboardConference = meetingHomeData && meetingHomeData.map((cur, index) => {
-      console.log(cur, index);
       return (
         <li
+          key={index.toString()}
           onMouseEnter={this.changeActiveItem}
           className={index === 0 ? "active clear" : "clear"}
         >

@@ -1,6 +1,12 @@
 @import './base.css';
 @import './reset.css';
 
+.normal-main-with-bg{
+  width:100%;
+  padding:50px 0;
+  background:url(../../images/normal-content-bg.jpg) center center no-repeat;
+  background-size:cover;
+}
 .normal-main-con{
   width:1200px;
   margin:0 auto;

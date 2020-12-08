@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
-import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
+import Footer from "../../components/Common/Footer/footer.jsx";
 import DetailsContent from "../../components/Detail/DetailsContent/detailsContent.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
@@ -48,7 +48,7 @@ class Details extends React.Component{
         <Header />
         <Nav />
         <DetailsContent {...this.props}/>
-        <SubFooter />
+        <Footer />
         <BackTop />
       </div>
     );

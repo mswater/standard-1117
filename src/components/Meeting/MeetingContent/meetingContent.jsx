@@ -12,8 +12,8 @@ class MeetingContent extends React.Component{
 
   render() {
     return (
-      <div className="meeting-content clear">
-        <div className="meeting-content-main">
+      <div className="normal-main-with-bg">
+        <div className="normal-main-con">
           <MeetingContentCenter {...this.props}/>
           <MeetingContentQuery {...this.props}/>
           <MeetingContentCheck {...this.props}/>

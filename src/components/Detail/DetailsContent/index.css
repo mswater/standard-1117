@@ -1,8 +1,7 @@
-.hot-details-content-with-bg{
-  width:100%;
-  background:lightpink;
-}
+
 .hot-details-content{
-  width:1152px;
+  width:1200px;
+  padding:0 25px;
   margin:0 auto;
+  background:rgba(255,255,255,1);
 }
