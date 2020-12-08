@@ -6,7 +6,7 @@ import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
 import SubjectContent from "../../components/Hot/HotContent/subjectContent.jsx";
-import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
+import Footer from "../../components/Common/Footer/footer.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
 
@@ -78,7 +78,7 @@ class Subject extends React.Component {
         <Header/>
         <Nav />
         <SubjectContent {...this.props}/>
-        <SubFooter/>
+        <Footer/>
         <BackTop />
       </div>
     );

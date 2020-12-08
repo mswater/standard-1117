@@ -31,7 +31,7 @@ footer{
 .footer-con li:last-child a{
   border-right:solid 1px rgba(64,67,69,1);
 }
-.footer-con li a:hover{
+.footer-con li a:hover,.footer-con li.current a{
   background:rgba(54,65,71,1);
 }
 .footer-con .company-info{

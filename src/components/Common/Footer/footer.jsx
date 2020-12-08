@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Select } from "antd";
 import "./index.css";
+import { getPortfolioCode, } from "../../../lib/tools/utils.js";
 
 const { Option } = Select;
 
@@ -25,35 +26,60 @@ class Footer extends React.Component {
   }
 
   render() {
-    // const token = localStorage.getItem("token");
+    const headerRouter = getPortfolioCode();
     return (
       <footer>
         <div className="footer-con">
           <div className="clear">
             <ul className="fl">
-              <li>
-                <a>首页</a>
+              <li
+                className={headerRouter === "" ? "current" : ""}
+              >
+                <a onClick={() => this.navLinkFunc("/")}>
+                  首页
+                </a>
               </li>
-              <li>
-                <a>行业动态</a>
+              <li
+                className={(headerRouter === "hot") ? "current" : ""}
+              >
+                <a onClick={() => this.navLinkFunc("/hot")}>
+                  行业动态
+                </a>
               </li>
-              <li>
-                <a>会议信息</a>
+              <li
+                className={headerRouter === "meeting" ? "current" : ""}
+              >
+                <a onClick={() => this.navLinkFunc("/meeting")}>
+                  会议信息
+                </a>
               </li>
-              <li>
-                <a>学科专题</a>
+              <li
+                className={headerRouter === "subject" ? "current" : ""}
+              >
+                <a onClick={() => this.navLinkFunc("/subject")}>
+                  学科专题
+                </a>
               </li>
-              <li>
-                <a>学科快讯</a>
+              <li
+                className={headerRouter === "report" ? "current" : ""}
+              >
+                <a onClick={() => this.navLinkFunc("/report")}>
+                  学科快讯
+                </a>
               </li>
-              <li>
-                <a>资料共享</a>
+              <li
+                className={headerRouter === "literature" ? "current" : ""}
+              >
+                <a onClick={() => this.navLinkFunc("/literature")}>
+                  资料共享
+                </a>
               </li>
-              <li>
-                <a>关于我们</a>
-              </li>
-              <li>
-                <a>个人主页</a>
+              <li
+                className={headerRouter === "aboutus" ? "current" : ""}
+              >
+                <a onClick={() => this.navLinkFunc("/aboutus")}>
+                  关于我们
+                </a>
               </li>
             </ul>
             <div className="relation-link fr">

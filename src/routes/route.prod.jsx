@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Loadable from "react-loadable";
 import { routesAuthority } from "../lib/tools/utils";
 import Details from "../pages/Details/index.jsx";
-import Tabs from "../pages/Tabs/index.jsx";
 import NotFound from "./../pages/404/index.jsx";
 import Login from "./../pages/Login/index.jsx";
 import ForgotPassword from "./../pages/ForgotPassword/index.jsx";
@@ -51,6 +50,26 @@ const Report = Loadable({
 const Personal = Loadable({
   loader: () => {
     return import(/* webpackChunkName: "personal" */ "../pages/Personal/index.jsx");
+  },
+  loading() {
+    return <div>Loading...</div>;
+  },
+});
+
+
+const Subject = Loadable({
+  loader: () => {
+    return import(/* webpackChunkName: "subject" */ "../pages/Subject/index.jsx");
+  },
+  loading() {
+    return <div>Loading...</div>;
+  },
+});
+
+
+const AboutUs = Loadable({
+  loader: () => {
+    return import(/* webpackChunkName: "aboutus" */ "../pages/AboutUs/index.jsx");
   },
   loading() {
     return <div>Loading...</div>;
@@ -119,8 +138,13 @@ const ProdRouter = () => {
       />
       <Route
         exact
-        path="/details/tabs"
-        component={routesAuthority(role ? Tabs : Login)}
+        path="/subject"
+        component={routesAuthority(Subject)}
+      />
+      <Route
+        exact
+        path="/aboutus"
+        component={routesAuthority(AboutUs)}
       />
       <Route path="*" render={() => {return <Redirect to="/" />;}} />
     </Switch>

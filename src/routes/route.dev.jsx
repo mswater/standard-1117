@@ -3,7 +3,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./../pages/NewHome/index.jsx";
 import Hot from "../pages/Hot/index.jsx";
 import Details from "../pages/Details/index.jsx";
-import Tabs from "../pages/Tabs/index.jsx";
 import Literature from "../pages/Literature/index.jsx";
 import Personal from "../pages/Personal/index.jsx";
 import NotFound from "./../pages/404/index.jsx";
@@ -78,11 +77,6 @@ const DevRouter = () => {
         path="/detail/:detailId"
         target="_blank"
         component={routesAuthority(role ? Details : Login)}
-      />
-      <Route
-        exact
-        path="/details/tabs"
-        component={routesAuthority(role ? Tabs : Login)}
       />
       <Route
         exact

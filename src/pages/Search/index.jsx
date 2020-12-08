@@ -7,7 +7,7 @@ import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
 import SearchContent from "../../components/Search/SearchContent/searchContent.jsx";
-import SubFooter from "../../components/Common/SubFooter/subFooter.jsx";
+import Footer from "../../components/Common/Footer/footer.jsx";
 import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 import {
   fetchSearch,
@@ -107,7 +107,7 @@ class Search extends React.Component{
         <Header />
         <Nav />
         <SearchContent {...this.props}/>
-        <SubFooter />
+        <Footer />
         <BackTop />
       </div>
     );
