@@ -30,15 +30,6 @@ const Hot = Loadable({
   },
 });
 
-const Topic = Loadable({
-  loader: () => {
-    return import(/* webpackChunkName: "topic" */ "../pages/Topic/index.jsx");
-  },
-  loading() {
-    return <div>Loading...</div>;
-  },
-});
-
 const Literature = Loadable({
   loader: () => {
     return import(/* webpackChunkName: "literature" */ "../pages/Literature/index.jsx");
@@ -108,11 +99,6 @@ const ProdRouter = () => {
         exact
         path="/hot"
         component={routesAuthority(role ? Hot : Login, NotFound)}
-      />
-      <Route
-        exact
-        path="/topic"
-        component={routesAuthority(role ? Topic : Login, NotFound)}
       />
       <Route
         exact

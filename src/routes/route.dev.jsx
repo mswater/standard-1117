@@ -4,10 +4,7 @@ import Home from "./../pages/NewHome/index.jsx";
 import Hot from "../pages/Hot/index.jsx";
 import Details from "../pages/Details/index.jsx";
 import Tabs from "../pages/Tabs/index.jsx";
-import Topic from "../pages/Topic/index.jsx";
 import Literature from "../pages/Literature/index.jsx";
-import Analysis from "../pages/Analysis/index.jsx";
-import Stat from "../pages/Stat/index.jsx";
 import Personal from "../pages/Personal/index.jsx";
 import NotFound from "./../pages/404/index.jsx";
 import Login from "./../pages/Login/index.jsx";
@@ -17,6 +14,7 @@ import Meeting from "./../pages/Meeting/index.jsx";
 import Search from "./../pages/Search/index.jsx";
 import AboutUs from "../pages/AboutUs/index.jsx";
 import Report from "../pages/Report/index.jsx";
+import Subject from "../pages/Subject/index.jsx";
 import { routesAuthority } from "./../lib/tools/utils.js";
 
 const role = localStorage.getItem("token");
@@ -47,23 +45,8 @@ const DevRouter = () => {
       />
       <Route
         exact
-        path="/topic"
-        component={routesAuthority(role ? Topic : Login, NotFound)}
-      />
-      <Route
-        exact
         path="/literature"
         component={routesAuthority(role ? Literature : Login, NotFound)}
-      />
-      <Route
-        exact
-        path="/analysis"
-        component={routesAuthority(role ? Analysis : Login, NotFound)}
-      />
-      <Route
-        exact
-        path="/stat"
-        component={routesAuthority(role ? Stat : Login, NotFound)}
       />
       <Route
         exact
@@ -100,6 +83,11 @@ const DevRouter = () => {
         exact
         path="/details/tabs"
         component={routesAuthority(role ? Tabs : Login)}
+      />
+      <Route
+        exact
+        path="/subject"
+        component={routesAuthority(Subject)}
       />
       <Route
         exact

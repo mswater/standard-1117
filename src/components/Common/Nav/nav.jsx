@@ -29,9 +29,7 @@ class Nav extends React.Component {
             </a>
           </li>
           <li
-            className={
-              (headerRouter === "hot") ? "current" : ""
-            }
+            className={(headerRouter === "hot") ? "current" : ""}
           >
             <a onClick={() => this.navLinkFunc("/hot")}>
               行业动态
@@ -44,8 +42,12 @@ class Nav extends React.Component {
               会议信息
             </a>
           </li>
-          <li>
-            <a>学科专题</a>
+          <li
+            className={headerRouter === "subject" ? "current" : ""}
+          >
+            <a onClick={() => this.navLinkFunc("/subject")}>
+              学科专题
+            </a>
           </li>
           <li
             className={headerRouter === "report" ? "current" : ""}

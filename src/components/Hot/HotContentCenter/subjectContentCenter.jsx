@@ -3,7 +3,7 @@ import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
 
 
-class TopicContentCenter extends React.Component {
+class SubjectContentCenter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -13,23 +13,25 @@ class TopicContentCenter extends React.Component {
     this.addEvent();
   }
 
+  // 微信微博等切换
   contactFunc = (type) => {
     const {
       history,
-      fetchSubjectContentList,
-      fetchSubjectProList,
-      fetchSubjectResetButton,
-      fetchSubjectResetWeibo,
-      fetchSubjectSearchValue,
-      subject:{
-        subjectThemeSearch
+      fetchHotContentList,
+      fetchHotProList,
+      fetchHotResetButton,
+      fetchHotResetWeibo,
+      fetchHotResetLanguage,
+      fetchHotSearchValue,
+      hot:{
+        hotThemeSearch
       },
       handlerIndex
     } = this.props;
-    const menuId = localStorage.getItem("id");
+    const readingId = localStorage.getItem("subjectReadingId");
     const params = {
-      searchKey:subjectThemeSearch,
-      hId: Number(menuId),
+      searchKey: hotThemeSearch,
+      hId: Number(readingId),
       sourceType: type,
       webList:[],
       proList: [],
@@ -38,14 +40,15 @@ class TopicContentCenter extends React.Component {
       pageNum:1,
       pageSize:10
     };
-    history.push("/topic");
-    localStorage.setItem("topicContact", type);
+    history.push("/subject");
+    localStorage.setItem("subjectContact", type);
     handlerIndex(0);
-    fetchSubjectSearchValue();
-    fetchSubjectResetWeibo(false);
-    fetchSubjectProList(false);
-    fetchSubjectResetButton(true);
-    fetchSubjectContentList(params);
+    fetchHotSearchValue();
+    fetchHotResetWeibo(false);
+    fetchHotResetLanguage(false);
+    fetchHotProList(false);
+    fetchHotResetButton(true);
+    fetchHotContentList(params);
   };
 
   checkType() {
@@ -71,13 +74,13 @@ class TopicContentCenter extends React.Component {
   }
 
   render() {
-    const topicContact = localStorage.getItem("topicContact");
+    const subjectContact = localStorage.getItem("subjectContact");
     return (
-      <div className="topic-content-center" ref={(ref) => {this.classWay = ref;}}>
+      <div className="hot-content-center" ref={(ref) => {this.classWay = ref;}}>
         <button
           type="button"
           style={
-            (!topicContact || topicContact === "1") ? {
+            (!subjectContact || subjectContact === "1") ? {
               borderBottom:"1px solid #0572B8", color: "#0572B8"
             } : {
               borderBottom:"1px solid #F2F3F6", color: "#515256"
@@ -90,7 +93,7 @@ class TopicContentCenter extends React.Component {
         <button
           type="button"
           style={
-            topicContact === "2" ? {
+            subjectContact === "2" ? {
               borderBottom:"1px solid #0572B8", color: "#0572B8"
             } : {
               borderBottom:"1px solid #F2F3F6", color: "#515256"
@@ -103,7 +106,7 @@ class TopicContentCenter extends React.Component {
         <button
           type="button"
           style={
-            topicContact === "3" ? {
+            subjectContact === "3" ? {
               borderBottom:"1px solid #0572B8", color: "#0572B8"
             } : {
               borderBottom:"1px solid #F2F3F6", color: "#515256"
@@ -113,35 +116,9 @@ class TopicContentCenter extends React.Component {
         >
           微信
         </button>
-        <button
-          type="button"
-          style={
-            topicContact === "4" ? {
-              borderBottom:"1px solid #0572B8", color: "#0572B8"
-            } : {
-              borderBottom:"1px solid #F2F3F6", color: "#515256"
-            }
-          }
-          onClick={() => {return this.contactFunc(4);}}
-        >
-          国内文献
-        </button>
-        <button
-          type="button"
-          style={
-            topicContact === "5" ? {
-              borderBottom:"1px solid #0572B8", color: "#0572B8"
-            } : {
-              borderBottom:"1px solid #F2F3F6", color: "#515256"
-            }
-          }
-          onClick={() => {return this.contactFunc(5);}}
-        >
-          海外文献
-        </button>
       </div>
     );
   }
 }
 
-export default TopicContentCenter;
+export default SubjectContentCenter;
