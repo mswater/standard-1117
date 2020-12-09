@@ -23,7 +23,7 @@ axios.interceptors.response.use(
       (response.data.code === 2 || response.data.code === 21 || response.data.code === 22)
     ) {
       localStorage.removeItem("token");
-      localStorage.removeItem("realname");
+      localStorage.removeItem("realName");
       localStorage.removeItem("roleName");
       return window.location = "/login";
     }

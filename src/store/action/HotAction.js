@@ -44,7 +44,7 @@ export const fetchHotList = () => {
             order:"desc",
             orderType:1,
             pageNum: 1,
-            pageSize: 10,
+            pageSize: 5,
           };
           if (!readLocalId) {
             localStorage.setItem("readingId", readingId);
@@ -309,6 +309,15 @@ export const fetchHotCheckedNum= (params) => {
 export const fetchHotSearchValue = (params = "") => {
   return (dispatch) => {
     dispatch({type: "SAVE_GET_HOT_SEARCH_VALUE", payload: params});
+  };
+};
+
+/**
+ * 切换subject，更换其对应的背景图
+ */
+export const changeSubjectBg = (params) => {
+  return (dispatch) => {
+    dispatch({type:"CHANGE_SUBJECT_BACKGROUND", payload:params});
   };
 };
 

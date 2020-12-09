@@ -141,13 +141,13 @@ body {
 }
 ::-webkit-input-placeholder,.ant-input::-webkit-input-placeholder { /* WebKit browsers */
   color: rgba(255,255,255,.56);
-  font-size: 16px;
+  font-size: 14px;
 }
 ::-moz-placeholder,.ant-input::-moz-placeholder { /* Mozilla Firefox 19+ */
   color: rgba(255,255,255,.56);
-  font-size: 16px;
+  font-size: 14px;
 }
 :-ms-input-placeholder,.ant-input:-ms-input-placeholder { /* Internet Explorer 10+ */
   color: rgba(255,255,255,.56);
-  font-size: 16px;
+  font-size: 14px;
 }

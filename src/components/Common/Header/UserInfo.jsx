@@ -58,7 +58,7 @@ class UserInfo extends React.Component{
             href={`/managecenter/homepage?uid=${token}`}
             target="_blank"
           >
-            个人首页
+            个人主页
           </a>
           |
           {roleName === "管理员" ?

@@ -76,7 +76,10 @@ class SubjectContentCenter extends React.Component {
   render() {
     const subjectContact = localStorage.getItem("subjectContact");
     return (
-      <div className="hot-content-center" ref={(ref) => {this.classWay = ref;}}>
+      <div
+        className="hot-content-center subject-content-center"
+        ref={(ref) => {this.classWay = ref;}}
+      >
         <button
           type="button"
           style={
@@ -115,6 +118,32 @@ class SubjectContentCenter extends React.Component {
           onClick={() => {return this.contactFunc(3);}}
         >
           微信
+        </button>
+        <button
+          type="button"
+          style={
+            subjectContact === "4" ? {
+              borderBottom:"1px solid #0572B8", color: "#0572B8"
+            } : {
+              borderBottom:"1px solid #F2F3F6", color: "#515256"
+            }
+          }
+          onClick={() => {return this.contactFunc(4);}}
+        >
+          国内文献
+        </button>
+        <button
+          type="button"
+          style={
+            subjectContact === "5" ? {
+              borderBottom:"1px solid #0572B8", color: "#0572B8"
+            } : {
+              borderBottom:"1px solid #F2F3F6", color: "#515256"
+            }
+          }
+          onClick={() => {return this.contactFunc(5);}}
+        >
+          海外文献
         </button>
       </div>
     );

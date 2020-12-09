@@ -31,21 +31,6 @@ class SubjectContent extends React.Component{
     localStorage.setItem("subjectContent", e.key);
   };
 
-  idFormat  = (data) => {
-    const arr = [];
-    arr.push(data && data[0].id);
-    /**
-     * 旧有逻辑，因eslint报错而修改  20201130-mswater
-     */
-    // data && data.map((cur, index) => {
-    //   if (index === 0) {
-    //     arr.push(`${cur.id}`);
-    //   }
-    // });
-    return arr;
-  };
-
-
   // menu处理
   handleReading=(id)=>{
     const {
@@ -56,6 +41,7 @@ class SubjectContent extends React.Component{
       fetchSourcesStatisticsMap,
       fetchSiteMap,
       fetchHotSearchValue,
+      changeSubjectBg,
       hot:{
         hotThemeSearch,
         hotProListFlag,
@@ -79,12 +65,14 @@ class SubjectContent extends React.Component{
       order:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
       pageNum:1,
-      pageSize:10
+      pageSize:5
     };
     localStorage.setItem("subjectReadingId", id);
     fetchHotSearchValue();
     fetchSugReading(id);
     fetchHotContentList(obj);
+    // 切换背景图
+    changeSubjectBg();
     if(subjectClassType === "2"){
       fetchSiteActivityMap(params);
       fetchDataTrendMap(params);
@@ -105,7 +93,8 @@ class SubjectContent extends React.Component{
       hot:{
         hotListData,
         fetchHotListLoading,
-      }
+        subjectBigBg,
+      },
     } = this.props;
     const firstItem = hotListData && hotListData.map(cur => {
       return (
@@ -115,7 +104,7 @@ class SubjectContent extends React.Component{
       );
     });
     return (
-      <div className="normal-main-with-bg">
+      <div className={`normal-main-with-bg ${subjectBigBg}`}>
         <div className="normal-main-con clear">
           {(hotListData && hotListData.length>0) ? (
             <div className="clear">

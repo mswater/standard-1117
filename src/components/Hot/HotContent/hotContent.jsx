@@ -79,7 +79,7 @@ class HotContent extends React.Component{
       order:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
       pageNum:1,
-      pageSize:10
+      pageSize:5
     };
     localStorage.setItem("readingId", id);
     fetchHotSearchValue();

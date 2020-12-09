@@ -7,6 +7,42 @@
   background:url(../../images/normal-content-bg.jpg) center center no-repeat;
   background-size:cover;
 }
+.normal-main-with-bg.nongyexinxi{
+  background:url("../../images/nongyexinxi.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.nongchanpin{
+  background:url("../../images/nongchanpin.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.nongyejixie{
+  background:url("../../images/nongyejixie.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.nongyeziyuan{
+  background:url("../../images/nongyeziyuan.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.zhiwubaohukexue{
+  background:url("../../images/zhiwubaohukexue.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.shouyikexue{
+  background:url("../../images/shouyikexue.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.xumukexue{
+  background:url("../../images/xumukexue.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.yuanyikexue{
+  background:url("../../images/yuanyikexue.jpg") center center no-repeat;
+  background-size:cover;
+}
+.normal-main-with-bg.zuowukexue{
+  background:url("../../images/zuowukexue.jpg") center center no-repeat;
+  background-size:cover;
+}
 .normal-main-con{
   width:1200px;
   margin:0 auto;

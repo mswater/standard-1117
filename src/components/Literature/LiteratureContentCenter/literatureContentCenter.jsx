@@ -143,12 +143,10 @@ class LiteratureContentCenter extends React.Component {
         style={{ width: 90 }}
         onChange={this.handleSelectChange}
       >
-        <Option value="主题">主题</Option>
-        <Option value="关键词">关键词</Option>
-        <Option value="篇名">篇名</Option>
-        <Option value="作者">作者</Option>
-        <Option value="单位">单位</Option>
+        <Option value="标题">标题</Option>
+        <Option value="全文">全文</Option>
         <Option value="摘要">摘要</Option>
+        <Option value="上传人">上传人</Option>
       </Select>
     );
     return (
@@ -165,7 +163,7 @@ class LiteratureContentCenter extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <span>发表时间：</span>
+          <span>上传时间：</span>
           <div
             style={{ marginBottom: 16,position: "relative" }}
             className="search-by-date"

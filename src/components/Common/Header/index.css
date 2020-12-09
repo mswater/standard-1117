@@ -101,12 +101,15 @@
 }
 .index-search-top input::-webkit-input-placeholder{ /* WebKit browsers */
   color: rgba(255,255,255,.56);
+  font-size:16px;
 }
 .index-search-top input::-moz-placeholder{ /* Mozilla Firefox 19+ */
   color: rgba(255,255,255,.56);
+  font-size:16px;
 }
 .index-search-top input:-ms-input-placeholder{ /* Internet Explorer 10+ */
   color: rgba(255,255,255,.56);
+  font-size:16px;
 }
 .normal-header{
   height:257px;
