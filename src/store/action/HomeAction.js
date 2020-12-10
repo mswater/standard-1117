@@ -90,6 +90,25 @@ export const fetchHotTopic= (type) => {
       });
   };
 };
+/**
+ * 首页学科专题get请求
+ */
+export const fetchSubjectTopic= (type) => {
+  return (dispatch) => {
+    dispatch({ type: "FETCHING_SUBJECT_TOPIC", payload: true });
+    getHotTopic(type)
+      .then((response) => {
+        if (response.status === 200 && response.data.status === "OK") {
+          dispatch({ type: "SAVE_SUBJECT_TOPIC", payload: response.data.data });
+        }
+        dispatch({ type: "FETCHING_SUBJECT_TOPIC", payload: false });
+      })
+      .catch((error) => {
+        console.dir(error);
+        dispatch({ type: "FETCHING_SUBJECT_TOPIC", payload: false });
+      });
+  };
+};
 
 /**
  * 首页简报get请求

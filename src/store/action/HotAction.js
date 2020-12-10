@@ -316,8 +316,16 @@ export const fetchHotSearchValue = (params = "") => {
  * 切换subject，更换其对应的背景图
  */
 export const changeSubjectBg = (params) => {
+  let subjectShortName;
+  switch (params) {
+    case "123":
+      subjectShortName = "nongyekexue";
+      break;
+    default:
+      subjectShortName = "";
+  }
   return (dispatch) => {
-    dispatch({type:"CHANGE_SUBJECT_BACKGROUND", payload:params});
+    dispatch({type:"CHANGE_SUBJECT_BACKGROUND", payload:subjectShortName});
   };
 };
 

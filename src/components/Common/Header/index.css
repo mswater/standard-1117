@@ -126,3 +126,8 @@
 .normal-header-con .top-r{
   margin-top:42px;
 }
+.top-search-small{
+  float:left;
+  width:200px;
+  margin:42px 0 0 300px;
+}

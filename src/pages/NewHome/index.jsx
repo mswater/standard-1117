@@ -16,6 +16,7 @@ import {
   fetchHotTopic,
   fetchBriefReport,
   fetchMeeting,
+  fetchSubjectTopic,
 } from "../../store/action/HomeAction.js";
 
 class Home extends React.Component{
@@ -31,9 +32,12 @@ class Home extends React.Component{
       fetchHotTopic,
       fetchBriefReport,
       fetchMeeting,
+      fetchSubjectTopic,
     } = this.props;
     // 热点监测
-    fetchHotTopic();
+    fetchHotTopic(1);
+    // 学科专题
+    fetchSubjectTopic(2);
     // 简报
     fetchBriefReport();
     // 会议
@@ -71,7 +75,7 @@ class Home extends React.Component{
           </div>
           <div className="subject-topics">
             <IndexConTitle title={titleList.subject}/>
-            <SubjectTopics />
+            <SubjectTopics {...this.props}/>
           </div>
         </div>
         <div className="index-con-last clear">
@@ -102,6 +106,7 @@ export default connect(
     fetchHotTopic,
     fetchBriefReport,
     fetchMeeting,
+    fetchSubjectTopic,
   },
 )(withRouter(Home));
 

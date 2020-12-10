@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { Spin } from "antd";
 import subjectIcon1 from "../../../images/subject-icon1.png";
 import subjectIcon2 from "../../../images/subject-icon2.png";
 import subjectIcon3 from "../../../images/subject-icon3.png";
@@ -17,6 +18,12 @@ class SubjectTopics extends React.Component{
   }
 
   render() {
+    const {
+      home: {
+        fetchSubjectTopicLoading,
+        subjectData,
+      }
+    } = this.props;
     const topicsList = [
       {
         "img":subjectIcon1,
@@ -64,19 +71,22 @@ class SubjectTopics extends React.Component{
         "en":"AGRICULTURAL INFORMATION AND ECONOMIC SCIENCE"
       },
     ];
+    const subjectItems = subjectData && subjectData.map((item, index) => {
+      const clsName = (index + 1) % 3 === 0 ? "clear no-mr" : "clear";
+      const imgSrc = topicsList[index].img;
+      return (
+        <li className={clsName} key={index.toString()}>
+          <label><img src={imgSrc} alt={item.ch} /></label>
+          <h2>{item.ch}</h2>
+          <h3>{item.en}</h3>
+        </li>
+      );
+    });
     return (
       <ul className="clear">
-        {
-          topicsList.map((item, index) => {
-            const clsName = (index + 1) % 3 === 0 ? "clear no-mr" : "clear";
-            return (
-              <li className={clsName} key={item.en}>
-                <label><img src={item.img} alt={item.ch} /></label>
-                <h2>{item.ch}</h2>
-                <h3>{item.en}</h3>
-              </li>
-            );
-          })
+        {fetchSubjectTopicLoading ?
+          <div className="spin"><Spin /></div> :
+          subjectItems
         }
       </ul>
     );

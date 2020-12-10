@@ -36,6 +36,41 @@ export const fetchGetLogin = (params, _history) => {
       });
   };
 };
+
+/**
+ * 静默登录
+ * @param {object} params
+ * @param _history
+ */
+export const fetchGuestLogin = () => {
+  // 游客账户登录
+  const guestInfo = {
+    "username": "guest",
+    "password": "guest",
+  };
+  return (dispatch) => {
+    dispatch({ type: "FETCHING_GET_LOGIN", payload: true });
+    getLogin(guestInfo)
+      .then((response) => {
+        if (response.status === 200 && response.data.status === "OK") {
+          console.log("success");
+          localStorage.setItem("token", response.headers.token);
+          localStorage.setItem("username", response.data.data.username);
+          localStorage.setItem("roleName", response.data.data.roleName);
+          // window.location.reload();
+          dispatch({ type: "SAVE_GET_LOGIN", payload: response.data.data });
+        }
+        dispatch({ type: "FETCHING_GET_LOGIN", payload: false });
+        if(response.data.status === "NG"){
+          message.error(response.data.msg);
+        }
+      })
+      .catch((error) => {
+        console.dir(error);
+        dispatch({ type: "FETCHING_GET_LOGIN", payload: false });
+      });
+  };
+};
 /**
  * 退出登陆
  // * @param _history
@@ -47,6 +82,8 @@ export const fetchGetExit = () => {
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           localStorage.removeItem("token");
+          localStorage.removeItem("realName");
+          localStorage.removeItem("roleName");
           dispatch({ type: "SAVE_GET_EXIT", payload: response.data.data });
         }
         dispatch({ type: "FETCHING_GET_EXIT", payload: false });

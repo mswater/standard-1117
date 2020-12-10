@@ -45,6 +45,7 @@ const init = {
   hotSearchValue: "",
   // 学科专题大背景图  默认作物科学栏目
   subjectBigBg:"zuowukexue",
+  subjectThemeSearch:"",
 };
 const hotReducer = (state = init, action) => {
   switch (action.type) {

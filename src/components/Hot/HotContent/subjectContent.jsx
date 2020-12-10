@@ -43,7 +43,7 @@ class SubjectContent extends React.Component{
       fetchHotSearchValue,
       changeSubjectBg,
       hot:{
-        hotThemeSearch,
+        subjectThemeSearch,
         hotProListFlag,
       }
     } = this.props;
@@ -57,7 +57,7 @@ class SubjectContent extends React.Component{
       deadline: !deadLine ? 1 : Number(deadLine)
     };
     const obj ={
-      searchKey:hotThemeSearch,
+      searchKey:subjectThemeSearch,
       hId:id,
       sourceType:!subjectContact? 1 :Number(subjectContact),
       webList:[],
@@ -72,7 +72,7 @@ class SubjectContent extends React.Component{
     fetchSugReading(id);
     fetchHotContentList(obj);
     // 切换背景图
-    changeSubjectBg();
+    changeSubjectBg(id);
     if(subjectClassType === "2"){
       fetchSiteActivityMap(params);
       fetchDataTrendMap(params);

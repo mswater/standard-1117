@@ -21,7 +21,7 @@ const role = localStorage.getItem("token");
 const DevRouter = () => {
   return (
     <Switch>
-      <Route exact path="/" component={routesAuthority(role ? Home : Login)} />
+      <Route exact path="/" component={routesAuthority(Home)} />
       <Route
         exact
         path="/login"

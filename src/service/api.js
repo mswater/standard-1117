@@ -1,6 +1,6 @@
 import axios from "axios";
+import { message } from "antd";
 import HOST from "./../host/index.js";
-
 
 axios.defaults.baseURL = HOST;
 
@@ -16,6 +16,14 @@ axios.interceptors.request.use(
   },
 );
 
+/**
+ * 登录
+ * @param {object} params
+ */
+
+export const getLogin = async (params) => {
+  return axios.post("/userCor/login", params);
+};
 
 axios.interceptors.response.use(
   (response) => {
@@ -25,7 +33,26 @@ axios.interceptors.response.use(
       localStorage.removeItem("token");
       localStorage.removeItem("realName");
       localStorage.removeItem("roleName");
-      return window.location = "/login";
+      // 游客账户登录
+      const guestInfo = {
+        "username": "guest",
+        "password": "guest",
+      };
+      getLogin(guestInfo)
+        .then((response) => {
+          if (response.status === 200 && response.data.status === "OK") {
+            localStorage.setItem("token", response.headers.token);
+            localStorage.setItem("realName", response.data.data.realname);
+            localStorage.setItem("roleName", response.data.data.roleName);
+          }
+          if(response.data.status === "NG"){
+            message.error(response.data.msg);
+          }
+          return window.location = "/";
+        })
+        .catch((error) => {
+          console.dir(error);
+        });
     }
     return response;
   },
@@ -34,14 +61,6 @@ axios.interceptors.response.use(
   },
 );
 
-/**
- * 登录
- * @param {object} params
- */
-
-export const getLogin = async (params) => {
-  return axios.post("/userCor/login", params);
-};
 
 /**
  * 首页
@@ -73,8 +92,8 @@ export const getHotInformation = async (pageNum = 1, pageSize = 5) => {
  * 热点监测
  * @param {number} pageSize 一页显示多少条
  */
-export const getHotTopic = async (pageSize = 5) => {
-  return axios.get(`/hot/hotTopic/${pageSize}`);
+export const getHotTopic = async (type = 1, pageSize = 5) => {
+  return axios.get(`/hot/hotTopic/${pageSize}/${type}`);
 };
 
 /**
@@ -417,3 +436,17 @@ export const getReportList = async (params) => {
   return axios.post("/brief/briefList",params);
 };
 
+/**
+ *  获取资料共享页面左侧menu数据  GET：/sharing/getSharingList
+ *  token
+ */
+export const getSharingMenuData = async () => {
+  return axios.get("/sharing/getSharingList");
+};
+
+/**
+ * 资料共享列表页 POST： /sharing/getSharingListBySid
+ */
+export const getSharingContentList = async (params) => {
+  return axios.post("/sharing/getSharingListBySid", params);
+};

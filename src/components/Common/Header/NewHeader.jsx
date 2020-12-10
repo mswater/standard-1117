@@ -76,7 +76,7 @@ class NewHeader extends React.Component{
             <div className="top-l logo">
               <img alt="logo" src={logo}/>
             </div>
-            <UserInfo />
+            <UserInfo {...this.props} />
             <div className="index-search-top">
               <Search
                 placeholder="请输入检索词..."

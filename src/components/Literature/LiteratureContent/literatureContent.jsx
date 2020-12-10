@@ -13,43 +13,6 @@ class LiteratureContent extends React.Component{
     };
   }
 
-
-  onOpenChange = (openKeys) => {
-    const {
-      literature: {
-        literatureListData
-      },
-      history
-    } = this.props;
-    let openSelectKey = null;
-    const menuArr = [];
-    const literatureOpenKeyId = localStorage.getItem("literatureOpenKeyId");
-    const currentOpenkey = literatureOpenKeyId ? `${literatureOpenKeyId}` :
-      `${literatureListData[0].id}`;
-    const latestOpenKey = openKeys.find(key =>{ return currentOpenkey.indexOf(key) === -1;});
-    /* eslint-disable array-callback-return */
-    /* eslint-disable no-unused-expressions */
-    literatureListData && literatureListData.map(cur => {
-      menuArr.push(`${cur.id}`);
-      if(cur.id === Number(latestOpenKey)) {
-        if(!cur.childrenKeyWords || cur.childrenKeyWords.length === 0){
-          openSelectKey = Number(openKeys);
-        }
-        if (cur.childrenKeyWords.length !== 0) {
-          openSelectKey = cur.childrenKeyWords[0].id;
-        }
-      }
-    });
-    if (menuArr.indexOf(latestOpenKey) === -1) {
-      localStorage.setItem("literatureOpenKeyId", openKeys[0]);
-      history.push("/literature");
-    } else {
-      localStorage.setItem("literatureOpenKeyId", latestOpenKey);
-      history.push("/literature");
-      localStorage.setItem("literatureContent", openSelectKey);
-    }
-  };
-
   handleId=(lId)=>{
     const {
       fetchLiteratureContentList,
@@ -60,13 +23,13 @@ class LiteratureContent extends React.Component{
         literatureSelectQuery
       }
     } = this.props;
-    const literatureContact = localStorage.getItem("literatureContact");
-    const orderType = localStorage.getItem("literatureOrderType");
-    const orderFlag = localStorage.getItem("literatureOrderFlag");
+    const sharingMaterialType = localStorage.getItem("sharingMaterialType");
+    const orderType = localStorage.getItem("sharingOrderType");
+    const orderFlag = localStorage.getItem("sharingOrderFlag");
     const obj ={
       searchKey:literatureSearchQuery,
       hId: lId,
-      sourceType:!literatureContact ? 4 :Number(literatureContact),
+      sourceType:!sharingMaterialType ? 4 :Number(sharingMaterialType),
       webList:[],
       selectedField:literatureSelectQuery,
       startDate:literatureDateQuery[0],
@@ -80,79 +43,12 @@ class LiteratureContent extends React.Component{
     localStorage.setItem("lId", lId);
     fetchLiteratureContentList(obj);
   };
-
-  handleParentId=(lId)=>{
-    const {
-      fetchLiteratureContentList,
-      fetchLiteratureSearchValueFun,
-      literature:{
-        literatureSearchQuery,
-        literatureDateQuery,
-        literatureSelectQuery
-      },
-      history
-    } = this.props;
-    const literatureContact = localStorage.getItem("literatureContact");
-    const orderType = localStorage.getItem("literatureOrderType");
-    const orderFlag = localStorage.getItem("literatureOrderFlag");
-    const obj ={
-      searchKey:literatureSearchQuery,
-      hId: lId,
-      sourceType:!literatureContact ? 4 :Number(literatureContact),
-      webList:[],
-      selectedField:literatureSelectQuery,
-      startDate:literatureDateQuery[0],
-      endDate:literatureDateQuery[1],
-      order:(orderFlag!=="false") ? "desc":"asc",
-      orderType:!orderType ? 1 : Number(orderType),
-      pageNum:1,
-      pageSize:10
-    };
-    localStorage.setItem("lId", lId);
-    localStorage.setItem("literatureOpenKeyId", lId);
-    history.push("/literature");
-    fetchLiteratureSearchValueFun();
-    fetchLiteratureContentList(obj);
-  };
-
 
   handleClick = (e) => {
     const { props } = this;
     props.history.push("/literature");
-    localStorage.setItem("literatureContent", e.key);
+    localStorage.setItem("sharingMaterialType", e.key);
   };
-
-  handleMenu=(childrenKeyWords)=>{
-    const parentId = childrenKeyWords && childrenKeyWords[0] && childrenKeyWords[0].id;
-    const {
-      fetchLiteratureContentList,
-      fetchLiteratureSearchValueFun,
-      literature:{
-        literatureSearchQuery,
-        literatureDateQuery,
-        literatureSelectQuery
-      }
-    } = this.props;
-    const literatureContact = localStorage.getItem("literatureContact");
-    const orderType = localStorage.getItem("literatureOrderType");
-    const orderFlag = localStorage.getItem("literatureOrderFlag");
-    const obj ={
-      searchKey:literatureSearchQuery,
-      hId: parentId,
-      sourceType:!literatureContact ? 4 :Number(literatureContact),
-      webList:[],
-      selectedField:literatureSelectQuery,
-      startDate:literatureDateQuery[0],
-      endDate:literatureDateQuery[1],
-      order:(orderFlag!=="false") ? "desc":"asc",
-      orderType:!orderType ? 1 : Number(orderType),
-      pageNum:1,
-      pageSize:10
-    };
-    fetchLiteratureSearchValueFun();
-    fetchLiteratureContentList(obj);
-  };
-
 
   render() {
     const {
@@ -161,13 +57,14 @@ class LiteratureContent extends React.Component{
         fetchLiteratureListLoading
       }
     } = this.props;
-    const firstItem = literatureListData && literatureListData.map(cur => {
+    const sharingMaterialType = localStorage.getItem("sharingMaterialType");
+    const firstItem = literatureListData && literatureListData.map((cur) => {
       return(
         <Menu.Item
           key={cur.id.toString()}
-          title={cur.keyName}
+          title={cur.name}
         >
-          <a onClick={() => {return this.handleParentId(cur.id);}}>{cur.keyName}</a>
+          <a onClick={() => {return this.handleId(cur.id);}}>{cur.name}</a>
         </Menu.Item>
       );
     });
@@ -180,7 +77,12 @@ class LiteratureContent extends React.Component{
               onClick={this.handleClick}
               className="menu"
               mode="inline"
+              defaultSelectedKeys={sharingMaterialType === "" ?
+                "all-material" : sharingMaterialType}
             >
+              <Menu.Item key="all-material" title="全部">
+                <a onClick={() => {return this.handleId("");}}>全部</a>
+              </Menu.Item>
               {firstItem}
             </Menu>
           }

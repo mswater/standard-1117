@@ -1,16 +1,16 @@
 import {
-  getLiteratureList,
-  getLiteratureContentList,
+  getSharingMenuData,
+  getSharingContentList,
 } from "./../../service/api.js";
 
 
 /**
- * 文献中心-文献分类列表 GET： /literature/docClassList
+ * 获取资料共享页面左侧menu数据  GET：/sharing/getSharingList
  */
 export const fetchLiteratureList = () => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_LITERATURE_LIST", payload: true });
-    getLiteratureList()
+    getSharingMenuData()
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           dispatch({ type: "SAVE_GET_LITERATURE_LIST", payload: response.data.data });
@@ -25,7 +25,7 @@ export const fetchLiteratureList = () => {
 };
 
 /**
- * 文献中心-文献内容页 POST  /literature/docContentList
+ * 资料共享列表页 POST： /sharing/getSharingListBySid
  *
  */
 
@@ -33,7 +33,7 @@ let webList = null;
 export const fetchLiteratureContentList = (params) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_LITERATURE_CONTENT_LIST", payload: true });
-    getLiteratureContentList(params)
+    getSharingContentList(params)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           if(!webList) {

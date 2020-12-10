@@ -20,46 +20,6 @@ class LiteratureContentCenter extends React.Component {
     this.searchTheme = "";
   }
 
-  contactFunc = (type) => {
-    /* eslint-disable no-nested-ternary */
-    const {
-      history,
-      fetchLiteratureContentList,
-      fetchLiteratureSearchQuery,
-      fetchLiteratureDateQuery,
-      fetchLiteratureSelectQuery,
-      fetchLiteratureDate,
-      fetchLiteratureSearchValue,
-      fetchLiteratureResetButton,
-      fetchLiteratureSearchValueFun
-    } = this.props;
-    const docId = localStorage.getItem("lId");
-    const {selectValue} = this.state;
-    const params = {
-      searchKey: "",
-      hId:!docId ? (docId === "" ? "" : "421") : Number(docId),
-      sourceType:type,
-      webList:[],
-      selectedField:selectValue,
-      startDate:"",
-      endDate:"",
-      order:"desc",
-      orderType:1,
-      pageNum:1,
-      pageSize:10
-    };
-    history.push("/literature");
-    localStorage.setItem("literatureContact", type);
-    fetchLiteratureSearchValueFun();
-    fetchLiteratureResetButton(true);
-    fetchLiteratureContentList(params);
-    fetchLiteratureSearchQuery();
-    fetchLiteratureDateQuery();
-    fetchLiteratureSelectQuery();
-    fetchLiteratureDate();
-    fetchLiteratureSearchValue();
-  };
-
   onChange = (date, dateString) => {
     const { fetchLiteratureDate } = this.props;
     this.setState({
@@ -106,17 +66,9 @@ class LiteratureContentCenter extends React.Component {
       fetchLiteratureSelectQuery,
       fetchLiteratureDateQuery,
       fetchLiteratureThemeSearchFlag,
-      literature:{
-        literatureWebsite
-      }
     } = this.props;
-    const docId = localStorage.getItem("lId");
-    const literatureContact = localStorage.getItem("literatureContact");
     const params = {
       searchKey: literatureSearchValue,
-      hId:!docId ? (docId === "" ? "" : 421) : Number(docId),
-      sourceType:literatureContact,
-      webList:literatureWebsite,
       selectedField:this.searchTheme ? this.searchTheme : selectValue ,
       startDate: startTime,
       endDate: endTime,

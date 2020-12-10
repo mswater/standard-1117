@@ -48,16 +48,8 @@ class Literature extends React.Component{
         literatureSelectQuery
       }
     } = this.props;
-    const docId = localStorage.getItem("lId");
-    const literatureContact = localStorage.getItem("literatureContact");
-    const params = {
-      kid: !docId ? (docId === "" ? "" : 421) : Number(docId),
-    };
     const obj = {
       searchKey: literatureSearchQuery,
-      hId: params.kid,
-      sourceType:!literatureContact ? 4 :Number(literatureContact),
-      webList:[],
       selectedField:literatureSelectQuery,
       startDate:literatureDateQuery[0],
       endDate:literatureDateQuery[1],
@@ -78,7 +70,7 @@ class Literature extends React.Component{
       fetchLiteratureSearchValue
     } = this.props;
     localStorage.setItem("literatureContact", "4");
-    localStorage.setItem("literatureContent", "421");
+    localStorage.setItem("sharingMaterialType", "");
     localStorage.setItem("lId","421");
     localStorage.setItem("literatureOrderType", "1");
     localStorage.setItem("literatureOrderFlag", "");

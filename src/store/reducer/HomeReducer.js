@@ -6,9 +6,7 @@ const init = {
   fetchBriefReportLoading:false,
   fetchActiveAuthorLoading:false,
   fetchNewestLiteratureLoading:false,
-  fetchSubjectLoading:false,
-  fetchStatLoading:false,
-  fetchRecommendLiteratureLoading:false,
+  fetchSubjectTopicLoading:false,
   fetchHotSubjectLoading:false,
   fetchMeetingLoading:false,
   // 英文关键词
@@ -26,20 +24,12 @@ const init = {
   reportData:[],
   // 活跃作者
   authorData:[],
-  // 专题监测
-  subjectData:[],
+  // 学科专题
+  subjectData:[{
+    name: "",
+  }],
   // 最新文献
   newestLiteratureData: {
-    literatureDetailDtos: [],
-    type: 1
-  },
-  // 对比数据
-  statData:[{
-    childTotalArray:[],
-    type:""
-  }],
-  // 推荐文献
-  recommendLiteratureData: {
     literatureDetailDtos: [],
     type: 1
   },
@@ -97,6 +87,17 @@ const homeReducer = (state = init, action) => {
         ...state,
         hotData: action.payload,
       };
+    // 学科专题
+    case "FETCHING_SUBJECT_TOPIC":
+      return {
+        ...state,
+        fetchSubjectTopicLoading: action.payload,
+      };
+    case "SAVE_SUBJECT_TOPIC":
+      return {
+        ...state,
+        subjectData: action.payload,
+      };
     // 简报
     case "FETCHING_GET_REPORT":
       return {
@@ -129,39 +130,6 @@ const homeReducer = (state = init, action) => {
       return {
         ...state,
         newestLiteratureData: action.payload,
-      };
-    // 专题监测
-    case "FETCHING_GET_SUBJECT":
-      return {
-        ...state,
-        fetchSubjectLoading: action.payload,
-      };
-    case "SAVE_GET_SUBJECT":
-      return {
-        ...state,
-        subjectData: action.payload,
-      };
-    // 推荐文献
-    case "FETCHING_GET_RECOMMEND":
-      return {
-        ...state,
-        fetchRecommendLiteratureLoading: action.payload,
-      };
-    case "SAVE_GET_RECOMMEND":
-      return {
-        ...state,
-        recommendLiteratureData: action.payload,
-      };
-    // 首页对比数据
-    case "FETCHING_GET_STAT":
-      return {
-        ...state,
-        fetchStatLoading: action.payload,
-      };
-    case "SAVE_GET_STAT":
-      return {
-        ...state,
-        statData: action.payload,
       };
       // 首页热门主题图
     case "FETCHING_GET_HOT_SUBJECT":
