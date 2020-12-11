@@ -249,15 +249,37 @@ export const fetchHotSubject= () => {
   };
 };
 /**
- * 首页会议 GET： /meeting/meeting/{pageSize}
+ * 首页会议 GET： /meeting/meeting/{pageSize}/{type}
+ * type = 1
  */
-export const fetchMeeting= () => {
+export const fetchMeeting= (params) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_MEETING", payload: true });
-    getMeeting()
+    getMeeting(params)
       .then((response) => {
         if (response.status === 200  && response.data.status === "OK") {
           dispatch({ type: "SAVE_GET_MEETING", payload: response.data.data });
+        }
+        dispatch({ type: "FETCHING_GET_MEETING", payload: false });
+      })
+      .catch((error) => {
+        console.dir(error);
+        dispatch({ type: "FETCHING_GET_MEETING", payload: false });
+      });
+  };
+};
+
+/**
+ * 首页国外会议 GET： /meeting/meeting/{pageSize}/{type}
+ * type = 2
+ */
+export const fetchAboardMeeting= (params) => {
+  return (dispatch) => {
+    dispatch({ type: "FETCHING_GET_MEETING", payload: true });
+    getMeeting(params)
+      .then((response) => {
+        if (response.status === 200  && response.data.status === "OK") {
+          dispatch({ type: "SAVE_ABOARD_MEETING", payload: response.data.data });
         }
         dispatch({ type: "FETCHING_GET_MEETING", payload: false });
       })

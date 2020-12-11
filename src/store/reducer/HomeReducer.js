@@ -35,8 +35,10 @@ const init = {
   },
   // 首页热门主题图
   hotSubjectData:{},
-  // 首页会议
+  // 首页国内会议
   meetingHomeData:[],
+  // 首页国外会议
+  meetingAboardData:[],
   headerSearchContent: "",
   // 会议tab 默认国内
   conferenceTab:"home",
@@ -152,6 +154,11 @@ const homeReducer = (state = init, action) => {
       return {
         ...state,
         meetingHomeData: action.payload,
+      };
+    case "SAVE_ABOARD_MEETING":
+      return {
+        ...state,
+        meetingAboardData: action.payload,
       };
     case "SAVE_GET_HEADER_SEARCH":
       return {

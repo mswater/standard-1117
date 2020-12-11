@@ -39,6 +39,7 @@ class Conference extends React.Component{
         conferenceTab,
         fetchMeetingLoading,
         meetingHomeData,
+        meetingAboardData,
       }
     } = this.props;
     const homeConference = meetingHomeData && meetingHomeData.map((cur, index) => {
@@ -60,7 +61,7 @@ class Conference extends React.Component{
         </li>
       );
     });
-    const aboardConference = meetingHomeData && meetingHomeData.map((cur, index) => {
+    const aboardConference = meetingAboardData && meetingAboardData.map((cur, index) => {
       return (
         <li
           key={index.toString()}

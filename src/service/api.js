@@ -149,8 +149,8 @@ export const getStat = async (type = 1) => {
  * 首页会议 GET：  /meeting/meeting/{pageSize}
  * @param {number} pageSize 一页显示多少条
  */
-export const getMeeting = async (pageSize = 3) => {
-  return axios.get(`/meeting/meeting/${pageSize}`);
+export const getMeeting = async (type = 1,pageSize = 3) => {
+  return axios.get(`/meeting/meeting/${pageSize}/${type}`);
 };
 
 /**
