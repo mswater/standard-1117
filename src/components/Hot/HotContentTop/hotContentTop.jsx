@@ -57,7 +57,6 @@ class HotContentTop extends React.Component {
     }, () => {
       const {
         history,
-        fetchSugReading,
         fetchHotContentList,
         fetchSiteActivityMap,
         fetchDataTrendMap,
@@ -88,7 +87,6 @@ class HotContentTop extends React.Component {
         pageSize: 10,
       };
       history.push("/hot");
-      fetchSugReading(params.kid);
       if (type === 1) {
         fetchHotContentList(obj);
       }

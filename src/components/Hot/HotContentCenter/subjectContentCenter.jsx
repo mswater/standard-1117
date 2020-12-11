@@ -17,20 +17,20 @@ class SubjectContentCenter extends React.Component {
   contactFunc = (type) => {
     const {
       history,
-      fetchHotContentList,
-      fetchHotProList,
-      fetchHotResetButton,
-      fetchHotResetWeibo,
-      fetchHotResetLanguage,
-      fetchHotSearchValue,
+      fetchSubjectContentList,
+      fetchSubjectProList,
+      fetchSubjectResetButton,
+      fetchSubjectResetWeibo,
+      fetchSubjectResetLanguage,
+      fetchSubjectSearchValue,
       hot:{
-        hotThemeSearch
+        subjectThemeSearch
       },
       handlerIndex
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
     const params = {
-      searchKey: hotThemeSearch,
+      searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType: type,
       webList:[],
@@ -43,12 +43,12 @@ class SubjectContentCenter extends React.Component {
     history.push("/subject");
     localStorage.setItem("subjectContact", type);
     handlerIndex(0);
-    fetchHotSearchValue();
-    fetchHotResetWeibo(false);
-    fetchHotResetLanguage(false);
-    fetchHotProList(false);
-    fetchHotResetButton(true);
-    fetchHotContentList(params);
+    fetchSubjectSearchValue();
+    fetchSubjectResetWeibo(false);
+    fetchSubjectResetLanguage(false);
+    fetchSubjectProList(false);
+    fetchSubjectResetButton(true);
+    fetchSubjectContentList(params);
   };
 
   checkType() {

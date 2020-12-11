@@ -73,7 +73,7 @@ class SubjectContentCheck extends React.Component {
   componentWillReceiveProps(nextProps) {
     const {
       hot:{
-        hotContentListData:{
+        subjectContentListData:{
           timeCompare:nextTimeCompare,
           page:{
             resultList: currentResultList,
@@ -83,7 +83,7 @@ class SubjectContentCheck extends React.Component {
     } = nextProps;
     const {
       hot:{
-        hotContentListData:{
+        subjectContentListData:{
           timeCompare:currentTimeCompare,
         }
       }
@@ -105,12 +105,12 @@ class SubjectContentCheck extends React.Component {
   componentDidUpdate() {
     const {
       hot:{
-        hotThemeSearch,
-        hotThemeSearchFlag,
-        hotResetButtonFlag
+        subjectThemeSearch,
+        subjectThemeSearchFlag,
+        subjectResetButtonFlag
       }
     } = this.props;
-    if (hotResetButtonFlag) {
+    if (subjectResetButtonFlag) {
       const subjectContact = localStorage.getItem("subjectContact");
       const sortArr = (subjectContact === 2) ? sortArrSecond : sortArrFirst;
       const { classSort } = this;
@@ -125,9 +125,9 @@ class SubjectContentCheck extends React.Component {
       arr[0].style.color = "#0572B8";
       arr[0].children[1].style.color = "#0572B8";
     }
-    if(!hotResetButtonFlag) {
-      if (hotThemeSearchFlag) {
-        if(hotThemeSearch) {
+    if(!subjectResetButtonFlag) {
+      if (subjectThemeSearchFlag) {
+        if(subjectThemeSearch) {
           const { classSort } = this;
           const arr = classSort.children;
           for (let i = 0; i < arr.length; i += 1) {
@@ -137,7 +137,7 @@ class SubjectContentCheck extends React.Component {
           arr[arr.length - 1].style.color = "#0572B8";
           arr[arr.length - 1].children[1].style.color = "#0572B8";
         }
-        if (!hotThemeSearch) {
+        if (!subjectThemeSearch) {
           const { classSort } = this;
           const arr = classSort.children;
           for (let i = 0; i < arr.length; i += 1) {
@@ -148,7 +148,7 @@ class SubjectContentCheck extends React.Component {
           arr[0].children[1].style.color = "#0572B8";
         }
       }
-      if (!hotThemeSearchFlag) {
+      if (!subjectThemeSearchFlag) {
         this.addEvent();
       }
     }
@@ -170,7 +170,7 @@ class SubjectContentCheck extends React.Component {
   onCheckAllChange = (e) => {
     const {
       hot:{
-        hotContentListData:{
+        subjectContentListData:{
           page:{
             resultList,
           }
@@ -188,7 +188,7 @@ class SubjectContentCheck extends React.Component {
   onChange = (checkedList) => {
     const {
       hot:{
-        hotContentListData:{
+        subjectContentListData:{
           page:{
             resultList,
           }
@@ -233,12 +233,12 @@ class SubjectContentCheck extends React.Component {
 
   paginationFunc = (page) => {
     const {
-      fetchHotContentList,
+      fetchSubjectContentList,
       hot: {
-        hotProListFlag,
-        hotThemeSearch,
-        hotSearchQuery,
-        hotWeiboTypeFlag
+        subjectProListFlag,
+        subjectThemeSearch,
+        subjectSearchQuery,
+        subjectWeiboTypeFlag
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -247,19 +247,19 @@ class SubjectContentCheck extends React.Component {
     const orderType = localStorage.getItem("subjectOrderType");
     const orderFlag = localStorage.getItem("subjectOrderFlag");
     const params = {
-      searchKey: hotThemeSearch,
+      searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
-        (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : [])),
-      proList: hotWeiboTypeFlag ? [] : (hotProListFlag ?
-        (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : ["全部"]): []),
+      webList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
+        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] : subjectSearchQuery) : [])),
+      proList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
+        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] : subjectSearchQuery) : ["全部"]): []),
       order: orderFlag!=="false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum: page,
       pageSize:10
     };
-    fetchHotContentList(params);
+    fetchSubjectContentList(params);
   };
 
   collectArticle = (obj) =>{
@@ -290,7 +290,7 @@ class SubjectContentCheck extends React.Component {
   toggleList = (id) => {
     const {
       hot:{
-        hotContentListData:{
+        subjectContentListData:{
           page:{
             resultList,
           }
@@ -349,14 +349,14 @@ class SubjectContentCheck extends React.Component {
 
   sortFunc = (orderType, idx) =>{
     const {
-      fetchHotContentList,
-      fetchHotThemeSearchFlag,
-      fetchHotResetButton,
+      fetchSubjectContentList,
+      fetchSubjectThemeSearchFlag,
+      fetchSubjectResetButton,
       hot:{
-        hotProListFlag,
-        hotThemeSearch,
-        hotSearchQuery,
-        hotWeiboTypeFlag
+        subjectProListFlag,
+        subjectThemeSearch,
+        subjectSearchQuery,
+        subjectWeiboTypeFlag
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -394,21 +394,21 @@ class SubjectContentCheck extends React.Component {
       }
     }
     const params = {
-      searchKey: hotThemeSearch,
+      searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
-        (hotSearchQuery!==[] ? hotSearchQuery : [])),
-      proList: hotWeiboTypeFlag ? [] : (hotProListFlag ?
-        (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : []),
+      webList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
+        (subjectSearchQuery!==[] ? subjectSearchQuery : [])),
+      proList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
+        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : []),
       order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
       orderType,
       pageNum: 1,
       pageSize:10
     };
-    fetchHotResetButton(false);
-    fetchHotThemeSearchFlag(false);
-    fetchHotContentList(params);
+    fetchSubjectResetButton(false);
+    fetchSubjectThemeSearchFlag(false);
+    fetchSubjectContentList(params);
     localStorage.setItem("subjectOrderType",orderType);
     localStorage.setItem("subjectOrderFlag",sortArr[this.sort_index].flag);
   };
@@ -441,17 +441,15 @@ class SubjectContentCheck extends React.Component {
     const { indeterminate, checkAll, checkedList, selectNumber} = this.state;
     const {
       hot:{
-        fetchHotContentListLoading,
-      },
-      hot:{
-        hotContentListData:{
+        fetchSubjectContentListLoading,
+        subjectContentListData:{
           page:{
             resultList,
             rowCount,
             pageNow
           }
         },
-        hotThemeSearch
+        subjectThemeSearch
       },
       article:{
         sameListData,
@@ -595,7 +593,7 @@ class SubjectContentCheck extends React.Component {
             </div>
             <div className="fl" ref={(ref) => {this.classSort = ref;}}>
               {sortItem}
-              {(hotThemeSearch) && (
+              {(subjectThemeSearch) && (
                 <button type="button" onClick={() => {return this.sortFunc(3,"",false);}}>
                   <span>相关性</span><Icon type="arrow-down"/>
                 </button>
@@ -637,7 +635,7 @@ class SubjectContentCheck extends React.Component {
           </div>
         </div>
         {
-          fetchHotContentListLoading ? <div className="spin"><Spin/></div> :
+          fetchSubjectContentListLoading ? <div className="spin"><Spin/></div> :
             <div className="hot-content-check-center">
               {item.length > 0 ? item : <img src={empty} className="noList" alt=""/> }
             </div>

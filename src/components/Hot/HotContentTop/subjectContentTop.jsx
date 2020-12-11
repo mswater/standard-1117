@@ -33,10 +33,10 @@ class SubjectContentTop extends React.Component {
 
   dateLink = (deadline) => {
     const {
-      fetchSiteActivityMap,
-      fetchDataTrendMap,
-      fetchSourcesStatisticsMap,
-      fetchSiteMap
+      fetchSubjectSiteActivityMap,
+      fetchSubjectDataTrendMap,
+      fetchSubjectSourcesStatisticsMap,
+      fetchSubjectSiteMap
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
     const params = {
@@ -44,10 +44,10 @@ class SubjectContentTop extends React.Component {
       deadline
     };
     localStorage.setItem("subjectDeadLine", deadline);
-    fetchSiteActivityMap(params);
-    fetchDataTrendMap(params);
-    fetchSourcesStatisticsMap(params);
-    fetchSiteMap(params);
+    fetchSubjectSiteActivityMap(params);
+    fetchSubjectDataTrendMap(params);
+    fetchSubjectSourcesStatisticsMap(params);
+    fetchSubjectSiteMap(params);
   };
 
   classTypeFunc = (type) => {
@@ -56,14 +56,13 @@ class SubjectContentTop extends React.Component {
     }, () => {
       const {
         history,
-        fetchSugReading,
-        fetchHotContentList,
-        fetchSiteActivityMap,
-        fetchDataTrendMap,
-        fetchSourcesStatisticsMap,
-        fetchSiteMap,
+        fetchSubjectContentList,
+        fetchSubjectSiteActivityMap,
+        fetchSubjectDataTrendMap,
+        fetchSubjectSourcesStatisticsMap,
+        fetchSubjectSiteMap,
         hot: {
-          hotThemeSearch
+          subjectThemeSearch
         }
       } = this.props;
       const readingId = localStorage.getItem("subjectReadingId");
@@ -76,7 +75,7 @@ class SubjectContentTop extends React.Component {
         deadline: !deadLine ? 1 : Number(deadLine)
       };
       const obj = {
-        searchKey: hotThemeSearch,
+        searchKey: subjectThemeSearch,
         hId: params.kid,
         sourceType: !subjectContact ? "" : Number(subjectContact),
         webList: [],
@@ -87,21 +86,20 @@ class SubjectContentTop extends React.Component {
         pageSize: 10,
       };
       history.push("/subject");
-      fetchSugReading(params.kid);
       if (type === 1) {
-        fetchHotContentList(obj);
+        fetchSubjectContentList(obj);
       }
       localStorage.setItem("subjectClassType", type);
       if (type === 2) {
         this.addDateEvent();
         // 热点监测-站点活跃度统计图
-        fetchSiteActivityMap(params);
+        fetchSubjectSiteActivityMap(params);
         // 热点监测-数据量趋势图
-        fetchDataTrendMap(params);
+        fetchSubjectDataTrendMap(params);
         // 热点监测-来源统计图
-        fetchSourcesStatisticsMap(params);
+        fetchSubjectSourcesStatisticsMap(params);
         // 热点监测-地域热力图
-        fetchSiteMap(params);
+        fetchSubjectSiteMap(params);
       }
     });
   };
@@ -110,14 +108,14 @@ class SubjectContentTop extends React.Component {
   // 主题内检索
   searchQuery = (type, value, dateStrings) => {
     const {
-      fetchHotContentList,
+      fetchSubjectContentList,
       hot:{
-        hotProListFlag,
-        hotWeiboTypeFlag,
-        hotSearchQuery,
+        subjectProListFlag,
+        subjectWeiboTypeFlag,
+        subjectSearchQuery,
       },
-      fetchHotThemeSearch,
-      fetchHotThemeSearchFlag
+      fetchSubjectThemeSearch,
+      fetchSubjectThemeSearchFlag
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
     const subjectContact = localStorage.getItem("subjectContact");
@@ -133,23 +131,23 @@ class SubjectContentTop extends React.Component {
       searchKey:searchWord,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList:hotWeiboTypeFlag ? [] : (hotProListFlag ? []
-        :(hotSearchQuery!==[] ? hotSearchQuery : [])),
-      proList:hotWeiboTypeFlag ? [] : (hotProListFlag ?
-        (hotSearchQuery!==[] ? hotSearchQuery : ["全部"]) : []),
+      webList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ? []
+        :(subjectSearchQuery!==[] ? subjectSearchQuery : [])),
+      proList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
+        (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : []),
       order:"desc",
-      isOrigin:(hotSearchQuery === "转发微博") ? 1 :(hotSearchQuery === "原创微博" ? 0 : null),
+      isOrigin:(subjectSearchQuery === "转发微博") ? 1 :(subjectSearchQuery === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,
       pageNum:1,
       pageSize:10
     };
-    fetchHotThemeSearchFlag(true);
-    fetchHotThemeSearch({
+    fetchSubjectThemeSearchFlag(true);
+    fetchSubjectThemeSearch({
       searchDate,
       searchKey:searchWord
     });
     // 调用接口
-    fetchHotContentList(params);
+    fetchSubjectContentList(params);
   };
 
   disabledDate(current) {

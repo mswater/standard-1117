@@ -49,7 +49,6 @@ class HotContent extends React.Component{
   // menu处理
   handleReading=(id)=>{
     const {
-      fetchSugReading ,
       fetchHotContentList,
       fetchSiteActivityMap,
       fetchDataTrendMap,
@@ -83,7 +82,6 @@ class HotContent extends React.Component{
     };
     localStorage.setItem("readingId", id);
     fetchHotSearchValue();
-    fetchSugReading(id);
     fetchHotContentList(obj);
     if(hotClassType === "2"){
       fetchSiteActivityMap(params);

@@ -12,7 +12,6 @@ import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
 import {
   fetchHotList,
-  fetchSugReading,
   fetchHotContentList,
   fetchSiteActivityMap,
   fetchDataTrendMap,
@@ -98,7 +97,6 @@ export default connect(
     fetchHotList,
     fetchHotProList,
     fetchHotResetButton,
-    fetchSugReading,
     fetchHotContentList,
     fetchSiteActivityMap,
     fetchDataTrendMap,

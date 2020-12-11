@@ -11,22 +11,21 @@ import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
 
 import {
-  fetchHotList,
-  fetchSugReading,
-  fetchHotContentList,
-  fetchSiteActivityMap,
-  fetchDataTrendMap,
-  fetchHotResetButton,
-  fetchSourcesStatisticsMap,
-  fetchSiteMap,
-  fetchHotProList,
-  fetchHotResetWeibo,
-  fetchHotResetLanguage,
-  fetchHotResetFuzzyQuery,
-  fetchHotSearchQuery,
-  fetchHotThemeSearch,
-  fetchHotThemeSearchFlag,
-  fetchHotSearchValue
+  fetchSubjectList,
+  fetchSubjectContentList,
+  fetchSubjectSiteActivityMap,
+  fetchSubjectDataTrendMap,
+  fetchSubjectResetButton,
+  fetchSubjectSourcesStatisticsMap,
+  fetchSubjectSiteMap,
+  fetchSubjectProList,
+  fetchSubjectResetWeibo,
+  fetchSubjectResetLanguage,
+  fetchSubjectResetFuzzyQuery,
+  fetchSubjectSearchQuery,
+  fetchSubjectThemeSearch,
+  fetchSubjectThemeSearchFlag,
+  fetchSubjectSearchValue
 } from "../../store/action/HotAction.js";
 import {
   fetchSameList,
@@ -49,9 +48,9 @@ class Subject extends React.Component {
   componentDidMount() {
     this.node.scrollIntoView();
     const {
-      fetchHotList,
+      fetchSubjectList,
     } = this.props;
-    fetchHotList();
+    fetchSubjectList();
   }
 
 
@@ -95,27 +94,26 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {
-    fetchHotList,
-    fetchHotProList,
-    fetchHotResetButton,
-    fetchSugReading,
-    fetchHotContentList,
-    fetchSiteActivityMap,
-    fetchDataTrendMap,
-    fetchSourcesStatisticsMap,
-    fetchSiteMap,
-    fetchHotResetWeibo,
-    fetchHotResetLanguage,
-    fetchHotResetFuzzyQuery,
+    fetchSubjectList,
+    fetchSubjectProList,
+    fetchSubjectResetButton,
+    fetchSubjectContentList,
+    fetchSubjectSiteActivityMap,
+    fetchSubjectDataTrendMap,
+    fetchSubjectSourcesStatisticsMap,
+    fetchSubjectSiteMap,
+    fetchSubjectResetWeibo,
+    fetchSubjectResetLanguage,
+    fetchSubjectResetFuzzyQuery,
     fetchSameList,
-    fetchHotSearchQuery,
+    fetchSubjectSearchQuery,
     fetchArticleCollect,
     fetchArticleCancelCollect,
-    fetchHotThemeSearch,
+    fetchSubjectThemeSearch,
     fetchDownload,
-    fetchHotThemeSearchFlag,
+    fetchSubjectThemeSearchFlag,
     fetchSameCount,
-    fetchHotSearchValue
+    fetchSubjectSearchValue
   },
 )(withRouter(Subject));
 

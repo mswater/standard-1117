@@ -19,7 +19,7 @@ class SubjectContentQuery extends React.Component {
     const {
       hot:{
         hotContentListData,
-        fetchHotContentListLoading,
+        fetchSubjectContentListLoading,
         hotProListFlag,
         hotWeiboTypeFlag,
       }
@@ -30,7 +30,7 @@ class SubjectContentQuery extends React.Component {
     const queryList = hotProListFlag ? searchPro : (hotWeiboTypeFlag ? weiboArr : searchWeb);
     this.addEvent();
     // 判断是否接口是返回之后，在调用方法
-    if (!fetchHotContentListLoading && (queryList && queryList.length > 0)) {
+    if (!fetchSubjectContentListLoading && (queryList && queryList.length > 0)) {
       this.addItemEvent();
     }
   }
@@ -39,10 +39,10 @@ class SubjectContentQuery extends React.Component {
     const {
       hot:{
         hotContentListData,
-        hotResetButtonFlag,
+        subjectResetButtonFlag,
         hotProListFlag,
         hotWeiboTypeFlag,
-        fetchHotContentListLoading
+        fetchSubjectContentListLoading
       }
     } = this.props;
     const searchWeb = hotContentListData.webList;
@@ -52,7 +52,7 @@ class SubjectContentQuery extends React.Component {
     const { classType } = this;
     const classArr = classType.children;
     this.addEvent();
-    if (hotResetButtonFlag) {
+    if (subjectResetButtonFlag) {
       for (let i = 0; i < classArr.length; i += 1) {
         if (i === 0) {
           classArr[i].style.backgroundColor = "#F6BD4E";
@@ -66,7 +66,7 @@ class SubjectContentQuery extends React.Component {
         }
       }
     }
-    if (!fetchHotContentListLoading && (queryList && queryList.length > 0)) {
+    if (!fetchSubjectContentListLoading && (queryList && queryList.length > 0)) {
       const { itemType } = this;
       const itemArr = itemType.children;
       this.addItemEvent();
@@ -89,13 +89,13 @@ class SubjectContentQuery extends React.Component {
   // 模糊搜索
   searchQuery = (value) => {
     const {
-      fetchHotResetFuzzyQuery,
-      fetchHotContentList,
-      fetchHotSearchValue,
+      fetchSubjectResetFuzzyQuery,
+      fetchSubjectContentList,
+      fetchSubjectSearchValue,
       hot:{
-        hotContentListData,
-        hotProListFlag,
-        hotThemeSearch
+        subjectContentListData,
+        subjectProListFlag,
+        subjectThemeSearch
       }
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
@@ -103,22 +103,22 @@ class SubjectContentQuery extends React.Component {
     const orderType = localStorage.getItem("subjectOrderType");
     const orderFlag = localStorage.getItem("subjectOrderFlag");
     const paramsEmpty = {
-      searchKey: hotThemeSearch,
+      searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
       webList:[],
-      proList:hotProListFlag ? ["全部"] : [],
+      proList:subjectProListFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10
     };
-    fetchHotSearchValue(value);
+    fetchSubjectSearchValue(value);
     if (!value || value === "全部") {
-      fetchHotContentList(paramsEmpty);
+      fetchSubjectContentList(paramsEmpty);
     }
-    const isWebList = hotProListFlag ? hotContentListData.hotProList
-      : hotContentListData.hotWebList;
+    const isWebList = subjectProListFlag ? subjectContentListData.proList
+      : subjectContentListData.webList;
     const fuzzyArr = fuzzyQuery(isWebList, value);
     /**
      * 重新渲染数组，这里要mock和返回的对象一样的数据格式
@@ -126,34 +126,34 @@ class SubjectContentQuery extends React.Component {
      * 在判断是否是地区分布hotProListFlag：true 是 false 不是
      */
     const paramsWeb = {
-      ...hotContentListData,
+      ...subjectContentListData,
       webList: fuzzyArr
     };
     const paramsPro = {
-      ...hotContentListData,
+      ...subjectContentListData,
       proList: fuzzyArr
     };
-    fetchHotResetFuzzyQuery(hotProListFlag ? paramsPro : paramsWeb);
+    fetchSubjectResetFuzzyQuery(subjectProListFlag ? paramsPro : paramsWeb);
   };
 
   searchChange = (e) => {
     const {
-      fetchHotSearchValue,
+      fetchSubjectSearchValue,
     } = this.props;
-    fetchHotSearchValue(e.target.value);
+    fetchSubjectSearchValue(e.target.value);
   };
 
   // 地区判断
   proListFunc = (tag) => {
     const {
-      fetchHotContentList,
-      fetchHotProList,
-      fetchHotResetButton,
-      fetchHotResetWeibo,
-      fetchHotResetLanguage,
-      fetchHotSearchValue,
+      fetchSubjectContentList,
+      fetchSubjectProList,
+      fetchSubjectResetButton,
+      fetchSubjectResetWeibo,
+      fetchSubjectResetLanguage,
+      fetchSubjectSearchValue,
       hot:{
-        hotThemeSearch
+        subjectThemeSearch
       },
       handlerIndex
     } = this.props;
@@ -161,7 +161,7 @@ class SubjectContentQuery extends React.Component {
     const subjectContact = localStorage.getItem("subjectContact");
     const orderType = localStorage.getItem("subjectOrderType");
     const params = {
-      searchKey: hotThemeSearch,
+      searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
       webList:[],
@@ -195,23 +195,23 @@ class SubjectContentQuery extends React.Component {
         weiboFlag = false;
         languageFlag = false;
     }
-    fetchHotSearchValue();
-    fetchHotResetWeibo(weiboFlag);
-    fetchHotProList(otherFlag);
-    fetchHotResetLanguage(languageFlag);
-    fetchHotResetButton(false);
-    fetchHotContentList(params);
+    fetchSubjectSearchValue();
+    fetchSubjectResetWeibo(weiboFlag);
+    fetchSubjectProList(otherFlag);
+    fetchSubjectResetLanguage(languageFlag);
+    fetchSubjectResetButton(false);
+    fetchSubjectContentList(params);
     handlerIndex(0);
   };
 
   // 点击全部
   resetListFunc = () => {
     const {
-      fetchHotContentList,
-      fetchHotSearchQuery,
+      fetchSubjectContentList,
+      fetchSubjectSearchQuery,
       hot:{
-        hotProListFlag,
-        hotThemeSearch,
+        subjectProListFlag,
+        subjectThemeSearch,
       }
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
@@ -219,18 +219,18 @@ class SubjectContentQuery extends React.Component {
     const orderType = localStorage.getItem("subjectOrderType");
     const orderFlag = localStorage.getItem("subjectOrderFlag");
     const params = {
-      searchKey: hotThemeSearch,
+      searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
       webList:[],
-      proList:hotProListFlag ? ["全部"] : [],
+      proList:subjectProListFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10
     };
-    fetchHotSearchQuery();
-    fetchHotContentList(params);
+    fetchSubjectSearchQuery();
+    fetchSubjectContentList(params);
     weiboArr =  ["原创微博", "转发微博"];
     languageArr = ["中文", "英文"];
   };
@@ -256,13 +256,13 @@ class SubjectContentQuery extends React.Component {
       this.resetListFunc();
     }
     const {
-      fetchHotContentList,
-      fetchHotResetButton,
-      fetchHotSearchQuery,
+      fetchSubjectContentList,
+      fetchSubjectResetButton,
+      fetchSubjectSearchQuery,
       hot:{
-        hotProListFlag,
-        hotWeiboTypeFlag,
-        hotThemeSearch,
+        subjectProListFlag,
+        subjectWeiboTypeFlag,
+        subjectThemeSearch,
       },
       handlerIndex
     } = this.props;
@@ -271,20 +271,20 @@ class SubjectContentQuery extends React.Component {
     const orderType = localStorage.getItem("subjectOrderType");
     const orderFlag = localStorage.getItem("subjectOrderFlag");
     const params = {
-      searchKey:hotThemeSearch,
+      searchKey:subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList:hotWeiboTypeFlag ? [] : (hotProListFlag ? [] : [item]),
-      proList:hotWeiboTypeFlag ? [] : (hotProListFlag ?  [item] : []),
+      webList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] : [item]),
+      proList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ?  [item] : []),
       order:!orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       isOrigin:(item === "转发微博") ? 1 :(item === "原创微博" ? 0 : null),
       pageNum:1,
       pageSize:10
     };
-    fetchHotSearchQuery(item);
-    fetchHotResetButton(false);
-    fetchHotContentList(params);
+    fetchSubjectSearchQuery(item);
+    fetchSubjectResetButton(false);
+    fetchSubjectContentList(params);
     handlerIndex(clickIdx === 0 ? clickIdx : 1);
     if (item === "转发微博") {
       weiboArr = ["转发微博"];
@@ -347,17 +347,17 @@ class SubjectContentQuery extends React.Component {
   render() {
     const {
       hot:{
-        hotContentListData,
-        hotProListFlag,
-        hotWeiboTypeFlag,
-        hotLanguageTypeFlag,
-        fetchHotContentListLoading,
-        hotSearchValue
+        subjectContentListData,
+        subjectProListFlag,
+        subjectWeiboTypeFlag,
+        subjectLanguageTypeFlag,
+        fetchSubjectContentListLoading,
+        subjectSearchValue
       },
       clickIndex
     } = this.props;
-    const webList = ["全部"].concat(hotContentListData.webList);
-    const proList = ["全部"].concat(hotContentListData.proList);
+    const webList = ["全部"].concat(subjectContentListData.webList);
+    const proList = ["全部"].concat(subjectContentListData.proList);
     const weiboArrList = ["全部"].concat(weiboArr);
     const languageList = ["全部"].concat(languageArr);
     const searchWeb = webList && webList.map((cur, index) => {
@@ -416,9 +416,9 @@ class SubjectContentQuery extends React.Component {
       );
     });
     /* eslint-disable no-nested-ternary */
-    const queryList = hotProListFlag ?
-      searchPro : (hotWeiboTypeFlag ?
-        searchWeibo : (hotLanguageTypeFlag ?
+    const queryList = subjectProListFlag ?
+      searchPro : (subjectWeiboTypeFlag ?
+        searchWeibo : (subjectLanguageTypeFlag ?
           searchLanguage : searchWeb));
     return (
       <div className="hot-content-query">
@@ -435,9 +435,9 @@ class SubjectContentQuery extends React.Component {
         </div>
         <div className="hot-content-query-select">
           <div className="query-top clear">
-            {(!(hotWeiboTypeFlag || hotLanguageTypeFlag)) && (
+            {(!(subjectWeiboTypeFlag || subjectLanguageTypeFlag)) && (
               <Search
-                value={hotSearchValue}
+                value={subjectSearchValue}
                 placeholder="请输入搜索内容..."
                 enterButton="搜索"
                 size="default"
@@ -447,7 +447,7 @@ class SubjectContentQuery extends React.Component {
                 onSearch={this.searchQuery}
               />
             )}
-            {fetchHotContentListLoading ? <div className="content-list-loading"><Spin /></div>
+            {fetchSubjectContentListLoading ? <div className="content-list-loading"><Spin /></div>
               : (!queryList || (queryList && queryList.length === 0) ?
                 <div className="no-data"><img src={noData} alt=""/></div>
                 : (

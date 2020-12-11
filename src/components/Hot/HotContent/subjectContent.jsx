@@ -34,17 +34,16 @@ class SubjectContent extends React.Component{
   // menu处理
   handleReading=(id)=>{
     const {
-      fetchSugReading ,
-      fetchHotContentList,
-      fetchSiteActivityMap,
-      fetchDataTrendMap,
-      fetchSourcesStatisticsMap,
-      fetchSiteMap,
-      fetchHotSearchValue,
+      fetchSubjectContentList,
+      fetchSubjectSiteActivityMap,
+      fetchSubjectDataTrendMap,
+      fetchSubjectSourcesStatisticsMap,
+      fetchSubjectSiteMap,
+      fetchSubjectSearchValue,
       changeSubjectBg,
       hot:{
         subjectThemeSearch,
-        hotProListFlag,
+        subjectProListFlag,
       }
     } = this.props;
     const deadLine = localStorage.getItem("subjectDeadLine");
@@ -61,25 +60,24 @@ class SubjectContent extends React.Component{
       hId:id,
       sourceType:!subjectContact? 1 :Number(subjectContact),
       webList:[],
-      proList:hotProListFlag ? ["全部"] : [],
+      proList:subjectProListFlag ? ["全部"] : [],
       order:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
       pageNum:1,
       pageSize:5
     };
     localStorage.setItem("subjectReadingId", id);
-    fetchHotSearchValue();
-    fetchSugReading(id);
-    fetchHotContentList(obj);
+    fetchSubjectSearchValue();
+    fetchSubjectContentList(obj);
     // 切换背景图
     changeSubjectBg(id);
     if(subjectClassType === "2"){
-      fetchSiteActivityMap(params);
-      fetchDataTrendMap(params);
-      // 热点监测-来源统计图
-      fetchSourcesStatisticsMap(params);
-      // 热点监测-地域热力图
-      fetchSiteMap(params);
+      fetchSubjectSiteActivityMap(params);
+      fetchSubjectDataTrendMap(params);
+      // 学科专题-来源统计图
+      fetchSubjectSourcesStatisticsMap(params);
+      // 学科专题-地域热力图
+      fetchSubjectSiteMap(params);
     }
   };
 
@@ -91,12 +89,12 @@ class SubjectContent extends React.Component{
     const token = localStorage.getItem("token");
     const {
       hot:{
-        hotListData,
-        fetchHotListLoading,
+        subjectListData,
+        fetchSubjectListLoading,
         subjectBigBg,
       },
     } = this.props;
-    const firstItem = hotListData && hotListData.map(cur => {
+    const firstItem = subjectListData && subjectListData.map(cur => {
       return (
         <Menu.Item key={cur.id.toString()}>
           <a onClick={() => {return this.handleReading(cur.id);}}>{cur.keyName}</a>
@@ -106,16 +104,16 @@ class SubjectContent extends React.Component{
     return (
       <div className={`normal-main-with-bg ${subjectBigBg}`}>
         <div className="normal-main-con clear">
-          {(hotListData && hotListData.length>0) ? (
+          {(subjectListData && subjectListData.length>0) ? (
             <div className="clear">
               <div className="left-menu fl">
                 <h1>-&nbsp;热点监测&nbsp;-</h1>
-                {fetchHotListLoading ?  <div className="spin"><Spin /></div> :
+                {fetchSubjectListLoading ?  <div className="spin"><Spin /></div> :
                   <Menu
                     onClick={this.handleClick}
                     className="menu"
                     defaultSelectedKeys={subjectContent ?
-                      [`${subjectContent}`] : [`${hotListData[0].id}`]}
+                      [`${subjectContent}`] : [`${subjectListData[0].id}`]}
                     mode="inline"
                   >
                     {firstItem}
