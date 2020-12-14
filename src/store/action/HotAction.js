@@ -103,8 +103,11 @@ export const fetchSubjectList = () => {
             sourceType: !subjectContact ? 1 : Number(subjectContact),
             webList: [],
             proList: [],
+            languageList: [],
             order:"desc",
             orderType:1,
+            startDate:"",
+            endDate:"",
             pageNum: 1,
             pageSize: 5,
           };
@@ -113,17 +116,17 @@ export const fetchSubjectList = () => {
           }
           /* eslint-disable no-use-before-define */
           if (!subjectClassType || subjectClassType === "1") {
-            dispatch(fetchHotContentList(obj));
+            dispatch(fetchSubjectContentList(obj));
           }
           if (subjectClassType === "2") {
             // 热点监测-站点活跃度统计图
-            dispatch(fetchSiteActivityMap(params));
+            dispatch(fetchSubjectSiteActivityMap(params));
             // 热点监测-数据量趋势图
-            dispatch(fetchDataTrendMap(params));
+            dispatch(fetchSubjectDataTrendMap(params));
             // 热点监测-来源统计图
-            dispatch(fetchSourcesStatisticsMap(params));
+            dispatch(fetchSubjectSourcesStatisticsMap(params));
             // 热点监测-地域热力图
-            dispatch(fetchSiteMap(params));
+            dispatch(fetchSubjectSiteMap(params));
           }
           dispatch({ type: "SAVE_GET_SUBJECT_LIST", payload: response.data.data });
         }
@@ -205,6 +208,7 @@ export const fetchHotContentList = (params) => {
 
 let subjectProList = null;
 let subjectWebList = null;
+let subjectLanguageList = null;
 export const fetchSubjectContentList = (params) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_SUBJECT_CONTENT_LIST", payload: true });
@@ -225,6 +229,9 @@ export const fetchSubjectContentList = (params) => {
           if(!subjectWebList) {
             subjectWebList = response.data.data && response.data.data.webList;
           }
+          if(!subjectLanguageList){
+            subjectLanguageList = response.data.data && response.data.data.languageList;
+          }
           dispatch({
             type: "SAVE_GET_SUBJECT_CONTENT_LIST",
             payload: {
@@ -232,6 +239,7 @@ export const fetchSubjectContentList = (params) => {
               timeCompare: moment().unix(),
               subjectProList,
               subjectWebList,
+              subjectLanguageList
             }
           });
         }
@@ -500,6 +508,7 @@ export const fetchHotResetFuzzyQuery = (params) => {
  */
 
 export const fetchSubjectResetFuzzyQuery = (params) => {
+  console.log(params);
   return (dispatch) => {
     dispatch({type: "SAVE_GET_SUBJECT_CONTENT_LIST", payload: params});
   };
@@ -594,8 +603,32 @@ export const fetchSubjectSearchValue = (params = "") => {
 export const changeSubjectBg = (params) => {
   let subjectShortName;
   switch (params) {
-    case "123":
-      subjectShortName = "nongyekexue";
+    case 641:
+      subjectShortName = "shouyikexue";
+      break;
+    case 658:
+      subjectShortName = "zhiwubaohukexue";
+      break;
+    case 659:
+      subjectShortName = "nongyeziyuan";
+      break;
+    case 660:
+      subjectShortName = "nongyejixie";
+      break;
+    case 661:
+      subjectShortName = "nongchanpin";
+      break;
+    case 735:
+      subjectShortName = "xumukexue";
+      break;
+    case 728:
+      subjectShortName = "zuowukexue";
+      break;
+    case 729:
+      subjectShortName = "yuanyikexue";
+      break;
+    case 744:
+      subjectShortName = "nongyexinxi";
       break;
     default:
       subjectShortName = "";

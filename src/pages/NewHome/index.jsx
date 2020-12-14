@@ -16,7 +16,6 @@ import {
   fetchHotTopic,
   fetchBriefReport,
   fetchMeeting,
-  fetchSubjectTopic,
   fetchAboardMeeting,
 } from "../../store/action/HomeAction.js";
 
@@ -33,13 +32,10 @@ class Home extends React.Component{
       fetchHotTopic,
       fetchBriefReport,
       fetchMeeting,
-      fetchSubjectTopic,
       fetchAboardMeeting,
     } = this.props;
     // 热点监测
     fetchHotTopic(1);
-    // 学科专题
-    fetchSubjectTopic(2);
     // 简报
     fetchBriefReport();
     // 国内会议
@@ -110,7 +106,6 @@ export default connect(
     fetchHotTopic,
     fetchBriefReport,
     fetchMeeting,
-    fetchSubjectTopic,
     fetchAboardMeeting,
   },
 )(withRouter(Home));

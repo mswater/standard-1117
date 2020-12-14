@@ -17,68 +17,88 @@ class SubjectTopics extends React.Component{
     this.state = {};
   }
 
+  goSubjectPage(subjectId){
+    const { history } = this.props;
+    localStorage.setItem("subjectContent", subjectId);
+    localStorage.setItem("subjectReadingId", subjectId);
+    history.push("/subject");
+  }
+
   render() {
     const {
       home: {
         fetchSubjectTopicLoading,
-        subjectData,
       }
     } = this.props;
     const topicsList = [
       {
+        "id":728,
         "img":subjectIcon1,
         "ch":"作物科学",
         "en":"CROP SCIENCE"
       },
       {
+        "id":729,
         "img":subjectIcon2,
         "ch":"园艺科学",
         "en":"HORTICULTURE SCIENCE"
       },
       {
+        "id":735,
         "img":subjectIcon3,
         "ch":"畜牧科学",
         "en":"LIVESTOCK SCIENCE"
       },
       {
+        "id":641,
         "img":subjectIcon4,
         "ch":"兽医科学",
         "en":"VETERINARY SCIENCE"
       },
       {
+        "id":658,
         "img":subjectIcon5,
         "ch":"植物保护科学",
         "en":"PLANT PROTECTION SCIENCE"
       },
       {
+        "id":659,
         "img":subjectIcon6,
         "ch":"农业资源与环境科学",
         "en":"AGRICULTURAL RESOURCES AND ENVIRONMENTAL SCIENCE"
       },
       {
+        "id":660,
         "img":subjectIcon7,
         "ch":"农业机械与工程科学",
         "en":"AGRICULTURAL MACHINERY AND ENGINEERING SCIENCE"
       },
       {
+        "id":661,
         "img":subjectIcon8,
         "ch":"农产品质量与加工科学",
         "en":"AGRICULTURAL PRODUCT QUALITY AND PROCESSING SCIENCE"
       },
       {
+        "id":744,
         "img":subjectIcon9,
         "ch":"农业信息与经济科学",
         "en":"AGRICULTURAL INFORMATION AND ECONOMIC SCIENCE"
       },
     ];
-    const subjectItems = subjectData && subjectData.map((item, index) => {
-      const clsName = (index + 1) % 3 === 0 ? "clear no-mr" : "clear";
-      const imgSrc = topicsList[index].img;
+    const subjectItems = topicsList && topicsList.map((item, index) => {
+      const clsName = (index + 1) % 3 === 0 ? "no-mr" : "";
       return (
-        <li className={clsName} key={index.toString()}>
-          <label><img src={imgSrc} alt={item.ch} /></label>
-          <h2>{item.ch}</h2>
-          <h3>{item.en}</h3>
+        <li key={index.toString()} className={clsName}>
+          <a
+            className="clear"
+            key={item.id}
+            onClick={() => {return this.goSubjectPage(item.id);}}
+          >
+            <label><img src={item.img} alt={item.ch} /></label>
+            <h2>{item.ch}</h2>
+            <h3>{item.en}</h3>
+          </a>
         </li>
       );
     });

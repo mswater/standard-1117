@@ -34,7 +34,8 @@ const init = {
       rowCount:0
     },
     webList:[],
-    proList:[]
+    proList:[],
+    languageList:[]
   },
   // 学科专题列表
   subjectContentListData:{
@@ -42,8 +43,9 @@ const init = {
       resultList:[],
       rowCount:0
     },
-    webList:[],
-    proList:[]
+    subjectWebList:[],
+    subjectProList:[],
+    subjectLanguageList:[]
   },
   // 热点监测图表----站点活跃度统计图
   siteActivityMapData:[],
@@ -80,6 +82,9 @@ const init = {
   subjectSearchValue:"",
   // 学科专题大背景图  默认作物科学栏目
   subjectBigBg:"zuowukexue",
+  // 学科专题 日期搜索range
+  subjectStartDate:"",
+  subjectEndDate:"",
 };
 const hotReducer = (state = init, action) => {
   switch (action.type) {

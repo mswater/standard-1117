@@ -62,7 +62,9 @@ class SubjectContentTop extends React.Component {
         fetchSubjectSourcesStatisticsMap,
         fetchSubjectSiteMap,
         hot: {
-          subjectThemeSearch
+          subjectThemeSearch,
+          subjectStartDate,
+          subjectEndDate,
         }
       } = this.props;
       const readingId = localStorage.getItem("subjectReadingId");
@@ -82,6 +84,8 @@ class SubjectContentTop extends React.Component {
         proList: [],
         order:!orderFlag ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
+        startDate:subjectStartDate,
+        endDate:subjectEndDate,
         pageNum: 1,
         pageSize: 10,
       };
@@ -119,15 +123,16 @@ class SubjectContentTop extends React.Component {
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
     const subjectContact = localStorage.getItem("subjectContact");
-    let searchDate;
+    let startDate;
+    let endDate;
     let searchWord;
     if(type === "date"){
-      searchDate = dateStrings;
+      startDate = dateStrings[0];
+      endDate = dateStrings[1];
     }else if(type === "word"){
       searchWord = value;
     }
     const params = {
-      searchDate,
       searchKey:searchWord,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
@@ -138,12 +143,15 @@ class SubjectContentTop extends React.Component {
       order:"desc",
       isOrigin:(subjectSearchQuery === "转发微博") ? 1 :(subjectSearchQuery === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,
+      startDate,
+      endDate,
       pageNum:1,
       pageSize:10
     };
     fetchSubjectThemeSearchFlag(true);
     fetchSubjectThemeSearch({
-      searchDate,
+      subjectStartDate:startDate,
+      subjectEndDate:endDate,
       searchKey:searchWord
     });
     // 调用接口

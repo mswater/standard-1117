@@ -38,11 +38,11 @@
   padding:14px 16px;
 }
 .conference-con .l-info{
-  width:380px;
+  width:480px;
   overflow:hidden;
 }
 .conference-con .l-info h1{
-  width:380px;
+  width:480px;
   height:44px;
   margin:0;
   font-size:16px;
@@ -53,7 +53,7 @@
   white-space: nowrap;
 }
 .conference-con .r-info{
-  width:225px;
+  width:130px;
 }
 .conference-con .countdown{
   display:inline-block;

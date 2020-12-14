@@ -6,7 +6,6 @@ import noData from "../../../images/nodata.png";
 
 const { Search } = Input;
 let weiboArr = ["原创微博", "转发微博"];
-let languageArr = ["中文", "英文"];
 
 class SubjectContentQuery extends React.Component {
   constructor(props) {
@@ -18,16 +17,21 @@ class SubjectContentQuery extends React.Component {
   componentDidMount() {
     const {
       hot:{
-        hotContentListData,
+        subjectContentListData,
         fetchSubjectContentListLoading,
-        hotProListFlag,
-        hotWeiboTypeFlag,
+        subjectProListFlag,
+        subjectWeiboTypeFlag,
+        subjectLanguageTypeFlag,
       }
     } = this.props;
-    const searchWeb = hotContentListData.webList;
-    const searchPro = hotContentListData.proList;
+    const searchWeb = subjectContentListData.subjectWebList;
+    const searchPro = subjectContentListData.subjectProList;
+    const searchLanguage = subjectContentListData.subjectLanguageList;
     /* eslint-disable no-nested-ternary */
-    const queryList = hotProListFlag ? searchPro : (hotWeiboTypeFlag ? weiboArr : searchWeb);
+    const queryList = subjectProListFlag ?
+      searchPro : (subjectWeiboTypeFlag ?
+        weiboArr : (subjectLanguageTypeFlag ?
+          searchLanguage : searchWeb));
     this.addEvent();
     // 判断是否接口是返回之后，在调用方法
     if (!fetchSubjectContentListLoading && (queryList && queryList.length > 0)) {
@@ -38,17 +42,22 @@ class SubjectContentQuery extends React.Component {
   componentDidUpdate () {
     const {
       hot:{
-        hotContentListData,
+        subjectContentListData,
         subjectResetButtonFlag,
-        hotProListFlag,
-        hotWeiboTypeFlag,
-        fetchSubjectContentListLoading
+        subjectProListFlag,
+        subjectWeiboTypeFlag,
+        fetchSubjectContentListLoading,
+        subjectLanguageTypeFlag,
       }
     } = this.props;
-    const searchWeb = hotContentListData.webList;
-    const searchPro = hotContentListData.proList;
+    const searchWeb = subjectContentListData.subjectWebList;
+    const searchPro = subjectContentListData.subjectProList;
+    const searchLanguage = subjectContentListData.subjectLanguageList;
     /* eslint-disable no-nested-ternary */
-    const queryList = hotProListFlag ? searchPro : (hotWeiboTypeFlag ? weiboArr : searchWeb);
+    const queryList = subjectProListFlag ?
+      searchPro : (subjectWeiboTypeFlag ?
+        weiboArr : (subjectLanguageTypeFlag ?
+          searchLanguage : searchWeb));
     const { classType } = this;
     const classArr = classType.children;
     this.addEvent();
@@ -95,7 +104,8 @@ class SubjectContentQuery extends React.Component {
       hot:{
         subjectContentListData,
         subjectProListFlag,
-        subjectThemeSearch
+        subjectThemeSearch,
+        subjectLanguageTypeFlag,
       }
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
@@ -108,8 +118,11 @@ class SubjectContentQuery extends React.Component {
       sourceType:Number(subjectContact),
       webList:[],
       proList:subjectProListFlag ? ["全部"] : [],
+      languageList:subjectLanguageTypeFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:orderType ? 1 : Number(orderType),
+      startDate:"",
+      endDate:"",
       pageNum:1,
       pageSize:10
     };
@@ -166,8 +179,11 @@ class SubjectContentQuery extends React.Component {
       sourceType:Number(subjectContact),
       webList:[],
       proList:(tag === "地区分布") ? ["全部"] : [],
+      languageList:(tag === "语种分类") ? ["全部"] : [],
       order:"desc",
       orderType:!orderType ? 1 : Number(orderType),
+      startDate:"",
+      endDate:"",
       pageNum:1,
       pageSize:10
     };
@@ -212,6 +228,7 @@ class SubjectContentQuery extends React.Component {
       hot:{
         subjectProListFlag,
         subjectThemeSearch,
+        subjectLanguageTypeFlag,
       }
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
@@ -224,28 +241,33 @@ class SubjectContentQuery extends React.Component {
       sourceType:Number(subjectContact),
       webList:[],
       proList:subjectProListFlag ? ["全部"] : [],
+      languageList:subjectLanguageTypeFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
+      startDate:"",
+      endDate:"",
       pageNum:1,
       pageSize:10
     };
     fetchSubjectSearchQuery();
     fetchSubjectContentList(params);
     weiboArr =  ["原创微博", "转发微博"];
-    languageArr = ["中文", "英文"];
   };
 
   sourceArr = () => {
-    // renderContactNumber 判断是什么类型 1资讯 2微博 3微信
-    const renderContactNumber = localStorage.getItem("subjectContact");
-    if (parseInt(renderContactNumber, 0) === 1) {
+    // renderContactNumber 判断是什么类型 1资讯 2微博 3微信 4国外文献 5国内文献
+    const renderContactNumber = parseInt(localStorage.getItem("subjectContact"), 0);
+    if (renderContactNumber === 1) {
       return ["来源网站", "语种分类", "地区分布"];
     }
-    if (parseInt(renderContactNumber, 0) === 2) {
+    if (renderContactNumber === 2) {
       return ["来源用户", "微博类型", "地区分布"];
     }
-    if (parseInt(renderContactNumber, 0) === 3) {
+    if (renderContactNumber === 3) {
       return ["来源公众号", "地区分布"];
+    }
+    if (renderContactNumber === 4 || renderContactNumber === 5) {
+      return ["来源期刊", "发文作者", "发文机构"];
     }
     return ["来源网站", "语种分类", "地区分布"];
   };
@@ -263,6 +285,7 @@ class SubjectContentQuery extends React.Component {
         subjectProListFlag,
         subjectWeiboTypeFlag,
         subjectThemeSearch,
+        subjectLanguageTypeFlag,
       },
       handlerIndex
     } = this.props;
@@ -276,9 +299,12 @@ class SubjectContentQuery extends React.Component {
       sourceType:Number(subjectContact),
       webList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] : [item]),
       proList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ?  [item] : []),
+      languageList:subjectLanguageTypeFlag ? [item] : [],
       order:!orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       isOrigin:(item === "转发微博") ? 1 :(item === "原创微博" ? 0 : null),
+      startDate:"",
+      endDate:"",
       pageNum:1,
       pageSize:10
     };
@@ -356,10 +382,10 @@ class SubjectContentQuery extends React.Component {
       },
       clickIndex
     } = this.props;
-    const webList = ["全部"].concat(subjectContentListData.webList);
-    const proList = ["全部"].concat(subjectContentListData.proList);
+    const webList = ["全部"].concat(subjectContentListData.subjectWebList);
+    const proList = ["全部"].concat(subjectContentListData.subjectProList);
     const weiboArrList = ["全部"].concat(weiboArr);
-    const languageList = ["全部"].concat(languageArr);
+    const languageList = ["全部"].concat(subjectContentListData.subjectLanguageList);
     const searchWeb = webList && webList.map((cur, index) => {
       return (
         <div

@@ -25,7 +25,8 @@ import {
   fetchSubjectSearchQuery,
   fetchSubjectThemeSearch,
   fetchSubjectThemeSearchFlag,
-  fetchSubjectSearchValue
+  fetchSubjectSearchValue,
+  changeSubjectBg,
 } from "../../store/action/HotAction.js";
 import {
   fetchSameList,
@@ -56,8 +57,8 @@ class Subject extends React.Component {
 
   componentWillUnmount() {
     const {
-      fetchHotSearchQuery,
-      fetchHotThemeSearch,
+      fetchSubjectSearchQuery,
+      fetchSubjectThemeSearch,
     } = this.props;
     localStorage.setItem("subjectContact", 1);
     localStorage.setItem("subjectClassType", "");
@@ -66,8 +67,8 @@ class Subject extends React.Component {
     localStorage.setItem("subjectDeadLine", "");
     localStorage.setItem("subjectOrderType", 1);
     localStorage.setItem("subjectOrderFlag", "");
-    fetchHotSearchQuery();
-    fetchHotThemeSearch();
+    fetchSubjectSearchQuery();
+    fetchSubjectThemeSearch();
   }
 
 
@@ -113,7 +114,8 @@ export default connect(
     fetchDownload,
     fetchSubjectThemeSearchFlag,
     fetchSameCount,
-    fetchSubjectSearchValue
+    fetchSubjectSearchValue,
+    changeSubjectBg,
   },
 )(withRouter(Subject));
 

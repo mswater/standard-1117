@@ -96,7 +96,7 @@ export const fetchHotTopic= (type) => {
 export const fetchSubjectTopic= (type) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_SUBJECT_TOPIC", payload: true });
-    getHotTopic(type)
+    getHotTopic(type, 1)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           dispatch({ type: "SAVE_SUBJECT_TOPIC", payload: response.data.data });

@@ -44,6 +44,7 @@ class SubjectContent extends React.Component{
       hot:{
         subjectThemeSearch,
         subjectProListFlag,
+        subjectLanguageTypeFlag
       }
     } = this.props;
     const deadLine = localStorage.getItem("subjectDeadLine");
@@ -61,8 +62,11 @@ class SubjectContent extends React.Component{
       sourceType:!subjectContact? 1 :Number(subjectContact),
       webList:[],
       proList:subjectProListFlag ? ["全部"] : [],
+      languageList:subjectLanguageTypeFlag ? ["全部"] : [],
       order:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
+      startDate:"",
+      endDate:"",
       pageNum:1,
       pageSize:5
     };
@@ -124,17 +128,17 @@ class SubjectContent extends React.Component{
                 <SubjectContentTop {...this.props}/>
                 {(!subjectClassType || parseInt(subjectClassType, 0) === 1) ?
                   [<SubjectContentCenter
-                    key="HotContentCenter"
+                    key="SubjectContentCenter"
                     handlerIndex={this.handlerIndex}
                     clickIndex={clickIndex}
                     {...this.props}
                   />, <SubjectContentQuery
-                    key="HotContentQuery"
+                    key="SubjectContentQuery"
                     handlerIndex={this.handlerIndex}
                     clickIndex={clickIndex}
                     {...this.props}
                   />, <SubjectContentCheck
-                    key="HotContentCheck"
+                    key="SubjectContentCheck"
                     {...this.props}
                   />
                   ] : [<HotChartTop key="HotChartTop" {...this.props}/>,
