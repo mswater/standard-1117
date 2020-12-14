@@ -13,13 +13,14 @@ class Footer extends React.Component {
     this.state = {};
   }
 
-  // navToPersonal = (token) => {
-  //   window.open(`/managecenter/homepage?uid=${token}`, "_self");
-  // };
-  //
-  // navToBrief = (token) => {
-  //   window.open(`/managecenter/brief?uid=${token}`, "_self");
-  // };
+  navLinkFunc = (href) => {
+    // 记录从首页底部导航进入会议列表页
+    if(href === "/meeting"){
+      localStorage.setItem("meetingFrom", "menu");
+    }
+    const { history } = this.props;
+    history.push(href);
+  };
 
   handleChange(value) {
     console.log(`selected ${value}`);

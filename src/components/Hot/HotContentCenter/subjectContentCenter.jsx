@@ -122,19 +122,6 @@ class SubjectContentCenter extends React.Component {
         <button
           type="button"
           style={
-            subjectContact === "4" ? {
-              borderBottom:"1px solid #0572B8", color: "#0572B8"
-            } : {
-              borderBottom:"1px solid #F2F3F6", color: "#515256"
-            }
-          }
-          onClick={() => {return this.contactFunc(4);}}
-        >
-          国内文献
-        </button>
-        <button
-          type="button"
-          style={
             subjectContact === "5" ? {
               borderBottom:"1px solid #0572B8", color: "#0572B8"
             } : {
@@ -142,6 +129,19 @@ class SubjectContentCenter extends React.Component {
             }
           }
           onClick={() => {return this.contactFunc(5);}}
+        >
+          国内文献
+        </button>
+        <button
+          type="button"
+          style={
+            subjectContact === "4" ? {
+              borderBottom:"1px solid #0572B8", color: "#0572B8"
+            } : {
+              borderBottom:"1px solid #F2F3F6", color: "#515256"
+            }
+          }
+          onClick={() => {return this.contactFunc(4);}}
         >
           海外文献
         </button>

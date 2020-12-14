@@ -117,6 +117,9 @@ class SubjectContentTop extends React.Component {
         subjectProListFlag,
         subjectWeiboTypeFlag,
         subjectSearchQuery,
+        subjectThemeSearch,
+        subjectStartDate,
+        subjectEndDate,
       },
       fetchSubjectThemeSearch,
       fetchSubjectThemeSearchFlag
@@ -129,8 +132,11 @@ class SubjectContentTop extends React.Component {
     if(type === "date"){
       startDate = dateStrings[0];
       endDate = dateStrings[1];
+      searchWord = subjectThemeSearch !== "" ? subjectThemeSearch : "";
     }else if(type === "word"){
       searchWord = value;
+      startDate = subjectStartDate !== "" ? subjectStartDate : "";
+      endDate = subjectEndDate !== "" ? subjectEndDate : "";
     }
     const params = {
       searchKey:searchWord,

@@ -15,19 +15,34 @@ class MeetingContentQuery extends React.Component {
     };
   }
 
+  componentWillMount() {
+    const {
+      fetchMeetingLanguageList,
+    } = this.props;
+    const meetingFrom = localStorage.getItem("meetingFrom");
+    if(meetingFrom === "index"){
+      fetchMeetingLanguageList(true);
+    }else{
+      fetchMeetingLanguageList(false);
+    }
+  }
+
   componentDidMount() {
     const {
       meeting:{
         meetingData,
         fetchMeetingListLoading,
         meetingProListFlag,
+        meetingLanguageListFlag,
       }
     } = this.props;
     const searchWeb = meetingData.webList;
     const searchPro = meetingData.proList;
+    const searchLanguage = meetingData.languageList;
     /* eslint-disable no-nested-ternary */
     const queryList = meetingProListFlag ?
-      searchPro : searchWeb;
+      searchPro : meetingLanguageListFlag ?
+        searchLanguage : searchWeb;
     this.addEvent();
     if (!fetchMeetingListLoading && (queryList && queryList.length > 0)) {
       this.addItemEvent();
@@ -38,30 +53,35 @@ class MeetingContentQuery extends React.Component {
     const {
       meeting:{
         meetingData,
-        meetingResetButtonFlag,
         fetchMeetingListLoading,
         meetingProListFlag,
+        meetingLanguageListFlag,
       }
     } = this.props;
     const meetingWeb = meetingData.webList;
     const meetingPro = meetingData.proList;
+    const meetingLanguage = meetingData.languageList;
+    console.log(meetingLanguageListFlag, "did update");
     /* eslint-disable no-nested-ternary */
     const queryList = meetingProListFlag ?
-      meetingPro : meetingWeb;
+      meetingPro : meetingLanguageListFlag ?
+        meetingLanguage : meetingWeb;
     if (!fetchMeetingListLoading && (queryList && queryList.length > 0)) {
       const { classType, itemType } = this;
       const classArr = classType.children;
       const itemArr = itemType.children;
       this.addEvent();
       this.addItemEvent();
-      if (meetingResetButtonFlag) {
+      const meetingFrom = localStorage.getItem("meetingFrom");
+      // 如果是从首页会议模块进入会议列表页，那么语种分类高亮
+      if(meetingFrom === "index"){
         for (let i = 0; i < classArr.length; i += 1) {
-          if (i === 0) {
+          if (i === 1) {
             classArr[i].style.backgroundColor = "#F6BD4E";
             classArr[i].children[1].style.color = "#0572B8";
             classArr[i].children[1].style.backgroundColor = "#ffffff";
           }
-          if (i !== 0) {
+          if (i !== 1) {
             classArr[i].style.backgroundColor = "#D1D1D1";
             classArr[i].children[1].style.color = "#ffffff";
             classArr[i].children[1].style.backgroundColor = "transparent";
@@ -106,6 +126,7 @@ class MeetingContentQuery extends React.Component {
       searchKey: meetingThemeSearch,
       webList: [],
       proList: [],
+      languageList: [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder:"",
@@ -146,18 +167,20 @@ class MeetingContentQuery extends React.Component {
     fetchMeetingSearchValue(e.target.value);
   };
 
-  proListFunc = (flag) => {
+  proListFunc = (cur) => {
     this.setState({
       clickIndex:0
     });
     const {
       fetchMeetingList,
       fetchMeetingProList,
+      fetchMeetingLanguageList,
+      fetchMeetingWebList,
       fetchMeetingResetButton,
       fetchMeetingSearchValue,
       meeting:{
         meetingDateQuery,
-        meetingThemeSearch
+        meetingThemeSearch,
       }
     } = this.props;
     const params = {
@@ -166,6 +189,7 @@ class MeetingContentQuery extends React.Component {
       searchKey: meetingThemeSearch,
       webList:[],
       proList: [],
+      languageList: [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder:"",
@@ -182,8 +206,26 @@ class MeetingContentQuery extends React.Component {
     if(orderType === "1"){
       params.timeOrder = "desc";
     }
+    let proFlag = false;
+    let languageFlag = false;
+    let webFlag = false;
+    if(cur === "地区分布"){
+      proFlag = true;
+      languageFlag = false;
+      webFlag = false;
+    }else if(cur === "语种分类"){
+      proFlag = false;
+      languageFlag = true;
+      webFlag = false;
+    }else if(cur === "来源网站"){
+      webFlag = true;
+      proFlag = false;
+      languageFlag = false;
+    }
+    fetchMeetingProList(proFlag);
+    fetchMeetingLanguageList(languageFlag);
+    fetchMeetingWebList(webFlag);
     fetchMeetingSearchValue();
-    fetchMeetingProList(flag);
     fetchMeetingResetButton(false);
     fetchMeetingList(params);
   };
@@ -204,7 +246,9 @@ class MeetingContentQuery extends React.Component {
       meeting:{
         meetingDateQuery,
         meetingProListFlag,
-        meetingThemeSearch
+        meetingThemeSearch,
+        meetingLanguageListFlag,
+        meetingWebListFlag,
       }
     } = this.props;
     const orderType = localStorage.getItem("meetingOrderType");
@@ -213,8 +257,9 @@ class MeetingContentQuery extends React.Component {
       starTime: meetingDateQuery[0],
       endTime: meetingDateQuery[1],
       searchKey: meetingThemeSearch,
-      webList:meetingProListFlag ? [] : (item === "全部" ? null : [item]),
+      webList: meetingWebListFlag ? (item === "全部" ? null : [item]) : [],
       proList: meetingProListFlag ? (item === "全部" ? null : [item]) : [],
+      languageList: meetingLanguageListFlag ? (item === "全部" ? null : [item]) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder:"",
@@ -285,20 +330,19 @@ class MeetingContentQuery extends React.Component {
 
   render() {
     const {
-      home: {
-        conferenceTab
-      },
       meeting: {
         meetingData,
         meetingProListFlag,
         fetchMeetingListLoading,
-        meetingSearchValue
+        meetingSearchValue,
+        meetingLanguageListFlag,
       }
     } = this.props;
-    console.log(conferenceTab, "from index meeting");
     const {clickIndex} = this.state;
     const webList = ["全部"].concat(meetingData.webList);
     const proList = ["全部"].concat(meetingData.proList);
+    const languageList = ["全部"].concat(meetingData.languageList);
+    console.log(meetingData);
     const meetingWeb = webList
       && webList.map((cur, index) => {
         return (
@@ -323,19 +367,33 @@ class MeetingContentQuery extends React.Component {
           </div>
         );
       });
+    const meetingLanguage = languageList
+      && languageList.map((cur, index) => {
+        return (
+          <div
+            key={index.toString()}
+            onClick={() => this.searchItem(cur,index)}
+            className={`fl ${index === clickIndex ? "current" : ""}`}
+          >
+            {cur}
+          </div>
+        );
+      });
     const item = this.sourceArr() && this.sourceArr().map((cur, index) => {
       return (
         <button
           type="button"
           key={index.toString()}
-          onClick={() => this.proListFunc(cur === "地区分布")}
+          onClick={() => this.proListFunc(cur)}
         >
           <span>{cur}</span><Icon type="up" />
         </button>
       );
     });
     /* eslint-disable no-nested-ternary */
-    const queryList = meetingProListFlag ? meetingPro : meetingWeb;
+    const queryList = meetingProListFlag ?
+      meetingPro : meetingLanguageListFlag ?
+        meetingLanguage : meetingWeb;
     return (
       <div className="meeting-content-query">
         <div className="meeting-content-query-class clear">
@@ -346,16 +404,20 @@ class MeetingContentQuery extends React.Component {
         </div>
         <div className="meeting-content-query-select">
           <div className="query-top clear">
-            <Search
-              value={meetingSearchValue}
-              placeholder="请输入检索内容..."
-              enterButton="检索"
-              size="default"
-              allowClear
-              style={{width: "260px"}}
-              onChange={this.searchChange}
-              onSearch={this.meetingQuery}
-            />
+            {
+              meetingLanguageListFlag ? "" : (
+                <Search
+                  value={meetingSearchValue}
+                  placeholder="请输入检索内容..."
+                  enterButton="检索"
+                  size="default"
+                  allowClear
+                  style={{width: "260px"}}
+                  onChange={this.searchChange}
+                  onSearch={this.meetingQuery}
+                />
+              )
+            }
             {fetchMeetingListLoading ? <div className="content-list-loading"><Spin /></div>
               : (!queryList.length || (queryList && queryList.length === 0) ?
                 <div className="no-data"><img src={noData} alt=""/></div> : (

@@ -5,26 +5,16 @@ import {
 /**
  *  会议列表页  /meeting/meetingList
  */
-let proList = null;
-let webList = null;
 export const fetchMeetingList = (params) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_MEETING_LIST", payload: true });
     getMeetingList(params)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
-          if(!proList) {
-            proList = response.data.data && response.data.data.proList;
-          }
-          if(!webList) {
-            webList = response.data.data && response.data.data.webList;
-          }
           dispatch({
             type: "SAVE_GET_MEETING_LIST",
             payload:{
               ...response.data.data,
-              meetingProList: proList,
-              meetingWebList: webList
             }
           });
         }
@@ -44,6 +34,26 @@ export const fetchMeetingList = (params) => {
 export const fetchMeetingProList = (params) => {
   return (dispatch) => {
     dispatch({type: "SAVE_MEETING_PRO_LIST_FLAG", payload: params});
+  };
+};
+
+/**
+ *  会议 控制分组浏览语种分类的显示
+ */
+
+export const fetchMeetingLanguageList = (params) => {
+  return (dispatch) => {
+    dispatch({type: "SAVE_MEETING_LANGUAGE_LIST_FLAG", payload: params});
+  };
+};
+
+/**
+ *  会议 控制分组浏览语种分类的显示
+ */
+
+export const fetchMeetingWebList = (params) => {
+  return (dispatch) => {
+    dispatch({type: "SAVE_MEETING_WEB_LIST_FLAG", payload: params});
   };
 };
 

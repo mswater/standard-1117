@@ -12,8 +12,6 @@ import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 import {
   fetchArticleDetail,
   fetchArticleLabel,
-  fetchSimArticle,
-  fetchSimLiterature,
 } from "../../store/action/ArticleAction.js";
 
 
@@ -32,13 +30,9 @@ class Details extends React.Component{
     const { props: {
       fetchArticleDetail,
       fetchArticleLabel,
-      fetchSimArticle,
-      fetchSimLiterature
     } } = this;
     fetchArticleDetail(params.detailId);
     fetchArticleLabel(params.detailId);
-    fetchSimArticle(params.detailId);
-    fetchSimLiterature(params.detailId);
   }
 
 
@@ -65,7 +59,5 @@ export default connect(
   {
     fetchArticleDetail,
     fetchArticleLabel,
-    fetchSimArticle,
-    fetchSimLiterature,
   }
 )(withRouter(Details));

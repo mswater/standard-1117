@@ -546,9 +546,9 @@ export const fetchHotThemeSearch= (str = "") => {
 /**
  * 学科专题 主题内检索
  */
-export const fetchSubjectThemeSearch= (str = "") => {
+export const fetchSubjectThemeSearch= (params) => {
   return (dispatch) => {
-    dispatch({type: "SAVE_GET_SUBJECT_THEME_SEARCH", payload: str});
+    dispatch({type: "SAVE_GET_SUBJECT_THEME_SEARCH", payload: params});
   };
 };
 

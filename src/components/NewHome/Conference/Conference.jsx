@@ -27,6 +27,8 @@ class Conference extends React.Component{
   }
 
   goMeetingPage = () => {
+    // 记录从首页会议模块进入会议列表页
+    localStorage.setItem("meetingFrom", "index");
     const { props } = this;
     props.history.push({
       pathname: "/meeting",

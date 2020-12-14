@@ -299,7 +299,9 @@ const hotReducer = (state = init, action) => {
     case "SAVE_GET_SUBJECT_THEME_SEARCH":
       return {
         ...state,
-        subjectThemeSearch: action.payload,
+        subjectThemeSearch: action.payload.searchKey,
+        subjectStartDate: action.payload.subjectStartDate,
+        subjectEndDate: action.payload.subjectEndDate,
       };
       // 热点
     case "SAVE_GET_HOT_THEME_SEARCH_FLAG":

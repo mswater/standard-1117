@@ -265,6 +265,7 @@ class MeetingContentCheck extends React.Component {
         }
       }
     } = this.props;
+    const username = localStorage.getItem("username");
     const sortArr = sortArrFirst;
     const item = resultList && resultList.map((cur, index) => {
       return (
@@ -311,19 +312,23 @@ class MeetingContentCheck extends React.Component {
                 <Icon type="eye"/>
               </button>
               <span>{cur.readnum}</span>
-              <button
-                type="button"
-                onClick={() => {
-                  return this.collectArticle(cur);
-                }}
-              >
-                {
-                  (cur.iscollect === 1) ?
-                    <Icon theme="filled" type="star" style={{color:"#F6BD4E"}} />
-                    : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
-                }
-              </button>
-              <span>{cur.iscollect ? cur.iscollect : 0}</span>
+              {username === "guest" ? "" : (
+                <span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      return this.collectArticle(cur);
+                    }}
+                  >
+                    {
+                      (cur.iscollect === 1) ?
+                        <Icon theme="filled" type="star" style={{color:"#F6BD4E"}} />
+                        : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
+                    }
+                  </button>
+                  <span>{cur.iscollect ? cur.iscollect : 0}</span>
+                </span>
+              )}
             </div>
           </div>
         </div>

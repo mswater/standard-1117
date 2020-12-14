@@ -20,7 +20,9 @@ import {
   fetchMeetingResetFuzzyQuery,
   fetchMeetingThemeSearchFlag,
   fetchMeetingCollect,
-  fetchMeetingSearchValue
+  fetchMeetingSearchValue,
+  fetchMeetingLanguageList,
+  fetchMeetingWebList,
 } from "../../store/action/MeetingAction.js";
 import {
   fetchArticleCollect,
@@ -40,17 +42,30 @@ class Meeting extends React.Component{
     this.node.scrollIntoView();
     const {
       fetchMeetingList,
+      home: {
+        conferenceTab
+      },
       meeting:{
         meetingDateQuery,
         meetingThemeSearch
       }
     } = this.props;
+    let languageList;
+    const meetingFrom = localStorage.getItem("meetingFrom");
+    if(meetingFrom === "index"){
+      if(conferenceTab === "home"){
+        languageList = ["中文"];
+      }else if(conferenceTab === "aboard"){
+        languageList = ["英文"];
+      }
+    }
     const params = {
       searchKey: meetingThemeSearch,
       starTime:meetingDateQuery[0],
       endTime:meetingDateQuery[1],
       webList: [],
       proList: [],
+      languageList,
       timeOrder: "desc",
       browseOrder:null,
       pageNum: 1,
@@ -106,6 +121,8 @@ export default connect(
     fetchMeetingThemeSearchFlag,
     fetchMeetingCollect,
     fetchArticleDetail,
-    fetchMeetingSearchValue
+    fetchMeetingSearchValue,
+    fetchMeetingLanguageList,
+    fetchMeetingWebList,
   }
 )(withRouter(Meeting));

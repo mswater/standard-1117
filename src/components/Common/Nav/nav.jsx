@@ -12,6 +12,10 @@ class Nav extends React.Component {
   }
 
   navLinkFunc = (href) => {
+    // 记录从首页导航进入会议列表页
+    if(href === "/meeting"){
+      localStorage.setItem("meetingFrom", "menu");
+    }
     const { history } = this.props;
     history.push(href);
   };

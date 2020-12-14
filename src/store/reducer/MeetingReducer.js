@@ -19,6 +19,8 @@ const init = {
   meetingThemeSearchFlag:false,
   meetingCollect:"",
   meetingSearchValue: "",
+  meetingLanguageListFlag:false,
+  meetingWebListFlag:false,
 };
 const meetingReducer = (state = init, action) => {
   switch (action.type) {
@@ -37,6 +39,16 @@ const meetingReducer = (state = init, action) => {
       return {
         ...state,
         meetingProListFlag: action.payload,
+      };
+    case "SAVE_MEETING_LANGUAGE_LIST_FLAG":
+      return {
+        ...state,
+        meetingLanguageListFlag: action.payload,
+      };
+    case "SAVE_MEETING_WEB_LIST_FLAG":
+      return {
+        ...state,
+        meetingWebListFlag: action.payload,
       };
     case "SAVE_MEETING_RESET_BUTTON_FLAG":
       return {
