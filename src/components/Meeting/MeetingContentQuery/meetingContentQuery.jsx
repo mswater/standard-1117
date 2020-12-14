@@ -190,11 +190,7 @@ class MeetingContentQuery extends React.Component {
 
 
   sourceArr = () => {
-    const renderContactNumber = localStorage.getItem("meetingContact");
-    if (parseInt(renderContactNumber, 0) === 1) {
-      return ["来源网站", "地区分布"];
-    }
-    return ["来源网站", "地区分布"];
+    return ["来源网站", "语种分类", "地区分布"];
   };
 
   searchItem =(item,clickIdx) =>{

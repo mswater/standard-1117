@@ -253,7 +253,8 @@ class SubjectContentCheck extends React.Component {
       webList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
         (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] : subjectSearchQuery) : [])),
       proList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
-        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] : subjectSearchQuery) : ["全部"]): []),
+        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] :
+          subjectSearchQuery) : ["全部"]): []),
       order: orderFlag!=="false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum: page,

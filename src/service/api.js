@@ -164,9 +164,11 @@ export const getHotSubject = async (pageSize = 6) => {
 // 热点监测页面
 /**
  * 热点监测menu /hot/hostList
+ * type = 1 行业动态
+ * type = 2 学科专题
  */
-export const getHotList = async () => {
-  return axios.get("/hot/hostList/");
+export const getHotList = async (type = 1) => {
+  return axios.get(`/hot/hostList/${type}`);
 };
 /**
  * 热点监测推荐阅读 hot/sugreading/{hId}/{pageSize}

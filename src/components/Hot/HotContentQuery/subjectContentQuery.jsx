@@ -117,8 +117,8 @@ class SubjectContentQuery extends React.Component {
     if (!value || value === "全部") {
       fetchSubjectContentList(paramsEmpty);
     }
-    const isWebList = subjectProListFlag ? subjectContentListData.proList
-      : subjectContentListData.webList;
+    const isWebList = subjectProListFlag ? subjectContentListData.subjectProList
+      : subjectContentListData.subjectWebList;
     const fuzzyArr = fuzzyQuery(isWebList, value);
     /**
      * 重新渲染数组，这里要mock和返回的对象一样的数据格式

@@ -16,11 +16,12 @@ import {
 
 /**
  * 热点监测页面menu get请求
+ * type = 1
  */
 export const fetchHotList = () => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_HOST_LIST", payload: true });
-    getHotList()
+    getHotList(1)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           // 从localStorage取值
@@ -50,7 +51,6 @@ export const fetchHotList = () => {
             localStorage.setItem("readingId", readingId);
           }
           /* eslint-disable no-use-before-define */
-          dispatch(fetchSugReading(params.kid));
           if (!hotClassType || hotClassType === "1") {
             dispatch(fetchHotContentList(obj));
           }
@@ -77,18 +77,19 @@ export const fetchHotList = () => {
 
 /**
  * 学科专题页面menu get请求
+ * type = 2
  */
 export const fetchSubjectList = () => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_SUBJECT_LIST", payload: true });
-    getHotList()
+    getHotList(2)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           // 从localStorage取值
-          const deadLine = localStorage.getItem("deadLine");
-          const hotClassType = localStorage.getItem("hotClassType");
-          const hotContact = localStorage.getItem("hotContact");
-          const readLocalId = localStorage.getItem("readingId");
+          const deadLine = localStorage.getItem("subjectDeadLine");
+          const subjectClassType = localStorage.getItem("subjectClassType");
+          const subjectContact = localStorage.getItem("subjectContact");
+          const readLocalId = localStorage.getItem("subjectReadingId");
           const readingId = response.data.data
             && response.data.data[0] && response.data.data[0].id;
           // 参数
@@ -99,7 +100,7 @@ export const fetchSubjectList = () => {
           const obj = {
             searchKey: "",
             hId: params.kid,
-            sourceType: !hotContact ? 1 : Number(hotContact),
+            sourceType: !subjectContact ? 1 : Number(subjectContact),
             webList: [],
             proList: [],
             order:"desc",
@@ -108,14 +109,13 @@ export const fetchSubjectList = () => {
             pageSize: 5,
           };
           if (!readLocalId) {
-            localStorage.setItem("readingId", readingId);
+            localStorage.setItem("subjectReadingId", readingId);
           }
           /* eslint-disable no-use-before-define */
-          dispatch(fetchSugReading(params.kid));
-          if (!hotClassType || hotClassType === "1") {
+          if (!subjectClassType || subjectClassType === "1") {
             dispatch(fetchHotContentList(obj));
           }
-          if (hotClassType === "2") {
+          if (subjectClassType === "2") {
             // 热点监测-站点活跃度统计图
             dispatch(fetchSiteActivityMap(params));
             // 热点监测-数据量趋势图
@@ -203,8 +203,8 @@ export const fetchHotContentList = (params) => {
  *  共用同一接口，不同参数
  */
 
-let proList = null;
-let webList = null;
+let subjectProList = null;
+let subjectWebList = null;
 export const fetchSubjectContentList = (params) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_SUBJECT_CONTENT_LIST", payload: true });
@@ -219,19 +219,19 @@ export const fetchSubjectContentList = (params) => {
               dispatch(fetchSameCount(cur.id));
             }
           });
-          if(!proList) {
-            proList = response.data.data && response.data.data.proList;
+          if(!subjectProList) {
+            subjectProList = response.data.data && response.data.data.proList;
           }
-          if(!webList) {
-            webList = response.data.data && response.data.data.webList;
+          if(!subjectWebList) {
+            subjectWebList = response.data.data && response.data.data.webList;
           }
           dispatch({
             type: "SAVE_GET_SUBJECT_CONTENT_LIST",
             payload: {
               ...response.data.data,
               timeCompare: moment().unix(),
-              hotProList: proList,
-              hotWebList: webList
+              subjectProList,
+              subjectWebList,
             }
           });
         }

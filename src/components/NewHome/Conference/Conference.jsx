@@ -51,12 +51,11 @@ class Conference extends React.Component{
         >
           <div className="l-info fl">
             <h1>{cur.fArticleTitle}</h1>
-            <label>山西省太原市</label>
-            <label className="fr">山西省展览馆</label>
+            <label>{cur.fArticleAddress}</label>
           </div>
           <div className="r-info fr">
-            <p>2020/12/4---2020/12/5</p>
-            <p className="countdown">距开幕24天</p>
+            <p>{cur.fArticleTime}</p>
+            <p className="countdown">{cur.timeLag}</p>
           </div>
         </li>
       );
@@ -69,13 +68,12 @@ class Conference extends React.Component{
           className={index === 0 ? "active clear" : "clear"}
         >
           <div className="l-info fl">
-            <h1>国外国外{cur.fArticleTitle}</h1>
-            <label>山西省太原市</label>
-            <label className="fr">山西省展览馆</label>
+            <h1>{cur.fArticleTitle}</h1>
+            <label>{cur.fArticleAddress}</label>
           </div>
           <div className="r-info fr">
-            <p>2020/12/4---2020/12/5</p>
-            <p className="countdown">距开幕24天</p>
+            <p>{cur.fArticleTime}</p>
+            <p className="countdown">{cur.timeLag}</p>
           </div>
         </li>
       );
