@@ -72,22 +72,6 @@ class MeetingContentQuery extends React.Component {
       const itemArr = itemType.children;
       this.addEvent();
       this.addItemEvent();
-      const meetingFrom = localStorage.getItem("meetingFrom");
-      // 如果是从首页会议模块进入会议列表页，那么语种分类高亮
-      if(meetingFrom === "index"){
-        for (let i = 0; i < classArr.length; i += 1) {
-          if (i === 1) {
-            classArr[i].style.backgroundColor = "#F6BD4E";
-            classArr[i].children[1].style.color = "#0572B8";
-            classArr[i].children[1].style.backgroundColor = "#ffffff";
-          }
-          if (i !== 1) {
-            classArr[i].style.backgroundColor = "#D1D1D1";
-            classArr[i].children[1].style.color = "#ffffff";
-            classArr[i].children[1].style.backgroundColor = "transparent";
-          }
-        }
-      }
       if (itemArr.length > 2) {
         for (let i = 0; i < itemArr.length; i += 1) {
           if (i === 0) {
@@ -100,8 +84,33 @@ class MeetingContentQuery extends React.Component {
           }
         }
       }
+      const meetingFrom = localStorage.getItem("meetingFrom");
+      // 如果是从首页会议模块进入会议列表页，那么语种分类高亮
+      if (meetingFrom === "index" && meetingLanguageListFlag) {
+        for (let i = 0; i < classArr.length; i += 1) {
+          if (i === 1) {
+            classArr[i].style.backgroundColor = "#F6BD4E";
+            classArr[i].children[1].style.color = "#0572B8";
+            classArr[i].children[1].style.backgroundColor = "#ffffff";
+          }
+          if (i !== 1) {
+            classArr[i].style.backgroundColor = "#D1D1D1";
+            classArr[i].children[1].style.color = "#ffffff";
+            classArr[i].children[1].style.backgroundColor = "transparent";
+          }
+        }
+        for (let i = 0; i < itemArr.length; i += 1) {
+          if (i === 1) {
+            itemArr[i].style.color = "#0572B8";
+            itemArr[i].style.border = "1px solid #0572B8";
+          }
+          if (i !== 1) {
+            itemArr[i].style.color = "#515256";
+            itemArr[i].style.border = "1px solid #fff";
+          }
+        }
+      }
     }
-
   }
 
   // 模糊检索
