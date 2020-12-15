@@ -63,6 +63,17 @@ export const fetchSearchProList = (params) => {
   };
 };
 
+
+/**
+ * 检索词列表页 控制分组浏览语种分类的显示
+ */
+
+export const fetchSearchLanguageList = (params) => {
+  return (dispatch) => {
+    dispatch({type: "SAVE_SEARCH_LANGUAGE_FLAG", payload: params});
+  };
+};
+
 /**
  * 检索词列表页 判断按钮是否重新渲染回到默认第一个
  */

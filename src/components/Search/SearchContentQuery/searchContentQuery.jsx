@@ -15,13 +15,17 @@ class SearchContentQuery extends React.Component {
         fetchSearchLoading,
         searchProListFlag,
         searchWeiboTypeFlag,
+        searchLanguageTypeFlag,
       }
     } = this.props;
     const searchWeb = searchData.webList;
     const searchPro = searchData.proList;
+    const searchLanguage = searchData.languageList;
     /* eslint-disable no-nested-ternary */
     const queryList = searchProListFlag ?
-      searchPro : (searchWeiboTypeFlag ? weiboArr : searchWeb);
+      searchPro : (searchWeiboTypeFlag ?
+        weiboArr : (searchLanguageTypeFlag ?
+          searchLanguage : searchWeb));
     this.addEvent();
     if (!fetchSearchLoading && (queryList && queryList.length > 0))  {
       this.addItemEvent();
@@ -36,15 +40,23 @@ class SearchContentQuery extends React.Component {
         fetchSearchLoading,
         searchProListFlag,
         searchWeiboTypeFlag,
+        searchLanguageTypeFlag,
       }
     } = this.props;
     const searchWeb = searchData.webList;
     const searchPro = searchData.proList;
+    const searchLanguage = searchData.languageList;
     /* eslint-disable no-nested-ternary */
     const queryList = searchProListFlag ?
-      searchPro : (searchWeiboTypeFlag ? weiboArr : searchWeb);
+      searchPro : (searchWeiboTypeFlag ?
+        weiboArr : (searchLanguageTypeFlag ?
+          searchLanguage : searchWeb));
     const renderContactNumber = localStorage.getItem("searchContact");
-    if (renderContactNumber === "4") return;
+    if (renderContactNumber === "4" ||
+      renderContactNumber === "5" ||
+      renderContactNumber === "7") {
+      return;
+    }
     if (!fetchSearchLoading && (queryList && queryList.length > 0)) {
       const { classType, itemType } = this;
       const classArr = classType.children;
@@ -104,6 +116,7 @@ class SearchContentQuery extends React.Component {
       searchKey: headerSearchContent,
       webList: [],
       proList: [],
+      languageList: [],
       timeOrder: "",
       browseOrder: null,
       relevantOrder: null,
@@ -161,10 +174,11 @@ class SearchContentQuery extends React.Component {
     fetchSearchValue(e.target.value);
   };
 
-  proListFunc = (flag,type) => {
+  proListFunc = (cur) => {
     const {
       fetchSearch,
       fetchSearchProList,
+      fetchSearchLanguageList,
       fetchSearchResetButton,
       fetchSearchResetWeibo,
       headerSearchContent,
@@ -183,6 +197,7 @@ class SearchContentQuery extends React.Component {
       searchKey: headerSearchContent,
       webList:[],
       proList: [],
+      languageList: [],
       timeOrder: "",
       browseOrder: null,
       relevantOrder: null,
@@ -215,9 +230,26 @@ class SearchContentQuery extends React.Component {
     if(orderType === 7){
       params.mettingOrder = "desc";
     }
+    let weiboFlag = false;
+    let proFlag = false;
+    let languageFlag = false;
+    if(cur === "地区分布"){
+      proFlag = true;
+      languageFlag = false;
+      weiboFlag = false;
+    }else if(cur === "微博类型"){
+      weiboFlag = true;
+      proFlag = false;
+      languageFlag = false;
+    }else if(cur === "语种分类"){
+      languageFlag = true;
+      proFlag = false;
+      weiboFlag = false;
+    }
     fetchSearchValue();
-    fetchSearchResetWeibo(type);
-    fetchSearchProList(flag);
+    fetchSearchResetWeibo(weiboFlag);
+    fetchSearchProList(proFlag);
+    fetchSearchLanguageList(languageFlag);
     fetchSearchResetButton(false);
     fetchSearch(params);
     handlerIndex(0);
@@ -232,6 +264,7 @@ class SearchContentQuery extends React.Component {
       search:{
         searchProListFlag,
         searchWeiboTypeFlag,
+        searchLanguageTypeFlag,
         searchDateQuery
       },
       handlerIndex,
@@ -244,10 +277,12 @@ class SearchContentQuery extends React.Component {
       starTime: searchDateQuery[0],
       endTime: searchDateQuery[1],
       searchKey: headerSearchContent,
-      webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
-        (item === "全部" ? null : [item])),
-      proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
-        (item === "全部" ? null : [item]) : []),
+      webList: searchWeiboTypeFlag ? [] : (
+        searchProListFlag ? [] : (
+          searchLanguageTypeFlag ? [] : (item === "全部" ? null : [item]))
+      ),
+      proList:searchProListFlag ? (item === "全部" ? null : [item]) : [],
+      languageList: searchLanguageTypeFlag ? (item === "全部" ? null : [item]) : [],
       timeOrder: "desc",
       browseOrder: null,
       relevantOrder: null,
@@ -295,7 +330,7 @@ class SearchContentQuery extends React.Component {
   sourceArr = () => {
     const renderContactNumber = localStorage.getItem("searchContact");
     if (parseInt(renderContactNumber, 0) === 1) {
-      return ["来源网站", "地区分布"];
+      return ["来源网站", "语种分类", "地区分布"];
     }
     if (parseInt(renderContactNumber, 0) === 2) {
       return ["来源用户", "微博类型", "地区分布"];
@@ -304,12 +339,11 @@ class SearchContentQuery extends React.Component {
       return ["来源公众号", "地区分布"];
     }
     if (parseInt(renderContactNumber, 0) === 6) {
-      return ["来源网站", "地区分布"];
+      return ["来源网站", "语种分类", "地区分布"];
     }
-    if (parseInt(renderContactNumber, 0) === 4) {
-      return [];
-    }
-    if (parseInt(renderContactNumber, 0) === 5) {
+    if (parseInt(renderContactNumber, 0) === 4 ||
+      parseInt(renderContactNumber, 0) === 5 ||
+      parseInt(renderContactNumber, 0) === 7) {
       return [];
     }
     return ["来源网站", "地区分布"];
@@ -370,6 +404,7 @@ class SearchContentQuery extends React.Component {
         searchData,
         searchProListFlag,
         searchWeiboTypeFlag,
+        searchLanguageTypeFlag,
         fetchSearchLoading,
         searchValue
       },
@@ -377,6 +412,8 @@ class SearchContentQuery extends React.Component {
     } = this.props;
     const webList = ["全部"].concat(searchData.webList);
     const proList = ["全部"].concat(searchData.proList);
+    const languageList = ["全部"].concat(searchData.languageList);
+    console.log(languageList);
     const weiboArrList = ["全部"].concat(weiboArr);
     const searchWeb = webList
       && webList.map((cur, index) => {
@@ -392,6 +429,18 @@ class SearchContentQuery extends React.Component {
       });
     const searchPro = proList
       && proList.map((cur, index) => {
+        return (
+          <div
+            key={index.toString()}
+            onClick={() => this.searchItem(cur,index)}
+            className={`fl ${index === clickIndex ? "current" : ""}`}
+          >
+            {cur}
+          </div>
+        );
+      });
+    const searchLanguage = languageList
+      && languageList.map((cur, index) => {
         return (
           <div
             key={index.toString()}
@@ -418,7 +467,7 @@ class SearchContentQuery extends React.Component {
         <button
           type="button"
           key={index.toString()}
-          onClick={() => this.proListFunc(cur === "地区分布",cur === "微博类型")}
+          onClick={() => this.proListFunc(cur)}
         >
           <span>{cur}</span><Icon type="up" />
         </button>
@@ -426,10 +475,14 @@ class SearchContentQuery extends React.Component {
     });
     /* eslint-disable no-nested-ternary */
     const queryList = searchProListFlag ?
-      searchPro : (searchWeiboTypeFlag ? searchWeibo : searchWeb);
+      searchPro : (searchWeiboTypeFlag ?
+        searchWeibo : (searchLanguageTypeFlag ?
+          searchLanguage : searchWeb));
     return (
       <div className="search-content-query">
-        {(renderContactNumber !== "4" && renderContactNumber !== "5") && (
+        {(renderContactNumber !== "4"
+          && renderContactNumber !== "5"
+          && renderContactNumber !== "7") && (
           <div className="search-content-query-class clear">
             <div className="fl">分组浏览 ：</div>
             <div className="search-content-query-box" ref={(ref) => {this.classType = ref;}}>
@@ -437,7 +490,9 @@ class SearchContentQuery extends React.Component {
             </div>
           </div>
         )}
-        {(renderContactNumber !== "4" && renderContactNumber !== "5") && (
+        {(renderContactNumber !== "4"
+          && renderContactNumber !== "5"
+          && renderContactNumber !== "7") && (
           <div className="search-content-query-select">
             <div className="query-top clear">
               {(!searchWeiboTypeFlag) && (

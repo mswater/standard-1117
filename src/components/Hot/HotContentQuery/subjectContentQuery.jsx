@@ -305,7 +305,9 @@ class SubjectContentQuery extends React.Component {
       searchKey:subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] : [item]),
+      webList:subjectWeiboTypeFlag ? [] :
+        (subjectProListFlag ? [] :
+          (subjectLanguageTypeFlag ? [] : [item])),
       proList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ?  [item] : []),
       languageList:subjectLanguageTypeFlag ? [item] : [],
       order:!orderFlag ? "desc" : "asc",

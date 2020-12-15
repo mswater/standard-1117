@@ -35,13 +35,13 @@ const sortArrSecond = [{
   flag: false,
   id: 6
 }];
-
+// 国内文献，海外文献 排序方式  searchContact = 4 或者 searchContact = 5
 const sortArrThird = [{
-  value: "发表时间",
+  value: "检索评分",
   flag: false,
   id: 1
 }, {
-  value: "浏览量",
+  value: "发表年份",
   flag: false,
   id: 2
 }];
@@ -511,6 +511,7 @@ class SearchContentCheck extends React.Component {
 
 
   render() {
+    const username = localStorage.getItem("username");
     const { indeterminate, checkAll, checkedList, selectNumber} = this.state;
     const renderSearchContact = localStorage.getItem("searchContact");
     const sortArr = renderSearchContact === "2" ?
@@ -734,19 +735,24 @@ class SearchContentCheck extends React.Component {
                 {renderSearchContact === "4" ? "" :
                   <span>{cur.readnum}</span>
                 }
-                <button
-                  type="button"
-                  onClick={() => {
-                    return this.collectArticle(cur);
-                  }}
-                >
-                  {
-                    (cur.iscollect === 1) ?
-                      <Icon theme="filled" type="star" style={{color:"#F6BD4E"}} />
-                      : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
-                  }
-                </button>
-                <span>{cur.iscollect ? cur.iscollect : 0}</span>
+                {username === "guest" ? "" : (
+                  <span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        return this.collectArticle(cur);
+                      }}
+                    >
+                      {
+                        (cur.iscollect === 1) ?
+                          <Icon theme="filled" type="star" style={{color:"#F6BD4E"}} />
+                          : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
+                      }
+                    </button>
+                    <span>{cur.iscollect ? cur.iscollect : 0}</span>
+                  </span>
+                )
+                }
               </div>
             </div>
             {(cur.flag) && (
@@ -795,7 +801,7 @@ class SearchContentCheck extends React.Component {
           ||renderSearchContact === "1"
           || renderSearchContact === "2"
           || renderSearchContact === "3"
-        ) && (
+        ) && username !== "guest" && (
           <div className="search-content-check-middle clear">
             <div className="fl clear">
               <Checkbox

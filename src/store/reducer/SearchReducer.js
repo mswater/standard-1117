@@ -13,6 +13,7 @@ const init = {
   searchProListFlag: false,
   searchResetButtonFlag: false,
   searchWeiboTypeFlag: false,
+  searchLanguageTypeFlag: false,
   searchRepeatFlag:false,
   searchSearchQuery: [],
   searchDate: ["", ""],
@@ -46,6 +47,11 @@ const searchReducer = (state = init, action) => {
       return {
         ...state,
         searchWeiboTypeFlag: action.payload,
+      };
+    case "SAVE_SEARCH_LANGUAGE_FLAG":
+      return {
+        ...state,
+        searchLanguageTypeFlag: action.payload,
       };
     case "SAVE_SEARCH_REPEAT_FLAG":
       return {

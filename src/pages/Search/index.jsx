@@ -20,7 +20,8 @@ import {
   fetchSearchDateQuery,
   fetchSearchDate,
   fetchSearchThemeSearchFlag,
-  fetchSearchValue
+  fetchSearchValue,
+  fetchSearchLanguageList,
 } from "../../store/action/SearchAction.js";
 import { fetchHeaderSearch } from "../../store/action/HomeAction.js";
 import {
@@ -141,6 +142,7 @@ export default connect(
     fetchSearchThemeSearchFlag,
     fetchArticleDetail,
     fetchSameCount,
-    fetchSearchValue
+    fetchSearchValue,
+    fetchSearchLanguageList,
   }
 )(withRouter(Search));

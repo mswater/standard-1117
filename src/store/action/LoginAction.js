@@ -20,6 +20,7 @@ export const fetchGetLogin = (params, _history) => {
         if (response.status === 200 && response.data.status === "OK") {
           _history.push("/");
           localStorage.setItem("token", response.headers.token);
+          localStorage.setItem("username", response.data.data.username);
           localStorage.setItem("realName", response.data.data.realname);
           localStorage.setItem("roleName", response.data.data.roleName);
           window.location.reload();
@@ -53,9 +54,10 @@ export const fetchGuestLogin = () => {
     getLogin(guestInfo)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
-          console.log("success");
+          console.log(response.data.data);
           localStorage.setItem("token", response.headers.token);
           localStorage.setItem("username", response.data.data.username);
+          localStorage.setItem("realName", response.data.data.realname);
           localStorage.setItem("roleName", response.data.data.roleName);
           // window.location.reload();
           dispatch({ type: "SAVE_GET_LOGIN", payload: response.data.data });
@@ -75,16 +77,19 @@ export const fetchGuestLogin = () => {
  * 退出登陆
  // * @param _history
  */
-export const fetchGetExit = () => {
+export const fetchGetExit = (_history) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_EXIT", payload: true });
     getExit()
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           localStorage.removeItem("token");
+          localStorage.removeItem("username");
           localStorage.removeItem("realName");
           localStorage.removeItem("roleName");
           dispatch({ type: "SAVE_GET_EXIT", payload: response.data.data });
+          _history.push("/");
+          window.location.reload();
         }
         dispatch({ type: "FETCHING_GET_EXIT", payload: false });
       })

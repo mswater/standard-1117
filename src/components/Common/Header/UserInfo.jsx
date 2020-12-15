@@ -15,8 +15,12 @@ class UserInfo extends React.Component{
 
   componentWillMount() {
     const {fetchGuestLogin} = this.props;
-    // 静默登录
-    fetchGuestLogin();
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if(!token){
+      // 静默登录
+      fetchGuestLogin();
+    }
   }
 
   showConfirm() {
@@ -25,8 +29,7 @@ class UserInfo extends React.Component{
       title: "确定要退出吗?",
       content: "",
       onOk() {
-        fetchGetExit();
-        history.push("/");
+        fetchGetExit(history);
       },
       onCancel() {
         console.log("Cancel Exit");
@@ -63,7 +66,7 @@ class UserInfo extends React.Component{
               username === "guest" ?
                 (
                   <Tooltip placement="bottomRight" title={tips}>
-                    游客<QuestionCircleOutlined />
+                    {realName}<QuestionCircleOutlined />
                   </Tooltip>
                 ) :
                 (

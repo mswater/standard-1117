@@ -40,7 +40,16 @@ const sortArrSecond = [{
   flag: false,
   id: 6
 }];
-
+// 国内文献，海外文献 排序方式  searchContact = 4 或者 searchContact = 5
+const sortArrThird = [{
+  value: "检索评分",
+  flag: false,
+  id: 1
+}, {
+  value: "发表年份",
+  flag: false,
+  id: 2
+}];
 function itemRender(current, type, originalElement){
   if (type === "prev") {
     return <a>&lt;上一页</a>;
@@ -112,7 +121,10 @@ class SubjectContentCheck extends React.Component {
     } = this.props;
     if (subjectResetButtonFlag) {
       const subjectContact = localStorage.getItem("subjectContact");
-      const sortArr = (subjectContact === 2) ? sortArrSecond : sortArrFirst;
+      /* eslint-disable  no-nested-ternary */
+      const sortArr = (subjectContact === "2") ? sortArrSecond :
+        ((subjectContact === "4" || subjectContact === "5") ?
+          sortArrThird : sortArrFirst);
       const { classSort } = this;
       const arr = classSort.children;
       for (let i = 0; i < arr.length; i += 1) {
@@ -369,7 +381,9 @@ class SubjectContentCheck extends React.Component {
     /* eslint-disable no-nested-ternary */
     const readingId = localStorage.getItem("subjectReadingId");
     const subjectContact = localStorage.getItem("subjectContact");
-    const sortArr = (subjectContact === "2") ? sortArrSecond : sortArrFirst;
+    const sortArr = (subjectContact === "2") ? sortArrSecond :
+      ((subjectContact === "4" || subjectContact === "5") ?
+        sortArrThird : sortArrFirst);
     if (orderType !== 3) {
       if (this.sort_index === idx) {
         sortArr.map((cur, index) => {
@@ -583,7 +597,9 @@ class SubjectContentCheck extends React.Component {
           </div>
         );
       });
-    const sortArr = subjectContact === "2" ? sortArrSecond : sortArrFirst;
+    const sortArr = (subjectContact === "2") ? sortArrSecond :
+      ((subjectContact === "4" || subjectContact === "5") ?
+        sortArrThird : sortArrFirst);
     const sortItem = sortArr && sortArr.map((cur, index) => {
       return (
         <button

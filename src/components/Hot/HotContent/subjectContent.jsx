@@ -113,7 +113,7 @@ class SubjectContent extends React.Component{
           {(subjectListData && subjectListData.length>0) ? (
             <div className="clear">
               <div className="left-menu fl">
-                <h1>-&nbsp;热点监测&nbsp;-</h1>
+                <h1>-&nbsp;学科专题&nbsp;-</h1>
                 {fetchSubjectListLoading ?  <div className="spin"><Spin /></div> :
                   <Menu
                     onClick={this.handleClick}
