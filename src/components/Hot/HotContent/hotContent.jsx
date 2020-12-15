@@ -31,20 +31,6 @@ class HotContent extends React.Component{
     localStorage.setItem("hotContent", e.key);
   };
 
-  idFormat  = (data) => {
-    const arr = [];
-    arr.push(data && data[0].id);
-    /**
-     * 旧有逻辑，因eslint报错而修改  20201130-mswater
-     */
-    // data && data.map((cur, index) => {
-    //   if (index === 0) {
-    //     arr.push(`${cur.id}`);
-    //   }
-    // });
-    return arr;
-  };
-
 
   // menu处理
   handleReading=(id)=>{
@@ -58,6 +44,8 @@ class HotContent extends React.Component{
       hot:{
         hotThemeSearch,
         hotProListFlag,
+        hotStartDate,
+        hotEndDate,
       }
     } = this.props;
     const deadLine = localStorage.getItem("deadLine");
@@ -77,6 +65,8 @@ class HotContent extends React.Component{
       proList:hotProListFlag ? ["全部"] : [],
       order:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
+      startDate:hotStartDate,
+      endDate:hotEndDate,
       pageNum:1,
       pageSize:5
     };

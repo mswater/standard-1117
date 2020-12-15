@@ -85,6 +85,9 @@ const init = {
   // 学科专题 日期搜索range
   subjectStartDate:"",
   subjectEndDate:"",
+  // 行业动态  日期搜索range
+  hotStartDate:"",
+  hotEndDate:"",
 };
 const hotReducer = (state = init, action) => {
   switch (action.type) {
@@ -293,7 +296,9 @@ const hotReducer = (state = init, action) => {
     case "SAVE_GET_HOT_THEME_SEARCH":
       return {
         ...state,
-        hotThemeSearch: action.payload,
+        hotThemeSearch: action.payload.searchKey,
+        hotStartDate: action.payload.hotStartDate,
+        hotEndDate: action.payload.hotEndDate,
       };
       // 学科专题   主题内搜索
     case "SAVE_GET_SUBJECT_THEME_SEARCH":

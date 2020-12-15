@@ -24,7 +24,9 @@ class SubjectContentCenter extends React.Component {
       fetchSubjectResetLanguage,
       fetchSubjectSearchValue,
       hot:{
-        subjectThemeSearch
+        subjectThemeSearch,
+        subjectStartDate,
+        subjectEndDate,
       },
       handlerIndex
     } = this.props;
@@ -37,6 +39,8 @@ class SubjectContentCenter extends React.Component {
       proList: [],
       order:"desc",
       orderType:1,
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum:1,
       pageSize:10
     };

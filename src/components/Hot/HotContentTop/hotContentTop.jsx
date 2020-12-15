@@ -63,7 +63,9 @@ class HotContentTop extends React.Component {
         fetchSourcesStatisticsMap,
         fetchSiteMap,
         hot: {
-          hotThemeSearch
+          hotThemeSearch,
+          hotStartDate,
+          hotEndDate,
         }
       } = this.props;
       const readingId = localStorage.getItem("readingId");
@@ -83,6 +85,8 @@ class HotContentTop extends React.Component {
         proList: [],
         order:!orderFlag ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
+        startDate:hotStartDate,
+        endDate:hotEndDate,
         pageNum: 1,
         pageSize: 10,
       };
@@ -114,21 +118,28 @@ class HotContentTop extends React.Component {
         hotProListFlag,
         hotWeiboTypeFlag,
         hotSearchQuery,
+        hotThemeSearch,
+        hotStartDate,
+        hotEndDate,
       },
       fetchHotThemeSearch,
       fetchHotThemeSearchFlag
     } = this.props;
     const readingId = localStorage.getItem("readingId");
     const hotContact = localStorage.getItem("hotContact");
-    let searchDate;
+    let startDate;
+    let endDate;
     let searchWord;
     if(type === "date"){
-      searchDate = dateStrings;
+      startDate = dateStrings[0];
+      endDate = dateStrings[1];
+      searchWord = hotThemeSearch !== "" ? hotThemeSearch : "";
     }else if(type === "word"){
       searchWord = value;
+      startDate = hotStartDate !== "" ? hotStartDate : "";
+      endDate = hotEndDate !== "" ? hotEndDate : "";
     }
     const params = {
-      searchDate,
       searchKey:searchWord,
       hId: Number(readingId),
       sourceType:Number(hotContact),
@@ -139,12 +150,15 @@ class HotContentTop extends React.Component {
       order:"desc",
       isOrigin:(hotSearchQuery === "转发微博") ? 1 :(hotSearchQuery === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,
+      startDate,
+      endDate,
       pageNum:1,
       pageSize:10
     };
     fetchHotThemeSearchFlag(true);
     fetchHotThemeSearch({
-      searchDate,
+      hotStartDate: startDate,
+      hotEndDate: endDate,
       searchKey:searchWord
     });
     // 调用接口

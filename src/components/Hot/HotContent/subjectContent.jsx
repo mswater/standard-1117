@@ -44,7 +44,9 @@ class SubjectContent extends React.Component{
       hot:{
         subjectThemeSearch,
         subjectProListFlag,
-        subjectLanguageTypeFlag
+        subjectLanguageTypeFlag,
+        subjectStartDate,
+        subjectEndDate,
       }
     } = this.props;
     const deadLine = localStorage.getItem("subjectDeadLine");
@@ -65,8 +67,8 @@ class SubjectContent extends React.Component{
       languageList:subjectLanguageTypeFlag ? ["全部"] : [],
       order:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
-      startDate:"",
-      endDate:"",
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum:1,
       pageSize:5
     };

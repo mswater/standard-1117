@@ -24,7 +24,9 @@ class HotContentCenter extends React.Component {
       fetchHotResetLanguage,
       fetchHotSearchValue,
       hot:{
-        hotThemeSearch
+        hotThemeSearch,
+        hotStartDate,
+        hotEndDate,
       },
       handlerIndex
     } = this.props;
@@ -37,6 +39,8 @@ class HotContentCenter extends React.Component {
       proList: [],
       order:"desc",
       orderType:1,
+      startDate:hotStartDate,
+      endDate:hotEndDate,
       pageNum:1,
       pageSize:10
     };

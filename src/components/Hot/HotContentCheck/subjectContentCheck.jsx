@@ -238,7 +238,9 @@ class SubjectContentCheck extends React.Component {
         subjectProListFlag,
         subjectThemeSearch,
         subjectSearchQuery,
-        subjectWeiboTypeFlag
+        subjectWeiboTypeFlag,
+        subjectStartDate,
+        subjectEndDate,
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -257,6 +259,8 @@ class SubjectContentCheck extends React.Component {
           subjectSearchQuery) : ["全部"]): []),
       order: orderFlag!=="false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum: page,
       pageSize:10
     };
@@ -357,7 +361,9 @@ class SubjectContentCheck extends React.Component {
         subjectProListFlag,
         subjectThemeSearch,
         subjectSearchQuery,
-        subjectWeiboTypeFlag
+        subjectWeiboTypeFlag,
+        subjectStartDate,
+        subjectEndDate,
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -404,6 +410,8 @@ class SubjectContentCheck extends React.Component {
         (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : []),
       order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
       orderType,
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum: 1,
       pageSize:10
     };

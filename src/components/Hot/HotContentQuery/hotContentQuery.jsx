@@ -6,7 +6,6 @@ import noData from "../../../images/nodata.png";
 
 const { Search } = Input;
 let weiboArr = ["原创微博", "转发微博"];
-let languageArr = ["中文", "英文"];
 
 class HotContentQuery extends React.Component {
   constructor(props) {
@@ -153,7 +152,9 @@ class HotContentQuery extends React.Component {
       fetchHotResetLanguage,
       fetchHotSearchValue,
       hot:{
-        hotThemeSearch
+        hotThemeSearch,
+        hotStartDate,
+        hotEndDate,
       },
       handlerIndex
     } = this.props;
@@ -168,6 +169,8 @@ class HotContentQuery extends React.Component {
       proList:(tag === "地区分布") ? ["全部"] : [],
       order:"desc",
       orderType:!orderType ? 1 : Number(orderType),
+      startDate:hotStartDate,
+      endDate:hotEndDate,
       pageNum:1,
       pageSize:10
     };
@@ -212,6 +215,8 @@ class HotContentQuery extends React.Component {
       hot:{
         hotProListFlag,
         hotThemeSearch,
+        hotStartDate,
+        hotEndDate,
       }
     } = this.props;
     const readingId = localStorage.getItem("readingId");
@@ -226,13 +231,14 @@ class HotContentQuery extends React.Component {
       proList:hotProListFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
+      startDate:hotStartDate,
+      endDate:hotEndDate,
       pageNum:1,
       pageSize:10
     };
     fetchHotSearchQuery();
     fetchHotContentList(params);
     weiboArr =  ["原创微博", "转发微博"];
-    languageArr = ["中文", "英文"];
   };
 
   sourceArr = () => {
@@ -263,6 +269,8 @@ class HotContentQuery extends React.Component {
         hotProListFlag,
         hotWeiboTypeFlag,
         hotThemeSearch,
+        hotStartDate,
+        hotEndDate,
       },
       handlerIndex
     } = this.props;
@@ -279,6 +287,8 @@ class HotContentQuery extends React.Component {
       order:!orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       isOrigin:(item === "转发微博") ? 1 :(item === "原创微博" ? 0 : null),
+      startDate:hotStartDate,
+      endDate:hotEndDate,
       pageNum:1,
       pageSize:10
     };
@@ -359,7 +369,7 @@ class HotContentQuery extends React.Component {
     const webList = ["全部"].concat(hotContentListData.webList);
     const proList = ["全部"].concat(hotContentListData.proList);
     const weiboArrList = ["全部"].concat(weiboArr);
-    const languageList = ["全部"].concat(languageArr);
+    const languageList = ["全部"].concat(hotContentListData.languageList);
     const searchWeb = webList && webList.map((cur, index) => {
       return (
         <div

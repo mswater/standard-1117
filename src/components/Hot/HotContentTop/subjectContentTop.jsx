@@ -116,6 +116,7 @@ class SubjectContentTop extends React.Component {
       hot:{
         subjectProListFlag,
         subjectWeiboTypeFlag,
+        subjectLanguageTypeFlag,
         subjectSearchQuery,
         subjectThemeSearch,
         subjectStartDate,
@@ -146,6 +147,7 @@ class SubjectContentTop extends React.Component {
         :(subjectSearchQuery!==[] ? subjectSearchQuery : [])),
       proList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
         (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : []),
+      languageList:subjectLanguageTypeFlag ? [] : [],
       order:"desc",
       isOrigin:(subjectSearchQuery === "转发微博") ? 1 :(subjectSearchQuery === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,

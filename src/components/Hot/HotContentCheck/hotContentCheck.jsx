@@ -238,7 +238,9 @@ class HotContentCheck extends React.Component {
         hotProListFlag,
         hotThemeSearch,
         hotSearchQuery,
-        hotWeiboTypeFlag
+        hotWeiboTypeFlag,
+        hotStartDate,
+        hotEndDate,
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -256,6 +258,8 @@ class HotContentCheck extends React.Component {
         (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : ["全部"]): []),
       order: orderFlag!=="false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
+      startDate:hotStartDate,
+      endDate:hotEndDate,
       pageNum: page,
       pageSize:10
     };
@@ -356,7 +360,9 @@ class HotContentCheck extends React.Component {
         hotProListFlag,
         hotThemeSearch,
         hotSearchQuery,
-        hotWeiboTypeFlag
+        hotWeiboTypeFlag,
+        hotStartDate,
+        hotEndDate,
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -403,6 +409,8 @@ class HotContentCheck extends React.Component {
         (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : []),
       order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
       orderType,
+      startDate:hotStartDate,
+      endDate:hotEndDate,
       pageNum: 1,
       pageSize:10
     };

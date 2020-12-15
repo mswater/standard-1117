@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --config config/webpack.config.dev.js",
-    "build": "cross-env NODE_ENV=development webpack --config config/webpack.config.dev.js --colors",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.config.prod.js --colors",
     "lint": "eslint --ext .js,.jsx src",
     "pre-commit": "npm run lint-staged",
     "lint-staged": "lint-staged",

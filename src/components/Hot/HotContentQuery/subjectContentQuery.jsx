@@ -24,9 +24,9 @@ class SubjectContentQuery extends React.Component {
         subjectLanguageTypeFlag,
       }
     } = this.props;
-    const searchWeb = subjectContentListData.subjectWebList;
-    const searchPro = subjectContentListData.subjectProList;
-    const searchLanguage = subjectContentListData.subjectLanguageList;
+    const searchWeb = subjectContentListData.webList;
+    const searchPro = subjectContentListData.proList;
+    const searchLanguage = subjectContentListData.languageList;
     /* eslint-disable no-nested-ternary */
     const queryList = subjectProListFlag ?
       searchPro : (subjectWeiboTypeFlag ?
@@ -50,9 +50,9 @@ class SubjectContentQuery extends React.Component {
         subjectLanguageTypeFlag,
       }
     } = this.props;
-    const searchWeb = subjectContentListData.subjectWebList;
-    const searchPro = subjectContentListData.subjectProList;
-    const searchLanguage = subjectContentListData.subjectLanguageList;
+    const searchWeb = subjectContentListData.webList;
+    const searchPro = subjectContentListData.proList;
+    const searchLanguage = subjectContentListData.languageList;
     /* eslint-disable no-nested-ternary */
     const queryList = subjectProListFlag ?
       searchPro : (subjectWeiboTypeFlag ?
@@ -106,6 +106,8 @@ class SubjectContentQuery extends React.Component {
         subjectProListFlag,
         subjectThemeSearch,
         subjectLanguageTypeFlag,
+        subjectStartDate,
+        subjectEndDate,
       }
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
@@ -121,8 +123,8 @@ class SubjectContentQuery extends React.Component {
       languageList:subjectLanguageTypeFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:orderType ? 1 : Number(orderType),
-      startDate:"",
-      endDate:"",
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum:1,
       pageSize:10
     };
@@ -166,7 +168,9 @@ class SubjectContentQuery extends React.Component {
       fetchSubjectResetLanguage,
       fetchSubjectSearchValue,
       hot:{
-        subjectThemeSearch
+        subjectThemeSearch,
+        subjectStartDate,
+        subjectEndDate,
       },
       handlerIndex
     } = this.props;
@@ -182,8 +186,8 @@ class SubjectContentQuery extends React.Component {
       languageList:(tag === "语种分类") ? ["全部"] : [],
       order:"desc",
       orderType:!orderType ? 1 : Number(orderType),
-      startDate:"",
-      endDate:"",
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum:1,
       pageSize:10
     };
@@ -229,6 +233,8 @@ class SubjectContentQuery extends React.Component {
         subjectProListFlag,
         subjectThemeSearch,
         subjectLanguageTypeFlag,
+        subjectStartDate,
+        subjectEndDate,
       }
     } = this.props;
     const readingId = localStorage.getItem("subjectReadingId");
@@ -244,8 +250,8 @@ class SubjectContentQuery extends React.Component {
       languageList:subjectLanguageTypeFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
-      startDate:"",
-      endDate:"",
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum:1,
       pageSize:10
     };
@@ -286,6 +292,8 @@ class SubjectContentQuery extends React.Component {
         subjectWeiboTypeFlag,
         subjectThemeSearch,
         subjectLanguageTypeFlag,
+        subjectStartDate,
+        subjectEndDate,
       },
       handlerIndex
     } = this.props;
@@ -303,8 +311,8 @@ class SubjectContentQuery extends React.Component {
       order:!orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       isOrigin:(item === "转发微博") ? 1 :(item === "原创微博" ? 0 : null),
-      startDate:"",
-      endDate:"",
+      startDate:subjectStartDate,
+      endDate:subjectEndDate,
       pageNum:1,
       pageSize:10
     };
@@ -382,10 +390,10 @@ class SubjectContentQuery extends React.Component {
       },
       clickIndex
     } = this.props;
-    const webList = ["全部"].concat(subjectContentListData.subjectWebList);
-    const proList = ["全部"].concat(subjectContentListData.subjectProList);
+    const webList = ["全部"].concat(subjectContentListData.webList);
+    const proList = ["全部"].concat(subjectContentListData.proList);
     const weiboArrList = ["全部"].concat(weiboArr);
-    const languageList = ["全部"].concat(subjectContentListData.subjectLanguageList);
+    const languageList = ["全部"].concat(subjectContentListData.languageList);
     const searchWeb = webList && webList.map((cur, index) => {
       return (
         <div
