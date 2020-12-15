@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Modal, Tooltip, Button} from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import { fetchGetExit, fetchGuestLogin } from "../../../store/action/LoginAction.js";
 
 const { confirm } = Modal;
@@ -43,7 +44,17 @@ class UserInfo extends React.Component{
     const username = localStorage.getItem("username");
     const realName = localStorage.getItem("realName");
     const roleName = localStorage.getItem("roleName");
-    const tips = <span>123456</span>;
+    const tips = () => {
+      return (
+        <div className="header-guest-tips">
+          <p>尊敬的游客，</p>
+          <p>您目前正在以游客身份访问本系统，浏览权限将受到部分限制：</p>
+          <p>1、资料共享页面需登录后可进行访问；</p>
+          <p>2、国内文献、海外文献浏览数量限制为500篇，如需浏览更多，请进行登录</p>
+          <p>如需申请正式账号，请邮箱联系：jinhuimin@caas.cn</p>
+        </div>
+      );
+    };
     return (
       <div className="top-r">
         <div className="user-info">
@@ -51,8 +62,8 @@ class UserInfo extends React.Component{
             {
               username === "guest" ?
                 (
-                  <Tooltip placement="bottom" title={tips}>
-                    游客
+                  <Tooltip placement="bottomRight" title={tips}>
+                    游客<QuestionCircleOutlined />
                   </Tooltip>
                 ) :
                 (

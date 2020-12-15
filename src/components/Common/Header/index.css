@@ -134,3 +134,15 @@
   width:200px;
   margin:42px 0 0 300px;
 }
+.ant-tooltip-inner, .ant-tooltip-arrow::before{
+  padding:0 !important;
+  background:rgb(255, 255, 255) !important;
+}
+.header-guest-tips{
+  width:500px;
+  font-size:14px;
+  color:rgba(33,33,33,.8);
+  padding:10px;
+  border-radius:6px;
+  background:rgba(255,255,255,1);
+}
