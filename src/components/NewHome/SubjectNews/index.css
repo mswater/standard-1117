@@ -22,3 +22,12 @@
   white-space: nowrap;
   cursor:pointer;
 }
+.subject-news-con{
+  position:relative;
+  height:300px;
+}
+.subject-news-con .single-more{
+  position:absolute;
+  right:0;
+  bottom:0px;
+}

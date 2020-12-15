@@ -50,7 +50,7 @@ class SubjectNews extends React.Component{
         {fetchBriefReportLoading ?
           <div className="spin"><Spin /></div>
           : (
-            <div>
+            <div className="subject-news-con">
               <ul>{newsItem}</ul>
               <a
                 className="single-more"

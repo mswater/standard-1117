@@ -23,7 +23,7 @@ class Footer extends React.Component {
   };
 
   handleChange(value) {
-    console.log(`selected ${value}`);
+    window.open(value,"_blank");
   }
 
   render() {
@@ -85,9 +85,13 @@ class Footer extends React.Component {
             </ul>
             <div className="relation-link fr">
               <Select defaultValue="友情链接" style={{ width: 300 }} onChange={this.handleChange}>
-                <Option value="1">中科院</Option>
-                <Option value="2">中科院</Option>
-                <Option value="3">某大学</Option>
+                <Option value="http://agri.ckcest.cn/">农业专业知识服务系统</Option>
+                <Option value="http://agrisearch.cn/home.htm">农科联盟资源共建共享平台</Option>
+                <Option value="http://www.nais.net.cn/publish/default/">中国农业科技文献信息服务平台</Option>
+                <Option value="http://www.nstl.gov.cn/">国家科技图书文献中心</Option>
+                <Option value="http://www.agridata.cn/">国家农业科学数据共享中心</Option>
+                <Option value="http://www.caas.net.cn/">中国农业科学院</Option>
+                <Option value="http://www.cast.net.cn/">中国农业科技信息网</Option>
               </Select>
             </div>
           </div>

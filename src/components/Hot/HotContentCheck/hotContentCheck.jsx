@@ -445,6 +445,7 @@ class HotContentCheck extends React.Component {
 
 
   render() {
+    const username = localStorage.getItem("username");
     const hotContact = localStorage.getItem("hotContact");
     const { indeterminate, checkAll, checkedList, selectNumber} = this.state;
     const {
@@ -553,19 +554,24 @@ class HotContentCheck extends React.Component {
                   <Icon type="eye"/>
                 </button>
                 <span>{cur.readnum}</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    return this.collectArticle(cur);
-                  }}
-                >
-                  {
-                    (cur.iscollect === 1) ?
-                      <Icon theme="filled" type="star" style={{color:"#F6BD4E"}} />
-                      : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
-                  }
-                </button>
-                <span>{cur.iscollect ? cur.iscollect : 0}</span>
+                {username === "guest" ? "" : (
+                  <span>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        return this.collectArticle(cur);
+                      }}
+                    >
+                      {
+                        (cur.iscollect === 1) ?
+                          <Icon theme="filled" type="star" style={{color:"#F6BD4E"}} />
+                          : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
+                      }
+                    </button>
+                    <span>{cur.iscollect ? cur.iscollect : 0}</span>
+                  </span>
+                )
+                }
               </div>
             </div>
             {(cur.flag) && (
@@ -614,36 +620,39 @@ class HotContentCheck extends React.Component {
             找到{rowCount}条结果
           </div>
         </div>
-        <div className="hot-content-check-middle clear">
-          <div className="fl clear">
-            <Checkbox
-              className="fl"
-              indeterminate={indeterminate}
-              onChange={this.onCheckAllChange}
-              checked={checkAll}
-            >
-              全选
-            </Checkbox>
-            <div className="hot-content-check-middle-select fl clear">
-              <p className="fl">
-                <span>已选：</span>
-                <span>{selectNumber}</span>
-              </p>
-              <button className="fl" type="button" onClick={this.clearAll}>清除</button>
+        {username === "guest" ? "" : (
+          <div className="hot-content-check-middle clear">
+            <div className="fl clear">
+              <Checkbox
+                className="fl"
+                indeterminate={indeterminate}
+                onChange={this.onCheckAllChange}
+                checked={checkAll}
+              >
+                全选
+              </Checkbox>
+              <div className="hot-content-check-middle-select fl clear">
+                <p className="fl">
+                  <span>已选：</span>
+                  <span>{selectNumber}</span>
+                </p>
+                <button className="fl" type="button" onClick={this.clearAll}>清除</button>
+              </div>
+            </div>
+            <div className="hot-content-check-download fr">
+              {item.length > 0 ?
+                <button
+                  type="button"
+                  onClick={this.download}
+                >
+                  批量下载
+                </button>
+                : ""
+              }
             </div>
           </div>
-          <div className="hot-content-check-download fr">
-            {item.length > 0 ?
-              <button
-                type="button"
-                onClick={this.download}
-              >
-                批量下载
-              </button>
-              : ""
-            }
-          </div>
-        </div>
+        )
+        }
         {
           fetchHotContentListLoading ? <div className="spin"><Spin/></div> :
             <div className="hot-content-check-center">

@@ -13,7 +13,7 @@ import Search from "./../pages/Search/index.jsx";
 const role = localStorage.getItem("token");
 const Home = Loadable({
   loader: () => {
-    return import(/* webpackChunkName: "home" */ "./../pages/Home/index.jsx");
+    return import(/* webpackChunkName: "home" */ "./../pages/NewHome/index.jsx");
   },
   loading() {
     return <div>Loading...</div>;

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { Modal } from "antd";
 import { getPortfolioCode, } from "../../../lib/tools/utils.js";
 
 import "./index.css";
@@ -12,12 +13,26 @@ class Nav extends React.Component {
   }
 
   navLinkFunc = (href) => {
+    const username = localStorage.getItem("username");
+    const { history } = this.props;
     // 记录从首页导航进入会议列表页
     if(href === "/meeting"){
       localStorage.setItem("meetingFrom", "menu");
     }
-    const { history } = this.props;
-    history.push(href);
+    if(href === "/literature" && username === "guest"){
+      Modal.info({
+        title: "您现在没有权限阅读此栏目",
+        content: (
+          <div>
+            <p>您可以联系xxx</p>
+          </div>
+        ),
+        onOk() {
+        },
+      });
+    }else{
+      history.push(href);
+    }
   };
 
   render() {

@@ -32,10 +32,16 @@
   color:rgba(81,78,78,1);
   overflow:hidden;
   border:solid 1px rgba(236,236,236,1);
+  cursor:pointer;
 }
 .conference-con li.active{
   height:116px;
   padding:14px 16px;
+}
+.conference-con li a{
+  display:block;
+  font-size:16px;
+  color:rgba(81,78,78,1);
 }
 .conference-con .l-info{
   width:480px;
