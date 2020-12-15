@@ -10,6 +10,7 @@ class DetailsLeft extends React.Component {
   }
 
   render() {
+    const articleType = localStorage.getItem("articleType");
     const {
       article: {
         articleDetailData,
@@ -26,23 +27,41 @@ class DetailsLeft extends React.Component {
               <p>
                 <span>发表时间：{articleDetailData.fArticleTime}</span>
                 <span>来源期刊：{articleDetailData.fJobName}</span>
+                {
+                  (articleType !== "3" && articleType !== "4") ? (
+                    <span>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={articleDetailData.fPageUrl}
+                        className="fr"
+                      >
+                      阅读原文&gt;&gt;
+                      </a>
+                    </span>
+                  ) : ""
+                }
               </p>
-              <p>
-                <span>作者</span><span>作者</span><span>作者</span><span>作者</span>
-              </p>
-              <p>
-                <span>某研究院</span>
-                <span>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={articleDetailData.fPageUrl}
-                    className="fr"
-                  >
-                  阅读原文&gt;&gt;
-                  </a>
-                </span>
-              </p>
+              {(articleType === "3" || articleType === "4") ? (
+                <p>
+                  <p>
+                    <span>作者</span><span>作者</span><span>作者</span><span>作者</span>
+                  </p>
+                  <p>
+                    <span>某研究院</span>
+                    <span>
+                      <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={articleDetailData.fPageUrl}
+                        className="fr"
+                      >
+                      阅读原文&gt;&gt;
+                      </a>
+                    </span>
+                  </p>
+                </p>
+              ) : ""}
             </div>
             <div className="hot-details">
               <p dangerouslySetInnerHTML={{ __html:articleDetailData.fContent}} />

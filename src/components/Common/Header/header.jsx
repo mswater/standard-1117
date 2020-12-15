@@ -5,6 +5,9 @@ import { Input } from "antd";
 import "./index.css";
 import logo from "../../../images/nky-logo.png";
 import UserInfo from "./UserInfo.jsx";
+import { fetchHeaderSearch } from "../../../store/action/HomeAction";
+import { fetchSearch, fetchSearchThemeSearchFlag } from "../../../store/action/SearchAction";
+import { fetchGetExit } from "../../../store/action/LoginAction";
 
 const { Search } = Input;
 
@@ -17,6 +20,54 @@ class Header extends React.Component {
 
   componentDidMount(){
   }
+
+  searchContent = (value) => {
+    const {
+      history,
+      fetchHeaderSearch,
+      fetchSearch,
+      fetchSearchThemeSearchFlag
+    } = this.props;
+    const searchContact = localStorage.getItem("searchContact");
+    const params = {
+      type:!Number(searchContact) ? 1 : Number(searchContact),
+      starTime: "",
+      endTime: "",
+      searchKey: value,
+      webList: [],
+      proList: [],
+      timeOrder: "",
+      browseOrder: "",
+      relevantOrder: "",
+      transpondOrder: "",
+      commentOrder: "",
+      likeOrder: "",
+      mettingOrder: "",
+      blogType:[],
+      pageNum: 1,
+      pageSize: 10
+    };
+
+    if(value!== ""){
+      params.relevantOrder = "desc";
+    }else{
+      params.timeOrder = "desc";
+    }
+    fetchSearch(params);
+    history.push({
+      pathname: "/search",
+    });
+    fetchSearchThemeSearchFlag(true);
+    // 存储搜索的值
+    fetchHeaderSearch(value);
+  };
+
+  searchChange = (e) => {
+    const {
+      fetchHeaderSearch,
+    } = this.props;
+    fetchHeaderSearch(e.target.value);
+  };
 
   render() {
     const { headerSearchContent } = this.props;
@@ -31,6 +82,8 @@ class Header extends React.Component {
               <Search
                 placeholder="请输入检索词..."
                 value={headerSearchContent}
+                onChange={this.searchChange}
+                onSearch={this.searchContent}
               />
             </div>
             <UserInfo />
@@ -43,12 +96,16 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state
+    headerSearchContent: state.home.headerSearchContent
   };
 };
 
 export default connect(
   mapStateToProps,
   {
+    fetchHeaderSearch,
+    fetchSearch,
+    fetchGetExit,
+    fetchSearchThemeSearchFlag,
   },
 )(withRouter(Header));

@@ -252,9 +252,10 @@ export const getSubSourcesStatisticsMap = async (params) => {
 /**
  * 文章详情 article/articleDetail/{cid}
  * @param {number} cid 文章id
+ * type  1资讯  2内部文件  3国内文献  4海外文献
  */
-export const getArticleDetail = async (cid) => {
-  return axios.get(`article/articleDetail/${cid}`);
+export const getArticleDetail = async (cid, type = 1) => {
+  return axios.get(`article/articleDetail/${type}/${cid}`);
 };
 
 /**

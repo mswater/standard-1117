@@ -15,10 +15,6 @@
 .hot-details-title p>span{
   margin:0 15px;
 }
-.hot-details-title p>span:nth-child(3){
-  display: inline-block;
-  text-align: right
-}
 
 .hot-details{
   line-height: 30px;

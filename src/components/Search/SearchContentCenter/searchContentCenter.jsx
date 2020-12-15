@@ -167,6 +167,19 @@ class SearchContentCenter extends React.Component {
         >
           海外文献
         </button>
+        <button
+          type="button"
+          style={
+            searchContact === "7" ? {
+              borderBottom:"1px solid #0572B8", color: "#0572B8"
+            } : {
+              borderBottom:"1px solid #F2F3F6", color: "#515256"
+            }
+          }
+          onClick={() => {return this.contactFunc(7);}}
+        >
+          内部资料
+        </button>
       </div>
     );
   }

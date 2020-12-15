@@ -310,7 +310,7 @@ class SearchContentQuery extends React.Component {
       return [];
     }
     if (parseInt(renderContactNumber, 0) === 5) {
-      return ["来源网站"];
+      return [];
     }
     return ["来源网站", "地区分布"];
   };
@@ -429,7 +429,7 @@ class SearchContentQuery extends React.Component {
       searchPro : (searchWeiboTypeFlag ? searchWeibo : searchWeb);
     return (
       <div className="search-content-query">
-        {(renderContactNumber !== "4") && (
+        {(renderContactNumber !== "4" && renderContactNumber !== "5") && (
           <div className="search-content-query-class clear">
             <div className="fl">分组浏览 ：</div>
             <div className="search-content-query-box" ref={(ref) => {this.classType = ref;}}>
@@ -437,7 +437,7 @@ class SearchContentQuery extends React.Component {
             </div>
           </div>
         )}
-        {(renderContactNumber !== "4") && (
+        {(renderContactNumber !== "4" && renderContactNumber !== "5") && (
           <div className="search-content-query-select">
             <div className="query-top clear">
               {(!searchWeiboTypeFlag) && (
