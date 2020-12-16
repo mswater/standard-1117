@@ -48,8 +48,8 @@ class Report extends React.Component{
   };
 
   downloadReport = (downloadUrl) => {
-    const token = localStorage.getItem("token");
-    window.open(`${downloadUrl}&uid=${token}`,"_blank");
+    const url = window.location.origin;
+    window.open(`${url}/managecenter/brief/download?fileName=${downloadUrl}`,"_blank");
   }
 
   goNewReport(){
@@ -60,7 +60,7 @@ class Report extends React.Component{
 
 
   render(){
-    const username = localStorage.getItem("username");
+    const roleName = localStorage.getItem("roleName");
     const {
       report: {
         reportData:{
@@ -103,7 +103,7 @@ class Report extends React.Component{
                 onSearch={this.searchContent}
               />
             </div>
-            {username === "guest" ? "" : (
+            {roleName === "简报管理员" ? "" : (
               <a
                 className="new-report fr"
                 rel="noopener noreferrer"

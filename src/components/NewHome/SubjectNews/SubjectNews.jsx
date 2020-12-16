@@ -8,10 +8,9 @@ class SubjectNews extends React.Component{
     this.state = {};
   }
 
-  newsDetails = (title) => {
-    const token = localStorage.getItem("token");
+  newsDetails = (reportUrl) => {
     const url = window.location.origin;
-    window.open(`${url}/managecenter/brief/download?fileName=${title}.pdf&uid=${token}`,"_blank");
+    window.open(`${url}/managecenter/brief/download?fileName=${reportUrl}`,"_blank");
   };
 
   goReportPage = () => {
@@ -36,7 +35,7 @@ class SubjectNews extends React.Component{
           <a
             rel="noopener noreferrer"
             className="clear"
-            onClick={() => this.newsDetails(cur.title)}
+            onClick={() => this.newsDetails(cur.url)}
           >
             <label>{cur.title}</label>
             <span className="fr">{cur.creattime.split(" ")[0]}</span>
