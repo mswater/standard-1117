@@ -80,7 +80,7 @@ class LiteratureContent extends React.Component{
               defaultSelectedKeys={sharingMaterialType === "" ?
                 "all-material" : sharingMaterialType}
             >
-              <Menu.Item key="all-material" title="全部">
+              <Menu.Item title="全部">
                 <a onClick={() => {return this.handleId("");}}>全部</a>
               </Menu.Item>
               {firstItem}

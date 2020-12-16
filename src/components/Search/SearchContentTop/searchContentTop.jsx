@@ -54,6 +54,7 @@ class SearchContentTop extends React.Component {
       searchKey: "",
       webList: [],
       proList: [],
+      languageList: [],
       timeOrder: "desc",
       browseOrder: null,
       relevantOrder: null,
@@ -79,6 +80,7 @@ class SearchContentTop extends React.Component {
         searchSearchQuery,
         searchProListFlag,
         searchWeiboTypeFlag,
+        searchLanguageTypeFlag,
       },
     } = this.props;
     const searchContact = localStorage.getItem("searchContact");
@@ -88,11 +90,14 @@ class SearchContentTop extends React.Component {
       endTime,
       searchKey: headerSearchContent,
       webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : [])),
+        (searchLanguageTypeFlag ? [] : (searchSearchQuery!==[] ?
+          (searchSearchQuery === "全部" ? [] : searchSearchQuery) : []))),
       proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
         (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
           [] : searchSearchQuery) : []) : []),
+      languageList: searchLanguageTypeFlag ?
+        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
+          [] : searchSearchQuery) : []) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder: null,

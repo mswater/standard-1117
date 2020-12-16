@@ -277,10 +277,8 @@ class SearchContentQuery extends React.Component {
       starTime: searchDateQuery[0],
       endTime: searchDateQuery[1],
       searchKey: headerSearchContent,
-      webList: searchWeiboTypeFlag ? [] : (
-        searchProListFlag ? [] : (
-          searchLanguageTypeFlag ? [] : (item === "全部" ? null : [item]))
-      ),
+      webList: searchWeiboTypeFlag ? [] : (searchProListFlag ? [] :
+        (searchLanguageTypeFlag ? [] : (item === "全部" ? null : [item]))),
       proList:searchProListFlag ? (item === "全部" ? null : [item]) : [],
       languageList: searchLanguageTypeFlag ? (item === "全部" ? null : [item]) : [],
       timeOrder: "desc",
@@ -413,20 +411,18 @@ class SearchContentQuery extends React.Component {
     const webList = ["全部"].concat(searchData.webList);
     const proList = ["全部"].concat(searchData.proList);
     const languageList = ["全部"].concat(searchData.languageList);
-    console.log(languageList);
     const weiboArrList = ["全部"].concat(weiboArr);
-    const searchWeb = webList
-      && webList.map((cur, index) => {
-        return (
-          <div
-            key={index.toString()}
-            onClick={() => this.searchItem(cur,index)}
-            className={`fl ${index === clickIndex ? "current" : ""}`}
-          >
-            {cur}
-          </div>
-        );
-      });
+    const searchWeb = webList && webList.map((cur, index) => {
+      return (
+        <div
+          key={index.toString()}
+          onClick={() => this.searchItem(cur,index)}
+          className={`fl ${index === clickIndex ? "current" : ""}`}
+        >
+          {cur}
+        </div>
+      );
+    });
     const searchPro = proList
       && proList.map((cur, index) => {
         return (

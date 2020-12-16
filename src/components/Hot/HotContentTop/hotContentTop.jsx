@@ -83,6 +83,7 @@ class HotContentTop extends React.Component {
         sourceType: !hotContact ? "" : Number(hotContact),
         webList: [],
         proList: [],
+        languageList: [],
         order:!orderFlag ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
         startDate:hotStartDate,
@@ -117,6 +118,7 @@ class HotContentTop extends React.Component {
       hot:{
         hotProListFlag,
         hotWeiboTypeFlag,
+        hotLanguageTypeFlag,
         hotSearchQuery,
         hotThemeSearch,
         hotStartDate,
@@ -143,10 +145,13 @@ class HotContentTop extends React.Component {
       searchKey:searchWord,
       hId: Number(readingId),
       sourceType:Number(hotContact),
-      webList:hotWeiboTypeFlag ? [] : (hotProListFlag ? []
-        :(hotSearchQuery!==[] ? hotSearchQuery : [])),
+      webList:hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
+        (hotLanguageTypeFlag ? [] :
+          (hotSearchQuery!==[] ? hotSearchQuery : []))),
       proList:hotWeiboTypeFlag ? [] : (hotProListFlag ?
         (hotSearchQuery!==[] ? hotSearchQuery : ["全部"]) : []),
+      languageList: hotLanguageTypeFlag ?
+        (hotSearchQuery!==[] ? hotSearchQuery : ["全部"]) : [],
       order:"desc",
       isOrigin:(hotSearchQuery === "转发微博") ? 1 :(hotSearchQuery === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,

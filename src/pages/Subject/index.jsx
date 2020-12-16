@@ -68,7 +68,11 @@ class Subject extends React.Component {
     localStorage.setItem("subjectOrderType", 1);
     localStorage.setItem("subjectOrderFlag", "");
     fetchSubjectSearchQuery();
-    fetchSubjectThemeSearch();
+    fetchSubjectThemeSearch({
+      subjectStartDate:"",
+      subjectEndDate:"",
+      searchKey:""
+    });
   }
 
 

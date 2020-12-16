@@ -44,6 +44,7 @@ class HotContent extends React.Component{
       hot:{
         hotThemeSearch,
         hotProListFlag,
+        hotLanguageTypeFlag,
         hotStartDate,
         hotEndDate,
       }
@@ -63,6 +64,7 @@ class HotContent extends React.Component{
       sourceType:!hotContact? 1 :Number(hotContact),
       webList:[],
       proList:hotProListFlag ? ["全部"] : [],
+      languageList:hotLanguageTypeFlag ? ["全部"] : [],
       order:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
       startDate:hotStartDate,
@@ -108,7 +110,7 @@ class HotContent extends React.Component{
           {(hotListData && hotListData.length>0) ? (
             <div className="clear">
               <div className="left-menu fl">
-                <h1>-&nbsp;热点监测&nbsp;-</h1>
+                <h1>-&nbsp;行业动态&nbsp;-</h1>
                 {fetchHotListLoading ?  <div className="spin"><Spin /></div> :
                   <Menu
                     onClick={this.handleClick}

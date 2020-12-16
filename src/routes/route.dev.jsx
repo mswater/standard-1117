@@ -4,7 +4,6 @@ import Home from "./../pages/NewHome/index.jsx";
 import Hot from "../pages/Hot/index.jsx";
 import Details from "../pages/Details/index.jsx";
 import Literature from "../pages/Literature/index.jsx";
-import Personal from "../pages/Personal/index.jsx";
 import NotFound from "./../pages/404/index.jsx";
 import Login from "./../pages/Login/index.jsx";
 import ForgotPassword from "./../pages/ForgotPassword/index.jsx";
@@ -51,11 +50,6 @@ const DevRouter = () => {
         exact
         path="/report"
         component={routesAuthority(Report, NotFound)}
-      />
-      <Route
-        exact
-        path="/personal"
-        component={routesAuthority(Personal, NotFound)}
       />
       <Route
         exact

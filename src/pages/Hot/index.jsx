@@ -67,7 +67,11 @@ class Hot extends React.Component {
     localStorage.setItem("orderType", 1);
     localStorage.setItem("orderFlag", "");
     fetchHotSearchQuery();
-    fetchHotThemeSearch();
+    fetchHotThemeSearch({
+      hotStartDate: "",
+      hotEndDate: "",
+      searchKey:""
+    });
   }
 
 

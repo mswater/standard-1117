@@ -21,12 +21,16 @@ class HotContentQuery extends React.Component {
         fetchHotContentListLoading,
         hotProListFlag,
         hotWeiboTypeFlag,
+        hotLanguageTypeFlag,
       }
     } = this.props;
     const searchWeb = hotContentListData.webList;
     const searchPro = hotContentListData.proList;
+    const searchlanguage = hotContentListData.languageList;
     /* eslint-disable no-nested-ternary */
-    const queryList = hotProListFlag ? searchPro : (hotWeiboTypeFlag ? weiboArr : searchWeb);
+    const queryList = hotProListFlag ? searchPro :
+      (hotLanguageTypeFlag ? searchlanguage :
+        (hotWeiboTypeFlag ? weiboArr : searchWeb));
     this.addEvent();
     // 判断是否接口是返回之后，在调用方法
     if (!fetchHotContentListLoading && (queryList && queryList.length > 0)) {
@@ -41,13 +45,17 @@ class HotContentQuery extends React.Component {
         hotResetButtonFlag,
         hotProListFlag,
         hotWeiboTypeFlag,
+        hotLanguageTypeFlag,
         fetchHotContentListLoading
       }
     } = this.props;
     const searchWeb = hotContentListData.webList;
     const searchPro = hotContentListData.proList;
+    const searchlanguage = hotContentListData.languageList;
     /* eslint-disable no-nested-ternary */
-    const queryList = hotProListFlag ? searchPro : (hotWeiboTypeFlag ? weiboArr : searchWeb);
+    const queryList = hotProListFlag ? searchPro :
+      (hotLanguageTypeFlag ? searchlanguage :
+        (hotWeiboTypeFlag ? weiboArr : searchWeb));
     const { classType } = this;
     const classArr = classType.children;
     this.addEvent();
@@ -94,6 +102,7 @@ class HotContentQuery extends React.Component {
       hot:{
         hotContentListData,
         hotProListFlag,
+        hotLanguageTypeFlag,
         hotThemeSearch
       }
     } = this.props;
@@ -107,6 +116,7 @@ class HotContentQuery extends React.Component {
       sourceType:Number(hotContact),
       webList:[],
       proList:hotProListFlag ? ["全部"] : [],
+      languageList:hotLanguageTypeFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:orderType ? 1 : Number(orderType),
       pageNum:1,
@@ -167,6 +177,7 @@ class HotContentQuery extends React.Component {
       sourceType:Number(hotContact),
       webList:[],
       proList:(tag === "地区分布") ? ["全部"] : [],
+      languageList: (tag === "语种分类") ? ["全部"] : [],
       order:"desc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:hotStartDate,
@@ -214,6 +225,7 @@ class HotContentQuery extends React.Component {
       fetchHotSearchQuery,
       hot:{
         hotProListFlag,
+        hotLanguageTypeFlag,
         hotThemeSearch,
         hotStartDate,
         hotEndDate,
@@ -229,6 +241,7 @@ class HotContentQuery extends React.Component {
       sourceType:Number(hotContact),
       webList:[],
       proList:hotProListFlag ? ["全部"] : [],
+      languageList:hotLanguageTypeFlag ? ["全部"] : [],
       order:orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:hotStartDate,
@@ -268,6 +281,7 @@ class HotContentQuery extends React.Component {
       hot:{
         hotProListFlag,
         hotWeiboTypeFlag,
+        hotLanguageTypeFlag,
         hotThemeSearch,
         hotStartDate,
         hotEndDate,
@@ -282,8 +296,10 @@ class HotContentQuery extends React.Component {
       searchKey:hotThemeSearch,
       hId: Number(readingId),
       sourceType:Number(hotContact),
-      webList:hotWeiboTypeFlag ? [] : (hotProListFlag ? [] : [item]),
+      webList:hotWeiboTypeFlag ? [] :
+        (hotProListFlag ? [] : (hotLanguageTypeFlag ? [] : [item])),
       proList:hotWeiboTypeFlag ? [] : (hotProListFlag ?  [item] : []),
+      languageList:hotWeiboTypeFlag ? [] : (hotLanguageTypeFlag ?  [item] : []),
       order:!orderFlag ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       isOrigin:(item === "转发微博") ? 1 :(item === "原创微博" ? 0 : null),

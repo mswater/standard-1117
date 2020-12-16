@@ -85,15 +85,17 @@
   overflow:hidden;
   background:rgba(255,255,255,1);
 }
-.login-guest-tips .anticon-down{
+.login-guest-tips img{
   position:absolute;
   bottom:5px;
   left:50%;
+  width:17px;
+  height:14px;
 }
 .login-guest-tips:hover{
   height:auto;
 }
-.login-guest-tips:hover .anticon-down{
+.login-guest-tips:hover img{
   display:none;
 }
 .login-guest-tips p{

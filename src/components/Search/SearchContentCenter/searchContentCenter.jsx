@@ -1,5 +1,6 @@
 import React from "react";
 import "./index.css";
+import { Modal } from "antd";
 import { siblings } from "../../../lib/tools/utils";
 
 
@@ -15,10 +16,25 @@ class SearchContentCenter extends React.Component {
   }
 
   contactFunc = (typeSearch) => {
+    const username = localStorage.getItem("username");
+    if(typeSearch === 7 && username === "guest"){
+      Modal.info({
+        title: "您现在没有权限阅读此栏目",
+        content: (
+          <div>
+            <p>您可以联系xxx</p>
+          </div>
+        ),
+        onOk() {
+        },
+      });
+      return ;
+    }
     const {
       history,
       fetchSearch,
       fetchSearchProList,
+      fetchSearchLanguageList,
       fetchSearchResetButton,
       fetchSearchResetWeibo,
       headerSearchContent,
@@ -36,6 +52,7 @@ class SearchContentCenter extends React.Component {
       searchKey: headerSearchContent,
       webList: [],
       proList: [],
+      languageList: [],
       timeOrder: "",
       browseOrder: null,
       relevantOrder: null,
@@ -59,6 +76,7 @@ class SearchContentCenter extends React.Component {
     fetchSearchQuery();
     fetchSearchResetWeibo(false);
     fetchSearchProList(false);
+    fetchSearchLanguageList(false);
     fetchSearchResetButton(true);
     fetchSearch(params);
   };

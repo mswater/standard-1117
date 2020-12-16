@@ -3,10 +3,9 @@ import {
   Form, Input, Button, Checkbox, Icon, message,
 } from "antd";
 import "./index.css";
-import { DownOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-
+import tips from "../../images/icon-arrow.png";
 import {
   fetchGetLogin
 } from "./../../store/action/LoginAction.js";
@@ -120,7 +119,7 @@ class Login extends React.Component {
             <p>1、资料共享页面需登录后可进行访问；</p>
             <p>2、国内文献、海外文献浏览数量限制为500篇，如需浏览更多，请进行登录</p>
             <p>如需申请正式账号，请邮箱联系：jinhuimin@caas.cn</p>
-            <DownOutlined />
+            <img alt="tips" src={tips} />
           </div>
         </div>
       </div>

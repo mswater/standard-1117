@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Modal, Tooltip, Button} from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
 import { fetchGetExit, fetchGuestLogin } from "../../../store/action/LoginAction.js";
+import tipsImg from "../../../images/tips.png";
 
 const { confirm } = Modal;
 
@@ -66,7 +66,7 @@ class UserInfo extends React.Component{
               username === "guest" ?
                 (
                   <Tooltip placement="bottomRight" title={tips}>
-                    {realName}<QuestionCircleOutlined />
+                    {realName}<img alt="tips" src={tipsImg} />
                   </Tooltip>
                 ) :
                 (

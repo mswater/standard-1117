@@ -239,6 +239,7 @@ class HotContentCheck extends React.Component {
         hotThemeSearch,
         hotSearchQuery,
         hotWeiboTypeFlag,
+        hotLanguageTypeFlag,
         hotStartDate,
         hotEndDate,
       }
@@ -253,8 +254,11 @@ class HotContentCheck extends React.Component {
       hId: Number(readingId),
       sourceType:Number(hotContact),
       webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
-        (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : [])),
+        (hotLanguageTypeFlag ? [] : (hotSearchQuery!==[] ?
+          (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : []))),
       proList: hotWeiboTypeFlag ? [] : (hotProListFlag ?
+        (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : ["全部"]): []),
+      languageList: hotWeiboTypeFlag ? [] : (hotLanguageTypeFlag ?
         (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : ["全部"]): []),
       order: orderFlag!=="false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
@@ -361,6 +365,7 @@ class HotContentCheck extends React.Component {
         hotThemeSearch,
         hotSearchQuery,
         hotWeiboTypeFlag,
+        hotLanguageTypeFlag,
         hotStartDate,
         hotEndDate,
       }
@@ -404,9 +409,12 @@ class HotContentCheck extends React.Component {
       hId: Number(readingId),
       sourceType:Number(hotContact),
       webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
-        (hotSearchQuery!==[] ? hotSearchQuery : [])),
+        (hotLanguageTypeFlag ? [] :
+          (hotSearchQuery!==[] ? hotSearchQuery : []))),
       proList: hotWeiboTypeFlag ? [] : (hotProListFlag ?
         (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : []),
+      languageList: hotLanguageTypeFlag ?
+        (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : [],
       order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
       orderType,
       startDate:hotStartDate,

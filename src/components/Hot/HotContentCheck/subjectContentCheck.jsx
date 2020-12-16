@@ -251,6 +251,7 @@ class SubjectContentCheck extends React.Component {
         subjectThemeSearch,
         subjectSearchQuery,
         subjectWeiboTypeFlag,
+        subjectLanguageTypeFlag,
         subjectStartDate,
         subjectEndDate,
       }
@@ -265,10 +266,14 @@ class SubjectContentCheck extends React.Component {
       hId: Number(readingId),
       sourceType:Number(subjectContact),
       webList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
-        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] : subjectSearchQuery) : [])),
+        (subjectLanguageTypeFlag ? [] : (subjectSearchQuery!==[] ?
+          (subjectSearchQuery === ["全部"] ? [] : subjectSearchQuery) : []))),
       proList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
         (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] :
           subjectSearchQuery) : ["全部"]): []),
+      languageList: subjectLanguageTypeFlag ?
+        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] :
+          subjectSearchQuery) : ["全部"]): [],
       order: orderFlag!=="false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:subjectStartDate,
@@ -374,6 +379,7 @@ class SubjectContentCheck extends React.Component {
         subjectThemeSearch,
         subjectSearchQuery,
         subjectWeiboTypeFlag,
+        subjectLanguageTypeFlag,
         subjectStartDate,
         subjectEndDate,
       }
@@ -419,9 +425,12 @@ class SubjectContentCheck extends React.Component {
       hId: Number(readingId),
       sourceType:Number(subjectContact),
       webList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
-        (subjectSearchQuery!==[] ? subjectSearchQuery : [])),
+        (subjectLanguageTypeFlag ? [] :
+          (subjectSearchQuery!==[] ? subjectSearchQuery : []))),
       proList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
         (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : []),
+      languageList: subjectLanguageTypeFlag ?
+        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : [],
       order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
       orderType,
       startDate:subjectStartDate,

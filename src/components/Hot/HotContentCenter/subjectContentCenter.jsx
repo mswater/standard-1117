@@ -37,6 +37,7 @@ class SubjectContentCenter extends React.Component {
       sourceType: type,
       webList:[],
       proList: [],
+      languageList: [],
       order:"desc",
       orderType:1,
       startDate:subjectStartDate,

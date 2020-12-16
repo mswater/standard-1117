@@ -251,7 +251,8 @@ class SearchContentCheck extends React.Component {
         searchDateQuery,
         searchSearchQuery,
         searchProListFlag,
-        searchWeiboTypeFlag
+        searchWeiboTypeFlag,
+        searchLanguageTypeFlag,
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -264,11 +265,14 @@ class SearchContentCheck extends React.Component {
       endTime: searchDateQuery[1],
       searchKey: headerSearchContent,
       webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : [])),
+        (searchLanguageTypeFlag ? [] : (searchSearchQuery!==[] ?
+          (searchSearchQuery === "全部" ? [] : searchSearchQuery) : []))),
       proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
         (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
           [] : searchSearchQuery) : []) : []),
+      languageList: searchLanguageTypeFlag ?
+        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
+          [] : searchSearchQuery) : []) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder: "",
@@ -399,7 +403,8 @@ class SearchContentCheck extends React.Component {
         searchDateQuery,
         searchSearchQuery,
         searchProListFlag,
-        searchWeiboTypeFlag
+        searchWeiboTypeFlag,
+        searchLanguageTypeFlag,
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -442,12 +447,15 @@ class SearchContentCheck extends React.Component {
       starTime: searchDateQuery[0],
       endTime: searchDateQuery[1],
       searchKey: headerSearchContent,
-      webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? []
-        :(searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : [])),
+      webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
+        (searchLanguageTypeFlag ? [] : (searchSearchQuery!==[] ?
+          (searchSearchQuery === "全部" ? [] : searchSearchQuery) : []))),
       proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
         (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
           [] : searchSearchQuery) : []) : []),
+      languageList: searchLanguageTypeFlag ?
+        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
+          [] : searchSearchQuery) : []) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder: "",

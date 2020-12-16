@@ -47,16 +47,6 @@ const Report = Loadable({
   },
 });
 
-const Personal = Loadable({
-  loader: () => {
-    return import(/* webpackChunkName: "personal" */ "../pages/Personal/index.jsx");
-  },
-  loading() {
-    return <div>Loading...</div>;
-  },
-});
-
-
 const Subject = Loadable({
   loader: () => {
     return import(/* webpackChunkName: "subject" */ "../pages/Subject/index.jsx");
@@ -110,11 +100,6 @@ const ProdRouter = () => {
         exact
         path="/report"
         component={routesAuthority(Report, NotFound)}
-      />
-      <Route
-        exact
-        path="/personal"
-        component={routesAuthority(Personal, NotFound)}
       />
       <Route
         exact

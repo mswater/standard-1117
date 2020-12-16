@@ -134,7 +134,7 @@ const prodConfig = {
         exclude: /\.min\.js$/,
         cache: true,
         parallel: true,
-        sourceMap: false,
+        sourceMap: true,
         extractComments: true,
         uglifyOptions: {
           compress: {
@@ -208,6 +208,7 @@ const prodConfig = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
+  devtool: "source-map"
 };
 
 if (process.env.ANALYZE) {
