@@ -48,11 +48,19 @@ class Report extends React.Component{
   };
 
   downloadReport = (downloadUrl) => {
-    window.open(downloadUrl,"_blank");
+    const token = localStorage.getItem("token");
+    window.open(`${downloadUrl}&uid=${token}`,"_blank");
+  }
+
+  goNewReport(){
+    const url = window.location.origin;
+    const token = localStorage.getItem("token");
+    window.open(`${url}/managecenter/brief/add?uid=${token}`,"_blank");
   }
 
 
   render(){
+    const username = localStorage.getItem("username");
     const {
       report: {
         reportData:{
@@ -95,12 +103,16 @@ class Report extends React.Component{
                 onSearch={this.searchContent}
               />
             </div>
-            <a
-              className="new-report fr"
-              rel="noopener noreferrer"
-            >
-              新建简报
-            </a>
+            {username === "guest" ? "" : (
+              <a
+                className="new-report fr"
+                rel="noopener noreferrer"
+                onClick={() => {return this.goNewReport();}}
+              >
+                新建简报
+              </a>
+            )
+            }
           </div>
           <div className="report-list">
             <div className="report-list-header">

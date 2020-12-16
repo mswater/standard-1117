@@ -24,7 +24,7 @@ class Nav extends React.Component {
         title: "您现在没有权限阅读此栏目",
         content: (
           <div>
-            <p>您可以联系xxx</p>
+            <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>
           </div>
         ),
         onOk() {

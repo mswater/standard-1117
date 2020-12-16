@@ -44,11 +44,11 @@ const sortArrSecond = [{
 const sortArrThird = [{
   value: "检索评分",
   flag: false,
-  id: 1
+  id: 8
 }, {
   value: "发表年份",
   flag: false,
-  id: 2
+  id: 9
 }];
 function itemRender(current, type, originalElement){
   if (type === "prev") {

@@ -90,7 +90,7 @@ class MeetingContentCenter extends React.Component {
     const { RangePicker } = DatePicker;
     const { meeting: { meetingDate } } = this.props;
     return (
-      <div className="meeting-search-btn">
+      <div className="meeting-search-btn clear">
         <span>会议主题：</span>
         <div style={{ marginBottom: 16 }} className="search-by-topic">
           <Input
@@ -99,7 +99,7 @@ class MeetingContentCenter extends React.Component {
             onChange={this.meetingSearch}
           />
         </div>
-        <span>会议时间:</span>
+        <span>会议时间：</span>
         <div
           style={{ marginBottom: 16,position: "relative"}}
           className="search-by-date"

@@ -11,7 +11,7 @@ class SubjectNews extends React.Component{
   newsDetails = (title) => {
     const token = localStorage.getItem("token");
     const url = window.location.origin;
-    window.open(`${url}/managecenter/upload/${title}.pdf?uid=${token}`,"_blank");
+    window.open(`${url}/managecenter/brief/download?fileName=${title}.pdf&uid=${token}`,"_blank");
   };
 
   goReportPage = () => {

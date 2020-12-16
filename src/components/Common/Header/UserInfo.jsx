@@ -54,22 +54,23 @@ class UserInfo extends React.Component{
           <p>您目前正在以游客身份访问本系统，浏览权限将受到部分限制：</p>
           <p>1、资料共享页面需登录后可进行访问；</p>
           <p>2、国内文献、海外文献浏览数量限制为500篇，如需浏览更多，请进行登录</p>
-          <p>如需申请正式账号，请邮箱联系：jinhuimin@caas.cn</p>
+          <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>
         </div>
       );
     };
     return (
       <div className="top-r">
         <div className="user-info">
-          <span>欢迎您！
-            {
-              username === "guest" ?
-                (
-                  <Tooltip placement="bottomRight" title={tips}>
-                    {realName}<img alt="tips" src={tipsImg} />
-                  </Tooltip>
-                ) :
-                (
+          {
+            username === "guest" ?
+              (
+                <Tooltip placement="leftTop" title={tips} trigger="click">
+                  欢迎您！{realName}<img alt="tips" src={tipsImg} />
+                </Tooltip>
+              ) :
+              (
+                <span>
+                  欢迎您！
                   <a
                     rel="noopener noreferrer"
                     href={`/managecenter/user/editUser/1?uid=${token}`}
@@ -77,9 +78,9 @@ class UserInfo extends React.Component{
                   >
                     {realName}
                   </a>
-                )
-            }
-          </span>
+                </span>
+              )
+          }
           {(username && username !== "guest") ?
             (
               <Button onClick={() => this.showConfirm()}>退出</Button>

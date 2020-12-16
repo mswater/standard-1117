@@ -28,6 +28,9 @@
   text-align:right;
   background:rgba(255,255,255,1);
 }
+.industry-trends li .sub-title a:hover{
+  color:#40a9ff;
+}
 .industry-trends li .industry-detail{
   margin-top:25px;
 }

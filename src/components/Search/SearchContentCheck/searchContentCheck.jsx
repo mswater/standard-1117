@@ -39,11 +39,11 @@ const sortArrSecond = [{
 const sortArrThird = [{
   value: "检索评分",
   flag: false,
-  id: 1
+  id: 8
 }, {
   value: "发表年份",
   flag: false,
-  id: 2
+  id: 9
 }];
 function itemRender(current, type, originalElement){
   if (type === "prev") {
@@ -280,6 +280,8 @@ class SearchContentCheck extends React.Component {
       commentOrder: "",
       likeOrder: "",
       mettingOrder: "",
+      scoreOrder: "",
+      yearOrder: "",
       blogType:null,
       pageNum: page,
       pageSize: 10
@@ -304,6 +306,12 @@ class SearchContentCheck extends React.Component {
     }
     if(orderType === "7"){
       params.mettingOrder = orderFlag!=="false" ? "desc" : "asc";
+    }
+    if(orderType === "8"){ // 检索评分
+      params.scoreOrder = orderFlag!=="false" ? "desc" : "asc";
+    }
+    if(orderType === "9"){ // 发表年份
+      params.yearOrder = orderFlag!=="false" ? "desc" : "asc";
     }
     fetchSearch(params);
   };
@@ -463,6 +471,8 @@ class SearchContentCheck extends React.Component {
       commentOrder: "",
       likeOrder: "",
       mettingOrder: "",
+      scoreOrder: "",
+      yearOrder: "",
       blogType:null,
       pageNum: 1,
       pageSize: 10
@@ -487,6 +497,12 @@ class SearchContentCheck extends React.Component {
     }
     if(orderType === 7){
       params.mettingOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+    }
+    if(orderType === 8){
+      params.scoreOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+    }
+    if(orderType === 9){
+      params.yearOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
     }
     fetchSearchResetButton(false);
     fetchSearchThemeSearchFlag(false);

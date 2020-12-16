@@ -118,7 +118,7 @@ class Login extends React.Component {
             <p>尊敬的访客，如不进行登录，您将以游客身份访问本系统，浏览权限将受到部分限制：</p>
             <p>1、资料共享页面需登录后可进行访问；</p>
             <p>2、国内文献、海外文献浏览数量限制为500篇，如需浏览更多，请进行登录</p>
-            <p>如需申请正式账号，请邮箱联系：jinhuimin@caas.cn</p>
+            <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>
             <img alt="tips" src={tips} />
           </div>
         </div>

@@ -5,19 +5,20 @@
 }
 
 .meeting-search-btn{
-  display: flex;
   margin-top:20px;
 }
 .meeting-search-btn .search-by-topic{
+  float:left;
   width:40%;
   margin-right:10px;
 }
 .meeting-search-btn>span{
-  width: 10%;
-  line-height: 2;
+  float:left;
+  line-height: 32px;
 }
 .meeting-search-btn .search-by-date{
-  width:58%;
+  float:left;
+  width:45%;
 }
 .search-by-date-picker{
   width:75%;

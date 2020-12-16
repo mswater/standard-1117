@@ -78,9 +78,9 @@ class LiteratureContent extends React.Component{
               className="menu"
               mode="inline"
               defaultSelectedKeys={sharingMaterialType === "" ?
-                "all-material" : sharingMaterialType}
+                "0" : sharingMaterialType}
             >
-              <Menu.Item title="全部">
+              <Menu.Item key="0" title="全部">
                 <a onClick={() => {return this.handleId("");}}>全部</a>
               </Menu.Item>
               {firstItem}
