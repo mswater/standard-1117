@@ -12,12 +12,7 @@ function itemRender(current, type, originalElement){
   }
   return originalElement;
 }
-const sortArrFirst = [{
-  value: "发表时间",
-  flag: false,
-  id: 1
-}];
-const sortArrSecond = [{
+const sortArr = [{
   value: "发表时间",
   flag: false,
   id: 1
@@ -51,8 +46,6 @@ class LiteratureContentCheck extends React.Component {
     if (literatureResetButtonFlag) {
       this.addEvent();
       /* eslint-disable no-nested-ternary */
-      const literatureContact = localStorage.getItem("literatureContact");
-      const sortArr = literatureContact === "5" ? sortArrSecond : sortArrFirst;
       const { classSort } = this;
       const arr = classSort.children;
       for (let i = 0; i < arr.length; i += 1) {
@@ -110,25 +103,21 @@ class LiteratureContentCheck extends React.Component {
         literatureSearchQuery,
         literatureDateQuery,
         literatureSelectQuery,
-        literatureWebsite
       }
     } = this.props;
-    const docId = localStorage.getItem("lId");
-    const literatureContact = localStorage.getItem("literatureContact");
+    const sId = localStorage.getItem("sId");
     const orderType = localStorage.getItem("literatureOrderType");
     const orderFlag = localStorage.getItem("literatureOrderFlag");
     const params = {
-      searchKey:literatureSearchQuery,
-      hId: !docId ? (docId === "" ? "" : "421") : Number(docId),
-      sourceType:Number(literatureContact),
-      webList: literatureWebsite,
-      selectedField:literatureSelectQuery,
-      startDate:literatureDateQuery[0],
-      endDate:literatureDateQuery[1],
-      order: orderFlag!=="false" ? "desc" : "asc",
+      searchWord:literatureSearchQuery,
+      sid: sId ? Number(sId) : null,
+      searchType:literatureSelectQuery,
+      starTime:literatureDateQuery[0],
+      endTime:literatureDateQuery[1],
+      timeOrder: orderFlag !== "" ? orderFlag : "desc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:page,
-      pageSize:10
+      pageSize:10,
     };
     fetchLiteratureContentList(params);
   };
@@ -147,10 +136,10 @@ class LiteratureContentCheck extends React.Component {
       fetchArticleCancelCollect,
       fetchLiteratureCollect,
     } = this.props;
-    const literatureContact = localStorage.getItem("literatureContact");
+    // 内部资料 type=9
     const params = {
       cid: fileName || id,
-      type: Number(literatureContact),
+      type: 9,
     };
     if(iscollect === 1){
       return fetchArticleCancelCollect(params, () => {
@@ -173,15 +162,12 @@ class LiteratureContentCheck extends React.Component {
         literatureSearchQuery,
         literatureDateQuery,
         literatureSelectQuery,
-        literatureWebsite
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
     /* eslint-disable no-param-reassign */
     /* eslint-disable array-callback-return */
-    const docId = localStorage.getItem("lId");
-    const literatureContact = localStorage.getItem("literatureContact");
-    const sortArr = literatureContact === "5" ? sortArrSecond : sortArrFirst;
+    const sId = localStorage.getItem("sId");
     if (orderType !== 3) {
       if (this.sort_index === idx) {
         sortArr.map((cur, index) => {
@@ -213,18 +199,16 @@ class LiteratureContentCheck extends React.Component {
       }
     }
     const params = {
-      searchKey:literatureSearchQuery,
-      hId: !docId ? (docId === "" ? "" : 421) : Number(docId),
-      sourceType:Number(literatureContact),
-      webList: literatureWebsite,
-      selectedField:literatureSelectQuery,
-      startDate:literatureDateQuery[0],
-      endDate:literatureDateQuery[1],
-      order: orderType === 3 ? "desc" :
+      searchWord:literatureSearchQuery,
+      searchType:literatureSelectQuery,
+      starTime:literatureDateQuery[0],
+      endTime:literatureDateQuery[1],
+      timeOrder: orderType === 3 ? "desc" :
         (!sortArr[this.sort_index].flag ? "desc" : "asc"),
       orderType,
       pageNum:1,
-      pageSize:10
+      pageSize:10,
+      sid: sId ? Number(sId) : null,
     };
     fetchLiteratureResetButton(false);
     fetchLiteratureThemeSearchFlag(false);
@@ -257,8 +241,6 @@ class LiteratureContentCheck extends React.Component {
 
 
   render() {
-    const literatureContact = localStorage.getItem("literatureContact");
-    const sortArr = literatureContact === "5" ? sortArrSecond : sortArrFirst;
     const {
       literature:{
         literatureContentListData:{
@@ -278,84 +260,52 @@ class LiteratureContentCheck extends React.Component {
           <div className="literature-content-check-item-title clear">
             <a
               className="literature-detail"
-              href={cur.pageUrl}
+              href={cur.fPageUrl}
               target="_blank"
               rel="noopener noreferrer"
               dangerouslySetInnerHTML={{
-                __html: cur.subTitle
+                __html: cur.fArticleTitle
               }}
-              title={cur.subTitle}
+              title={cur.fArticleTitle}
               onClick={() => {return this.readingNum(cur.id);}}
             />
           </div>
           <div className="literature-content-check-item-text">
             <a
               className="literature-detail"
-              href={cur.pageUrl}
+              href={cur.fPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              title={cur.title}
-              dangerouslySetInnerHTML={{ __html:`${cur.summary}`}}
+              title={cur.fArticleTitle}
+              dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}`}}
               onClick={() => {return this.readingNum(cur.id);}}
             />
           </div>
           <div className="literature-content-check-item-bottom clear">
             <div className="fl">
               { /* eslint-disable no-nested-ternary */ }
-              {literatureContact === "4" ? (
-                <div className="literature-content-info">
-                  <span>发表时间：</span>
-                  <span>{(cur.time || "").split(" ").splice(0,1)}</span>
-                  <span>作者：</span>
-                  <span className="literature_author">
-                    <a
-                      href="#"
-                      title={cur.author.replace(/[\r\n]/g,"")}
-                      dangerouslySetInnerHTML={{ __html:cur.author}}
-                    />
+              <div className="literature-content-info">
+                <span>创建人：</span>
+                <span className="literature_author">
+                  <a href="#" title={cur.fArticleAuthor}>
+                    {cur.fArticleAuthor}
+                  </a>
+                </span>
+                <span>创建时间：</span>
+                <span>{(cur.fArticleTime || "").split(" ").splice(0,1)}</span>
+                { cur.fFetchtime !== "" ? (
+                  <span>
+                    <span>修改时间：</span>
+                    <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
                   </span>
-                  <span>期刊：</span>
-                  <span className="literature_author">
-                    <a href="#" title={cur.bookName}>
-                      {cur.bookName}
-                    </a>
-                  </span>
-                </div>
-              ): (
-                <div className="literature-content-info">
-                  <span>发表时间：</span>
-                  <span>{(cur.time || "").split(" ").splice(0,1)}</span>
-                  <span>作者：</span>
-                  <span className="literature_author">
-                    <a href="#" title={cur.author}>
-                      {cur.author}
-                    </a>
-                  </span>
-                  <span >期刊：</span>
-                  <span className="literature_article">
-                    <a href="#" title={cur.bookName}>
-                      {cur.bookName}
-                    </a>
-                  </span>
-                  <span>来源：</span>
-                  <span className="literature_article">
-                    <a href="#" title={cur.source}>
-                      {cur.source}
-                    </a>
-                  </span>
-                </div>
-              )
-              }
+                ) : "" }
+              </div>
             </div>
             <div className="literature-content-check-item-click fr">
-              {literatureContact === "4" ? "" :
-                <button type="button" className="read-num">
-                  <Icon type="eye"/>
-                </button>
-              }
-              {literatureContact === "4" ? "" :
-                <span>{cur.readNum === 0 ? 0 : cur.readNum}</span>
-              }
+              <button type="button" className="read-num">
+                <Icon type="eye"/>
+              </button>
+              <span>{cur.readnum === 0 ? 0 : cur.readnum}</span>
               <button
                 type="button"
                 onClick={() => {
@@ -368,7 +318,7 @@ class LiteratureContentCheck extends React.Component {
                     : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
                 }
               </button>
-              <span>{cur.iscollect ? cur.iscollect : 0}</span>
+              <span>{cur.collectNum ? cur.collectNum : 0}</span>
             </div>
           </div>
         </div>

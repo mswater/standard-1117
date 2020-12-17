@@ -190,7 +190,6 @@
 }
 
 .literature_author{
-  width: 215px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

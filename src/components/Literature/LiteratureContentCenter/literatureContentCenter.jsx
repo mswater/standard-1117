@@ -41,23 +41,29 @@ class LiteratureContentCenter extends React.Component {
   };
 
   handleChange = e => {
-    const { fetchLiteratureSearchValue } = this.props;
-    fetchLiteratureSearchValue(e.target.value);
+    const { fetchLiteratureSearchQuery } = this.props;
+    fetchLiteratureSearchQuery(e.target.value);
   };
 
   handleSelectChange = value => {
+    const {fetchLiteratureSelectQuery} = this.props;
     this.searchTheme = value;
     this.setState({
       selectValue: value
     });
+    fetchLiteratureSelectQuery(value);
   };
 
   literatureSearch = () => {
-    const { startTime,endTime,selectValue } = this.state;
+    const { startTime,endTime, } = this.state;
+    const sId = localStorage.getItem("sId");
+    const orderType = localStorage.getItem("literatureOrderType");
+    const orderFlag = localStorage.getItem("literatureOrderFlag");
     const {
       fetchLiteratureResetButton,
       literature:{
-        literatureSearchValue
+        literatureSearchQuery,
+        literatureSelectQuery,
       }
     } = this.props;
     const {
@@ -68,17 +74,18 @@ class LiteratureContentCenter extends React.Component {
       fetchLiteratureThemeSearchFlag,
     } = this.props;
     const params = {
-      searchKey: literatureSearchValue,
-      selectedField:this.searchTheme ? this.searchTheme : selectValue ,
-      startDate: startTime,
-      endDate: endTime,
-      order:"desc",
-      orderType:literatureSearchValue === "" ? 1 :3,
+      searchWord: literatureSearchQuery,
+      searchType: literatureSelectQuery,
+      startTime,
+      endTime,
+      timeOrder: orderFlag !== "" ? orderFlag : "desc",
+      orderType,
       pageNum:1,
-      pageSize:10
+      pageSize:10,
+      sid: sId,
     };
     const date = [startTime, endTime];
-    fetchLiteratureSearchQuery(literatureSearchValue);
+    fetchLiteratureSearchQuery(literatureSearchQuery);
     fetchLiteratureSelectQuery(this.searchTheme);
     fetchLiteratureDateQuery(date);
     fetchLiteratureResetButton(false);
@@ -88,7 +95,7 @@ class LiteratureContentCenter extends React.Component {
 
   render() {
     const { selectValue } = this.state;
-    const { literature: { literatureDate, literatureSearchValue } } = this.props;
+    const { literature: { literatureDate, literatureSearchQuery } } = this.props;
     const selectBefore = (
       <Select
         value={`${selectValue}`}
@@ -110,7 +117,7 @@ class LiteratureContentCenter extends React.Component {
           >
             <Input
               addonBefore={selectBefore}
-              value={literatureSearchValue}
+              value={literatureSearchQuery}
               allowClear
               onChange={this.handleChange}
             />

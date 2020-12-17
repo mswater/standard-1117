@@ -16,7 +16,6 @@ import {
   fetchLiteratureDateQuery,
   fetchLiteratureSelectQuery,
   fetchLiteratureDate,
-  fetchLiteratureSearchValue,
   fetchLiteratureWebsite,
   fetchLiteratureThemeSearchFlag,
   fetchLiteratureResetButton,
@@ -49,7 +48,7 @@ class Literature extends React.Component{
       }
     } = this.props;
     const obj = {
-      sid:11,
+      sid:null,
       searchWord: literatureSearchQuery,
       searchType:literatureSelectQuery,
       starTime:literatureDateQuery[0],
@@ -68,17 +67,15 @@ class Literature extends React.Component{
       fetchLiteratureSearchQuery,
       fetchLiteratureDateQuery,
       fetchLiteratureDate,
-      fetchLiteratureSearchValue
     } = this.props;
     localStorage.setItem("literatureContact", "4");
     localStorage.setItem("sharingMaterialType", "");
-    localStorage.setItem("lId","421");
+    localStorage.setItem("sId",null);
     localStorage.setItem("literatureOrderType", "1");
     localStorage.setItem("literatureOrderFlag", "");
     fetchLiteratureSearchQuery();
     fetchLiteratureDateQuery();
     fetchLiteratureDate();
-    fetchLiteratureSearchValue();
   }
 
 
@@ -110,7 +107,6 @@ export default connect(
     fetchLiteratureDateQuery,
     fetchLiteratureSelectQuery,
     fetchLiteratureDate,
-    fetchLiteratureSearchValue,
     fetchArticleCollect,
     fetchArticleCancelCollect,
     fetchLiteratureWebsite,

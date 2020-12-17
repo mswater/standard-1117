@@ -100,7 +100,7 @@ class UserInfo extends React.Component{
                 个人主页
               </a>
             ) : ""}
-          {roleName.indexOf("管理员") !== -1 ?
+          {(roleName && roleName.indexOf("管理员") !== -1) ?
             (
               <a
                 className="backstage"

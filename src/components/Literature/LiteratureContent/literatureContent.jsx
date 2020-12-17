@@ -13,7 +13,7 @@ class LiteratureContent extends React.Component{
     };
   }
 
-  handleId=(lId)=>{
+  handleId=(sId)=>{
     const {
       fetchLiteratureContentList,
       fetchLiteratureSearchValueFun,
@@ -23,24 +23,21 @@ class LiteratureContent extends React.Component{
         literatureSelectQuery
       }
     } = this.props;
-    const sharingMaterialType = localStorage.getItem("sharingMaterialType");
     const orderType = localStorage.getItem("sharingOrderType");
     const orderFlag = localStorage.getItem("sharingOrderFlag");
     const obj ={
-      searchKey:literatureSearchQuery,
-      hId: lId,
-      sourceType:!sharingMaterialType ? 4 :Number(sharingMaterialType),
-      webList:[],
-      selectedField:literatureSelectQuery,
-      startDate:literatureDateQuery[0],
-      endDate:literatureDateQuery[1],
-      order:(orderFlag!=="false") ? "desc":"asc",
+      searchWord:literatureSearchQuery,
+      sid: sId,
+      searchType:literatureSelectQuery,
+      starTime:literatureDateQuery[0],
+      endTime:literatureDateQuery[1],
+      timeOrder:(orderFlag!=="false") ? "desc":"asc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10
     };
     fetchLiteratureSearchValueFun();
-    localStorage.setItem("lId", lId);
+    localStorage.setItem("sId", sId);
     fetchLiteratureContentList(obj);
   };
 
@@ -77,8 +74,7 @@ class LiteratureContent extends React.Component{
               onClick={this.handleClick}
               className="menu"
               mode="inline"
-              defaultSelectedKeys={sharingMaterialType === "" ?
-                "0" : sharingMaterialType}
+              defaultSelectedKeys={sharingMaterialType ? [`${sharingMaterialType}`] : ["0"]}
             >
               <Menu.Item key="0" title="全部">
                 <a onClick={() => {return this.handleId("");}}>全部</a>

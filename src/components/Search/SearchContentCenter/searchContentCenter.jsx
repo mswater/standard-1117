@@ -22,63 +22,63 @@ class SearchContentCenter extends React.Component {
         title: "您现在没有权限阅读此栏目",
         content: (
           <div>
-            <p>您可以联系xxx</p>
+            <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>
           </div>
         ),
         onOk() {
         },
       });
-      return ;
+    }else{
+      const {
+        history,
+        fetchSearch,
+        fetchSearchProList,
+        fetchSearchLanguageList,
+        fetchSearchResetButton,
+        fetchSearchResetWeibo,
+        headerSearchContent,
+        fetchSearchQuery,
+        fetchSearchValue,
+        search:{
+          searchDateQuery,
+        },
+        handlerIndex
+      } = this.props;
+      const params= {
+        type:typeSearch,
+        starTime: searchDateQuery[0],
+        endTime: searchDateQuery[1],
+        searchKey: headerSearchContent,
+        webList: [],
+        proList: [],
+        languageList: [],
+        timeOrder: "",
+        browseOrder: null,
+        relevantOrder: null,
+        transpondOrder: null,
+        commentOrder: null,
+        likeOrder: null,
+        mettingOrder: null,
+        blogType:null,
+        pageNum: 1,
+        pageSize: 10
+      };
+      if(!headerSearchContent){
+        params.timeOrder = "desc";
+      }else if(headerSearchContent){
+        params.relevantOrder = "desc";
+      }
+      history.push("/search");
+      localStorage.setItem("searchContact", typeSearch);
+      handlerIndex(0);
+      fetchSearchValue();
+      fetchSearchQuery();
+      fetchSearchResetWeibo(false);
+      fetchSearchProList(false);
+      fetchSearchLanguageList(false);
+      fetchSearchResetButton(true);
+      fetchSearch(params);
     }
-    const {
-      history,
-      fetchSearch,
-      fetchSearchProList,
-      fetchSearchLanguageList,
-      fetchSearchResetButton,
-      fetchSearchResetWeibo,
-      headerSearchContent,
-      fetchSearchQuery,
-      fetchSearchValue,
-      search:{
-        searchDateQuery,
-      },
-      handlerIndex
-    } = this.props;
-    const params= {
-      type:typeSearch,
-      starTime: searchDateQuery[0],
-      endTime: searchDateQuery[1],
-      searchKey: headerSearchContent,
-      webList: [],
-      proList: [],
-      languageList: [],
-      timeOrder: "",
-      browseOrder: null,
-      relevantOrder: null,
-      transpondOrder: null,
-      commentOrder: null,
-      likeOrder: null,
-      mettingOrder: null,
-      blogType:null,
-      pageNum: 1,
-      pageSize: 10
-    };
-    if(!headerSearchContent){
-      params.timeOrder = "desc";
-    }else if(headerSearchContent){
-      params.relevantOrder = "desc";
-    }
-    history.push("/search");
-    localStorage.setItem("searchContact", typeSearch);
-    handlerIndex(0);
-    fetchSearchValue();
-    fetchSearchQuery();
-    fetchSearchResetWeibo(false);
-    fetchSearchProList(false);
-    fetchSearchLanguageList(false);
-    fetchSearchResetButton(true);
-    fetchSearch(params);
   };
 
   checkType() {

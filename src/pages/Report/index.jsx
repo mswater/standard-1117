@@ -103,7 +103,7 @@ class Report extends React.Component{
                 onSearch={this.searchContent}
               />
             </div>
-            {roleName === "简报管理员" ? "" : (
+            {roleName === "简报管理员" ? (
               <a
                 className="new-report fr"
                 rel="noopener noreferrer"
@@ -111,7 +111,7 @@ class Report extends React.Component{
               >
                 新建简报
               </a>
-            )
+            ) : ""
             }
           </div>
           <div className="report-list">
