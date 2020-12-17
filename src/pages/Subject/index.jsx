@@ -45,6 +45,14 @@ class Subject extends React.Component {
     };
   }
 
+  componentWillMount() {
+    const {match:{params}}=this.props;
+    console.log(params);
+    if(params && params.subjectId){
+      localStorage.setItem("subjectContent", params.subjectId);
+      localStorage.setItem("subjectReadingId", params.subjectId);
+    }
+  }
 
   componentDidMount() {
     this.node.scrollIntoView();

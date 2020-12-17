@@ -12,7 +12,7 @@ const init = {
     webList:[],
     proList:[]
   },
-  literatureSelectQuery:"",
+  literatureSelectQuery:"1",
   literatureSearchQuery: "",
   literatureThemeSearchFlag: false,
   literatureDateQuery: [],

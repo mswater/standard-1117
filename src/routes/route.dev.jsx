@@ -79,6 +79,12 @@ const DevRouter = () => {
       />
       <Route
         exact
+        path="/subject/:subjectId"
+        target="_blank"
+        component={routesAuthority(Subject)}
+      />
+      <Route
+        exact
         path="/aboutus"
         component={routesAuthority(AboutUs)}
       />

@@ -68,7 +68,6 @@ class Literature extends React.Component{
       fetchLiteratureDateQuery,
       fetchLiteratureDate,
     } = this.props;
-    localStorage.setItem("literatureContact", "4");
     localStorage.setItem("sharingMaterialType", "");
     localStorage.setItem("sId",null);
     localStorage.setItem("literatureOrderType", "1");

@@ -13,11 +13,11 @@ class LiteratureContentCenter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectValue: "主题",
+      selectValue: "标题",
       startTime: "",
       endTime: ""
     };
-    this.searchTheme = "";
+    this.searchTheme = "1";
   }
 
   onChange = (date, dateString) => {
@@ -42,6 +42,7 @@ class LiteratureContentCenter extends React.Component {
 
   handleChange = e => {
     const { fetchLiteratureSearchQuery } = this.props;
+    console.log(e.target.value);
     fetchLiteratureSearchQuery(e.target.value);
   };
 
@@ -51,6 +52,7 @@ class LiteratureContentCenter extends React.Component {
     this.setState({
       selectValue: value
     });
+    console.log(value);
     fetchLiteratureSelectQuery(value);
   };
 
@@ -73,13 +75,14 @@ class LiteratureContentCenter extends React.Component {
       fetchLiteratureDateQuery,
       fetchLiteratureThemeSearchFlag,
     } = this.props;
+    console.log(literatureSelectQuery);
     const params = {
       searchWord: literatureSearchQuery,
       searchType: literatureSelectQuery,
       startTime,
       endTime,
       timeOrder: orderFlag !== "" ? orderFlag : "desc",
-      orderType,
+      orderType:!orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10,
       sid: sId,
@@ -102,10 +105,10 @@ class LiteratureContentCenter extends React.Component {
         style={{ width: 90 }}
         onChange={this.handleSelectChange}
       >
-        <Option value="标题">标题</Option>
-        <Option value="全文">全文</Option>
-        <Option value="摘要">摘要</Option>
-        <Option value="上传人">上传人</Option>
+        <Option value="1">标题</Option>
+        <Option value="2">全文</Option>
+        <Option value="3">摘要</Option>
+        <Option value="4">上传人</Option>
       </Select>
     );
     return (
