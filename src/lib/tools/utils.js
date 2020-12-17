@@ -62,9 +62,9 @@ export function getPortfolioCode() {
 }
 
 
-export function getDetailsPortfolioCode() {
+export function getMenuCode() {
   const arr = window.location.href.split("/");
-  return arr[arr.length - 2];
+  return arr[3];
 }
 
 

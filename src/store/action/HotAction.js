@@ -508,7 +508,6 @@ export const fetchHotResetFuzzyQuery = (params) => {
  */
 
 export const fetchSubjectResetFuzzyQuery = (params) => {
-  console.log(params);
   return (dispatch) => {
     dispatch({type: "SAVE_GET_SUBJECT_CONTENT_LIST", payload: params});
   };

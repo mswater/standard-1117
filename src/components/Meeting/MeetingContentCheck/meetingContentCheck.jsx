@@ -95,7 +95,8 @@ class MeetingContentCheck extends React.Component {
         meetingDateQuery,
         meetingThemeSearch,
         meetingSearchQuery,
-        meetingProListFlag
+        meetingProListFlag,
+        meetingLanguageListFlag,
       }
     } = this.props;
     const orderType = localStorage.getItem("meetingOrderType");
@@ -105,8 +106,11 @@ class MeetingContentCheck extends React.Component {
       searchKey: meetingThemeSearch,
       starTime:meetingDateQuery[0],
       endTime:meetingDateQuery[1],
-      webList: meetingProListFlag ? [] : (meetingSearchQuery === "全部" ? [] : meetingSearchQuery),
+      webList: meetingProListFlag ? [] : (meetingLanguageListFlag ? [] :
+        (meetingSearchQuery === "全部" ? [] : meetingSearchQuery)),
       proList: meetingProListFlag ? (meetingSearchQuery === "全部" ? [] : meetingSearchQuery) : [],
+      languageList: meetingLanguageListFlag ? (meetingSearchQuery === "全部" ?
+        [] : meetingSearchQuery) : [],
       timeOrder: "",
       browseOrder:"",
       relevantOrder:"",
@@ -162,7 +166,8 @@ class MeetingContentCheck extends React.Component {
         meetingDateQuery,
         meetingThemeSearch,
         meetingSearchQuery,
-        meetingProListFlag
+        meetingProListFlag,
+        meetingLanguageListFlag,
       }
     } = this.props;
     /* eslint-disable no-nested-ternary */
@@ -203,8 +208,11 @@ class MeetingContentCheck extends React.Component {
       searchKey: meetingThemeSearch,
       starTime:meetingDateQuery[0],
       endTime:meetingDateQuery[1],
-      webList: meetingProListFlag ? [] : (meetingSearchQuery === "全部" ? [] : meetingSearchQuery),
+      webList: meetingProListFlag ? [] : (meetingLanguageListFlag ? [] :
+        (meetingSearchQuery === "全部" ? [] : meetingSearchQuery)),
       proList: meetingProListFlag ? (meetingSearchQuery === "全部" ? [] : meetingSearchQuery) : [],
+      languageList: meetingLanguageListFlag ? (meetingSearchQuery === "全部" ?
+        [] : meetingSearchQuery) : [],
       timeOrder: "",
       browseOrder:"",
       relevantOrder:"",

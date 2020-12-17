@@ -42,7 +42,6 @@ class LiteratureContentCenter extends React.Component {
 
   handleChange = e => {
     const { fetchLiteratureSearchQuery } = this.props;
-    console.log(e.target.value);
     fetchLiteratureSearchQuery(e.target.value);
   };
 
@@ -52,7 +51,6 @@ class LiteratureContentCenter extends React.Component {
     this.setState({
       selectValue: value
     });
-    console.log(value);
     fetchLiteratureSelectQuery(value);
   };
 
@@ -75,7 +73,6 @@ class LiteratureContentCenter extends React.Component {
       fetchLiteratureDateQuery,
       fetchLiteratureThemeSearchFlag,
     } = this.props;
-    console.log(literatureSelectQuery);
     const params = {
       searchWord: literatureSearchQuery,
       searchType: literatureSelectQuery,

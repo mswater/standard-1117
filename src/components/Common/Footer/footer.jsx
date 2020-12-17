@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Select } from "antd";
 import "./index.css";
-import { getPortfolioCode, } from "../../../lib/tools/utils.js";
+import { getMenuCode, } from "../../../lib/tools/utils.js";
 
 const { Option } = Select;
 
@@ -27,7 +27,7 @@ class Footer extends React.Component {
   }
 
   render() {
-    const headerRouter = getPortfolioCode();
+    const headerRouter = getMenuCode();
     return (
       <footer>
         <div className="footer-con">

@@ -16,7 +16,6 @@ class UserInfo extends React.Component{
   componentWillMount() {
     const {fetchGuestLogin} = this.props;
     const token = localStorage.getItem("token");
-    console.log(token);
     if(!token){
       // 静默登录
       fetchGuestLogin();

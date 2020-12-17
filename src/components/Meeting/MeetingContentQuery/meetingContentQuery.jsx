@@ -17,13 +17,23 @@ class MeetingContentQuery extends React.Component {
 
   componentWillMount() {
     const {
+      home: {
+        conferenceTab
+      },
       fetchMeetingLanguageList,
+      fetchMeetingQuery,
     } = this.props;
     const meetingFrom = localStorage.getItem("meetingFrom");
     if(meetingFrom === "index"){
       fetchMeetingLanguageList(true);
+      if(conferenceTab === "home"){
+        fetchMeetingQuery("中文");
+      }else if(conferenceTab === "aboard"){
+        fetchMeetingQuery("英文");
+      }
     }else{
       fetchMeetingLanguageList(false);
+      fetchMeetingQuery();
     }
   }
 
@@ -61,7 +71,6 @@ class MeetingContentQuery extends React.Component {
     const meetingWeb = meetingData.webList;
     const meetingPro = meetingData.proList;
     const meetingLanguage = meetingData.languageList;
-    console.log(meetingLanguageListFlag, "did update");
     /* eslint-disable no-nested-ternary */
     const queryList = meetingProListFlag ?
       meetingPro : meetingLanguageListFlag ?
@@ -177,6 +186,8 @@ class MeetingContentQuery extends React.Component {
   };
 
   proListFunc = (cur) => {
+    // 重置该字段
+    localStorage.setItem("meetingFrom", "menu");
     this.setState({
       clickIndex:0
     });
@@ -245,6 +256,8 @@ class MeetingContentQuery extends React.Component {
   };
 
   searchItem =(item,clickIdx) =>{
+    // 重置该字段
+    localStorage.setItem("meetingFrom", "menu");
     this.setState({
       clickIndex: clickIdx === 0 ? clickIdx : 1
     });
@@ -287,7 +300,6 @@ class MeetingContentQuery extends React.Component {
     fetchMeetingQuery(item);
     fetchMeetingResetButton(false);
     fetchMeetingList(params);
-
   };
 
 
@@ -351,7 +363,6 @@ class MeetingContentQuery extends React.Component {
     const webList = ["全部"].concat(meetingData.webList);
     const proList = ["全部"].concat(meetingData.proList);
     const languageList = ["全部"].concat(meetingData.languageList);
-    console.log(meetingData);
     const meetingWeb = webList
       && webList.map((cur, index) => {
         return (

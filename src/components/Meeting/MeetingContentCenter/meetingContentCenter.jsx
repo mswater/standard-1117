@@ -52,14 +52,18 @@ class MeetingContentCenter extends React.Component {
         meetingSearchQuery,
         meetingProListFlag,
         meetingThemeSearch,
+        meetingLanguageListFlag,
       }
     } = this.props;
     const params = {
       starTime: startTime,
       endTime,
       searchKey: meetingThemeSearch,
-      webList:  meetingProListFlag ? [] : (meetingSearchQuery === "全部" ? [] : meetingSearchQuery),
+      webList:  meetingProListFlag ? [] : (meetingLanguageListFlag ? [] :
+        (meetingSearchQuery === "全部" ? [] : meetingSearchQuery)),
       proList: meetingProListFlag ? (meetingSearchQuery === "全部" ? [] : meetingSearchQuery) : [],
+      languageList: meetingLanguageListFlag ? (meetingSearchQuery === "全部" ?
+        [] : meetingSearchQuery) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder:"",

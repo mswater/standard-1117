@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Modal } from "antd";
-import { getPortfolioCode, } from "../../../lib/tools/utils.js";
+import { getMenuCode, } from "../../../lib/tools/utils.js";
 
 import "./index.css";
 
@@ -36,7 +36,7 @@ class Nav extends React.Component {
   };
 
   render() {
-    const headerRouter = getPortfolioCode();
+    const headerRouter = getMenuCode();
     return (
       <nav className="index-nav">
         <ul className="index-nav-con">
