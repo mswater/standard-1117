@@ -111,8 +111,8 @@ class SearchContentCheck extends React.Component {
         searchResetButtonFlag
       }
     } = this.props;
+    const searchContact = localStorage.getItem("searchContact");
     if (searchResetButtonFlag) {
-      const searchContact = localStorage.getItem("searchContact");
       const sortArr = searchContact === "2" ?
         sortArrSecond : ((searchContact === "4" || searchContact === "5")
           ? sortArrThird : sortArrFirst);
@@ -129,21 +129,18 @@ class SearchContentCheck extends React.Component {
       arr[0].style.color = "#0572B8";
       arr[0].children[1].style.color = "#0572B8";
     }
+    const { classSort } = this;
+    const arr = classSort.children;
     if(!searchResetButtonFlag) {
       if (searchThemeSearchFlag) {
-        if(headerSearchContent) {
-          const { classSort } = this;
-          const arr = classSort.children;
+        if(headerSearchContent && searchContact !== "4" && searchContact !== "5") {
           for (let i = 0; i < arr.length; i += 1) {
             arr[i].style.color = "#515256";
             arr[i].children[1].style.color = "#fff";
           }
           arr[arr.length - 1].style.color = "#0572B8";
           arr[arr.length - 1].children[1].style.color = "#0572B8";
-        }
-        if (!headerSearchContent) {
-          const { classSort } = this;
-          const arr = classSort.children;
+        }else{
           for (let i = 0; i < arr.length; i += 1) {
             arr[i].style.color = "#515256";
             arr[i].children[1].style.color = "#fff";
@@ -809,7 +806,9 @@ class SearchContentCheck extends React.Component {
             </div>
             <div className="fl" ref={(ref) => {this.classSort = ref;}}>
               {sortItem}
-              {(headerSearchContent !== "") && (
+              {(headerSearchContent !== "" &&
+                renderSearchContact !== "4" &&
+                renderSearchContact !== "5") && (
                 <button type="button" onClick={() => {return this.sortFunc(3,0);}}>
                   <span>相关性</span><Icon type="arrow-down" />
                 </button>

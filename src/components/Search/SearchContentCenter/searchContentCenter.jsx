@@ -76,7 +76,7 @@ class SearchContentCenter extends React.Component {
       fetchSearchResetWeibo(false);
       fetchSearchProList(false);
       fetchSearchLanguageList(false);
-      fetchSearchResetButton(true);
+      fetchSearchResetButton(false);
       fetchSearch(params);
     }
   };

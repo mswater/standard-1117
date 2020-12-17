@@ -63,14 +63,15 @@ class UserInfo extends React.Component{
           {
             username === "guest" ?
               (
-                <Tooltip placement="leftTop" title={tips} trigger="click">
-                  欢迎您！{realName}<img alt="tips" src={tipsImg} />
+                <Tooltip placement="bottom" title={tips}>
+                  欢迎您！<span className="name">{realName}</span><img alt="tips" src={tipsImg} />
                 </Tooltip>
               ) :
               (
                 <span>
                   欢迎您！
                   <a
+                    className="name"
                     rel="noopener noreferrer"
                     href={`/managecenter/user/editUser/1?uid=${token}`}
                     target="_blank"
