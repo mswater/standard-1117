@@ -17,7 +17,7 @@ class SearchContentCenter extends React.Component {
 
   contactFunc = (typeSearch) => {
     const username = localStorage.getItem("username");
-    if(typeSearch === 7 && username === "guest"){
+    if(typeSearch === 9 && username === "guest"){
       Modal.info({
         title: "您现在没有权限阅读此栏目",
         content: (
@@ -188,13 +188,13 @@ class SearchContentCenter extends React.Component {
         <button
           type="button"
           style={
-            searchContact === "7" ? {
+            searchContact === "9" ? {
               borderBottom:"1px solid #0572B8", color: "#0572B8"
             } : {
               borderBottom:"1px solid #F2F3F6", color: "#515256"
             }
           }
-          onClick={() => {return this.contactFunc(7);}}
+          onClick={() => {return this.contactFunc(9);}}
         >
           内部资料
         </button>

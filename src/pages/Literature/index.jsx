@@ -49,11 +49,12 @@ class Literature extends React.Component{
       }
     } = this.props;
     const obj = {
-      searchKey: literatureSearchQuery,
-      selectedField:literatureSelectQuery,
-      startDate:literatureDateQuery[0],
-      endDate:literatureDateQuery[1],
-      order:"desc",
+      sid:11,
+      searchWord: literatureSearchQuery,
+      searchType:literatureSelectQuery,
+      starTime:literatureDateQuery[0],
+      endTime:literatureDateQuery[1],
+      timeOrder: "desc",
       orderType:1,
       pageNum:1,
       pageSize:10

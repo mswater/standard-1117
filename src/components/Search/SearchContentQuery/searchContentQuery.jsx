@@ -54,7 +54,7 @@ class SearchContentQuery extends React.Component {
     const renderContactNumber = localStorage.getItem("searchContact");
     if (renderContactNumber === "4" ||
       renderContactNumber === "5" ||
-      renderContactNumber === "7") {
+      renderContactNumber === "9") {
       return;
     }
     if (!fetchSearchLoading && (queryList && queryList.length > 0)) {
@@ -341,7 +341,7 @@ class SearchContentQuery extends React.Component {
     }
     if (parseInt(renderContactNumber, 0) === 4 ||
       parseInt(renderContactNumber, 0) === 5 ||
-      parseInt(renderContactNumber, 0) === 7) {
+      parseInt(renderContactNumber, 0) === 9) {
       return [];
     }
     return ["来源网站", "地区分布"];
@@ -478,7 +478,7 @@ class SearchContentQuery extends React.Component {
       <div className="search-content-query">
         {(renderContactNumber !== "4"
           && renderContactNumber !== "5"
-          && renderContactNumber !== "7") && (
+          && renderContactNumber !== "9") && (
           <div className="search-content-query-class clear">
             <div className="fl">分组浏览 ：</div>
             <div className="search-content-query-box" ref={(ref) => {this.classType = ref;}}>
@@ -488,7 +488,7 @@ class SearchContentQuery extends React.Component {
         )}
         {(renderContactNumber !== "4"
           && renderContactNumber !== "5"
-          && renderContactNumber !== "7") && (
+          && renderContactNumber !== "9") && (
           <div className="search-content-query-select">
             <div className="query-top clear">
               {(!searchWeiboTypeFlag) && (
