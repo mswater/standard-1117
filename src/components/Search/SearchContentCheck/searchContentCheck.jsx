@@ -190,6 +190,12 @@ class SearchContentCheck extends React.Component {
   };
 
   searchDetails = (detailId) => {
+    const subjectContact = localStorage.getItem("subjectContact");
+    if(subjectContact === "4" || subjectContact === "5") {
+      localStorage.setItem("articleType", "4");
+    }else{
+      localStorage.setItem("articleType", "");
+    }
     const url = window.location.origin;
     window.open(`${url}/detail/${detailId}`,"_blank");
   };

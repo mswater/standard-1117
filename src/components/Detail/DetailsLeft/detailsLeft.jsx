@@ -10,6 +10,7 @@ class DetailsLeft extends React.Component {
   }
 
   render() {
+    // 文章类型 = 4  表示国内文献和海外文献
     const articleType = localStorage.getItem("articleType");
     const {
       article: {
@@ -28,7 +29,7 @@ class DetailsLeft extends React.Component {
                 <span>发表时间：{articleDetailData.fArticleTime}</span>
                 <span>来源期刊：{articleDetailData.fJobName}</span>
                 {
-                  (articleType !== "3" && articleType !== "4") ? (
+                  (articleType !== "4") ? (
                     <span>
                       <a
                         target="_blank"
@@ -42,7 +43,7 @@ class DetailsLeft extends React.Component {
                   ) : ""
                 }
               </p>
-              {(articleType === "3" || articleType === "4") ? (
+              {(articleType === "4") ? (
                 <p>
                   <p>
                     <span>作者</span><span>作者</span><span>作者</span><span>作者</span>

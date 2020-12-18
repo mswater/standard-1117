@@ -179,6 +179,12 @@ class SubjectContentCheck extends React.Component {
   };
 
   toDetails = (detailId) => {
+    const subjectContact = localStorage.getItem("subjectContact");
+    if(subjectContact === "4" || subjectContact === "5") {
+      localStorage.setItem("articleType", "4");
+    }else{
+      localStorage.setItem("articleType", "");
+    }
     const url = window.location.origin;
     window.open(`${url}/detail/${detailId}`,"_blank");
   };
@@ -509,78 +515,43 @@ class SubjectContentCheck extends React.Component {
           </li>
         );
       });
-    const item = this.resultListFunc(resultList)
-      && this.resultListFunc(resultList).map((cur,index) => {
+    let item;
+    // 国内文献，海外文献，item特殊处理
+    if(subjectContact === "4" || subjectContact === "5"){
+      item = resultList && resultList.map((cur) => {
         return (
-          <div className="hot-content-check-item" key={cur.id}>
+          <div className="hot-content-check-item" key={cur.gid}>
             <div className="hot-content-check-item-title clear">
-              <div className="fl">
-                <CheckboxGroup
-                  options={[cur.id ? cur.id.toString() : ""]}
-                  value={checkedList}
-                  onChange={this.onChange}
-                />
-                <span
-                  className="hot-content-title"
-                  onClick={() => {
-                    return this.toDetails(cur.id);
-                  }}
-                  dangerouslySetInnerHTML={{
-                    __html: cur.fArticleTitleColour
-                  }}
-                />
-              </div>
               <span
+                className="hot-content-title"
                 onClick={() => {
-                  return this.toggleList(index);
+                  return this.toDetails(cur.gid);
                 }}
-                className="repeat-article fr"
-              >
-                {
-                  (cur.samecount && cur.samecount > 0) ?
-                    (
-                      <span>
-                        [{cur.flag ? "点击收起" : "点击展开"}
-                        <b>{cur.samecount}</b>篇重复文章]
-                      </span>
-                    ):""
-                }
-              </span>
+                dangerouslySetInnerHTML={{ __html: cur.title }}
+              />
             </div>
             <div
               className="hot-content-check-item-text"
-              title={cur.fArticleIntroduction}
+              title={cur.abstract}
               onClick={() => {
-                return this.toDetails(cur.id);
+                return this.toDetails(cur.gid);
               }}
-              dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}${"..."}`}}
+              dangerouslySetInnerHTML={{ __html:`${cur.abstract}${"..."}`}}
             />
             <div className="hot-content-check-item-bottom clear">
               <div className="fl">
-                {subjectContact === "2" ? (
-                  <div>
-                    <span>发布时间：</span>
-                    <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
-                    <span>转发</span>
-                    <span>{cur.repost}</span>
-                    <span>评论</span>
-                    <span>{cur.comments}</span>
-                    <span>赞</span>
-                    <span>{cur.mlike}</span>
-                  </div>) : (
-                  <div>
-                    <span>发布时间：</span>
-                    <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
-                    <span>来源：</span>
-                    <span>{cur.fJobName}</span>
-                  </div>
-                )}
+                <div>
+                  <span>发表年份：</span>
+                  <span>{cur.year}年</span>
+                  <span>创建时间：</span>
+                  <span>{cur.year}</span>
+                  <span>作者：</span>
+                  <span>{cur.author}</span>
+                  <span>期刊：</span>
+                  <span>{cur.journalName}</span>
+                </div>
               </div>
               <div className="hot-content-check-item-click fr">
-                <button type="button" className="read-num">
-                  <Icon type="eye"/>
-                </button>
-                <span>{cur.readnum}</span>
                 {username === "guest" ? "" : (
                   <span>
                     <button
@@ -601,16 +572,114 @@ class SubjectContentCheck extends React.Component {
                 }
               </div>
             </div>
-            {(cur.flag) && (
-              <div className="same-article-list-container">
-                <ul className="same-article-list">
-                  {sameList}
-                </ul>
-              </div>
-            )}
           </div>
         );
       });
+    }else{
+      item = this.resultListFunc(resultList) &&
+        this.resultListFunc(resultList).map((cur,index) => {
+          return (
+            <div className="hot-content-check-item" key={cur.id}>
+              <div className="hot-content-check-item-title clear">
+                <div className="fl">
+                  <CheckboxGroup
+                    options={[cur.id ? cur.id.toString() : ""]}
+                    value={checkedList}
+                    onChange={this.onChange}
+                  />
+                  <span
+                    className="hot-content-title"
+                    onClick={() => {
+                      return this.toDetails(cur.id);
+                    }}
+                    dangerouslySetInnerHTML={{
+                      __html: cur.fArticleTitleColour
+                    }}
+                  />
+                </div>
+                <span
+                  onClick={() => {
+                    return this.toggleList(index);
+                  }}
+                  className="repeat-article fr"
+                >
+                  {
+                    (cur.samecount && cur.samecount > 0) ?
+                      (
+                        <span>
+                          [{cur.flag ? "点击收起" : "点击展开"}
+                          <b>{cur.samecount}</b>篇重复文章]
+                        </span>
+                      ):""
+                  }
+                </span>
+              </div>
+              <div
+                className="hot-content-check-item-text"
+                title={cur.fArticleIntroduction}
+                onClick={() => {
+                  return this.toDetails(cur.id);
+                }}
+                dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}${"..."}`}}
+              />
+              <div className="hot-content-check-item-bottom clear">
+                <div className="fl">
+                  {subjectContact === "2" ? (
+                    <div>
+                      <span>发布时间：</span>
+                      <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+                      <span>转发</span>
+                      <span>{cur.repost}</span>
+                      <span>评论</span>
+                      <span>{cur.comments}</span>
+                      <span>赞</span>
+                      <span>{cur.mlike}</span>
+                    </div>) : (
+                    <div>
+                      <span>发布时间：</span>
+                      <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+                      <span>来源：</span>
+                      <span>{cur.fJobName}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="hot-content-check-item-click fr">
+                  <button type="button" className="read-num">
+                    <Icon type="eye"/>
+                  </button>
+                  <span>{cur.readnum}</span>
+                  {username === "guest" ? "" : (
+                    <span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          return this.collectArticle(cur);
+                        }}
+                      >
+                        {
+                          (cur.iscollect === 1) ?
+                            <Icon theme="filled" type="star" style={{ color: "#F6BD4E" }}/>
+                            : <Icon theme="outlined" type="star" style={{ color: "#797979" }}/>
+                        }
+                      </button>
+                      <span>{cur.iscollect ? cur.iscollect : 0}</span>
+                    </span>
+                  )
+                  }
+                </div>
+              </div>
+              {(cur.flag) && (
+                <div className="same-article-list-container">
+                  <ul className="same-article-list">
+                    {sameList}
+                  </ul>
+                </div>
+              )}
+            </div>
+          );
+        });
+    }
+
     const sortArr = (subjectContact === "2") ? sortArrSecond :
       ((subjectContact === "4" || subjectContact === "5") ?
         sortArrThird : sortArrFirst);
