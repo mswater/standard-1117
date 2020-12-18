@@ -80,9 +80,9 @@ class SubjectContentTop extends React.Component {
         searchKey: subjectThemeSearch,
         hId: params.kid,
         sourceType: !subjectContact ? "" : Number(subjectContact),
-        webList: [],
-        proList: [],
-        languageList: [],
+        webList: ["全部"],
+        proList: null,
+        languageList: null,
         order:!orderFlag ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
         startDate:subjectStartDate,
@@ -144,12 +144,12 @@ class SubjectContentTop extends React.Component {
       searchKey:searchWord,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
-        (subjectLanguageTypeFlag ? [] : (subjectSearchQuery!==[] ? subjectSearchQuery : []))),
-      proList:subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
-        (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : []),
+      webList:subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
+        (subjectLanguageTypeFlag ? null : (subjectSearchQuery!==[] ? subjectSearchQuery : null))),
+      proList:subjectWeiboTypeFlag ? null : (subjectProListFlag ?
+        (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : null),
       languageList:subjectLanguageTypeFlag ?
-        (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : [],
+        (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : null,
       order:"desc",
       isOrigin:(subjectSearchQuery === "转发微博") ? 1 :(subjectSearchQuery === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,

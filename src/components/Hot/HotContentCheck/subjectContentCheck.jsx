@@ -49,6 +49,10 @@ const sortArrThird = [{
   value: "发表年份",
   flag: false,
   id: 9
+}, {
+  value: "创建时间",
+  flag: false,
+  id: 10
 }];
 function itemRender(current, type, originalElement){
   if (type === "prev") {
@@ -265,15 +269,15 @@ class SubjectContentCheck extends React.Component {
       searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
-        (subjectLanguageTypeFlag ? [] : (subjectSearchQuery!==[] ?
-          (subjectSearchQuery === ["全部"] ? [] : subjectSearchQuery) : []))),
-      proList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
-        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] :
-          subjectSearchQuery) : ["全部"]): []),
+      webList: subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
+        (subjectLanguageTypeFlag ? null : (subjectSearchQuery!== null ?
+          (subjectSearchQuery === ["全部"] ? null : subjectSearchQuery) : null))),
+      proList: subjectWeiboTypeFlag ? null : (subjectProListFlag ?
+        (subjectSearchQuery!== [] ? (subjectSearchQuery === ["全部"] ? null :
+          subjectSearchQuery) : ["全部"]): null),
       languageList: subjectLanguageTypeFlag ?
-        (subjectSearchQuery!==[] ? (subjectSearchQuery === ["全部"] ? [] :
-          subjectSearchQuery) : ["全部"]): [],
+        (subjectSearchQuery!== [] ? (subjectSearchQuery === ["全部"] ? null :
+          subjectSearchQuery) : ["全部"]): null,
       order: orderFlag!=="false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:subjectStartDate,
@@ -390,7 +394,7 @@ class SubjectContentCheck extends React.Component {
     const sortArr = (subjectContact === "2") ? sortArrSecond :
       ((subjectContact === "4" || subjectContact === "5") ?
         sortArrThird : sortArrFirst);
-    if (orderType !== 3) {
+    if (orderType !== 3 && orderType !== 8) {
       if (this.sort_index === idx) {
         sortArr.map((cur, index) => {
           if (index === idx) {
@@ -405,7 +409,7 @@ class SubjectContentCheck extends React.Component {
         });
       }
     }
-    if (orderType === 3) {
+    if (orderType === 3 || orderType === 8) {
       if (this.sort_index === idx) {
         sortArr.map((cur, index) => {
           if (index === idx) {
@@ -424,13 +428,13 @@ class SubjectContentCheck extends React.Component {
       searchKey: subjectThemeSearch,
       hId: Number(readingId),
       sourceType:Number(subjectContact),
-      webList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ? [] :
-        (subjectLanguageTypeFlag ? [] :
-          (subjectSearchQuery!==[] ? subjectSearchQuery : []))),
-      proList: subjectWeiboTypeFlag ? [] : (subjectProListFlag ?
-        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : []),
+      webList: subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
+        (subjectLanguageTypeFlag ? null :
+          (subjectSearchQuery!==[] ? subjectSearchQuery : null))),
+      proList: subjectWeiboTypeFlag ? null : (subjectProListFlag ?
+        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : null),
       languageList: subjectLanguageTypeFlag ?
-        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : [],
+        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : null,
       order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
       orderType,
       startDate:subjectStartDate,
@@ -475,6 +479,7 @@ class SubjectContentCheck extends React.Component {
     const {
       hot:{
         fetchSubjectContentListLoading,
+        subjectContentListData,
         subjectContentListData:{
           page:{
             resultList,
@@ -488,6 +493,7 @@ class SubjectContentCheck extends React.Component {
         sameListData,
       },
     } = this.props;
+    console.log(subjectContentListData);
     const sameList = sameListData
       && sameListData.map((cur,index) => {
         return(
@@ -503,7 +509,6 @@ class SubjectContentCheck extends React.Component {
           </li>
         );
       });
-
     const item = this.resultListFunc(resultList)
       && this.resultListFunc(resultList).map((cur,index) => {
         return (
