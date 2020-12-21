@@ -183,6 +183,7 @@ class SearchContentQuery extends React.Component {
       fetchSearchResetWeibo,
       headerSearchContent,
       fetchSearchValue,
+      fetchSearchQuery,
       search:{
         searchDateQuery,
       },
@@ -247,6 +248,7 @@ class SearchContentQuery extends React.Component {
       weiboFlag = false;
     }
     fetchSearchValue();
+    fetchSearchQuery();
     fetchSearchResetWeibo(weiboFlag);
     fetchSearchProList(proFlag);
     fetchSearchLanguageList(languageFlag);
