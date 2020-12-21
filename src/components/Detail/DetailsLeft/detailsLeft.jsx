@@ -66,7 +66,11 @@ class DetailsLeft extends React.Component {
             </div>
             <div className="hot-details">
               <p dangerouslySetInnerHTML={{ __html:articleDetailData.fContent}} />
-              <p>关键词：{articleDetailData.vsm}</p>
+              {
+                (articleType !== "4") ? "" : (
+                  <p>关键词：{articleDetailData.vsm}</p>
+                )
+              }
             </div>
           </div>
         }
