@@ -536,7 +536,7 @@ class SubjectContentCheck extends React.Component {
               onClick={() => {
                 return this.toDetails(cur.gid);
               }}
-              dangerouslySetInnerHTML={{ __html:`${cur.abs}${"..."}`}}
+              dangerouslySetInnerHTML={{ __html:`${cur.abstract}${"..."}`}}
             />
             <div className="hot-content-check-item-bottom clear">
               <div className="fl">

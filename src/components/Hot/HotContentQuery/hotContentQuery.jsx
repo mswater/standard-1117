@@ -52,6 +52,7 @@ class HotContentQuery extends React.Component {
     const searchWeb = hotContentListData.webList;
     const searchPro = hotContentListData.proList;
     const searchlanguage = hotContentListData.languageList;
+    console.log(hotContentListData);
     /* eslint-disable no-nested-ternary */
     const queryList = hotProListFlag ? searchPro :
       (hotLanguageTypeFlag ? searchlanguage :
@@ -126,9 +127,11 @@ class HotContentQuery extends React.Component {
     if (!value || value === "全部") {
       fetchHotContentList(paramsEmpty);
     }
+    console.log(hotContentListData, "fuzzyQuery");
     const isWebList = hotProListFlag ? hotContentListData.hotProList
       : hotContentListData.hotWebList;
     const fuzzyArr = fuzzyQuery(isWebList, value);
+    console.log(fuzzyArr);
     /**
      * 重新渲染数组，这里要mock和返回的对象一样的数据格式
      * 先用展开原有的对象，在重新赋值想改变的数组

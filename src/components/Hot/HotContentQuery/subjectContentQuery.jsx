@@ -136,6 +136,7 @@ class SubjectContentQuery extends React.Component {
     const isWebList = subjectProListFlag ? subjectContentListData.subjectProList
       : subjectContentListData.subjectWebList;
     const fuzzyArr = fuzzyQuery(isWebList, value);
+    console.log(fuzzyArr, "fuzzyQuery");
     /**
      * 重新渲染数组，这里要mock和返回的对象一样的数据格式
      * 先用展开原有的对象，在重新赋值想改变的数组
@@ -143,11 +144,11 @@ class SubjectContentQuery extends React.Component {
      */
     const paramsWeb = {
       ...subjectContentListData,
-      subjectWebList: fuzzyArr
+      webList: fuzzyArr
     };
     const paramsPro = {
       ...subjectContentListData,
-      subjectProList: fuzzyArr
+      proList: fuzzyArr
     };
     fetchSubjectResetFuzzyQuery(subjectProListFlag ? paramsPro : paramsWeb);
   };

@@ -43,9 +43,9 @@ const init = {
       resultList:[],
       rowCount:0
     },
-    subjectWebList:[],
-    subjectProList:[],
-    subjectLanguageList:[]
+    webList:[],
+    proList:[],
+    languageList:[]
   },
   // 热点监测图表----站点活跃度统计图
   siteActivityMapData:[],

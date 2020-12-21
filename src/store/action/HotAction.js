@@ -177,12 +177,8 @@ export const fetchHotContentList = (params) => {
               dispatch(fetchSameCount(cur.id));
             }
           });
-          if(!proList) {
-            proList = response.data.data && response.data.data.proList;
-          }
-          if(!webList) {
-            webList = response.data.data && response.data.data.webList;
-          }
+          proList = response.data.data && response.data.data.proList;
+          webList = response.data.data && response.data.data.webList;
           dispatch({
             type: "SAVE_GET_HOT_CONTENT_LIST",
             payload: {
@@ -223,15 +219,9 @@ export const fetchSubjectContentList = (params) => {
               dispatch(fetchSameCount(cur.id));
             }
           });
-          if(!subjectProList) {
-            subjectProList = response.data.data && response.data.data.proList;
-          }
-          if(!subjectWebList) {
-            subjectWebList = response.data.data && response.data.data.webList;
-          }
-          if(!subjectLanguageList){
-            subjectLanguageList = response.data.data && response.data.data.languageList;
-          }
+          subjectProList = response.data.data && response.data.data.proList;
+          subjectWebList = response.data.data && response.data.data.webList;
+          subjectLanguageList = response.data.data && response.data.data.languageList;
           dispatch({
             type: "SAVE_GET_SUBJECT_CONTENT_LIST",
             payload: {
