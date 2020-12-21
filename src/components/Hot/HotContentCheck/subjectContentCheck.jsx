@@ -523,7 +523,7 @@ class SubjectContentCheck extends React.Component {
           <div className="hot-content-check-item" key={cur.gid}>
             <div className="hot-content-check-item-title clear">
               <span
-                className="hot-content-title"
+                className="hot-content-title-no-check"
                 onClick={() => {
                   return this.toDetails(cur.gid);
                 }}
@@ -536,7 +536,7 @@ class SubjectContentCheck extends React.Component {
               onClick={() => {
                 return this.toDetails(cur.gid);
               }}
-              dangerouslySetInnerHTML={{ __html:`${cur.abstract}${"..."}`}}
+              dangerouslySetInnerHTML={{ __html:`${cur.abs}${"..."}`}}
             />
             <div className="hot-content-check-item-bottom clear">
               <div className="fl">
@@ -582,11 +582,15 @@ class SubjectContentCheck extends React.Component {
             <div className="hot-content-check-item" key={cur.id}>
               <div className="hot-content-check-item-title clear">
                 <div className="fl">
-                  <CheckboxGroup
-                    options={[cur.id ? cur.id.toString() : ""]}
-                    value={checkedList}
-                    onChange={this.onChange}
-                  />
+                  {username === "guest" ? "" :
+                    (
+                      <CheckboxGroup
+                        options={[cur.id ? cur.id.toString() : ""]}
+                        value={checkedList}
+                        onChange={this.onChange}
+                      />
+                    )
+                  }
                   <span
                     className="hot-content-title"
                     onClick={() => {

@@ -144,7 +144,12 @@
   -webkit-box-orient: vertical;
   float: right;
 }
-.hot-content-check-item .hot-content-title:hover{
+.hot-content-check-item .hot-content-title-no-check{
+  font-size:16px;
+  font-weight:bold;
+  color:#4D4C4C;
+}
+.hot-content-check-item .hot-content-title:hover,.hot-content-check-item .hot-content-title-no-check:hover{
   cursor: pointer;
 }
 .hot-content-check-item .repeat-article{

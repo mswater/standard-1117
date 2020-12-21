@@ -196,7 +196,7 @@ class SearchContentCenter extends React.Component {
           }
           onClick={() => {return this.contactFunc(9);}}
         >
-          内部资料
+          资料共享
         </button>
       </div>
     );

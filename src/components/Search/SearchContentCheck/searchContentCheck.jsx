@@ -600,11 +600,15 @@ class SearchContentCheck extends React.Component {
                 </a>
                 :
                 <div className="search-content-left fl">
-                  <CheckboxGroup
-                    options={[cur.id ? cur.id.toString() : ""]}
-                    value={checkedList}
-                    onChange={this.onChange}
-                  />
+                  {username === "guest" ? "" :
+                    (
+                      <CheckboxGroup
+                        options={[cur.id ? cur.id.toString() : ""]}
+                        value={checkedList}
+                        onChange={this.onChange}
+                      />
+                    )
+                  }
                   <span
                     className="search-content-title"
                     onClick={() => {

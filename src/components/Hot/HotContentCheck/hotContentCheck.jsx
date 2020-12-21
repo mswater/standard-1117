@@ -497,11 +497,15 @@ class HotContentCheck extends React.Component {
           <div className="hot-content-check-item" key={cur.id}>
             <div className="hot-content-check-item-title clear">
               <div className="fl">
-                <CheckboxGroup
-                  options={[cur.id ? cur.id.toString() : ""]}
-                  value={checkedList}
-                  onChange={this.onChange}
-                />
+                {username === "guest" ? "" :
+                  (
+                    <CheckboxGroup
+                      options={[cur.id ? cur.id.toString() : ""]}
+                      value={checkedList}
+                      onChange={this.onChange}
+                    />
+                  )
+                }
                 <span
                   className="hot-content-title"
                   onClick={() => {

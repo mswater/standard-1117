@@ -78,10 +78,10 @@ class Report extends React.Component{
       return (
         <li key={item.id} className="clear">
           <span className="w10">{index+1}</span>
-          <span className="w30">{item.title}</span>
+          <span className="w30" dangerouslySetInnerHTML={{ __html: item.title }} />
           <span className="w30">{item.creattime}</span>
-          <span className="w10">{item.typeName}</span>
-          <span className="w10">{item.createUser}</span>
+          <span className="w10" dangerouslySetInnerHTML={{ __html: item.typeName }} />
+          <span className="w10" dangerouslySetInnerHTML={{ __html: item.createUser }} />
           <span
             className="download w10"
             onClick={() => this.downloadReport(item.url)}

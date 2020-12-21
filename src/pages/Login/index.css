@@ -9,7 +9,7 @@
 
 .login-content {
   width: 580px;
-  height: 380px;
+  height: 390px;
   background-color: #ffffff;
   position: absolute;
   top: 0;
@@ -87,7 +87,7 @@
 }
 .login-guest-tips img{
   position:absolute;
-  bottom:5px;
+  bottom:8px;
   left:50%;
   width:17px;
   height:14px;
