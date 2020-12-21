@@ -27,9 +27,9 @@ class MeetingContentQuery extends React.Component {
     if(meetingFrom === "index"){
       fetchMeetingLanguageList(true);
       if(conferenceTab === "home"){
-        fetchMeetingQuery("中文");
+        fetchMeetingQuery("国内");
       }else if(conferenceTab === "aboard"){
-        fetchMeetingQuery("英文");
+        fetchMeetingQuery("国外");
       }
     }else{
       fetchMeetingLanguageList(false);
@@ -252,7 +252,7 @@ class MeetingContentQuery extends React.Component {
 
 
   sourceArr = () => {
-    return ["来源网站", "语种分类", "地区分布"];
+    return ["来源网站", "地区分布"];
   };
 
   searchItem =(item,clickIdx) =>{

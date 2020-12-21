@@ -338,8 +338,8 @@ class SearchContentQuery extends React.Component {
     if (parseInt(renderContactNumber, 0) === 3) {
       return ["来源公众号", "地区分布"];
     }
-    if (parseInt(renderContactNumber, 0) === 6) {
-      return ["来源网站", "语种分类", "地区分布"];
+    if (parseInt(renderContactNumber, 0) === 6) { // 会议
+      return ["来源网站", "地区分布"];
     }
     if (parseInt(renderContactNumber, 0) === 4 ||
       parseInt(renderContactNumber, 0) === 5 ||
