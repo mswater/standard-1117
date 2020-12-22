@@ -4,10 +4,10 @@ import SubjectContentTop from "../HotContentTop/subjectContentTop.jsx";
 import SubjectContentCenter from "../HotContentCenter/subjectContentCenter.jsx";
 import SubjectContentQuery from "../HotContentQuery/subjectContentQuery.jsx";
 import SubjectContentCheck from  "../HotContentCheck/subjectContentCheck.jsx";
-import HotChartTop from  "../HotChartTop/hotChartTop.jsx";
-import HotChartMiddle from  "../HotChartMiddle/hotChartMiddle.jsx";
-import HotChartPieLeft from "../HotChartPieLeft/hotChartPieLeft.jsx";
-import HotChartPieRight from "../HotChartPieRight/hotChartPieRight.jsx";
+import SubjectChartTop from  "../HotChartTop/subjectChartTop.jsx";
+import SubjectChartMiddle from "../HotChartMiddle/subjectChartMiddle.jsx";
+import SubjectChartPieLeft from "../HotChartPieLeft/subjectChartPieLeft.jsx";
+import SubjectChartPieRight from "../HotChartPieRight/subjectChartPieRight.jsx";
 import "./index.css";
 
 class SubjectContent extends React.Component{
@@ -143,11 +143,11 @@ class SubjectContent extends React.Component{
                     key="SubjectContentCheck"
                     {...this.props}
                   />
-                  ] : [<HotChartTop key="HotChartTop" {...this.props}/>,
-                    <HotChartMiddle key="HotChartMiddle" {...this.props}/>,
+                  ] : [<SubjectChartTop key="SubjectChartTop" {...this.props}/>,
+                    <SubjectChartMiddle key="SubjectChartMiddle" {...this.props}/>,
                     <div key="HotChartBottom" className="clear">
-                      <HotChartPieLeft key="HotChartPieLeft" {...this.props}/>
-                      <HotChartPieRight key="HotChartPieRight" {...this.props}/>
+                      <SubjectChartPieLeft key="SubjectChartPieLeft" {...this.props}/>
+                      <SubjectChartPieRight key="HotChartPieRight" {...this.props}/>
                     </div>
                   ]}
               </div>

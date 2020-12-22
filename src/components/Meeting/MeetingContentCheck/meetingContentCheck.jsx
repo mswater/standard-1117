@@ -80,6 +80,13 @@ class MeetingContentCheck extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    for(let i = 0; i < sortArrFirst.length;){
+      sortArrFirst[i].flag = false;
+      i += 1;
+    }
+  }
+
   readingNum = (detailId) =>{
     const {
       fetchArticleDetail

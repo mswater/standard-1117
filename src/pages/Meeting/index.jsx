@@ -83,6 +83,8 @@ class Meeting extends React.Component{
     } = this.props;
     /** 清除存储的状态
      * */
+    localStorage.setItem("meetingOrderType","");
+    localStorage.setItem("meetingOrderFlag","");
     fetchMeetingDateQuery();
     fetchMeetingQuery();
   }

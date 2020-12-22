@@ -154,6 +154,17 @@ class HotContentCheck extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    for(let i = 0; i < sortArrFirst.length;){
+      sortArrFirst[i].flag = false;
+      i += 1;
+    }
+    for(let i = 0; i < sortArrSecond.length;){
+      sortArrSecond[i].flag = false;
+      i += 1;
+    }
+  }
+
   optionsFunc = (data) => {
     const optionsArr = [];
     for (let i = 0; i < data.length; i+=1) {

@@ -155,6 +155,20 @@ class SearchContentCheck extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    for(let i = 0; i < sortArrFirst.length;){
+      sortArrFirst[i].flag = false;
+      i += 1;
+    }
+    for(let i = 0; i < sortArrSecond.length;){
+      sortArrSecond[i].flag = false;
+      i += 1;
+    }
+    for(let i = 0; i < sortArrThird.length;){
+      sortArrThird[i].flag = false;
+      i += 1;
+    }
+  }
 
   readingNum = (detailId) =>{
     const {

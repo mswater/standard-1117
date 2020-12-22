@@ -134,7 +134,7 @@
   display: flex;
 }
 .meeting-address{
-  width: 210px;
+  width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

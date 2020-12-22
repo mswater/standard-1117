@@ -87,6 +87,12 @@ class LiteratureContentCheck extends React.Component {
     }
   }
 
+  componentWillUnmount(){
+    for(let i = 0; i < sortArr.length;){
+      sortArr[i].flag = false;
+      i += 1;
+    }
+  }
 
   readingNum = (detailId) =>{
     const {
@@ -286,11 +292,10 @@ class LiteratureContentCheck extends React.Component {
               { /* eslint-disable no-nested-ternary */ }
               <div className="literature-content-info">
                 <span>上传人：</span>
-                <span className="literature_author">
-                  <a href="#" title={cur.fArticleAuthor}>
-                    {cur.fArticleAuthor}
-                  </a>
-                </span>
+                <span
+                  className="literature_author"
+                  dangerouslySetInnerHTML={{ __html:`${cur.fArticleAuthor}`}}
+                />
                 <span>创建时间：</span>
                 <span>{(cur.fArticleTime || "").split(" ").splice(0,1)}</span>
                 { cur.fFetchtime !== "" ? (
