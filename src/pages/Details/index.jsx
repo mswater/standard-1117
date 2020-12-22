@@ -11,7 +11,6 @@ import BackTop from "../../components/Common/BackTop/BackTop.jsx";
 
 import {
   fetchArticleDetail,
-  fetchArticleLabel,
 } from "../../store/action/ArticleAction.js";
 
 
@@ -27,12 +26,11 @@ class Details extends React.Component{
   componentDidMount() {
     this.node.scrollIntoView();
     const {match:{params}}=this.props;
+    const articleType = localStorage.getItem("articleType");
     const { props: {
       fetchArticleDetail,
-      fetchArticleLabel,
     } } = this;
-    fetchArticleDetail(params.detailId);
-    fetchArticleLabel(params.detailId);
+    fetchArticleDetail(params.detailId, articleType);
   }
 
 
@@ -58,6 +56,5 @@ export default connect(
   mapStateToProps,
   {
     fetchArticleDetail,
-    fetchArticleLabel,
   }
 )(withRouter(Details));

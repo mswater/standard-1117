@@ -14,7 +14,7 @@ class IndustryDetails extends React.Component{
   }
 
   hotDetails = (detailId) => {
-    localStorage.setItem("articleType", "");
+    localStorage.setItem("articleType", "1");
     const url = window.location.origin;
     window.open(`${url}/detail/${detailId}`,"_blank");
   };

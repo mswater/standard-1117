@@ -181,9 +181,9 @@ class SubjectContentCheck extends React.Component {
   toDetails = (detailId) => {
     const subjectContact = localStorage.getItem("subjectContact");
     if(subjectContact === "4" || subjectContact === "5") {
-      localStorage.setItem("articleType", "4");
+      localStorage.setItem("articleType", (9 - Number(subjectContact)).toString());
     }else{
-      localStorage.setItem("articleType", "");
+      localStorage.setItem("articleType", "1");
     }
     const url = window.location.origin;
     window.open(`${url}/detail/${detailId}`,"_blank");
@@ -722,7 +722,7 @@ class SubjectContentCheck extends React.Component {
             找到{rowCount}条结果
           </div>
         </div>
-        {username === "guest" ? "" : (
+        {(username === "guest" || subjectContact === "4" || subjectContact === "5") ? "" : (
           <div className="hot-content-check-middle clear">
             <div className="fl clear">
               <Checkbox

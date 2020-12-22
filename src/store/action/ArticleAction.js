@@ -8,16 +8,16 @@ import {
   getArticleCollect,
   getArticleCancelCollect,
   getDownload,
-  getArticleLabelList
+  getArticleLabelList,
 } from "./../../service/api.js";
 
 /**
  * 文章详情 article/articleDetail/{cid}
  */
-export const fetchArticleDetail = (cid) => {
+export const fetchArticleDetail = (cid, type) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_ARTICLE_DETAIL", payload: true });
-    getArticleDetail(cid)
+    getArticleDetail(cid, type)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           dispatch({ type: "SAVE_GET_ARTICLE_DETAIL", payload: response.data.data});
@@ -34,10 +34,10 @@ export const fetchArticleDetail = (cid) => {
 /**
  * 文章标签接口 GET：/article/articleLabel/{cid}/{type}
  */
-export const fetchArticleLabel = (cid,type) => {
+export const fetchArticleLabel = (cid, type) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_ARTICLE_LABEL", payload: true });
-    getArticleLabel(cid,type)
+    getArticleLabel(cid, type)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
           dispatch({ type: "SAVE_GET_ARTICLE_LABEL", payload: response.data.data});
