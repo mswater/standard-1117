@@ -42,6 +42,7 @@ class Meeting extends React.Component{
     this.node.scrollIntoView();
     const {
       fetchMeetingList,
+      fetchMeetingResetButton,
       home: {
         conferenceTab
       },
@@ -54,9 +55,9 @@ class Meeting extends React.Component{
     const meetingFrom = localStorage.getItem("meetingFrom");
     if(meetingFrom === "index"){
       if(conferenceTab === "home"){
-        languageList = ["中文"];
+        languageList = ["国内"];
       }else if(conferenceTab === "aboard"){
-        languageList = ["英文"];
+        languageList = ["国外"];
       }
     }
     const params = {
@@ -71,6 +72,7 @@ class Meeting extends React.Component{
       pageNum: 1,
       pageSize: 10,
     };
+    fetchMeetingResetButton(true);
     fetchMeetingList(params);
   }
 
