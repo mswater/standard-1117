@@ -52,7 +52,6 @@ class HotContentQuery extends React.Component {
     const searchWeb = hotContentListData.webList;
     const searchPro = hotContentListData.proList;
     const searchlanguage = hotContentListData.languageList;
-    console.log(hotContentListData);
     /* eslint-disable no-nested-ternary */
     const queryList = hotProListFlag ? searchPro :
       (hotLanguageTypeFlag ? searchlanguage :

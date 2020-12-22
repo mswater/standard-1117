@@ -90,7 +90,8 @@ class Search extends React.Component{
     const {
       fetchSearchDateQuery,
       fetchSearchQuery,
-      headerSearchContent
+      headerSearchContent,
+      fetchHeaderSearch
     } = this.props;
     localStorage.setItem("searchContact", "1");
     localStorage.setItem("searchClassType", "");
@@ -99,6 +100,7 @@ class Search extends React.Component{
     localStorage.setItem("searchOrderFlag", "");
     fetchSearchDateQuery();
     fetchSearchQuery();
+    fetchHeaderSearch();
   }
 
 

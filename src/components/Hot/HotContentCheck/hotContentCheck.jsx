@@ -14,14 +14,6 @@ const sortArrFirst = [{
   value: "浏览量",
   flag: false,
   id: 2
-},{
-  value: "",
-  flag: false,
-  id: ""
-},{
-  value: "",
-  flag: false,
-  id: ""
 }];
 const sortArrSecond = [{
   value: "发布时间",
@@ -52,7 +44,6 @@ function itemRender(current, type, originalElement){
 class HotContentCheck extends React.Component {
   constructor(props) {
     super(props);
-    this.sort_index = 0;
     this.state = {
       checkedList: [],
       indeterminate: false,
@@ -110,17 +101,22 @@ class HotContentCheck extends React.Component {
         hotResetButtonFlag
       }
     } = this.props;
+    this.addEvent();
+    if(hotResetButtonFlag || hotThemeSearchFlag){
+      console.log("reset up down");
+      for (let i = 0; i < sortArrSecond.length; i += 1) {
+        sortArrSecond[i].flag = false;
+      }
+      for (let i = 0; i < sortArrFirst.length; i += 1) {
+        sortArrFirst[i].flag = false;
+      }
+    }
     if (hotResetButtonFlag) {
-      const hotContact = localStorage.getItem("hotContact");
-      const sortArr = (hotContact === 2) ? sortArrSecond : sortArrFirst;
       const { classSort } = this;
       const arr = classSort.children;
       for (let i = 0; i < arr.length; i += 1) {
         arr[i].style.color = "#515256";
         arr[i].children[1].style.color = "#fff";
-      }
-      for (let i = 0; i < sortArr.length; i += 1) {
-        sortArr[i].flag = false;
       }
       arr[0].style.color = "#0572B8";
       arr[0].children[1].style.color = "#0572B8";
@@ -147,9 +143,6 @@ class HotContentCheck extends React.Component {
           arr[0].style.color = "#0572B8";
           arr[0].children[1].style.color = "#0572B8";
         }
-      }
-      if (!hotThemeSearchFlag) {
-        this.addEvent();
       }
     }
   }
@@ -386,35 +379,18 @@ class HotContentCheck extends React.Component {
     const readingId = localStorage.getItem("readingId");
     const hotContact = localStorage.getItem("hotContact");
     const sortArr = (hotContact === "2") ? sortArrSecond : sortArrFirst;
+    let orderFlag;
+    console.log(sortArr);
     if (orderType !== 3) {
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
-            cur.flag = !cur.flag;
-          }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
+      sortArr.map((cur, index) => {
+        if (index === idx) {
+          cur.flag = !cur.flag;
+          orderFlag = cur.flag;
+        }
+      });
     }
     if (orderType === 3) {
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
-            cur.flag = false;
-          }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
+      orderFlag = false;
     }
     const params = {
       searchKey: hotThemeSearch,
@@ -427,7 +403,7 @@ class HotContentCheck extends React.Component {
         (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : []),
       languageList: hotLanguageTypeFlag ?
         (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : [],
-      order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
+      order:(!orderFlag) ? "desc" : "asc",
       orderType,
       startDate:hotStartDate,
       endDate:hotEndDate,
@@ -438,7 +414,7 @@ class HotContentCheck extends React.Component {
     fetchHotThemeSearchFlag(false);
     fetchHotContentList(params);
     localStorage.setItem("orderType",orderType);
-    localStorage.setItem("orderFlag",sortArr[this.sort_index].flag);
+    localStorage.setItem("orderFlag",orderFlag);
   };
 
   checkType() {
@@ -614,11 +590,11 @@ class HotContentCheck extends React.Component {
         <button
           key={index.toString()}
           type="button"
-          onClick={() => {return this.sortFunc(cur.id, index, cur.flag);}}
+          onClick={() => {return this.sortFunc(cur.id, index);}}
         >
           <span>{cur.value}</span>
           <Icon
-            type={(sortArr[this.sort_index] && sortArr[this.sort_index].flag)
+            type={(sortArr[index] && sortArr[index].flag)
               ? "arrow-up" : "arrow-down"}
           />
         </button>
@@ -634,7 +610,7 @@ class HotContentCheck extends React.Component {
             <div className="fl" ref={(ref) => {this.classSort = ref;}}>
               {sortItem}
               {(hotThemeSearch) && (
-                <button type="button" onClick={() => {return this.sortFunc(3,"",false);}}>
+                <button type="button" onClick={() => {return this.sortFunc(3,"");}}>
                   <span>相关性</span><Icon type="arrow-down"/>
                 </button>
               )}

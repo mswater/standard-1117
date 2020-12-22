@@ -74,16 +74,23 @@ class Conference extends React.Component{
         <li
           key={index.toString()}
           onMouseEnter={this.changeActiveItem}
-          className={index === 0 ? "active clear" : "clear"}
+          className={index === 0 ? "active" : ""}
         >
-          <div className="l-info fl">
-            <h1>{cur.fArticleTitle}</h1>
-            <label>{cur.fArticleAddress}</label>
-          </div>
-          <div className="r-info fr">
-            <p>{cur.fArticleTime}</p>
-            <p className="countdown">{cur.timeLag}</p>
-          </div>
+          <a
+            className="clear"
+            href={cur.fPageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="l-info fl">
+              <h1>{cur.fArticleTitle}</h1>
+              <label>{cur.fArticleAddress}</label>
+            </div>
+            <div className="r-info fr">
+              <p>{cur.fArticleTime}</p>
+              <p className="countdown">{cur.timeLag}</p>
+            </div>
+          </a>
         </li>
       );
     });
