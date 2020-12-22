@@ -57,27 +57,27 @@ class SearchContentQuery extends React.Component {
       renderContactNumber === "9") {
       return;
     }
-    if (!fetchSearchLoading && (queryList && queryList.length > 0)) {
-      const { classType, itemType } = this;
-      const classArr = classType.children;
-      const itemArr = itemType.children;
-      this.addEvent();
-      this.addItemEvent();
-      if (searchResetButtonFlag) {
-        for (let i = 0; i < classArr.length; i += 1) {
-          if (i === 0) {
-            classArr[i].style.backgroundColor = "#F6BD4E";
-            classArr[i].children[1].style.color = "#0572B8";
-            classArr[i].children[1].style.backgroundColor = "#ffffff";
-          }
-          if (i !== 0) {
-            classArr[i].style.backgroundColor = "#D1D1D1";
-            classArr[i].children[1].style.color = "#ffffff";
-            classArr[i].children[1].style.backgroundColor = "transparent";
-          }
+    const { classType } = this;
+    const classArr = classType.children;
+    this.addEvent();
+    if (searchResetButtonFlag) {
+      for (let i = 0; i < classArr.length; i += 1) {
+        if (i === 0) {
+          classArr[i].style.backgroundColor = "#F6BD4E";
+          classArr[i].children[1].style.color = "#0572B8";
+          classArr[i].children[1].style.backgroundColor = "#ffffff";
+        }
+        if (i !== 0) {
+          classArr[i].style.backgroundColor = "#D1D1D1";
+          classArr[i].children[1].style.color = "#ffffff";
+          classArr[i].children[1].style.backgroundColor = "transparent";
         }
       }
-
+    }
+    if (!fetchSearchLoading && (queryList && queryList.length > 0)) {
+      const { itemType } = this;
+      const itemArr = itemType.children;
+      this.addItemEvent();
       if (itemArr.length > 2) {
         for (let i = 0; i < itemArr.length; i += 1) {
           if (i === 0) {
@@ -234,7 +234,7 @@ class SearchContentQuery extends React.Component {
     let weiboFlag = false;
     let proFlag = false;
     let languageFlag = false;
-    if(cur === "地区分布"){
+    if(cur === "地区分布" && searchContact !== "6"){
       proFlag = true;
       languageFlag = false;
       weiboFlag = false;
@@ -242,7 +242,7 @@ class SearchContentQuery extends React.Component {
       weiboFlag = true;
       proFlag = false;
       languageFlag = false;
-    }else if(cur === "语种分类"){
+    }else if(cur === "语种分类" || (cur === "地区分布" && searchContact === "6")){  // 会议的地区分布等同于语种分类
       languageFlag = true;
       proFlag = false;
       weiboFlag = false;

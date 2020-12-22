@@ -229,11 +229,7 @@ class MeetingContentQuery extends React.Component {
     let proFlag = false;
     let languageFlag = false;
     let webFlag = false;
-    if(cur === "地区分布"){
-      proFlag = true;
-      languageFlag = false;
-      webFlag = false;
-    }else if(cur === "语种分类"){
+    if(cur === "地区分布"){  // 原来的语种分类，旧的语种分类去掉
       proFlag = false;
       languageFlag = true;
       webFlag = false;

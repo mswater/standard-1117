@@ -285,7 +285,7 @@ class LiteratureContentCheck extends React.Component {
             <div className="fl">
               { /* eslint-disable no-nested-ternary */ }
               <div className="literature-content-info">
-                <span>创建人：</span>
+                <span>上传人：</span>
                 <span className="literature_author">
                   <a href="#" title={cur.fArticleAuthor}>
                     {cur.fArticleAuthor}
@@ -318,7 +318,7 @@ class LiteratureContentCheck extends React.Component {
                     : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
                 }
               </button>
-              <span>{cur.collectNum ? cur.collectNum : 0}</span>
+              <span>{cur.iscollect ? cur.iscollect : 0}</span>
             </div>
           </div>
         </div>
