@@ -99,6 +99,10 @@ class LiteratureContentCheck extends React.Component {
       fetchArticleDetail
     } =this.props;
     fetchArticleDetail(detailId);
+    // 记录阅读数之后跳转到详情页
+    localStorage.setItem("articleType", "2");
+    const url = window.location.origin;
+    window.open(`${url}/detail/${detailId}`,"_blank");
   };
 
   // 分页
@@ -127,7 +131,6 @@ class LiteratureContentCheck extends React.Component {
     };
     fetchLiteratureContentList(params);
   };
-
 
 
   collectArticle = (obj) =>{
@@ -266,8 +269,6 @@ class LiteratureContentCheck extends React.Component {
           <div className="literature-content-check-item-title clear">
             <a
               className="literature-detail"
-              href={cur.fPageUrl}
-              target="_blank"
               rel="noopener noreferrer"
               dangerouslySetInnerHTML={{
                 __html: cur.fArticleTitle
@@ -279,8 +280,6 @@ class LiteratureContentCheck extends React.Component {
           <div className="literature-content-check-item-text">
             <a
               className="literature-detail"
-              href={cur.fPageUrl}
-              target="_blank"
               rel="noopener noreferrer"
               title={cur.fArticleTitle}
               dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}`}}
