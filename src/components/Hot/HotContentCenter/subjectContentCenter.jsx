@@ -23,6 +23,8 @@ class SubjectContentCenter extends React.Component {
       fetchSubjectResetWeibo,
       fetchSubjectResetLanguage,
       fetchSubjectSearchValue,
+      fetchSubjectSearchQuery,
+      fetchSubjectThemeSearchFlag,
       hot:{
         subjectThemeSearch,
         subjectStartDate,
@@ -39,7 +41,7 @@ class SubjectContentCenter extends React.Component {
       proList: null,
       languageList: null,
       order:"desc",
-      orderType:1,
+      orderType:subjectThemeSearch ? 3 : 1,
       startDate:subjectStartDate,
       endDate:subjectEndDate,
       pageNum:1,
@@ -48,11 +50,13 @@ class SubjectContentCenter extends React.Component {
     history.push("/subject");
     localStorage.setItem("subjectContact", type);
     handlerIndex(0);
+    fetchSubjectSearchQuery();
     fetchSubjectSearchValue();
     fetchSubjectResetWeibo(false);
     fetchSubjectResetLanguage(false);
     fetchSubjectProList(false);
     fetchSubjectResetButton(true);
+    fetchSubjectThemeSearchFlag(true);
     fetchSubjectContentList(params);
   };
 

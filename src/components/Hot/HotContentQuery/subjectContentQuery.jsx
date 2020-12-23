@@ -121,7 +121,7 @@ class SubjectContentQuery extends React.Component {
       webList:(!subjectProListFlag && !subjectLanguageTypeFlag) ? ["全部"] : null,
       proList:subjectProListFlag ? ["全部"] : null,
       languageList:subjectLanguageTypeFlag ? ["全部"] : null,
-      order:orderFlag ? "desc" : "asc",
+      order:(orderFlag === "false") ? "desc" : "asc",
       orderType:orderType ? 1 : Number(orderType),
       startDate:subjectStartDate,
       endDate:subjectEndDate,
@@ -179,6 +179,7 @@ class SubjectContentQuery extends React.Component {
     const readingId = localStorage.getItem("subjectReadingId");
     const subjectContact = localStorage.getItem("subjectContact");
     const orderType = localStorage.getItem("subjectOrderType");
+    const orderFlag = localStorage.getItem("subjectOrderFlag");
     let params;
     if(subjectContact === "4" || subjectContact === "5"){
       params = {
@@ -188,7 +189,7 @@ class SubjectContentQuery extends React.Component {
         webList:(tag === "来源期刊") ? ["全部"] : null,
         proList:(tag === "发文作者") ? ["全部"] : null,
         languageList:(tag === "发文机构") ? ["全部"] : null,
-        order:"desc",
+        order:(orderFlag === "false") ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
         startDate:subjectStartDate,
         endDate:subjectEndDate,
@@ -203,7 +204,7 @@ class SubjectContentQuery extends React.Component {
         webList:[],
         proList:(tag === "地区分布") ? ["全部"] : [],
         languageList:(tag === "语种分类") ? ["全部"] : [],
-        order:"desc",
+        order:(orderFlag === "false") ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
         startDate:subjectStartDate,
         endDate:subjectEndDate,
@@ -278,7 +279,7 @@ class SubjectContentQuery extends React.Component {
       webList:(!subjectProListFlag && !subjectLanguageTypeFlag) ? ["全部"] : null,
       proList:subjectProListFlag ? ["全部"] : null,
       languageList:subjectLanguageTypeFlag ? ["全部"] : null,
-      order:orderFlag ? "desc" : "asc",
+      order:(orderFlag === "false") ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:subjectStartDate,
       endDate:subjectEndDate,
@@ -340,7 +341,7 @@ class SubjectContentQuery extends React.Component {
           (subjectLanguageTypeFlag ? null : [item])),
       proList:subjectWeiboTypeFlag ? null : (subjectProListFlag ?  [item] : null),
       languageList:subjectLanguageTypeFlag ? [item] : null,
-      order:!orderFlag ? "desc" : "asc",
+      order:(orderFlag === "false") ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       isOrigin:(item === "转发微博") ? 1 :(item === "原创微博" ? 0 : null),
       startDate:subjectStartDate,
@@ -348,7 +349,7 @@ class SubjectContentQuery extends React.Component {
       pageNum:1,
       pageSize:10
     };
-    fetchSubjectSearchQuery(item);
+    fetchSubjectSearchQuery([item]);
     fetchSubjectResetButton(false);
     fetchSubjectContentList(params);
     handlerIndex(clickIdx === 0 ? clickIdx : 1);

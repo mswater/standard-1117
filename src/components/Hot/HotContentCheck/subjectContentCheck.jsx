@@ -8,50 +8,42 @@ import empty from "../../../images/empty.png";
 const CheckboxGroup = Checkbox.Group;
 const sortArrFirst = [{
   value: "发布时间",
-  flag: false,
+  flag: null,
   id: 1
 },{
   value: "浏览量",
-  flag: false,
+  flag: null,
   id: 2
-},{
-  value: "",
-  flag: false,
-  id: ""
-},{
-  value: "",
-  flag: false,
-  id: ""
 }];
 const sortArrSecond = [{
   value: "发布时间",
-  flag: false,
+  flag: null,
   id: 1
 }, {
   value: "转发数",
-  flag: false,
+  flag: null,
   id: 4
 }, {
   value: "评论数",
-  flag: false,
+  flag: null,
   id: 5
 }, {
   value: "点赞数",
-  flag: false,
+  flag: null,
   id: 6
 }];
 // 国内文献，海外文献 排序方式  searchContact = 4 或者 searchContact = 5
 const sortArrThird = [{
   value: "检索评分",
-  flag: false,
+  flag: null,
   id: 8
 }, {
   value: "发表年份",
-  flag: false,
+  flag: null,
   id: 9
 }, {
   value: "创建时间",
-  flag: false,
+  flag: null,
   id: 10
 }];
 function itemRender(current, type, originalElement){
@@ -80,6 +72,13 @@ class SubjectContentCheck extends React.Component {
     message.config({
       top: 300,
     });
+    // 初始化排序
+    const subjectContact = localStorage.getItem("subjectContact");
+    /* eslint-disable  no-nested-ternary */
+    const sortArr = (subjectContact === "2") ? sortArrSecond :
+      ((subjectContact === "4" || subjectContact === "5") ?
+        sortArrThird : sortArrFirst);
+    sortArr[0].flag = false;
   }
 
 
@@ -123,64 +122,59 @@ class SubjectContentCheck extends React.Component {
         subjectResetButtonFlag
       }
     } = this.props;
-    if (subjectResetButtonFlag) {
-      const subjectContact = localStorage.getItem("subjectContact");
-      /* eslint-disable  no-nested-ternary */
-      const sortArr = (subjectContact === "2") ? sortArrSecond :
-        ((subjectContact === "4" || subjectContact === "5") ?
-          sortArrThird : sortArrFirst);
-      const { classSort } = this;
-      const arr = classSort.children;
-      for (let i = 0; i < arr.length; i += 1) {
-        arr[i].style.color = "#515256";
-        arr[i].children[1].style.color = "#fff";
+    this.addEvent();
+    if(subjectResetButtonFlag || subjectThemeSearchFlag){
+      for (let i = 0; i < sortArrSecond.length; i += 1) {
+        sortArrSecond[i].flag = null;
       }
-      for (let i = 0; i < sortArr.length; i += 1) {
-        sortArr[i].flag = false;
+      for (let i = 0; i < sortArrFirst.length; i += 1) {
+        sortArrFirst[i].flag = null;
       }
-      arr[0].style.color = "#0572B8";
-      arr[0].children[1].style.color = "#0572B8";
+      for (let i = 0; i < sortArrThird.length; i += 1) {
+        sortArrThird[i].flag = null;
+      }
     }
-    if(!subjectResetButtonFlag) {
-      if (subjectThemeSearchFlag) {
-        if(subjectThemeSearch) {
-          const { classSort } = this;
-          const arr = classSort.children;
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[arr.length - 1].style.color = "#0572B8";
-          arr[arr.length - 1].children[1].style.color = "#0572B8";
+    if (subjectThemeSearchFlag) {
+      if(subjectThemeSearch) {
+        const { classSort } = this;
+        const arr = classSort.children;
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
         }
-        if (!subjectThemeSearch) {
-          const { classSort } = this;
-          const arr = classSort.children;
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[0].style.color = "#0572B8";
-          arr[0].children[1].style.color = "#0572B8";
-        }
+        arr[arr.length - 1].style.color = "#0572B8";
+        arr[arr.length - 1].children[1].style.color = "#0572B8";
       }
-      if (!subjectThemeSearchFlag) {
-        this.addEvent();
+      if (!subjectThemeSearch) {
+        const { classSort } = this;
+        const arr = classSort.children;
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
+        }
+        arr[0].style.color = "#0572B8";
+        arr[0].children[1].style.color = "#0572B8";
+        const subjectContact = localStorage.getItem("subjectContact");
+        /* eslint-disable  no-nested-ternary */
+        const sortArr = (subjectContact === "2") ? sortArrSecond :
+          ((subjectContact === "4" || subjectContact === "5") ?
+            sortArrThird : sortArrFirst);
+        sortArr[0].flag = false;
       }
     }
   }
 
   componentWillUnmount(){
     for(let i = 0; i < sortArrFirst.length;){
-      sortArrFirst[i].flag = false;
+      sortArrFirst[i].flag = null;
       i += 1;
     }
     for(let i = 0; i < sortArrSecond.length;){
-      sortArrSecond[i].flag = false;
+      sortArrSecond[i].flag = null;
       i += 1;
     }
     for(let i = 0; i < sortArrThird.length;){
-      sortArrThird[i].flag = false;
+      sortArrThird[i].flag = null;
       i += 1;
     }
   }
@@ -291,15 +285,13 @@ class SubjectContentCheck extends React.Component {
       hId: Number(readingId),
       sourceType:Number(subjectContact),
       webList: subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
-        (subjectLanguageTypeFlag ? null : (subjectSearchQuery!== null ?
-          (subjectSearchQuery === ["全部"] ? null : subjectSearchQuery) : null))),
+        (subjectLanguageTypeFlag ? null : ((subjectSearchQuery.length > 0) ?
+          subjectSearchQuery : ["全部"]))),
       proList: subjectWeiboTypeFlag ? null : (subjectProListFlag ?
-        (subjectSearchQuery!== [] ? (subjectSearchQuery === ["全部"] ? null :
-          subjectSearchQuery) : ["全部"]): null),
+        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]): null),
       languageList: subjectLanguageTypeFlag ?
-        (subjectSearchQuery!== [] ? (subjectSearchQuery === ["全部"] ? null :
-          subjectSearchQuery) : ["全部"]): null,
-      order: orderFlag!=="false" ? "desc" : "asc",
+        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]): null,
+      order: (orderFlag === "false") ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:subjectStartDate,
       endDate:subjectEndDate,
@@ -415,35 +407,26 @@ class SubjectContentCheck extends React.Component {
     const sortArr = (subjectContact === "2") ? sortArrSecond :
       ((subjectContact === "4" || subjectContact === "5") ?
         sortArrThird : sortArrFirst);
+    let orderFlag;
     if (orderType !== 3 && orderType !== 8) {
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
+      sortArr.map((cur, index) => {
+        if(index === idx){
+          if(cur.flag !== null){
             cur.flag = !cur.flag;
-          }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
-    }
-    if (orderType === 3 || orderType === 8) {
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
+          }else{
             cur.flag = false;
           }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
+          orderFlag = cur.flag;
+        }else{
+          cur.flag = null;
+        }
+      });
+    }
+    if (orderType === 3 || orderType === 8) {
+      sortArr.map((cur) => {
+        cur.flag = null;
+      });
+      orderFlag = false;
     }
     const params = {
       searchKey: subjectThemeSearch,
@@ -451,12 +434,12 @@ class SubjectContentCheck extends React.Component {
       sourceType:Number(subjectContact),
       webList: subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
         (subjectLanguageTypeFlag ? null :
-          (subjectSearchQuery!==[] ? subjectSearchQuery : null))),
-      proList: subjectWeiboTypeFlag ? null : (subjectProListFlag ?
-        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : null),
+          ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]))),
+      proList: subjectProListFlag ?
+        ((subjectSearchQuery.length > 0) ? ["全部"] : subjectSearchQuery) : null,
       languageList: subjectLanguageTypeFlag ?
-        (subjectSearchQuery===[] ? ["全部"] : subjectSearchQuery) : null,
-      order:(!sortArr[this.sort_index].flag) ? "desc" : "asc",
+        ((subjectSearchQuery.length > 0) ? ["全部"] : subjectSearchQuery) : null,
+      order:(!orderFlag) ? "desc" : "asc",
       orderType,
       startDate:subjectStartDate,
       endDate:subjectEndDate,
@@ -467,7 +450,7 @@ class SubjectContentCheck extends React.Component {
     fetchSubjectThemeSearchFlag(false);
     fetchSubjectContentList(params);
     localStorage.setItem("subjectOrderType",orderType);
-    localStorage.setItem("subjectOrderFlag",sortArr[this.sort_index].flag);
+    localStorage.setItem("subjectOrderFlag",orderFlag);
   };
 
   checkType() {

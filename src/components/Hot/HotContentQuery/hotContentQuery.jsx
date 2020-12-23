@@ -117,7 +117,7 @@ class HotContentQuery extends React.Component {
       webList:[],
       proList:hotProListFlag ? ["全部"] : [],
       languageList:hotLanguageTypeFlag ? ["全部"] : [],
-      order:orderFlag ? "desc" : "asc",
+      order:(orderFlag === "false") ? "desc" : "asc",
       orderType:orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10
@@ -173,6 +173,8 @@ class HotContentQuery extends React.Component {
     const readingId = localStorage.getItem("readingId");
     const hotContact = localStorage.getItem("hotContact");
     const orderType = localStorage.getItem("orderType");
+    const orderFlag = localStorage.getItem("orderFlag");
+    console.log(orderType, orderFlag);
     const params = {
       searchKey: hotThemeSearch,
       hId: Number(readingId),
@@ -180,7 +182,7 @@ class HotContentQuery extends React.Component {
       webList:[],
       proList:(tag === "地区分布") ? ["全部"] : [],
       languageList: (tag === "语种分类") ? ["全部"] : [],
-      order:"desc",
+      order:(orderFlag === "false") ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:hotStartDate,
       endDate:hotEndDate,
@@ -244,7 +246,7 @@ class HotContentQuery extends React.Component {
       webList:[],
       proList:hotProListFlag ? ["全部"] : [],
       languageList:hotLanguageTypeFlag ? ["全部"] : [],
-      order:orderFlag ? "desc" : "asc",
+      order:(orderFlag === "false") ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:hotStartDate,
       endDate:hotEndDate,
@@ -302,7 +304,7 @@ class HotContentQuery extends React.Component {
         (hotProListFlag ? [] : (hotLanguageTypeFlag ? [] : [item])),
       proList:hotWeiboTypeFlag ? [] : (hotProListFlag ?  [item] : []),
       languageList:hotWeiboTypeFlag ? [] : (hotLanguageTypeFlag ?  [item] : []),
-      order:!orderFlag ? "desc" : "asc",
+      order:(orderFlag === "false") ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       isOrigin:(item === "转发微博") ? 1 :(item === "原创微博" ? 0 : null),
       startDate:hotStartDate,
@@ -310,7 +312,7 @@ class HotContentQuery extends React.Component {
       pageNum:1,
       pageSize:10
     };
-    fetchHotSearchQuery(item);
+    fetchHotSearchQuery([item]);
     fetchHotResetButton(false);
     fetchHotContentList(params);
     handlerIndex(clickIdx === 0 ? clickIdx : 1);

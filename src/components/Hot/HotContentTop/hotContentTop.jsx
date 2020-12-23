@@ -84,7 +84,7 @@ class HotContentTop extends React.Component {
         webList: [],
         proList: [],
         languageList: [],
-        order:!orderFlag ? "desc" : "asc",
+        order:(orderFlag === "false") ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
         startDate:hotStartDate,
         endDate:hotEndDate,
@@ -125,7 +125,7 @@ class HotContentTop extends React.Component {
         hotEndDate,
       },
       fetchHotThemeSearch,
-      fetchHotThemeSearchFlag
+      fetchHotThemeSearchFlag,
     } = this.props;
     const readingId = localStorage.getItem("readingId");
     const hotContact = localStorage.getItem("hotContact");
@@ -147,13 +147,14 @@ class HotContentTop extends React.Component {
       sourceType:Number(hotContact),
       webList:hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
         (hotLanguageTypeFlag ? [] :
-          (hotSearchQuery!==[] ? hotSearchQuery : []))),
+          ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]))),
       proList:hotWeiboTypeFlag ? [] : (hotProListFlag ?
-        (hotSearchQuery!==[] ? hotSearchQuery : ["全部"]) : []),
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : []),
       languageList: hotLanguageTypeFlag ?
-        (hotSearchQuery!==[] ? hotSearchQuery : ["全部"]) : [],
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : [],
       order:"desc",
-      isOrigin:(hotSearchQuery === "转发微博") ? 1 :(hotSearchQuery === "原创微博" ? 0 : null),
+      isOrigin:(hotSearchQuery.length > 0 && hotSearchQuery[0] === "转发微博") ? 1 :
+        (hotSearchQuery.length > 0 && hotSearchQuery[0] === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,
       startDate,
       endDate,

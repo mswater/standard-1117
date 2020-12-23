@@ -8,28 +8,28 @@ import empty from "../../../images/empty.png";
 const CheckboxGroup = Checkbox.Group;
 const sortArrFirst = [{
   value: "发布时间",
-  flag: false,
+  flag: null,
   id: 1
 },{
   value: "浏览量",
-  flag: false,
+  flag: null,
   id: 2
 }];
 const sortArrSecond = [{
   value: "发布时间",
-  flag: false,
+  flag: null,
   id: 1
 }, {
   value: "转发数",
-  flag: false,
+  flag: null,
   id: 4
 }, {
   value: "评论数",
-  flag: false,
+  flag: null,
   id: 5
 }, {
   value: "点赞数",
-  flag: false,
+  flag: null,
   id: 6
 }];
 
@@ -58,6 +58,10 @@ class HotContentCheck extends React.Component {
     message.config({
       top: 300,
     });
+    // 初始化排序
+    const hotContact = localStorage.getItem("hotContact");
+    const sortArr = (hotContact === "2") ? sortArrSecond : sortArrFirst;
+    sortArr[0].flag = false;
   }
 
 
@@ -103,57 +107,47 @@ class HotContentCheck extends React.Component {
     } = this.props;
     this.addEvent();
     if(hotResetButtonFlag || hotThemeSearchFlag){
-      console.log("reset up down");
       for (let i = 0; i < sortArrSecond.length; i += 1) {
-        sortArrSecond[i].flag = false;
+        sortArrSecond[i].flag = null;
       }
       for (let i = 0; i < sortArrFirst.length; i += 1) {
-        sortArrFirst[i].flag = false;
+        sortArrFirst[i].flag = null;
       }
     }
-    if (hotResetButtonFlag) {
-      const { classSort } = this;
-      const arr = classSort.children;
-      for (let i = 0; i < arr.length; i += 1) {
-        arr[i].style.color = "#515256";
-        arr[i].children[1].style.color = "#fff";
+    if (hotThemeSearchFlag) {
+      if(hotThemeSearch) {
+        const { classSort } = this;
+        const arr = classSort.children;
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
+        }
+        arr[arr.length - 1].style.color = "#0572B8";
+        arr[arr.length - 1].children[1].style.color = "#0572B8";
       }
-      arr[0].style.color = "#0572B8";
-      arr[0].children[1].style.color = "#0572B8";
-    }
-    if(!hotResetButtonFlag) {
-      if (hotThemeSearchFlag) {
-        if(hotThemeSearch) {
-          const { classSort } = this;
-          const arr = classSort.children;
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[arr.length - 1].style.color = "#0572B8";
-          arr[arr.length - 1].children[1].style.color = "#0572B8";
+      if (!hotThemeSearch) {
+        const { classSort } = this;
+        const arr = classSort.children;
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
         }
-        if (!hotThemeSearch) {
-          const { classSort } = this;
-          const arr = classSort.children;
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[0].style.color = "#0572B8";
-          arr[0].children[1].style.color = "#0572B8";
-        }
+        arr[0].style.color = "#0572B8";
+        arr[0].children[1].style.color = "#0572B8";
+        const hotContact = localStorage.getItem("hotContact");
+        const sortArr = (hotContact === "2") ? sortArrSecond : sortArrFirst;
+        sortArr[0].flag = false;
       }
     }
   }
 
   componentWillUnmount(){
     for(let i = 0; i < sortArrFirst.length;){
-      sortArrFirst[i].flag = false;
+      sortArrFirst[i].flag = null;
       i += 1;
     }
     for(let i = 0; i < sortArrSecond.length;){
-      sortArrSecond[i].flag = false;
+      sortArrSecond[i].flag = null;
       i += 1;
     }
   }
@@ -259,13 +253,13 @@ class HotContentCheck extends React.Component {
       hId: Number(readingId),
       sourceType:Number(hotContact),
       webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
-        (hotLanguageTypeFlag ? [] : (hotSearchQuery!==[] ?
-          (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : []))),
+        (hotLanguageTypeFlag ? [] : ((hotSearchQuery.length > 0) ?
+          hotSearchQuery : []))),
       proList: hotWeiboTypeFlag ? [] : (hotProListFlag ?
-        (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : ["全部"]): []),
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]): []),
       languageList: hotWeiboTypeFlag ? [] : (hotLanguageTypeFlag ?
-        (hotSearchQuery!==[] ? (hotSearchQuery === ["全部"] ? [] : hotSearchQuery) : ["全部"]): []),
-      order: orderFlag!=="false" ? "desc" : "asc",
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]): []),
+      order: (orderFlag === "false") ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       startDate:hotStartDate,
       endDate:hotEndDate,
@@ -380,16 +374,24 @@ class HotContentCheck extends React.Component {
     const hotContact = localStorage.getItem("hotContact");
     const sortArr = (hotContact === "2") ? sortArrSecond : sortArrFirst;
     let orderFlag;
-    console.log(sortArr);
     if (orderType !== 3) {
       sortArr.map((cur, index) => {
-        if (index === idx) {
-          cur.flag = !cur.flag;
+        if(index === idx){
+          if(cur.flag !== null){
+            cur.flag = !cur.flag;
+          }else{
+            cur.flag = false;
+          }
           orderFlag = cur.flag;
+        }else{
+          cur.flag = null;
         }
       });
     }
     if (orderType === 3) {
+      sortArr.map((cur) => {
+        cur.flag = null;
+      });
       orderFlag = false;
     }
     const params = {
@@ -398,11 +400,11 @@ class HotContentCheck extends React.Component {
       sourceType:Number(hotContact),
       webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
         (hotLanguageTypeFlag ? [] :
-          (hotSearchQuery!==[] ? hotSearchQuery : []))),
+          ((hotSearchQuery.length > 0) ? hotSearchQuery : []))),
       proList: hotWeiboTypeFlag ? [] : (hotProListFlag ?
-        (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : []),
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : []),
       languageList: hotLanguageTypeFlag ?
-        (hotSearchQuery===[] ? ["全部"] : hotSearchQuery) : [],
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : [],
       order:(!orderFlag) ? "desc" : "asc",
       orderType,
       startDate:hotStartDate,

@@ -24,6 +24,7 @@ class HotContentCenter extends React.Component {
       fetchHotResetWeibo,
       fetchHotResetLanguage,
       fetchHotSearchValue,
+      fetchHotSearchQuery,
       hot:{
         hotThemeSearch,
         hotStartDate,
@@ -40,7 +41,7 @@ class HotContentCenter extends React.Component {
       proList: [],
       languageList: [],
       order:"desc",
-      orderType:1,
+      orderType:hotThemeSearch ? 3 : 1,
       startDate:hotStartDate,
       endDate:hotEndDate,
       pageNum:1,
@@ -49,6 +50,7 @@ class HotContentCenter extends React.Component {
     history.push("/hot");
     localStorage.setItem("hotContact", type);
     handlerIndex(0);
+    fetchHotSearchQuery();
     fetchHotSearchValue();
     fetchHotResetWeibo(false);
     fetchHotResetLanguage(false);

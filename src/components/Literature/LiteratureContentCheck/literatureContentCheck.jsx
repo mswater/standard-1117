@@ -94,12 +94,7 @@ class LiteratureContentCheck extends React.Component {
     }
   }
 
-  readingNum = (detailId) =>{
-    const {
-      fetchArticleDetail
-    } =this.props;
-    fetchArticleDetail(detailId);
-    // 记录阅读数之后跳转到详情页
+  toDetails = (detailId) =>{
     localStorage.setItem("articleType", "2");
     const url = window.location.origin;
     window.open(`${url}/detail/${detailId}`,"_blank");
@@ -274,7 +269,7 @@ class LiteratureContentCheck extends React.Component {
                 __html: cur.fArticleTitle
               }}
               title={cur.fArticleTitle}
-              onClick={() => {return this.readingNum(cur.id);}}
+              onClick={() => {return this.toDetails(cur.fileName);}}
             />
           </div>
           <div className="literature-content-check-item-text">
@@ -283,7 +278,7 @@ class LiteratureContentCheck extends React.Component {
               rel="noopener noreferrer"
               title={cur.fArticleTitle}
               dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}`}}
-              onClick={() => {return this.readingNum(cur.id);}}
+              onClick={() => {return this.toDetails(cur.fileName);}}
             />
           </div>
           <div className="literature-content-check-item-bottom clear">

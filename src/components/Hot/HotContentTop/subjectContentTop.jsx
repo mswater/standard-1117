@@ -83,7 +83,7 @@ class SubjectContentTop extends React.Component {
         webList: ["全部"],
         proList: null,
         languageList: null,
-        order:!orderFlag ? "desc" : "asc",
+        order:(orderFlag === "false") ? "desc" : "asc",
         orderType:!orderType ? 1 : Number(orderType),
         startDate:subjectStartDate,
         endDate:subjectEndDate,
@@ -145,13 +145,15 @@ class SubjectContentTop extends React.Component {
       hId: Number(readingId),
       sourceType:Number(subjectContact),
       webList:subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
-        (subjectLanguageTypeFlag ? null : (subjectSearchQuery!==[] ? subjectSearchQuery : null))),
+        (subjectLanguageTypeFlag ? null : ((subjectSearchQuery.length > 0) ?
+          subjectSearchQuery : ["全部"]))),
       proList:subjectWeiboTypeFlag ? null : (subjectProListFlag ?
-        (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : null),
+        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]) : null),
       languageList:subjectLanguageTypeFlag ?
-        (subjectSearchQuery!==[] ? subjectSearchQuery : ["全部"]) : null,
+        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]) : null,
       order:"desc",
-      isOrigin:(subjectSearchQuery === "转发微博") ? 1 :(subjectSearchQuery === "原创微博" ? 0 : null),
+      isOrigin:(subjectSearchQuery.length > 0 && subjectSearchQuery[0] === "转发微博") ? 1 :
+        (subjectSearchQuery.length > 0 && subjectSearchQuery[0] === "原创微博" ? 0 : null),
       orderType:!value ? 1 : 3,
       startDate,
       endDate,
