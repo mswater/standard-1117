@@ -45,7 +45,7 @@ export const fetchHotList = () => {
             order:"desc",
             orderType:1,
             pageNum: 1,
-            pageSize: 5,
+            pageSize: 10,
           };
           if (!readLocalId) {
             localStorage.setItem("readingId", readingId);
@@ -109,7 +109,7 @@ export const fetchSubjectList = () => {
             startDate:"",
             endDate:"",
             pageNum: 1,
-            pageSize: 5,
+            pageSize: 10,
           };
           if (!readLocalId) {
             localStorage.setItem("subjectReadingId", readingId);

@@ -4,6 +4,7 @@ import "moment/locale/zh-cn";
 import {Input ,DatePicker,Button } from "antd";
 import "./index.css";
 
+const { Search } = Input;
 const dateFormat = "YYYY/MM/DD";
 
 class MeetingContentCenter extends React.Component {
@@ -41,13 +42,15 @@ class MeetingContentCenter extends React.Component {
   };
 
 
-  confirmMeeting = () =>{
+  confirmMeeting = (type, value) =>{
     /* eslint-disable no-nested-ternary */
     const { startTime, endTime } = this.state;
     const {
       fetchMeetingList,
       fetchMeetingDateQuery,
       fetchMeetingThemeSearchFlag,
+      fetchMeetingResetButton,
+      fetchMeetingThemeSearch,
       meeting:{
         meetingSearchQuery,
         meetingProListFlag,
@@ -58,7 +61,7 @@ class MeetingContentCenter extends React.Component {
     const params = {
       starTime: startTime,
       endTime,
-      searchKey: meetingThemeSearch,
+      searchKey: type === "search" ? value : meetingThemeSearch,
       webList:  meetingProListFlag ? [] : (meetingLanguageListFlag ? [] :
         (meetingSearchQuery === "全部" ? [] : meetingSearchQuery)),
       proList: meetingProListFlag ? (meetingSearchQuery === "全部" ? [] : meetingSearchQuery) : [],
@@ -76,17 +79,13 @@ class MeetingContentCenter extends React.Component {
       params.relevantOrder = "desc";
     }
     const date = [startTime, endTime];
+    if(type === "search"){
+      fetchMeetingThemeSearch(value);
+    }
+    fetchMeetingResetButton(false);
     fetchMeetingThemeSearchFlag(true);
     fetchMeetingDateQuery(date);
     fetchMeetingList(params);
-  };
-
-  meetingSearch = (e) => {
-    const { value } = e.target;
-    const {
-      fetchMeetingThemeSearch
-    } = this.props;
-    fetchMeetingThemeSearch(value);
   };
 
 
@@ -97,10 +96,12 @@ class MeetingContentCenter extends React.Component {
       <div className="meeting-search-btn clear">
         <span>会议主题：</span>
         <div style={{ marginBottom: 16 }} className="search-by-topic">
-          <Input
+          <Search
             placeholder="请输入您要检索的主题..."
+            size="default"
             allowClear
-            onChange={this.meetingSearch}
+            style={{width: "450px"}}
+            onSearch={(value) => {return this.confirmMeeting("search", value);}}
           />
         </div>
         <span>会议时间：</span>
@@ -117,7 +118,12 @@ class MeetingContentCenter extends React.Component {
             className="search-by-date-picker"
             getCalendarContainer={() => this.calendarBox}
           />
-          <Button type="primary" onClick={() => {return this.confirmMeeting();}}>会议检索</Button>
+          <Button
+            type="primary"
+            onClick={() => {return this.confirmMeeting("button");}}
+          >
+            会议检索
+          </Button>
         </div>
       </div>
     );

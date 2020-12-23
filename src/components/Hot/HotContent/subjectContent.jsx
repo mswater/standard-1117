@@ -70,7 +70,7 @@ class SubjectContent extends React.Component{
       startDate:subjectStartDate,
       endDate:subjectEndDate,
       pageNum:1,
-      pageSize:5
+      pageSize:10
     };
     localStorage.setItem("subjectReadingId", id);
     fetchSubjectSearchValue();

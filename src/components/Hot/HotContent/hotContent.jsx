@@ -70,7 +70,7 @@ class HotContent extends React.Component{
       startDate:hotStartDate,
       endDate:hotEndDate,
       pageNum:1,
-      pageSize:5
+      pageSize:10
     };
     localStorage.setItem("readingId", id);
     fetchHotSearchValue();

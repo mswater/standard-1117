@@ -12,7 +12,7 @@ const init = {
   },
   meetingProListFlag: false,
   meetingResetButtonFlag: false,
-  meetingSearchQuery: [],
+  meetingSearchQuery: "",
   meetingDate: ["", ""],
   meetingDateQuery: [],
   meetingThemeSearch:"",

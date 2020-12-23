@@ -70,7 +70,7 @@ export const fetchMeetingResetButton = (params) => {
 /**
  *  会议 存储直接点击地区，来源等
  */
-export const fetchMeetingQuery = (params = []) => {
+export const fetchMeetingQuery = (params) => {
   return (dispatch) => {
     dispatch({type: "SAVE_MEETING_QUERY", payload: params});
   };
