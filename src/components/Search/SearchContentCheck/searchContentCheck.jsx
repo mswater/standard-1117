@@ -56,7 +56,6 @@ function itemRender(current, type, originalElement){
 class SearchContentCheck extends React.Component {
   constructor(props) {
     super(props);
-    this.sort_index = 0;
     this.state = {
       checkedList: [],
       indeterminate: false,

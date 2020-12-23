@@ -100,6 +100,7 @@ class UserInfo extends React.Component{
                 个人主页
               </a>
             ) : ""}
+          {(roleName && roleName.indexOf("管理员") !== -1) ? "|" : ""}
           {(roleName && roleName.indexOf("管理员") !== -1) ?
             (
               <a
@@ -108,7 +109,7 @@ class UserInfo extends React.Component{
                 href={`/managecenter/center/list?uid=${token}`}
                 target="_blank"
               >
-                |&emsp;管理中心
+                管理中心
               </a>
             ) : ""}
         </div>

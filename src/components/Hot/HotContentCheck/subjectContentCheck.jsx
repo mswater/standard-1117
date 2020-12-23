@@ -57,7 +57,6 @@ function itemRender(current, type, originalElement){
 class SubjectContentCheck extends React.Component {
   constructor(props) {
     super(props);
-    this.sort_index = 0;
     this.state = {
       checkedList: [],
       indeterminate: false,
@@ -636,6 +635,8 @@ class SubjectContentCheck extends React.Component {
                       <span>{cur.comments}</span>
                       <span>赞</span>
                       <span>{cur.mlike}</span>
+                      <span>来源：</span>
+                      <span>{cur.fJobName}</span>
                     </div>) : (
                     <div>
                       <span>发布时间：</span>
@@ -690,11 +691,11 @@ class SubjectContentCheck extends React.Component {
         <button
           key={index.toString()}
           type="button"
-          onClick={() => {return this.sortFunc(cur.id, index, cur.flag);}}
+          onClick={() => {return this.sortFunc(cur.id, index);}}
         >
           <span>{cur.value}</span>
           <Icon
-            type={(sortArr[this.sort_index] && sortArr[this.sort_index].flag)
+            type={(sortArr[index] && sortArr[index].flag)
               ? "arrow-up" : "arrow-down"}
           />
         </button>
@@ -710,7 +711,7 @@ class SubjectContentCheck extends React.Component {
             <div className="fl" ref={(ref) => {this.classSort = ref;}}>
               {sortItem}
               {(subjectThemeSearch) && (
-                <button type="button" onClick={() => {return this.sortFunc(3,"",false);}}>
+                <button type="button" onClick={() => {return this.sortFunc(3,"");}}>
                   <span>相关性</span><Icon type="arrow-down"/>
                 </button>
               )}

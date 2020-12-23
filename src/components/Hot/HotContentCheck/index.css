@@ -180,7 +180,8 @@
 
 .hot-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(3),
 .hot-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(5),
-.hot-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(7){
+.hot-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(7),
+.hot-content-check-item-bottom>div:nth-of-type(1) span:nth-of-type(9){
   margin-left: 20px;
 }
 

@@ -542,6 +542,8 @@ class HotContentCheck extends React.Component {
                     <span>{cur.comments}</span>
                     <span>赞</span>
                     <span>{cur.mlike}</span>
+                    <span>来源：</span>
+                    <span>{cur.fJobName}</span>
                   </div>) : (
                   <div>
                     <span>发布时间：</span>
