@@ -191,6 +191,7 @@ class SearchContentQuery extends React.Component {
     } = this.props;
     const searchContact = localStorage.getItem("searchContact");
     const orderType = Number(localStorage.getItem("searchOrderType"));
+    const orderFlag = localStorage.getItem("searchOrderFlag");
     const params = {
       type:Number(searchContact),
       starTime: searchDateQuery[0],
@@ -211,25 +212,25 @@ class SearchContentQuery extends React.Component {
       pageSize: 10
     };
     if(orderType === 1){
-      params.timeOrder = "desc";
+      params.timeOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 2){
-      params.browseOrder = "desc";
+      params.browseOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 3){
       params.relevantOrder = "desc";
     }
     if(orderType === 4){
-      params.transpondOrder = "desc";
+      params.transpondOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 5){
-      params.commentOrder = "desc";
+      params.commentOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 6){
-      params.likeOrder =  "desc";
+      params.likeOrder =  orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 7){
-      params.mettingOrder = "desc";
+      params.mettingOrder = orderFlag==="false" ? "desc" : "asc";
     }
     let weiboFlag = false;
     let proFlag = false;
@@ -295,27 +296,27 @@ class SearchContentQuery extends React.Component {
       pageSize: 10
     };
     if(orderType === "1"){
-      params.timeOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.timeOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "2"){
-      params.browseOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.browseOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "3"){
       params.relevantOrder = "desc";
     }
     if(orderType === "4"){
-      params.transpondOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.transpondOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "5"){
-      params.commentOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.commentOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "6"){
-      params.likeOrder =  orderFlag!=="false" ? "desc" : "asc";
+      params.likeOrder =  orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "7"){
-      params.mettingOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.mettingOrder = orderFlag==="false" ? "desc" : "asc";
     }
-    fetchSearchQuery(item);
+    fetchSearchQuery([item]);
     fetchSearchResetButton(false);
     fetchSearch(params);
     handlerIndex(clickIdx === 0 ? clickIdx : 1);

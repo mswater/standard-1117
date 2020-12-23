@@ -39,6 +39,7 @@ class SearchContentCenter extends React.Component {
         headerSearchContent,
         fetchSearchQuery,
         fetchSearchValue,
+        fetchSearchThemeSearchFlag,
         search:{
           searchDateQuery,
         },
@@ -77,6 +78,7 @@ class SearchContentCenter extends React.Component {
       fetchSearchProList(false);
       fetchSearchLanguageList(false);
       fetchSearchResetButton(true);
+      fetchSearchThemeSearchFlag(true);
       fetchSearch(params);
     }
   };

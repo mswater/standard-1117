@@ -90,14 +90,12 @@ class SearchContentTop extends React.Component {
       endTime,
       searchKey: headerSearchContent,
       webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
-        (searchLanguageTypeFlag ? [] : (searchSearchQuery!==[] ?
-          (searchSearchQuery === "全部" ? [] : searchSearchQuery) : []))),
+        (searchLanguageTypeFlag ? [] : ((searchSearchQuery.length > 0) ?
+          searchSearchQuery : []))),
       proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : []) : []),
+        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : []),
       languageList: searchLanguageTypeFlag ?
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : []) : [],
+        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder: null,
@@ -109,7 +107,7 @@ class SearchContentTop extends React.Component {
       pageNum: 1,
       pageSize: 10
     };
-    if(!searchSearchQuery){
+    if(!headerSearchContent){
       params.timeOrder = "desc";
     }else{
       params.relevantOrder = "desc";

@@ -7,42 +7,42 @@ import empty from  "../../../images/empty.png";
 const CheckboxGroup = Checkbox.Group;
 const sortArrFirst = [{
   value: "发布时间",
-  flag: false,
+  flag: null,
   id: 1
 }, {
   value: "浏览量",
-  flag: false,
+  flag: null,
   id: 2
 }];
 const sortArrSecond = [{
   value: "发布时间",
-  flag: false,
+  flag: null,
   id: 1
 },{
   value: "浏览量",
-  flag: false,
+  flag: null,
   id: 2
 }, {
   value: "转发数",
-  flag: false,
+  flag: null,
   id: 4
 }, {
   value: "评论数",
-  flag: false,
+  flag: null,
   id: 5
 }, {
   value: "点赞数",
-  flag: false,
+  flag: null,
   id: 6
 }];
 // 国内文献，海外文献 排序方式  searchContact = 4 或者 searchContact = 5
 const sortArrThird = [{
   value: "检索评分",
-  flag: false,
+  flag: null,
   id: 8
 }, {
   value: "发表年份",
-  flag: false,
+  flag: null,
   id: 9
 }];
 function itemRender(current, type, originalElement){
@@ -71,6 +71,12 @@ class SearchContentCheck extends React.Component {
     message.config({
       top: 300,
     });
+    /* eslint-disable  no-nested-ternary */
+    const searchContact = localStorage.getItem("searchContact");
+    const sortArr = searchContact === "2" ?
+      sortArrSecond : ((searchContact === "4" || searchContact === "5")
+        ? sortArrThird : sortArrFirst);
+    sortArr[0].flag = false;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -111,61 +117,55 @@ class SearchContentCheck extends React.Component {
         searchResetButtonFlag
       }
     } = this.props;
-    const searchContact = localStorage.getItem("searchContact");
-    if (searchResetButtonFlag) {
-      const sortArr = searchContact === "2" ?
-        sortArrSecond : ((searchContact === "4" || searchContact === "5")
-          ? sortArrThird : sortArrFirst);
-      this.addEvent();
-      const { classSort } = this;
-      const arr = classSort.children;
-      for (let i = 0; i < arr.length; i += 1) {
-        arr[i].style.color = "#515256";
-        arr[i].children[1].style.color = "#fff";
+    this.addEvent();
+    if(searchThemeSearchFlag || searchResetButtonFlag){
+      for (let i = 0; i < sortArrSecond.length; i += 1) {
+        sortArrSecond[i].flag = null;
       }
-      for (let i = 0; i < sortArr.length; i += 1) {
-        sortArr[i].flag = false;
+      for (let i = 0; i < sortArrFirst.length; i += 1) {
+        sortArrFirst[i].flag = null;
       }
-      arr[0].style.color = "#0572B8";
-      arr[0].children[1].style.color = "#0572B8";
+      for (let i = 0; i < sortArrThird.length; i += 1) {
+        sortArrThird[i].flag = null;
+      }
     }
     const { classSort } = this;
     const arr = classSort.children;
-    if(!searchResetButtonFlag) {
-      if (searchThemeSearchFlag) {
-        if(headerSearchContent && searchContact !== "4" && searchContact !== "5") {
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[arr.length - 1].style.color = "#0572B8";
-          arr[arr.length - 1].children[1].style.color = "#0572B8";
-        }else{
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[0].style.color = "#0572B8";
-          arr[0].children[1].style.color = "#0572B8";
+    const searchContact = localStorage.getItem("searchContact");
+    if (searchThemeSearchFlag) {
+      if(headerSearchContent && searchContact !== "4" && searchContact !== "5") {
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
         }
-      }
-      if (!searchThemeSearchFlag) {
-        this.addEvent();
+        arr[arr.length - 1].style.color = "#0572B8";
+        arr[arr.length - 1].children[1].style.color = "#0572B8";
+      }else{
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
+        }
+        arr[0].style.color = "#0572B8";
+        arr[0].children[1].style.color = "#0572B8";
+        const sortArr = searchContact === "2" ?
+          sortArrSecond : ((searchContact === "4" || searchContact === "5")
+            ? sortArrThird : sortArrFirst);
+        sortArr[0].flag = false;
       }
     }
   }
 
   componentWillUnmount(){
     for(let i = 0; i < sortArrFirst.length;){
-      sortArrFirst[i].flag = false;
+      sortArrFirst[i].flag = null;
       i += 1;
     }
     for(let i = 0; i < sortArrSecond.length;){
-      sortArrSecond[i].flag = false;
+      sortArrSecond[i].flag = null;
       i += 1;
     }
     for(let i = 0; i < sortArrThird.length;){
-      sortArrThird[i].flag = false;
+      sortArrThird[i].flag = null;
       i += 1;
     }
   }
@@ -282,14 +282,12 @@ class SearchContentCheck extends React.Component {
       endTime: searchDateQuery[1],
       searchKey: headerSearchContent,
       webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
-        (searchLanguageTypeFlag ? [] : (searchSearchQuery!==[] ?
-          (searchSearchQuery === "全部" ? [] : searchSearchQuery) : []))),
+        (searchLanguageTypeFlag ? [] : ((searchSearchQuery.length > 0) ?
+          searchSearchQuery : []))),
       proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : []) : []),
+        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : []),
       languageList: searchLanguageTypeFlag ?
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : []) : [],
+        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder: "",
@@ -304,31 +302,31 @@ class SearchContentCheck extends React.Component {
       pageSize: 10
     };
     if(orderType === "1"){
-      params.timeOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.timeOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "2"){
-      params.browseOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.browseOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "3"){
       params.relevantOrder = "desc";
     }
     if(orderType === "4"){
-      params.transpondOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.transpondOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "5"){
-      params.commentOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.commentOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "6"){
-      params.likeOrder =  orderFlag!=="false" ? "desc" : "asc";
+      params.likeOrder =  orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "7"){
-      params.mettingOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.mettingOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "8"){ // 检索评分
-      params.scoreOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.scoreOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === "9"){ // 发表年份
-      params.yearOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.yearOrder = orderFlag==="false" ? "desc" : "asc";
     }
     fetchSearch(params);
   };
@@ -437,35 +435,26 @@ class SearchContentCheck extends React.Component {
     const sortArr = searchContact === "2" ?
       sortArrSecond : ((searchContact === "4" || searchContact === "5")
         ? sortArrThird : sortArrFirst);
+    let orderFlag;
     if (orderType !== 3) {
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
+      sortArr.map((cur, index) => {
+        if(index === idx){
+          if(cur.flag !== null){
             cur.flag = !cur.flag;
-          }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
-    }
-    if (orderType === 3) {
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
+          }else{
             cur.flag = false;
           }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
+          orderFlag = cur.flag;
+        }else{
+          cur.flag = null;
+        }
+      });
+    }
+    if (orderType === 3) {
+      sortArr.map((cur) => {
+        cur.flag = null;
+      });
+      orderFlag = false;
     }
     const params = {
       type:Number(searchContact),
@@ -473,14 +462,12 @@ class SearchContentCheck extends React.Component {
       endTime: searchDateQuery[1],
       searchKey: headerSearchContent,
       webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
-        (searchLanguageTypeFlag ? [] : (searchSearchQuery!==[] ?
-          (searchSearchQuery === "全部" ? [] : searchSearchQuery) : []))),
+        (searchLanguageTypeFlag ? [] : ((searchSearchQuery.length > 0) ?
+          searchSearchQuery : []))),
       proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : []) : []),
+        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : []),
       languageList: searchLanguageTypeFlag ?
-        (searchSearchQuery!==[] ? (searchSearchQuery === "全部" ?
-          [] : searchSearchQuery) : []) : [],
+        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : [],
       timeOrder: "",
       browseOrder: "",
       relevantOrder: "",
@@ -495,37 +482,37 @@ class SearchContentCheck extends React.Component {
       pageSize: 10
     };
     if(orderType === 1){
-      params.timeOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.timeOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 2){
-      params.browseOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.browseOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 3){
       params.relevantOrder = "desc";
     }
     if(orderType === 4){
-      params.transpondOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.transpondOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 5){
-      params.commentOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.commentOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 6){
-      params.likeOrder =  !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.likeOrder =  !orderFlag ? "desc" : "asc";
     }
     if(orderType === 7){
-      params.mettingOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.mettingOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 8){
-      params.scoreOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.scoreOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 9){
-      params.yearOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.yearOrder = !orderFlag ? "desc" : "asc";
     }
     fetchSearchResetButton(false);
     fetchSearchThemeSearchFlag(false);
     fetchSearch(params);
     localStorage.setItem("searchOrderType",Number(orderType));
-    localStorage.setItem("searchOrderFlag",sortArr[this.sort_index].flag);
+    localStorage.setItem("searchOrderFlag",orderFlag);
   };
 
   checkType() {
