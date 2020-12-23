@@ -276,7 +276,7 @@ class LiteratureContentCheck extends React.Component {
             <a
               className="literature-detail"
               rel="noopener noreferrer"
-              title={cur.fArticleTitle}
+              title={cur.fArticleIntroduction}
               dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}`}}
               onClick={() => {return this.toDetails(cur.fileName);}}
             />

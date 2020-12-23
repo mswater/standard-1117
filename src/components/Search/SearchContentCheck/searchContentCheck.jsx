@@ -169,13 +169,6 @@ class SearchContentCheck extends React.Component {
     }
   }
 
-  readingNum = (detailId) =>{
-    const {
-      fetchArticleDetail
-    } = this.props;
-    fetchArticleDetail(detailId);
-  };
-
   optionsFunc = (data) => {
     const optionsArr = [];
     for (let i = 0; i < data.length; i+=1) {
@@ -203,9 +196,11 @@ class SearchContentCheck extends React.Component {
   };
 
   searchDetails = (detailId) => {
-    const subjectContact = localStorage.getItem("subjectContact");
-    if(subjectContact === "4" || subjectContact === "5") {
-      localStorage.setItem("articleType", (9 - Number(subjectContact)).toString());
+    const searchContact = localStorage.getItem("searchContact");
+    if(searchContact === "4" || searchContact === "5") {
+      localStorage.setItem("articleType", (9 - Number(searchContact)).toString());
+    }else if(searchContact === "9"){
+      localStorage.setItem("articleType", "2");
     }else{
       localStorage.setItem("articleType", "1");
     }
@@ -580,17 +575,12 @@ class SearchContentCheck extends React.Component {
         return (
           <div className="search-content-check-item" key={index.toString()}>
             <div className="search-content-check-item-title clear">
-              {(
-                renderSearchContact === "4"
-                || renderSearchContact === "5"
-                || renderSearchContact === "6"
-              ) ?
+              {(renderSearchContact === "6") ?
                 <a
                   href={cur.pageUrl || cur.fPageUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="search-content-title-link"
-                  onClick={() => {return this.readingNum(cur.id);}}
                 >
                   <span
                     dangerouslySetInnerHTML={{
@@ -598,27 +588,44 @@ class SearchContentCheck extends React.Component {
                     }}
                   />
                 </a>
-                :
-                <div className="search-content-left fl">
-                  {username === "guest" ? "" :
-                    (
-                      <CheckboxGroup
-                        options={[cur.id ? cur.id.toString() : ""]}
-                        value={checkedList}
-                        onChange={this.onChange}
-                      />
-                    )
-                  }
+                : ((renderSearchContact === "4" || renderSearchContact === "5") ? (
                   <span
                     className="search-content-title"
                     onClick={() => {
-                      return this.searchDetails(cur.id);
+                      return this.searchDetails(cur.gid);
                     }}
-                    dangerouslySetInnerHTML={{
-                      __html: cur.fArticleTitleColour
-                    }}
+                    dangerouslySetInnerHTML={{ __html: cur.title }}
                   />
-                </div>
+                ) : ((renderSearchContact === "9") ? (
+                  <span
+                    className="search-content-title"
+                    onClick={() => {
+                      return this.searchDetails(cur.fileName);
+                    }}
+                    dangerouslySetInnerHTML={{ __html: cur.fArticleTitle }}
+                  />
+                ) : (
+                  <div className="search-content-left fl">
+                    {username === "guest" ? "" :
+                      (
+                        <CheckboxGroup
+                          options={[cur.id ? cur.id.toString() : ""]}
+                          value={checkedList}
+                          onChange={this.onChange}
+                        />
+                      )
+                    }
+                    <span
+                      className="search-content-title"
+                      onClick={() => {
+                        return this.searchDetails(cur.id);
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: cur.fArticleTitleColour
+                      }}
+                    />
+                  </div>
+                )))
               }
               <span
                 onClick={()=>{return this.toggleList(index);}}
@@ -630,18 +637,13 @@ class SearchContentCheck extends React.Component {
                 }
               </span>
             </div>
-            {(
-              renderSearchContact === "5"
-              ||  renderSearchContact === "4"
-              ||  renderSearchContact === "6"
-            ) ?
+            {(renderSearchContact === "6") ?
               (
                 <div className="search-content-check-item-text">
                   <a
                     href={cur.pageUrl||cur.fPageUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    onClick={() => {return this.readingNum(cur.id || cur.fileName);}}
                   >
                     <p
                       title={cur.fArticleIntroduction||cur.summary}
@@ -651,8 +653,31 @@ class SearchContentCheck extends React.Component {
                   </a>
                 </div>
               )
-              :
-              (
+              : ((renderSearchContact === "4" || renderSearchContact === "5") ? (
+                <div
+                  className="search-content-check-item-text"
+                  onClick={() => {return this.searchDetails(cur.gid);}}
+                >
+                  <p
+                    title={cur.abstract}
+                    dangerouslySetInnerHTML={{ __html:
+                        `${cur.abstract}${"..."}`
+                    }}
+                  />
+                </div>
+              ) : (renderSearchContact === "9" ? (
+                <div
+                  className="search-content-check-item-text"
+                  onClick={() => {return this.searchDetails(cur.fileName);}}
+                >
+                  <p
+                    title={cur.fArticleIntroduction}
+                    dangerouslySetInnerHTML={{ __html:
+                        `${cur.fArticleIntroduction}${"..."}`
+                    }}
+                  />
+                </div>
+              ) : (
                 <div
                   className="search-content-check-item-text"
                   onClick={() => {return this.searchDetails(cur.id);}}
@@ -664,7 +689,7 @@ class SearchContentCheck extends React.Component {
                     }}
                   />
                 </div>
-              )
+              )))
             }
             <div className="search-content-check-item-bottom clear">
               <div className="fl">
