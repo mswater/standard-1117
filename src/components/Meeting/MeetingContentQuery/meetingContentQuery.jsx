@@ -198,6 +198,7 @@ class MeetingContentQuery extends React.Component {
       fetchMeetingWebList,
       fetchMeetingResetButton,
       fetchMeetingSearchValue,
+      fetchMeetingQuery,
       meeting:{
         meetingDateQuery,
         meetingThemeSearch,
@@ -242,6 +243,7 @@ class MeetingContentQuery extends React.Component {
     fetchMeetingLanguageList(languageFlag);
     fetchMeetingWebList(webFlag);
     fetchMeetingSearchValue();
+    fetchMeetingQuery();
     fetchMeetingResetButton(false);
     fetchMeetingList(params);
   };
@@ -364,6 +366,7 @@ class MeetingContentQuery extends React.Component {
         return (
           <div
             key={index.toString()}
+            title={cur}
             onClick={() => this.searchItem(cur,index)}
             className={`fl ${index === clickIndex ? "current" : ""}`}
           >
@@ -376,6 +379,7 @@ class MeetingContentQuery extends React.Component {
         return (
           <div
             key={index.toString()}
+            title={cur}
             onClick={() => this.searchItem(cur,index)}
             className={`fl ${index === clickIndex ? "current" : ""}`}
           >
@@ -388,6 +392,7 @@ class MeetingContentQuery extends React.Component {
         return (
           <div
             key={index.toString()}
+            title={cur}
             onClick={() => this.searchItem(cur,index)}
             className={`fl ${index === clickIndex ? "current" : ""}`}
           >

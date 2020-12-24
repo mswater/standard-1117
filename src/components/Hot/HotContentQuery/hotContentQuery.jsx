@@ -163,6 +163,7 @@ class HotContentQuery extends React.Component {
       fetchHotResetWeibo,
       fetchHotResetLanguage,
       fetchHotSearchValue,
+      fetchHotSearchQuery,
       hot:{
         hotThemeSearch,
         hotStartDate,
@@ -214,6 +215,7 @@ class HotContentQuery extends React.Component {
         languageFlag = false;
     }
     fetchHotSearchValue();
+    fetchHotSearchQuery();
     fetchHotResetWeibo(weiboFlag);
     fetchHotProList(otherFlag);
     fetchHotResetLanguage(languageFlag);
@@ -277,6 +279,7 @@ class HotContentQuery extends React.Component {
   searchItem =(item,clickIdx) =>{
     if(item === "全部"){
       this.resetListFunc();
+      return;
     }
     const {
       fetchHotContentList,
@@ -394,6 +397,7 @@ class HotContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -405,6 +409,7 @@ class HotContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -416,6 +421,7 @@ class HotContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -427,6 +433,7 @@ class HotContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >

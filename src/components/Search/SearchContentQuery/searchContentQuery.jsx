@@ -419,6 +419,7 @@ class SearchContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -431,6 +432,7 @@ class SearchContentQuery extends React.Component {
         return (
           <div
             key={index.toString()}
+            title={cur}
             onClick={() => this.searchItem(cur,index)}
             className={`fl ${index === clickIndex ? "current" : ""}`}
           >
@@ -443,6 +445,7 @@ class SearchContentQuery extends React.Component {
         return (
           <div
             key={index.toString()}
+            title={cur}
             onClick={() => this.searchItem(cur,index)}
             className={`fl ${index === clickIndex ? "current" : ""}`}
           >
@@ -454,6 +457,7 @@ class SearchContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >

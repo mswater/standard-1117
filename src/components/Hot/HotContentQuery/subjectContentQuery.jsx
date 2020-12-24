@@ -58,6 +58,7 @@ class SubjectContentQuery extends React.Component {
       searchPro : (subjectWeiboTypeFlag ?
         weiboArr : (subjectLanguageTypeFlag ?
           searchLanguage : searchWeb));
+    console.log(queryList);
     const { classType } = this;
     const classArr = classType.children;
     this.addEvent();
@@ -132,11 +133,9 @@ class SubjectContentQuery extends React.Component {
     if (!value || value === "全部") {
       fetchSubjectContentList(paramsEmpty);
     }
-    console.log(subjectContentListData);
     const isWebList = subjectProListFlag ? subjectContentListData.subjectProList
       : subjectContentListData.subjectWebList;
     const fuzzyArr = fuzzyQuery(isWebList, value);
-    console.log(fuzzyArr, "fuzzyQuery");
     /**
      * 重新渲染数组，这里要mock和返回的对象一样的数据格式
      * 先用展开原有的对象，在重新赋值想改变的数组
@@ -169,6 +168,7 @@ class SubjectContentQuery extends React.Component {
       fetchSubjectResetWeibo,
       fetchSubjectResetLanguage,
       fetchSubjectSearchValue,
+      fetchSubjectSearchQuery,
       hot:{
         subjectThemeSearch,
         subjectStartDate,
@@ -247,6 +247,7 @@ class SubjectContentQuery extends React.Component {
         languageFlag = false;
     }
     fetchSubjectSearchValue();
+    fetchSubjectSearchQuery();
     fetchSubjectResetWeibo(weiboFlag);
     fetchSubjectProList(otherFlag);
     fetchSubjectResetLanguage(languageFlag);
@@ -313,6 +314,7 @@ class SubjectContentQuery extends React.Component {
   searchItem =(item,clickIdx) =>{
     if(item === "全部"){
       this.resetListFunc();
+      return;
     }
     const {
       fetchSubjectContentList,
@@ -412,6 +414,7 @@ class SubjectContentQuery extends React.Component {
 
 
   render() {
+    const renderContactNumber = parseInt(localStorage.getItem("subjectContact"), 0);
     const {
       hot:{
         subjectContentListData,
@@ -431,6 +434,7 @@ class SubjectContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -442,6 +446,7 @@ class SubjectContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -453,6 +458,7 @@ class SubjectContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -464,6 +470,7 @@ class SubjectContentQuery extends React.Component {
       return (
         <div
           key={index.toString()}
+          title={cur}
           onClick={() => this.searchItem(cur,index)}
           className={`fl ${index === clickIndex ? "current" : ""}`}
         >
@@ -502,7 +509,8 @@ class SubjectContentQuery extends React.Component {
         </div>
         <div className="hot-content-query-select">
           <div className="query-top clear">
-            {(!(subjectWeiboTypeFlag || subjectLanguageTypeFlag)) && (
+            {(!(subjectWeiboTypeFlag || subjectLanguageTypeFlag) ||
+              (renderContactNumber === 4 || renderContactNumber === 5)) && (
               <Search
                 value={subjectSearchValue}
                 placeholder="请输入搜索内容..."
