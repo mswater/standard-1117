@@ -435,7 +435,7 @@ class MeetingContentQuery extends React.Component {
               )
             }
             {fetchMeetingListLoading ? <div className="content-list-loading"><Spin /></div>
-              : (!queryList.length || (queryList && queryList.length === 0) ?
+              : (!queryList.length || (queryList && queryList.length <= 1) ?
                 <div className="no-data"><img src={noData} alt=""/></div> : (
                   <div
                     className="meeting-query-center"

@@ -507,7 +507,7 @@ class SearchContentQuery extends React.Component {
                 />
               )}
               {fetchSearchLoading ? <div className="content-list-loading"><Spin /></div>
-                : (!queryList || (queryList && queryList.length === 0) ?
+                : (!queryList || (queryList && queryList.length <= 1) ?
                   <div className="no-data"><img src={noData} alt=""/></div> : (
                     <div
                       className="search-query-center"

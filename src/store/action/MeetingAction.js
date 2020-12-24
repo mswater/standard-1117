@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
   getMeetingList,
 } from "./../../service/api.js";
@@ -5,16 +6,24 @@ import {
 /**
  *  会议列表页  /meeting/meetingList
  */
+
+let proList = null;
+let webList = null;
 export const fetchMeetingList = (params) => {
   return (dispatch) => {
     dispatch({ type: "FETCHING_GET_MEETING_LIST", payload: true });
     getMeetingList(params)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
+          proList = response.data.data && response.data.data.proList;
+          webList = response.data.data && response.data.data.webList;
           dispatch({
             type: "SAVE_GET_MEETING_LIST",
             payload:{
               ...response.data.data,
+              timeCompare: moment().unix(),
+              meetingProList: proList,
+              meetingWebList: webList
             }
           });
         }

@@ -450,6 +450,7 @@ class HotContentQuery extends React.Component {
       searchPro : (hotWeiboTypeFlag ?
         searchWeibo : (hotLanguageTypeFlag ?
           searchLanguage : searchWeb));
+    console.log(queryList);
     return (
       <div className="hot-content-query">
         <div className="hot-content-query-class clear">
@@ -478,7 +479,7 @@ class HotContentQuery extends React.Component {
               />
             )}
             {fetchHotContentListLoading ? <div className="content-list-loading"><Spin /></div>
-              : (!queryList || (queryList && queryList.length === 0) ?
+              : (!queryList || (queryList && queryList.length <= 1) ?
                 <div className="no-data"><img src={noData} alt=""/></div>
                 : (
                   <div

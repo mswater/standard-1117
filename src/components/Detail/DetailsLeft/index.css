@@ -33,7 +33,8 @@
   display:block;
 }
 .hot-details img{
-  display: inline-block;
+  display:block;
+  width:100%;
 }
 .hot-details-img{
   text-align: right;
