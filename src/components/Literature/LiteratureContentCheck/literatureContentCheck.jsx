@@ -13,7 +13,7 @@ function itemRender(current, type, originalElement){
   return originalElement;
 }
 const sortArr = [{
-  value: "发表时间",
+  value: "发布时间",
   flag: false,
   id: 1
 }, {
@@ -290,14 +290,11 @@ class LiteratureContentCheck extends React.Component {
                   className="literature_author"
                   dangerouslySetInnerHTML={{ __html:`${cur.fArticleAuthor}`}}
                 />
-                <span>创建时间：</span>
-                <span>{(cur.fArticleTime || "").split(" ").splice(0,1)}</span>
-                { cur.fFetchtime !== "" ? (
-                  <span>
-                    <span>修改时间：</span>
-                    <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
-                  </span>
-                ) : "" }
+                <span>发布时间：</span>
+                <span>{cur.fFetchtime !== "" ?
+                  ((cur.fFetchtime || "").split(" ").splice(0,1)) :
+                  ((cur.fArticleTime || "").split(" ").splice(0,1))}
+                </span>
               </div>
             </div>
             <div className="literature-content-check-item-click fr">

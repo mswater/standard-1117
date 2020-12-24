@@ -122,7 +122,7 @@ class LiteratureContentCenter extends React.Component {
               onChange={this.handleChange}
             />
           </div>
-          <span>上传时间：</span>
+          <span>发布时间：</span>
           <div
             style={{ marginBottom: 16,position: "relative" }}
             className="search-by-date"
