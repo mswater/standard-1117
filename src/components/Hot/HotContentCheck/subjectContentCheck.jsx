@@ -318,6 +318,7 @@ class SubjectContentCheck extends React.Component {
   collectArticle = (obj) =>{
     const {
       id,
+      gid,
       iscollect
     } = obj;
     const {
@@ -325,10 +326,18 @@ class SubjectContentCheck extends React.Component {
       fetchArticleCancelCollect,
     } = this.props;
     const subjectContact = localStorage.getItem("subjectContact");
-    const item ={
-      cid:id,
-      type:Number(subjectContact),
-    };
+    let item;
+    if(subjectContact === "4" || subjectContact === "5"){
+      item = {
+        cid:gid,
+        type:Number(subjectContact),
+      };
+    }else{
+      item = {
+        cid:id,
+        type:Number(subjectContact),
+      };
+    }
     if(iscollect === 1){
       return fetchArticleCancelCollect(item, () => {
         obj.iscollect = 0;
@@ -554,7 +563,7 @@ class SubjectContentCheck extends React.Component {
                   <span>发表年份：</span>
                   <span>{cur.year}年</span>
                   <span>创建时间：</span>
-                  <span>{cur.year}</span>
+                  <span>{cur.createTime}</span>
                   <span>作者：</span>
                   <span>{cur.author}</span>
                   <span>期刊：</span>

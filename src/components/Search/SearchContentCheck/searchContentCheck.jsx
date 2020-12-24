@@ -347,6 +347,7 @@ class SearchContentCheck extends React.Component {
     /* eslint-disable no-param-reassign */
     const {
       id,
+      gid,
       iscollect,
       fileName
     } = obj;
@@ -354,11 +355,24 @@ class SearchContentCheck extends React.Component {
       fetchArticleCollect,
       fetchArticleCancelCollect,
     } = this.props;
+    let item;
     const searchContact = localStorage.getItem("searchContact");
-    const item ={
-      cid:id || fileName,
-      type:Number(searchContact),
-    };
+    if((searchContact === "4" || searchContact === "5")){
+      item = {
+        cid:gid,
+        type:Number(searchContact),
+      };
+    }else if(searchContact === "9"){
+      item = {
+        cid:fileName,
+        type:Number(searchContact),
+      };
+    }else{
+      item = {
+        cid:id,
+        type:Number(searchContact),
+      };
+    }
     if(iscollect === 1){
       return fetchArticleCancelCollect(item, () => {
         obj.iscollect = 0;
