@@ -170,6 +170,15 @@ class SubjectContentTop extends React.Component {
     fetchSubjectContentList(params);
   };
 
+  searchChange = (e) => {
+    const {
+      fetchSubjectThemeSearch,
+    } = this.props;
+    fetchSubjectThemeSearch({
+      searchKey:e.target.value
+    });
+  };
+
   disabledDate(current) {
     // Can not select days after today
     return current && current > moment().endOf("day");
@@ -260,6 +269,7 @@ class SubjectContentTop extends React.Component {
                     size="default"
                     allowClear
                     style={{width: "250px"}}
+                    onChange={this.searchChange}
                     onSearch={(value) => this.searchQuery("word", value)}
                   />
                 </div>

@@ -171,6 +171,15 @@ class HotContentTop extends React.Component {
     fetchHotContentList(params);
   };
 
+  searchChange = (e) => {
+    const {
+      fetchHotThemeSearch,
+    } = this.props;
+    fetchHotThemeSearch({
+      searchKey:e.target.value
+    });
+  };
+
   disabledDate(current) {
     // Can not select days after today
     return current && current > moment().endOf("day");
@@ -260,6 +269,7 @@ class HotContentTop extends React.Component {
                   size="default"
                   allowClear
                   style={{width: "250px"}}
+                  onChange={this.searchChange}
                   onSearch={(value) => this.searchQuery("word", value)}
                 />
               </div>

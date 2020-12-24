@@ -41,6 +41,13 @@ class MeetingContentCenter extends React.Component {
     return [];
   };
 
+  searchChange = (e) => {
+    const {
+      fetchMeetingThemeSearch,
+    } = this.props;
+    fetchMeetingThemeSearch(e.target.value);
+  };
+
 
   confirmMeeting = (type, value) =>{
     /* eslint-disable no-nested-ternary */
@@ -50,7 +57,6 @@ class MeetingContentCenter extends React.Component {
       fetchMeetingDateQuery,
       fetchMeetingThemeSearchFlag,
       fetchMeetingResetButton,
-      fetchMeetingThemeSearch,
       meeting:{
         meetingSearchQuery,
         meetingProListFlag,
@@ -79,9 +85,6 @@ class MeetingContentCenter extends React.Component {
       params.relevantOrder = "desc";
     }
     const date = [startTime, endTime];
-    if(type === "search"){
-      fetchMeetingThemeSearch(value);
-    }
     fetchMeetingResetButton(false);
     fetchMeetingThemeSearchFlag(true);
     fetchMeetingDateQuery(date);
@@ -101,6 +104,7 @@ class MeetingContentCenter extends React.Component {
             size="default"
             allowClear
             style={{width: "450px"}}
+            onChange={this.searchChange}
             onSearch={(value) => {return this.confirmMeeting("search", value);}}
           />
         </div>
