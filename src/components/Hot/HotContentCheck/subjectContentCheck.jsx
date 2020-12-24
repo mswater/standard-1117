@@ -266,7 +266,7 @@ class SubjectContentCheck extends React.Component {
     const subjectContact = localStorage.getItem("subjectContact");
     if(username === "guest" && page > 50 && (subjectContact === "4" || subjectContact === "5")){
       Modal.info({
-        title: "您现在没有权限浏览更多文献",
+        title: "您目前为游客身份，仅可浏览500篇文献",
         content: (
           <div>
             <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>

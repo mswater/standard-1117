@@ -79,12 +79,14 @@ class Meeting extends React.Component{
   componentWillUnmount () {
     const {
       fetchMeetingDateQuery,
-      fetchMeetingQuery
+      fetchMeetingQuery,
+      fetchMeetingThemeSearch,
     } = this.props;
     /** 清除存储的状态
      * */
     localStorage.setItem("meetingOrderType","");
     localStorage.setItem("meetingOrderFlag","");
+    fetchMeetingThemeSearch();
     fetchMeetingDateQuery();
     fetchMeetingQuery();
   }

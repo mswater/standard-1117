@@ -261,7 +261,7 @@ class SearchContentCheck extends React.Component {
     if(username === "guest" && page > 50 &&
       (renderSearchContact === "4" || renderSearchContact === "5")){
       Modal.info({
-        title: "您现在没有权限浏览更多文献",
+        title: "您目前为游客身份，仅可浏览500篇文献",
         content: (
           <div>
             <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>
