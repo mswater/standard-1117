@@ -6,11 +6,11 @@ import empty from "../../../images/empty.png";
 
 const sortArrFirst = [{
   value: "会议时间",
-  flag: false,
+  flag: null,
   id: 1
 }, {
   value: "浏览量",
-  flag: false,
+  flag: null,
   id: 2
 }];
 function itemRender(current, type, originalElement){
@@ -24,13 +24,13 @@ function itemRender(current, type, originalElement){
 class MeetingContentCheck extends React.Component {
   constructor(props) {
     super(props);
-    this.sort_index = 0;
     this.state = {
     };
   }
 
   componentDidMount() {
     this.addEvent();
+    sortArrFirst[0].flag = false;
   }
 
   componentDidUpdate() {
@@ -41,48 +41,40 @@ class MeetingContentCheck extends React.Component {
         meetingResetButtonFlag
       }
     } = this.props;
-    if (meetingResetButtonFlag) {
-      const { classSort } = this;
-      const arr = classSort.children;
-      for (let i = 0; i < arr.length; i += 1) {
-        arr[i].style.color = "#515256";
-        arr[i].children[1].style.color = "#fff";
+    this.addEvent();
+    if(meetingResetButtonFlag || meetingThemeSearchFlag){
+      for (let i = 0; i < sortArrFirst.length; i += 1) {
+        sortArrFirst[i].flag = null;
       }
-      arr[0].style.color = "#0572B8";
-      arr[0].children[1].style.color = "#0572B8";
     }
-    if(!meetingResetButtonFlag) {
-      if (meetingThemeSearchFlag) {
-        if(meetingThemeSearch) {
-          const { classSort } = this;
-          const arr = classSort.children;
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[arr.length - 1].style.color = "#0572B8";
-          arr[arr.length - 1].children[1].style.color = "#0572B8";
+    if (meetingThemeSearchFlag) {
+      if(meetingThemeSearch) {
+        const { classSort } = this;
+        const arr = classSort.children;
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
         }
-        if (!meetingThemeSearch) {
-          const { classSort } = this;
-          const arr = classSort.children;
-          for (let i = 0; i < arr.length; i += 1) {
-            arr[i].style.color = "#515256";
-            arr[i].children[1].style.color = "#fff";
-          }
-          arr[0].style.color = "#0572B8";
-          arr[0].children[1].style.color = "#0572B8";
-        }
+        arr[arr.length - 1].style.color = "#0572B8";
+        arr[arr.length - 1].children[1].style.color = "#0572B8";
       }
-      if (!meetingThemeSearchFlag) {
-        this.addEvent();
+      if (!meetingThemeSearch) {
+        const { classSort } = this;
+        const arr = classSort.children;
+        for (let i = 0; i < arr.length; i += 1) {
+          arr[i].style.color = "#515256";
+          arr[i].children[1].style.color = "#fff";
+        }
+        arr[0].style.color = "#0572B8";
+        arr[0].children[1].style.color = "#0572B8";
+        sortArrFirst[0].flag = false;
       }
     }
   }
 
   componentWillUnmount(){
     for(let i = 0; i < sortArrFirst.length;){
-      sortArrFirst[i].flag = false;
+      sortArrFirst[i].flag = null;
       i += 1;
     }
   }
@@ -180,36 +172,26 @@ class MeetingContentCheck extends React.Component {
     /* eslint-disable no-nested-ternary */
     /* eslint-disable array-callback-return */
     const sortArr = sortArrFirst;
+    let orderFlag;
     if (orderType !== 3) {
-      // 判断当前点击的
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
+      sortArr.map((cur, index) => {
+        if(index === idx){
+          if(cur.flag !== null){
             cur.flag = !cur.flag;
-          }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
-    }
-    if (orderType === 3) {
-      if (this.sort_index === idx) {
-        sortArr.map((cur, index) => {
-          if (index === idx) {
+          }else{
             cur.flag = false;
           }
-        });
-      }
-      if (this.sort_index !== idx) {
-        this.sort_index = idx;
-        sortArr.map((cur) => {
-          cur.flag = false;
-        });
-      }
+          orderFlag = cur.flag;
+        }else{
+          cur.flag = null;
+        }
+      });
+    }
+    if (orderType === 3) {
+      sortArr.map((cur) => {
+        cur.flag = null;
+      });
+      orderFlag = false;
     }
     const params = {
       searchKey: meetingThemeSearch,
@@ -227,20 +209,20 @@ class MeetingContentCheck extends React.Component {
       pageSize: 10,
     };
     if(orderType === 2){
-      params.browseOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.browseOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 3){
       params.relevantOrder = "desc";
     }
     if(orderType === 1){
-      params.timeOrder = !sortArr[this.sort_index].flag ? "desc" : "asc";
+      params.timeOrder = !orderFlag ? "desc" : "asc";
     }
 
     fetchMeetingResetButton(false);
     fetchMeetingThemeSearchFlag(false);
     fetchMeetingList(params);
     localStorage.setItem("meetingOrderType",orderType);
-    localStorage.setItem("meetingOrderFlag",sortArr[this.sort_index].flag);
+    localStorage.setItem("meetingOrderFlag",orderFlag);
   };
 
   checkType() {
