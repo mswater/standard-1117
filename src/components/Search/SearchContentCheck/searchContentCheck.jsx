@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Icon, message, Pagination, Spin } from "antd";
+import { Checkbox, Icon, message, Modal, Pagination, Spin } from "antd";
 import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
 import empty from  "../../../images/empty.png";
@@ -255,74 +255,91 @@ class SearchContentCheck extends React.Component {
 
   // 分页
   paginationFunc = (page) => {
-    const {
-      fetchSearch,
-      headerSearchContent,
-      search:{
-        searchDateQuery,
-        searchSearchQuery,
-        searchProListFlag,
-        searchWeiboTypeFlag,
-        searchLanguageTypeFlag,
+    // 如果是游客身份，只能看前50页数据
+    const username = localStorage.getItem("username");
+    const renderSearchContact = localStorage.getItem("searchContact");
+    if(username === "guest" && page > 50 &&
+      (renderSearchContact === "4" || renderSearchContact === "5")){
+      Modal.info({
+        title: "您现在没有权限浏览更多文献",
+        content: (
+          <div>
+            <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>
+          </div>
+        ),
+        onOk() {
+        },
+      });
+    }else{
+      const {
+        fetchSearch,
+        headerSearchContent,
+        search:{
+          searchDateQuery,
+          searchSearchQuery,
+          searchProListFlag,
+          searchWeiboTypeFlag,
+          searchLanguageTypeFlag,
+        }
+      } = this.props;
+      /* eslint-disable no-nested-ternary */
+      const searchContact = localStorage.getItem("searchContact");
+      const orderType = localStorage.getItem("searchOrderType");
+      const orderFlag = localStorage.getItem("searchOrderFlag");
+      const params = {
+        type:!Number(searchContact) ? 1 : Number(searchContact),
+        starTime: searchDateQuery[0],
+        endTime: searchDateQuery[1],
+        searchKey: headerSearchContent,
+        webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
+          (searchLanguageTypeFlag ? [] : ((searchSearchQuery.length > 0) ?
+            searchSearchQuery : []))),
+        proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
+          ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : []),
+        languageList: searchLanguageTypeFlag ?
+          ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : [],
+        timeOrder: "",
+        browseOrder: "",
+        relevantOrder: "",
+        transpondOrder: "",
+        commentOrder: "",
+        likeOrder: "",
+        mettingOrder: "",
+        scoreOrder: "",
+        yearOrder: "",
+        blogType:null,
+        pageNum: page,
+        pageSize: 10
+      };
+      if(orderType === "1"){
+        params.timeOrder = orderFlag==="false" ? "desc" : "asc";
       }
-    } = this.props;
-    /* eslint-disable no-nested-ternary */
-    const searchContact = localStorage.getItem("searchContact");
-    const orderType = localStorage.getItem("searchOrderType");
-    const orderFlag = localStorage.getItem("searchOrderFlag");
-    const params = {
-      type:!Number(searchContact) ? 1 : Number(searchContact),
-      starTime: searchDateQuery[0],
-      endTime: searchDateQuery[1],
-      searchKey: headerSearchContent,
-      webList: searchWeiboTypeFlag ? [] :(searchProListFlag ? [] :
-        (searchLanguageTypeFlag ? [] : ((searchSearchQuery.length > 0) ?
-          searchSearchQuery : []))),
-      proList: searchWeiboTypeFlag ? [] :(searchProListFlag ?
-        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : []),
-      languageList: searchLanguageTypeFlag ?
-        ((searchSearchQuery.length > 0) ? searchSearchQuery : []) : [],
-      timeOrder: "",
-      browseOrder: "",
-      relevantOrder: "",
-      transpondOrder: "",
-      commentOrder: "",
-      likeOrder: "",
-      mettingOrder: "",
-      scoreOrder: "",
-      yearOrder: "",
-      blogType:null,
-      pageNum: page,
-      pageSize: 10
-    };
-    if(orderType === "1"){
-      params.timeOrder = orderFlag==="false" ? "desc" : "asc";
+      if(orderType === "2"){
+        params.browseOrder = orderFlag==="false" ? "desc" : "asc";
+      }
+      if(orderType === "3"){
+        params.relevantOrder = "desc";
+      }
+      if(orderType === "4"){
+        params.transpondOrder = orderFlag==="false" ? "desc" : "asc";
+      }
+      if(orderType === "5"){
+        params.commentOrder = orderFlag==="false" ? "desc" : "asc";
+      }
+      if(orderType === "6"){
+        params.likeOrder =  orderFlag==="false" ? "desc" : "asc";
+      }
+      if(orderType === "7"){
+        params.mettingOrder = orderFlag==="false" ? "desc" : "asc";
+      }
+      if(orderType === "8"){ // 检索评分
+        params.scoreOrder = orderFlag==="false" ? "desc" : "asc";
+      }
+      if(orderType === "9"){ // 发表年份
+        params.yearOrder = orderFlag==="false" ? "desc" : "asc";
+      }
+      fetchSearch(params);
     }
-    if(orderType === "2"){
-      params.browseOrder = orderFlag==="false" ? "desc" : "asc";
-    }
-    if(orderType === "3"){
-      params.relevantOrder = "desc";
-    }
-    if(orderType === "4"){
-      params.transpondOrder = orderFlag==="false" ? "desc" : "asc";
-    }
-    if(orderType === "5"){
-      params.commentOrder = orderFlag==="false" ? "desc" : "asc";
-    }
-    if(orderType === "6"){
-      params.likeOrder =  orderFlag==="false" ? "desc" : "asc";
-    }
-    if(orderType === "7"){
-      params.mettingOrder = orderFlag==="false" ? "desc" : "asc";
-    }
-    if(orderType === "8"){ // 检索评分
-      params.scoreOrder = orderFlag==="false" ? "desc" : "asc";
-    }
-    if(orderType === "9"){ // 发表年份
-      params.yearOrder = orderFlag==="false" ? "desc" : "asc";
-    }
-    fetchSearch(params);
   };
 
   // 收藏文章

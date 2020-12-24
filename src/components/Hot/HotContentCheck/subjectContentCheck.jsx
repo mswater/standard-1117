@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Icon, Pagination, Spin, message } from "antd";
+import { Checkbox, Icon, Pagination, Spin, message, Modal } from "antd";
 import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
 import empty from "../../../images/empty.png";
@@ -261,42 +261,58 @@ class SubjectContentCheck extends React.Component {
   };
 
   paginationFunc = (page) => {
-    const {
-      fetchSubjectContentList,
-      hot: {
-        subjectProListFlag,
-        subjectThemeSearch,
-        subjectSearchQuery,
-        subjectWeiboTypeFlag,
-        subjectLanguageTypeFlag,
-        subjectStartDate,
-        subjectEndDate,
-      }
-    } = this.props;
-    /* eslint-disable no-nested-ternary */
-    const readingId = localStorage.getItem("subjectReadingId");
+    // 如果是游客身份，只能看前50页数据
+    const username = localStorage.getItem("username");
     const subjectContact = localStorage.getItem("subjectContact");
-    const orderType = localStorage.getItem("subjectOrderType");
-    const orderFlag = localStorage.getItem("subjectOrderFlag");
-    const params = {
-      searchKey: subjectThemeSearch,
-      hId: Number(readingId),
-      sourceType:Number(subjectContact),
-      webList: subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
-        (subjectLanguageTypeFlag ? null : ((subjectSearchQuery.length > 0) ?
-          subjectSearchQuery : ["全部"]))),
-      proList: subjectWeiboTypeFlag ? null : (subjectProListFlag ?
-        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]): null),
-      languageList: subjectLanguageTypeFlag ?
-        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]): null,
-      order: (orderFlag === "false") ? "desc" : "asc",
-      orderType:!orderType ? 1 : Number(orderType),
-      startDate:subjectStartDate,
-      endDate:subjectEndDate,
-      pageNum: page,
-      pageSize:10
-    };
-    fetchSubjectContentList(params);
+    if(username === "guest" && page > 50 && (subjectContact === "4" || subjectContact === "5")){
+      Modal.info({
+        title: "您现在没有权限浏览更多文献",
+        content: (
+          <div>
+            <p>如需申请正式账号，请邮箱联系：agrihotspot@caas.cn</p>
+          </div>
+        ),
+        onOk() {
+        },
+      });
+    }else {
+      const {
+        fetchSubjectContentList,
+        hot: {
+          subjectProListFlag,
+          subjectThemeSearch,
+          subjectSearchQuery,
+          subjectWeiboTypeFlag,
+          subjectLanguageTypeFlag,
+          subjectStartDate,
+          subjectEndDate,
+        }
+      } = this.props;
+      /* eslint-disable no-nested-ternary */
+      const readingId = localStorage.getItem("subjectReadingId");
+      const subjectContact = localStorage.getItem("subjectContact");
+      const orderType = localStorage.getItem("subjectOrderType");
+      const orderFlag = localStorage.getItem("subjectOrderFlag");
+      const params = {
+        searchKey: subjectThemeSearch,
+        hId: Number(readingId),
+        sourceType: Number(subjectContact),
+        webList: subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
+          (subjectLanguageTypeFlag ? null : ((subjectSearchQuery.length > 0) ?
+            subjectSearchQuery : ["全部"]))),
+        proList: subjectWeiboTypeFlag ? null : (subjectProListFlag ?
+          ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]) : null),
+        languageList: subjectLanguageTypeFlag ?
+          ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]) : null,
+        order: (orderFlag === "false") ? "desc" : "asc",
+        orderType: !orderType ? 1 : Number(orderType),
+        startDate: subjectStartDate,
+        endDate: subjectEndDate,
+        pageNum: page,
+        pageSize: 10
+      };
+      fetchSubjectContentList(params);
+    }
   };
 
   collectArticle = (obj) =>{
@@ -481,7 +497,6 @@ class SubjectContentCheck extends React.Component {
     const {
       hot:{
         fetchSubjectContentListLoading,
-        subjectContentListData,
         subjectContentListData:{
           page:{
             resultList,
@@ -495,7 +510,6 @@ class SubjectContentCheck extends React.Component {
         sameListData,
       },
     } = this.props;
-    console.log(subjectContentListData);
     const sameList = sameListData
       && sameListData.map((cur,index) => {
         return(
