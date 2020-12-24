@@ -132,7 +132,7 @@ class SearchContentCheck extends React.Component {
     const arr = classSort.children;
     const searchContact = localStorage.getItem("searchContact");
     if (searchThemeSearchFlag) {
-      if(headerSearchContent && searchContact !== "4" && searchContact !== "5") {
+      if(headerSearchContent !== "" && searchContact !== "4" && searchContact !== "5") {
         for (let i = 0; i < arr.length; i += 1) {
           arr[i].style.color = "#515256";
           arr[i].children[1].style.color = "#fff";

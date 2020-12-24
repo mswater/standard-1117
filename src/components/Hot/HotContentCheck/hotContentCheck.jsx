@@ -115,7 +115,7 @@ class HotContentCheck extends React.Component {
       }
     }
     if (hotThemeSearchFlag) {
-      if(hotThemeSearch) {
+      if(hotThemeSearch !== "") {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -124,8 +124,7 @@ class HotContentCheck extends React.Component {
         }
         arr[arr.length - 1].style.color = "#0572B8";
         arr[arr.length - 1].children[1].style.color = "#0572B8";
-      }
-      if (!hotThemeSearch) {
+      }else{
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {

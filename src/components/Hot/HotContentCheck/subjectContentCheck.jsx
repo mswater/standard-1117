@@ -133,8 +133,9 @@ class SubjectContentCheck extends React.Component {
         sortArrThird[i].flag = null;
       }
     }
+    const subjectContact = localStorage.getItem("subjectContact");
     if (subjectThemeSearchFlag) {
-      if(subjectThemeSearch) {
+      if(subjectThemeSearch !== "" && subjectContact !== "4" && subjectContact !== "5") {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -143,8 +144,7 @@ class SubjectContentCheck extends React.Component {
         }
         arr[arr.length - 1].style.color = "#0572B8";
         arr[arr.length - 1].children[1].style.color = "#0572B8";
-      }
-      if (!subjectThemeSearch) {
+      }else {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -153,7 +153,6 @@ class SubjectContentCheck extends React.Component {
         }
         arr[0].style.color = "#0572B8";
         arr[0].children[1].style.color = "#0572B8";
-        const subjectContact = localStorage.getItem("subjectContact");
         /* eslint-disable  no-nested-ternary */
         const sortArr = (subjectContact === "2") ? sortArrSecond :
           ((subjectContact === "4" || subjectContact === "5") ?
@@ -710,7 +709,9 @@ class SubjectContentCheck extends React.Component {
             </div>
             <div className="fl" ref={(ref) => {this.classSort = ref;}}>
               {sortItem}
-              {(subjectThemeSearch) && (
+              {(subjectThemeSearch !== "" &&
+                subjectContact !== "4" &&
+                subjectContact !== "5") && (
                 <button type="button" onClick={() => {return this.sortFunc(3,"");}}>
                   <span>相关性</span><Icon type="arrow-down"/>
                 </button>
