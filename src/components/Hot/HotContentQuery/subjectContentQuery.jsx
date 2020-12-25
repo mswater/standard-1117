@@ -472,7 +472,7 @@ class SubjectContentQuery extends React.Component {
           key={index.toString()}
           title={cur}
           onClick={() => this.searchItem(cur,index)}
-          className={`fl ${index === clickIndex ? "current" : ""}`}
+          className={`fl ${renderContactNumber === 4 ? "large" : ""}`}
         >
           {cur}
         </div>

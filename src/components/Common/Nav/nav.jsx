@@ -39,57 +39,50 @@ class Nav extends React.Component {
     const headerRouter = getMenuCode();
     return (
       <nav className="index-nav">
-        <ul className="index-nav-con">
-          <li
+        <div className="index-nav-con">
+          <div
             className={headerRouter === "" ? "current" : ""}
+            onClick={() => this.navLinkFunc("/")}
           >
-            <a onClick={() => this.navLinkFunc("/")}>
-              首页
-            </a>
-          </li>
-          <li
+            <span>首页</span>
+          </div>
+          <div
             className={(headerRouter === "hot") ? "current" : ""}
+            onClick={() => this.navLinkFunc("/hot")}
           >
-            <a onClick={() => this.navLinkFunc("/hot")}>
-              行业动态
-            </a>
-          </li>
-          <li
+            <span>行业动态</span>
+          </div>
+          <div
             className={headerRouter === "meeting" ? "current" : ""}
+            onClick={() => this.navLinkFunc("/meeting")}
           >
-            <a onClick={() => this.navLinkFunc("/meeting")}>
-              会议信息
-            </a>
-          </li>
-          <li
+            <span>会议信息</span>
+          </div>
+          <div
             className={headerRouter === "subject" ? "current" : ""}
+            onClick={() => this.navLinkFunc("/subject")}
           >
-            <a onClick={() => this.navLinkFunc("/subject")}>
-              学科专题
-            </a>
-          </li>
-          <li
+            <span>学科专题</span>
+          </div>
+          <div
             className={headerRouter === "report" ? "current" : ""}
+            onClick={() => this.navLinkFunc("/report")}
           >
-            <a onClick={() => this.navLinkFunc("/report")}>
-              学科快讯
-            </a>
-          </li>
-          <li
+            <span>学科快讯</span>
+          </div>
+          <div
             className={headerRouter === "literature" ? "current" : ""}
+            onClick={() => this.navLinkFunc("/literature")}
           >
-            <a onClick={() => this.navLinkFunc("/literature")}>
-              资料共享
-            </a>
-          </li>
-          <li
+            <span>资料共享</span>
+          </div>
+          <div
             className={headerRouter === "aboutus" ? "current" : ""}
+            onClick={() => this.navLinkFunc("/aboutus")}
           >
-            <a onClick={() => this.navLinkFunc("/aboutus")}>
-              关于我们
-            </a>
-          </li>
-        </ul>
+            <span>关于我们</span>
+          </div>
+        </div>
       </nav>
     );
   }
