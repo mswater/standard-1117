@@ -498,18 +498,20 @@ class SearchContentQuery extends React.Component {
           && renderContactNumber !== "9") && (
           <div className="search-content-query-select">
             <div className="query-top clear">
-              {(!searchWeiboTypeFlag) && (
-                <Search
-                  value={searchValue}
-                  placeholder="请输入检索内容..."
-                  enterButton="检索"
-                  size="default"
-                  allowClear
-                  style={{width: "260px"}}
-                  onChange={this.searchChange}
-                  onSearch={this.searchQuery}
-                />
-              )}
+              {
+                (searchWeiboTypeFlag || searchLanguageTypeFlag) ? "" : (
+                  <Search
+                    value={searchValue}
+                    placeholder="请输入检索内容..."
+                    enterButton="检索"
+                    size="default"
+                    allowClear
+                    style={{width: "260px"}}
+                    onChange={this.searchChange}
+                    onSearch={this.searchQuery}
+                  />
+                )
+              }
               {fetchSearchLoading ? <div className="content-list-loading"><Spin /></div>
                 : (!queryList || (queryList && queryList.length <= 1) ?
                   <div className="no-data"><img src={noData} alt=""/></div> : (

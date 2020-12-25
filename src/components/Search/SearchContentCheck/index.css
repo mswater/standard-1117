@@ -174,9 +174,16 @@
 }
 .search-content-check-item .search-content-title{
   margin:0 5px;
+  font-size:16px;
+  font-weight:bold;
+  color:#4D4C4C;
+  width: 600px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .search-content-check-item .search-content-title:hover{
  cursor: pointer;
+  color:#0572B8;
 }
 .search-content-check-download button{
   outline: none;
