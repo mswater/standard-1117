@@ -65,7 +65,7 @@ class HotContent extends React.Component{
       webList:[],
       proList:hotProListFlag ? ["全部"] : [],
       languageList:hotLanguageTypeFlag ? ["全部"] : [],
-      order:(orderFlag!=="false") ? "desc":"asc",
+      order:(orderFlag==="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
       startDate:hotStartDate,
       endDate:hotEndDate,

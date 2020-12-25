@@ -129,25 +129,25 @@ class SearchContentQuery extends React.Component {
       pageSize: 10
     };
     if(orderType === 1){
-      params.timeOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.timeOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 2){
-      params.browseOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.browseOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 3){
       params.relevantOrder = "desc";
     }
     if(orderType === 4){
-      params.transpondOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.transpondOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 5){
-      params.commentOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.commentOrder = orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 6){
-      params.likeOrder =  orderFlag!=="false" ? "desc" : "asc";
+      params.likeOrder =  orderFlag==="false" ? "desc" : "asc";
     }
     if(orderType === 7){
-      params.mettingOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.mettingOrder = orderFlag==="false" ? "desc" : "asc";
     }
     fetchSearchValue(value);
     if (!value || value.length === 0 || value === "全部") {

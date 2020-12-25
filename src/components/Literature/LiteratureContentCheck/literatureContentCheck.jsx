@@ -119,7 +119,7 @@ class LiteratureContentCheck extends React.Component {
       searchType:literatureSelectQuery,
       starTime:literatureDateQuery[0],
       endTime:literatureDateQuery[1],
-      timeOrder: orderFlag !== "" ? orderFlag : "desc",
+      timeOrder: orderFlag === "false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:page,
       pageSize:10,

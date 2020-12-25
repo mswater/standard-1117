@@ -152,13 +152,13 @@ class MeetingContentQuery extends React.Component {
       pageSize: 10
     };
     if(orderType === 2){
-      params.browseOrder = !orderFlag ? "desc" : "asc";
+      params.browseOrder = orderFlag === "false" ? "desc" : "asc";
     }
     if(orderType === 3){
       params.relevantOrder = "desc";
     }
     if(orderType === 1){
-      params.timeOrder = !orderFlag ? "desc" : "asc";
+      params.timeOrder = orderFlag === "false" ? "desc" : "asc";
     }
     fetchMeetingSearchValue(value);
     if (!value || value.length === 0 || value === "全部") {
@@ -287,13 +287,13 @@ class MeetingContentQuery extends React.Component {
       pageSize: 10
     };
     if(orderType === 2){
-      params.browseOrder = !orderFlag ? "desc" : "asc";
+      params.browseOrder = orderFlag === "false" ? "desc" : "asc";
     }
     if(orderType === 3){
       params.relevantOrder = "desc";
     }
     if(orderType === 1){
-      params.timeOrder = !orderFlag ? "desc" : "asc";
+      params.timeOrder = orderFlag === "false" ? "desc" : "asc";
     }
     fetchMeetingQuery(item);
     fetchMeetingResetButton(false);

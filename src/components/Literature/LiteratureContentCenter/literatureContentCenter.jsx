@@ -78,7 +78,7 @@ class LiteratureContentCenter extends React.Component {
       searchType: literatureSelectQuery,
       startTime,
       endTime,
-      timeOrder: orderFlag !== "" ? orderFlag : "desc",
+      timeOrder: orderFlag === "false" ? "desc" : "asc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10,

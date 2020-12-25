@@ -31,7 +31,7 @@ class LiteratureContent extends React.Component{
       searchType:literatureSelectQuery,
       starTime:literatureDateQuery[0],
       endTime:literatureDateQuery[1],
-      timeOrder:(orderFlag!=="false") ? "desc":"asc",
+      timeOrder:(orderFlag==="false") ? "desc":"asc",
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10

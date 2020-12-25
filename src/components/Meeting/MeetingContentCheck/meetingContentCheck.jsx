@@ -117,13 +117,13 @@ class MeetingContentCheck extends React.Component {
       pageSize: 10,
     };
     if(orderType === "2"){
-      params.browseOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.browseOrder = orderFlag ==="false" ? "desc" : "asc";
     }
     if(orderType === "3"){
       params.relevantOrder = "desc";
     }
     if(orderType === "1"){
-      params.timeOrder = orderFlag!=="false" ? "desc" : "asc";
+      params.timeOrder = orderFlag ==="false" ? "desc" : "asc";
     }
     fetchMeetingList(params);
   };

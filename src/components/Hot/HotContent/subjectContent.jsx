@@ -65,7 +65,7 @@ class SubjectContent extends React.Component{
       webList:(!subjectProListFlag && !subjectLanguageTypeFlag) ? ["全部"] : null,
       proList:subjectProListFlag ? ["全部"] : null,
       languageList:subjectLanguageTypeFlag ? ["全部"] : null,
-      order:(orderFlag!=="false") ? "desc":"asc",
+      order:(orderFlag==="false") ? "desc":"asc",
       orderType:!orderType ? 1 :Number(orderType),
       startDate:subjectStartDate,
       endDate:subjectEndDate,
