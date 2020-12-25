@@ -550,6 +550,13 @@ class SearchContentCheck extends React.Component {
     localStorage.setItem("searchOrderFlag",orderFlag);
   };
 
+  readingNum = (detailId) =>{
+    const {
+      fetchArticleDetail
+    } =this.props;
+    fetchArticleDetail(detailId);
+  };
+
   checkType() {
     /* eslint-disable no-param-reassign */
     siblings(this).forEach((item, index, arr) => {
@@ -622,6 +629,7 @@ class SearchContentCheck extends React.Component {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="search-content-title-link"
+                  onClick={() => {return this.readingNum(cur.id);}}
                 >
                   <span
                     dangerouslySetInnerHTML={{
@@ -680,7 +688,10 @@ class SearchContentCheck extends React.Component {
             </div>
             {(renderSearchContact === "6") ?
               (
-                <div className="search-content-check-item-text">
+                <div
+                  className="search-content-check-item-text"
+                  onClick={() => {return this.readingNum(cur.id);}}
+                >
                   <a
                     href={cur.pageUrl||cur.fPageUrl}
                     target="_blank"
