@@ -153,6 +153,19 @@
   width:200px;
   margin:42px 0 0 300px;
 }
+.top-search-small .ant-input-affix-wrapper .ant-input{
+  width:200px;
+  height:30px;
+  border:none;
+}
+.top-search-small .ant-input-search-enter-button + .ant-input-group-addon .ant-input-search-button{
+  width:30px;
+  height:30px;
+  font-size:22px;
+  padding:0;
+  border:none;
+  background:rgba(131,217,97,1);
+}
 .ant-tooltip-inner{
   padding:0 !important;
   background:none !important;

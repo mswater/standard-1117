@@ -82,6 +82,8 @@ class Header extends React.Component {
               <Search
                 placeholder="请输入检索词..."
                 value={headerSearchContent}
+                allowClear
+                enterButton
                 onChange={this.searchChange}
                 onSearch={this.searchContent}
               />
