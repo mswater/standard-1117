@@ -44,6 +44,10 @@ const sortArrThird = [{
   value: "发表年份",
   flag: null,
   id: 9
+}, {
+  value: "创建时间",
+  flag: null,
+  id: 10
 }];
 function itemRender(current, type, originalElement){
   if (type === "prev") {
@@ -306,7 +310,7 @@ class SearchContentCheck extends React.Component {
         likeOrder: "",
         mettingOrder: "",
         scoreOrder: "",
-        yearOrder: "",
+        timeOrder1: "",
         blogType:null,
         pageNum: page,
         pageSize: 10
@@ -336,7 +340,10 @@ class SearchContentCheck extends React.Component {
         params.scoreOrder = orderFlag==="false" ? "desc" : "asc";
       }
       if(orderType === "9"){ // 发表年份
-        params.yearOrder = orderFlag==="false" ? "desc" : "asc";
+        params.timeOrder = orderFlag==="false" ? "desc" : "asc";
+      }
+      if(orderType === "10"){ // 创建时间
+        params.timeOrder1 = orderFlag==="false" ? "desc" : "asc";
       }
       fetchSearch(params);
     }
@@ -501,7 +508,7 @@ class SearchContentCheck extends React.Component {
       likeOrder: "",
       mettingOrder: "",
       scoreOrder: "",
-      yearOrder: "",
+      timeOrder1: "",
       blogType:null,
       pageNum: 1,
       pageSize: 10
@@ -531,7 +538,10 @@ class SearchContentCheck extends React.Component {
       params.scoreOrder = !orderFlag ? "desc" : "asc";
     }
     if(orderType === 9){
-      params.yearOrder = !orderFlag ? "desc" : "asc";
+      params.timeOrder = !orderFlag ? "desc" : "asc";
+    }
+    if(orderType === 10){
+      params.timeOrder1 = !orderFlag ? "desc" : "asc";
     }
     fetchSearchResetButton(false);
     fetchSearchThemeSearchFlag(false);
@@ -739,46 +749,18 @@ class SearchContentCheck extends React.Component {
                     <span>{cur.fJobName}</span>
                   </div>
                 ): (
-                  renderSearchContact === "4" ?
+                  (renderSearchContact === "4" || renderSearchContact === "5") ?
                     (
                       <div>
                         <div className="search_box">
-                          <span>发表时间：</span>
-                          <span>{(cur.time|| "").split(" ").splice(0,1)}</span>
+                          <span>发表年份：</span>
+                          <span>{cur.year}年</span>
+                          <span>创建时间：</span>
+                          <span>{cur.createTime}</span>
                           <span>作者：</span>
-                          <span className="search_author">
-                            <a href="#" title={cur.author}>
-                              {cur.author}
-                            </a>
-                          </span>
+                          <span>{cur.author}</span>
                           <span>期刊：</span>
-                          <span className="search_source">
-                            <a href="#" title={cur.source}>
-                              {cur.source}
-                            </a>
-                          </span>
-                        </div>
-                      </div>
-                    )
-                    : (renderSearchContact === "5" ? (
-                      <div>
-                        <div className="search_box">
-                          <span>发表时间：</span>
-                          <span>{(cur.fFetchtime|| "").split(" ").splice(0,1)}</span>
-                          <span>作者：</span>
-                          <span className="search_author">
-                            <a href="#" title={cur.fArticleAuthor}>
-                              {cur.fArticleAuthor}
-                            </a>
-                          </span>
-                          <span>期刊：</span>
-                          <span className="search_source">
-                            <a href="#" title={cur.fArticleBook}>
-                              {cur.fArticleBook}
-                            </a>
-                          </span>
-                          <span>来源：</span>
-                          <span>{cur.fJobName}</span>
+                          <span>{cur.journalName}</span>
                         </div>
                       </div>
                     ):(
@@ -809,17 +791,17 @@ class SearchContentCheck extends React.Component {
                             <span>{cur.fJobName}</span>
                           </div>
                         )
-                    )))
+                    ))
                 }
               </div>
               { /* eslint-disable no-nested-ternary */ }
               <div className="search-content-check-item-click fr">
-                {renderSearchContact === "4" ? "" :
+                {(renderSearchContact === "4" || renderSearchContact === "5") ? "" :
                   <button type="button" className="read-num">
                     <Icon type="eye"/>
                   </button>
                 }
-                {renderSearchContact === "4" ? "" :
+                {(renderSearchContact === "4" || renderSearchContact === "5") ? "" :
                   <span>{cur.readnum}</span>
                 }
                 {username === "guest" ? "" : (

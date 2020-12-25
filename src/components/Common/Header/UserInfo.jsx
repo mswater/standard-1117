@@ -83,7 +83,13 @@ class UserInfo extends React.Component{
           }
           {(username && username !== "guest") ?
             (
-              <Button onClick={() => this.showConfirm()}>退出</Button>
+              <button
+                type="button"
+                className="ant-btn"
+                onClick={() => this.showConfirm()}
+              >
+                <span>退出</span>
+              </button>
             ) : (
               <Button className="btn-with-mr" onClick={() => this.showLogin()}>登录</Button>
             )}

@@ -49,8 +49,16 @@
   color:rgba(255,255,255,.8);
   padding:0 5px;
 }
+.index-header-con .top-r .personal-index{
+  padding-right:8px;
+  padding-left:10px;
+}
+.index-header-con .top-r .backstage{
+  padding-left:8px;
+}
 .index-header-con .top-r .name{
   color:#F6BD4E;
+  padding-right:8px;
 }
 .index-header-con .top-r a:hover{
   color:rgba(255,255,255,1);
@@ -67,6 +75,7 @@
   cursor:pointer;
   outline:none;
   background:none;
+  border-radius:0;
 }
 .index-header-con .top-r .user-info button:hover{
   color:rgba(255,255,255,1);
