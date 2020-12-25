@@ -28,12 +28,8 @@ export const fetchSearch = (params) => {
               dispatch(fetchSameCount(cur.id));
             }
           });
-          if(!proList) {
-            proList = response.data.data && response.data.data.proList;
-          }
-          if(!webList) {
-            webList = response.data.data && response.data.data.webList;
-          }
+          proList = response.data.data && response.data.data.proList;
+          webList = response.data.data && response.data.data.webList;
           dispatch({
             type: "SAVE_GET_SEARCH",
             payload:{

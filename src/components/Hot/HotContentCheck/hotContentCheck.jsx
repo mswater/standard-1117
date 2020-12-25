@@ -183,7 +183,7 @@ class HotContentCheck extends React.Component {
     });
   };
 
-  onChange = (checkedList) => {
+  onChange = (list) => {
     const {
       hot:{
         hotContentListData:{
@@ -193,12 +193,13 @@ class HotContentCheck extends React.Component {
         }
       }
     } = this.props;
+
     this.setState({
-      checkedList,
-      indeterminate: !!checkedList.length
-        && (checkedList.length < this.optionsFunc(resultList).length),
-      checkAll: checkedList.length === this.optionsFunc(resultList).length,
-      selectNumber: checkedList.length
+      checkedList: list,
+      indeterminate: !!list.length
+        && (list.length < this.optionsFunc(resultList).length),
+      checkAll: list.length === this.optionsFunc(resultList).length,
+      selectNumber: list.length
     });
   };
 
@@ -218,6 +219,7 @@ class HotContentCheck extends React.Component {
       fetchDownload,
     } = this.props;
     const { checkedList } = this.state;
+    console.log(checkedList);
     const item ={
       ids: checkedList
     };
