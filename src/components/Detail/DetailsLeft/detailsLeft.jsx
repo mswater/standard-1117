@@ -47,14 +47,18 @@ class DetailsLeft extends React.Component {
                       </p>
                       <p>
                         <span>{articleDetailData.authorAdd[0]}</span>
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={articleDetailData.linkLs[0]}
-                          className="fr"
-                        >
-                        阅读原文&gt;&gt;
-                        </a>
+                        {
+                          articleDetailData.linkLs.length > 0 ? (
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={articleDetailData.linkLs[0]}
+                              className="fr"
+                            >
+                              阅读原文&gt;&gt;
+                            </a>
+                          ) : ""
+                        }
                       </p>
                     </div>
                     <div className="hot-details">
@@ -102,16 +106,20 @@ class DetailsLeft extends React.Component {
                       <p>
                         <span>发表时间：{articleDetailData.fArticleTime}</span>
                         <span>来源期刊：{articleDetailData.fJobName}</span>
-                        <span>
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={articleDetailData.fPageUrl}
-                            className="fr"
-                          >
-                          阅读原文&gt;&gt;
-                          </a>
-                        </span>
+                        {
+                          articleDetailData.fPageUrl !== "" ? (
+                            <span>
+                              <a
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                href={articleDetailData.fPageUrl}
+                                className="fr"
+                              >
+                              阅读原文&gt;&gt;
+                              </a>
+                            </span>
+                          ) : ""
+                        }
                       </p>
                     </div>
                     <div className="hot-details">
