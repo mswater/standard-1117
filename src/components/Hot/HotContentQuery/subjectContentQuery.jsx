@@ -58,7 +58,6 @@ class SubjectContentQuery extends React.Component {
       searchPro : (subjectWeiboTypeFlag ?
         weiboArr : (subjectLanguageTypeFlag ?
           searchLanguage : searchWeb));
-    console.log(queryList);
     const { classType } = this;
     const classArr = classType.children;
     this.addEvent();

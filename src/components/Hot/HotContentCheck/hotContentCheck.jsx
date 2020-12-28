@@ -216,7 +216,6 @@ class HotContentCheck extends React.Component {
       fetchDownload,
     } = this.props;
     const { checkedList } = this.state;
-    console.log(checkedList);
     const item = {
       ids: checkedList
     };
@@ -609,14 +608,15 @@ class HotContentCheck extends React.Component {
             <div className="fl">
               排序：
             </div>
-            <div className="fl" ref={(ref) => {
-              this.classSort = ref;
-            }}>
+            <div className="fl" ref={(ref) => {this.classSort = ref;}}>
               {sortItem}
               {(hotThemeSearch) && (
-                <button type="button" onClick={() => {
-                  return this.sortFunc(3, "");
-                }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    return this.sortFunc(3, "");
+                  }}
+                >
                   <span>相关性</span><Icon type="arrow-down"/>
                 </button>
               )}

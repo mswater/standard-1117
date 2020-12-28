@@ -4,8 +4,6 @@ import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
 import empty from "../../../images/empty.png";
 
-
-const CheckboxGroup = Checkbox.Group;
 const sortArrFirst = [{
   value: "发布时间",
   flag: null,
@@ -83,19 +81,19 @@ class SubjectContentCheck extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      hot:{
-        subjectContentListData:{
-          timeCompare:nextTimeCompare,
-          page:{
+      hot: {
+        subjectContentListData: {
+          timeCompare: nextTimeCompare,
+          page: {
             resultList: currentResultList,
           }
         }
       }
     } = nextProps;
     const {
-      hot:{
-        subjectContentListData:{
-          timeCompare:currentTimeCompare,
+      hot: {
+        subjectContentListData: {
+          timeCompare: currentTimeCompare,
         }
       }
     } = this.props;
@@ -115,14 +113,14 @@ class SubjectContentCheck extends React.Component {
 
   componentDidUpdate() {
     const {
-      hot:{
+      hot: {
         subjectThemeSearch,
         subjectThemeSearchFlag,
         subjectResetButtonFlag
       }
     } = this.props;
     this.addEvent();
-    if(subjectResetButtonFlag || subjectThemeSearchFlag){
+    if (subjectResetButtonFlag || subjectThemeSearchFlag) {
       for (let i = 0; i < sortArrSecond.length; i += 1) {
         sortArrSecond[i].flag = null;
       }
@@ -135,7 +133,7 @@ class SubjectContentCheck extends React.Component {
     }
     const subjectContact = localStorage.getItem("subjectContact");
     if (subjectThemeSearchFlag) {
-      if(subjectThemeSearch !== "" && subjectContact !== "4" && subjectContact !== "5") {
+      if (subjectThemeSearch !== "" && subjectContact !== "4" && subjectContact !== "5") {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -144,7 +142,7 @@ class SubjectContentCheck extends React.Component {
         }
         arr[arr.length - 1].style.color = "#0572B8";
         arr[arr.length - 1].children[1].style.color = "#0572B8";
-      }else {
+      } else {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -162,16 +160,16 @@ class SubjectContentCheck extends React.Component {
     }
   }
 
-  componentWillUnmount(){
-    for(let i = 0; i < sortArrFirst.length;){
+  componentWillUnmount() {
+    for (let i = 0; i < sortArrFirst.length;) {
       sortArrFirst[i].flag = null;
       i += 1;
     }
-    for(let i = 0; i < sortArrSecond.length;){
+    for (let i = 0; i < sortArrSecond.length;) {
       sortArrSecond[i].flag = null;
       i += 1;
     }
-    for(let i = 0; i < sortArrThird.length;){
+    for (let i = 0; i < sortArrThird.length;) {
       sortArrThird[i].flag = null;
       i += 1;
     }
@@ -179,7 +177,7 @@ class SubjectContentCheck extends React.Component {
 
   optionsFunc = (data) => {
     const optionsArr = [];
-    for (let i = 0; i < data.length; i+=1) {
+    for (let i = 0; i < data.length; i += 1) {
       optionsArr.push(data[i].id.toString());
     }
     return optionsArr;
@@ -187,27 +185,27 @@ class SubjectContentCheck extends React.Component {
 
   toDetails = (detailId) => {
     const subjectContact = localStorage.getItem("subjectContact");
-    if(subjectContact === "4" || subjectContact === "5") {
+    if (subjectContact === "4" || subjectContact === "5") {
       localStorage.setItem("articleType", (9 - Number(subjectContact)).toString());
-    }else{
+    } else {
       localStorage.setItem("articleType", "1");
     }
     const url = window.location.origin;
-    window.open(`${url}/detail/${detailId}`,"_blank");
+    window.open(`${url}/detail/${detailId}`, "_blank");
   };
 
   onCheckAllChange = (e) => {
     const {
-      hot:{
-        subjectContentListData:{
-          page:{
+      hot: {
+        subjectContentListData: {
+          page: {
             resultList,
           }
         }
       }
     } = this.props;
     this.setState({
-      checkedList: e.target.checked ?  this.optionsFunc(resultList): [],
+      checkedList: e.target.checked ? this.optionsFunc(resultList) : [],
       indeterminate: false,
       checkAll: e.target.checked,
       selectNumber: e.target.checked ? this.optionsFunc(resultList).length : 0
@@ -216,9 +214,9 @@ class SubjectContentCheck extends React.Component {
 
   onChange = (checkedList) => {
     const {
-      hot:{
-        subjectContentListData:{
-          page:{
+      hot: {
+        subjectContentListData: {
+          page: {
             resultList,
           }
         }
@@ -234,7 +232,6 @@ class SubjectContentCheck extends React.Component {
   };
 
 
-
   clearAll = () => {
     this.setState({
       checkedList: [],
@@ -244,17 +241,17 @@ class SubjectContentCheck extends React.Component {
     });
   };
 
-  download = () =>{
+  download = () => {
     const {
       fetchDownload,
     } = this.props;
     const { checkedList } = this.state;
-    const item ={
+    const item = {
       ids: checkedList
     };
-    if (checkedList.length === 0){
+    if (checkedList.length === 0) {
       message.error("请选择要操作的对象！");
-    }else{
+    } else {
       fetchDownload(item);
       message.success("pdf已经生成，请到个人主页-我的下载查看！");
     }
@@ -264,7 +261,7 @@ class SubjectContentCheck extends React.Component {
     // 如果是游客身份，只能看前50页数据
     const username = localStorage.getItem("username");
     const subjectContact = localStorage.getItem("subjectContact");
-    if(username === "guest" && page > 50 && (subjectContact === "4" || subjectContact === "5")){
+    if (username === "guest" && page > 50 && (subjectContact === "4" || subjectContact === "5")) {
       Modal.info({
         title: "您目前为游客身份，仅可浏览500篇文献",
         content: (
@@ -275,7 +272,7 @@ class SubjectContentCheck extends React.Component {
         onOk() {
         },
       });
-    }else {
+    } else {
       const {
         fetchSubjectContentList,
         hot: {
@@ -315,7 +312,7 @@ class SubjectContentCheck extends React.Component {
     }
   };
 
-  collectArticle = (obj) =>{
+  collectArticle = (obj) => {
     const {
       id,
       gid,
@@ -327,18 +324,18 @@ class SubjectContentCheck extends React.Component {
     } = this.props;
     const subjectContact = localStorage.getItem("subjectContact");
     let item;
-    if(subjectContact === "4" || subjectContact === "5"){
+    if (subjectContact === "4" || subjectContact === "5") {
       item = {
-        cid:gid,
-        type:Number(subjectContact),
+        cid: gid,
+        type: Number(subjectContact),
       };
-    }else{
+    } else {
       item = {
-        cid:id,
-        type:Number(subjectContact),
+        cid: id,
+        type: Number(subjectContact),
       };
     }
-    if(iscollect === 1){
+    if (iscollect === 1) {
       return fetchArticleCancelCollect(item, () => {
         obj.iscollect = 0;
       });
@@ -351,9 +348,9 @@ class SubjectContentCheck extends React.Component {
 
   toggleList = (id) => {
     const {
-      hot:{
-        subjectContentListData:{
-          page:{
+      hot: {
+        subjectContentListData: {
+          page: {
             resultList,
           }
         }
@@ -369,7 +366,7 @@ class SubjectContentCheck extends React.Component {
           fetchSameList(cur.id);
         }
       }
-      if(id !== index) {
+      if (id !== index) {
         cur.flag = false;
       }
     });
@@ -383,8 +380,8 @@ class SubjectContentCheck extends React.Component {
   resultListFunc = (data) => {
     const { resultListArr } = this.state;
     const {
-      article:{
-        sameCountData:{
+      article: {
+        sameCountData: {
           cid,
           samecount
         }
@@ -394,7 +391,7 @@ class SubjectContentCheck extends React.Component {
       data.forEach((item) => {
         /* eslint-disable-next-line */
         item.flag = false;
-        if(cid === item.id) {
+        if (cid === item.id) {
           item.samecount = samecount;
         }
       });
@@ -402,19 +399,19 @@ class SubjectContentCheck extends React.Component {
     }
     resultListArr.forEach((item) => {
       /* eslint-disable-next-line */
-      if(cid === item.id) {
+      if (cid === item.id) {
         item.samecount = samecount;
       }
     });
     return resultListArr;
   };
 
-  sortFunc = (orderType, idx) =>{
+  sortFunc = (orderType, idx) => {
     const {
       fetchSubjectContentList,
       fetchSubjectThemeSearchFlag,
       fetchSubjectResetButton,
-      hot:{
+      hot: {
         subjectProListFlag,
         subjectThemeSearch,
         subjectSearchQuery,
@@ -433,14 +430,14 @@ class SubjectContentCheck extends React.Component {
     let orderFlag;
     if (orderType !== 3 && orderType !== 8) {
       sortArr.map((cur, index) => {
-        if(index === idx){
-          if(cur.flag !== null){
+        if (index === idx) {
+          if (cur.flag !== null) {
             cur.flag = !cur.flag;
-          }else{
+          } else {
             cur.flag = false;
           }
           orderFlag = cur.flag;
-        }else{
+        } else {
           cur.flag = null;
         }
       });
@@ -454,7 +451,7 @@ class SubjectContentCheck extends React.Component {
     const params = {
       searchKey: subjectThemeSearch,
       hId: Number(readingId),
-      sourceType:Number(subjectContact),
+      sourceType: Number(subjectContact),
       webList: subjectWeiboTypeFlag ? null : (subjectProListFlag ? null :
         (subjectLanguageTypeFlag ? null :
           ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]))),
@@ -462,18 +459,18 @@ class SubjectContentCheck extends React.Component {
         ((subjectSearchQuery.length > 0) ? ["全部"] : subjectSearchQuery) : null,
       languageList: subjectLanguageTypeFlag ?
         ((subjectSearchQuery.length > 0) ? ["全部"] : subjectSearchQuery) : null,
-      order:(!orderFlag) ? "desc" : "asc",
+      order: (!orderFlag) ? "desc" : "asc",
       orderType,
-      startDate:subjectStartDate,
-      endDate:subjectEndDate,
+      startDate: subjectStartDate,
+      endDate: subjectEndDate,
       pageNum: 1,
-      pageSize:10
+      pageSize: 10
     };
     fetchSubjectResetButton(false);
     fetchSubjectThemeSearchFlag(false);
     fetchSubjectContentList(params);
-    localStorage.setItem("subjectOrderType",orderType);
-    localStorage.setItem("subjectOrderFlag",orderFlag);
+    localStorage.setItem("subjectOrderType", orderType);
+    localStorage.setItem("subjectOrderFlag", orderFlag);
   };
 
   checkType() {
@@ -502,12 +499,12 @@ class SubjectContentCheck extends React.Component {
   render() {
     const username = localStorage.getItem("username");
     const subjectContact = localStorage.getItem("subjectContact");
-    const { indeterminate, checkAll, checkedList, selectNumber} = this.state;
+    const { indeterminate, checkAll, checkedList, selectNumber } = this.state;
     const {
-      hot:{
+      hot: {
         fetchSubjectContentListLoading,
-        subjectContentListData:{
-          page:{
+        subjectContentListData: {
+          page: {
             resultList,
             rowCount,
             pageNow
@@ -515,28 +512,30 @@ class SubjectContentCheck extends React.Component {
         },
         subjectThemeSearch
       },
-      article:{
+      article: {
         sameListData,
       },
     } = this.props;
     const sameList = sameListData
-      && sameListData.map((cur,index) => {
-        return(
+      && sameListData.map((cur, index) => {
+        return (
           <li key={index.toString()}>
             <span
-              onClick={() => {return this.toDetails(cur.id);}}
+              onClick={() => {
+                return this.toDetails(cur.id);
+              }}
             >
-              <b />
+              <b/>
               {cur.fArticleTitle}
             </span>
-            <span>发布时间：{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+            <span>发布时间：{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
             <span>来源：{cur.fJobName}</span>
           </li>
         );
       });
     let item;
     // 国内文献，海外文献，item特殊处理
-    if(subjectContact === "4" || subjectContact === "5"){
+    if (subjectContact === "4" || subjectContact === "5") {
       item = resultList && resultList.map((cur) => {
         return (
           <div className="hot-content-check-item" key={cur.gid}>
@@ -555,7 +554,7 @@ class SubjectContentCheck extends React.Component {
               onClick={() => {
                 return this.toDetails(cur.gid);
               }}
-              dangerouslySetInnerHTML={{ __html:`${cur.abstract}${"..."}`}}
+              dangerouslySetInnerHTML={{ __html: `${cur.abstract}${"..."}` }}
             />
             <div className="hot-content-check-item-bottom clear">
               <div className="fl">
@@ -594,19 +593,17 @@ class SubjectContentCheck extends React.Component {
           </div>
         );
       });
-    }else{
+    } else {
       item = this.resultListFunc(resultList) &&
-        this.resultListFunc(resultList).map((cur,index) => {
+        this.resultListFunc(resultList).map((cur, index) => {
           return (
             <div className="hot-content-check-item" key={cur.id}>
               <div className="hot-content-check-item-title clear">
                 <div className="fl">
                   {username === "guest" ? "" :
                     (
-                      <CheckboxGroup
-                        options={[cur.id ? cur.id.toString() : ""]}
-                        value={checkedList}
-                        onChange={this.onChange}
+                      <Checkbox
+                        value={cur.id ? cur.id.toString() : ""}
                       />
                     )
                   }
@@ -633,7 +630,7 @@ class SubjectContentCheck extends React.Component {
                           [{cur.flag ? "点击收起" : "点击展开"}
                           <b>{cur.samecount}</b>篇重复文章]
                         </span>
-                      ):""
+                      ) : ""
                   }
                 </span>
               </div>
@@ -643,14 +640,14 @@ class SubjectContentCheck extends React.Component {
                 onClick={() => {
                   return this.toDetails(cur.id);
                 }}
-                dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}${"..."}`}}
+                dangerouslySetInnerHTML={{ __html: `${cur.fArticleIntroduction}${"..."}` }}
               />
               <div className="hot-content-check-item-bottom clear">
                 <div className="fl">
                   {subjectContact === "2" ? (
                     <div>
                       <span>发布时间：</span>
-                      <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+                      <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
                       <span>转发</span>
                       <span>{cur.repost}</span>
                       <span>评论</span>
@@ -662,7 +659,7 @@ class SubjectContentCheck extends React.Component {
                     </div>) : (
                     <div>
                       <span>发布时间：</span>
-                      <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+                      <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
                       <span>来源：</span>
                       <span>{cur.fJobName}</span>
                     </div>
@@ -713,7 +710,9 @@ class SubjectContentCheck extends React.Component {
         <button
           key={index.toString()}
           type="button"
-          onClick={() => {return this.sortFunc(cur.id, index);}}
+          onClick={() => {
+            return this.sortFunc(cur.id, index);
+          }}
         >
           <span>{cur.value}</span>
           <Icon
@@ -735,7 +734,12 @@ class SubjectContentCheck extends React.Component {
               {(subjectThemeSearch !== "" &&
                 subjectContact !== "4" &&
                 subjectContact !== "5") && (
-                <button type="button" onClick={() => {return this.sortFunc(3,"");}}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    return this.sortFunc(3, "");
+                  }}
+                >
                   <span>相关性</span><Icon type="arrow-down"/>
                 </button>
               )}
@@ -781,7 +785,14 @@ class SubjectContentCheck extends React.Component {
         {
           fetchSubjectContentListLoading ? <div className="spin"><Spin/></div> :
             <div className="hot-content-check-center">
-              {item.length > 0 ? item : <img src={empty} className="noList" alt=""/> }
+              {item.length > 0 ? (
+                <Checkbox.Group
+                  value={checkedList}
+                  onChange={this.onChange}
+                >
+                  {item}
+                </Checkbox.Group>
+              ) : <img src={empty} className="noList" alt=""/>}
             </div>
         }
         {!rowCount ? "" :

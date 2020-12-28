@@ -4,7 +4,6 @@ import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
 import empty from  "../../../images/empty.png";
 
-const CheckboxGroup = Checkbox.Group;
 const sortArrFirst = [{
   value: "发布时间",
   flag: null,
@@ -657,10 +656,8 @@ class SearchContentCheck extends React.Component {
                   <div className="search-content-left fl">
                     {username === "guest" ? "" :
                       (
-                        <CheckboxGroup
-                          options={[cur.id ? cur.id.toString() : ""]}
-                          value={checkedList}
-                          onChange={this.onChange}
+                        <Checkbox
+                          value={cur.id ? cur.id.toString() : ""}
                         />
                       )
                     }
@@ -918,7 +915,14 @@ class SearchContentCheck extends React.Component {
         {
           fetchSearchLoading ? <div className="spin"><Spin/></div> :
             <div className="search-content-check-center">
-              {item.length > 0 ? item : <img src={empty} className="noList" alt=""/>}
+              {item.length > 0 ? (
+                <Checkbox.Group
+                  value={checkedList}
+                  onChange={this.onChange}
+                >
+                  {item}
+                </Checkbox.Group>
+              ) : <img src={empty} className="noList" alt=""/>}
             </div>
         }
         {!rowCount ? "" :

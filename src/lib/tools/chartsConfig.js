@@ -215,7 +215,6 @@ export const HotChartPieLeftOptions = (data) => {
 
 // 热点监测站点活跃度统计-右边环形图
 export const HotChartPieRightOptions = (data) => {
-  console.log(data);
   function seriesFunc(data) {
     const arr = [];
     /* eslint-disable-next-line */

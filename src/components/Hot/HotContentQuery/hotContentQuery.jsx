@@ -126,11 +126,9 @@ class HotContentQuery extends React.Component {
     if (!value || value === "全部") {
       fetchHotContentList(paramsEmpty);
     }
-    console.log(hotContentListData, "fuzzyQuery");
     const isWebList = hotProListFlag ? hotContentListData.hotProList
       : hotContentListData.hotWebList;
     const fuzzyArr = fuzzyQuery(isWebList, value);
-    console.log(fuzzyArr);
     /**
      * 重新渲染数组，这里要mock和返回的对象一样的数据格式
      * 先用展开原有的对象，在重新赋值想改变的数组
@@ -175,7 +173,6 @@ class HotContentQuery extends React.Component {
     const hotContact = localStorage.getItem("hotContact");
     const orderType = localStorage.getItem("orderType");
     const orderFlag = localStorage.getItem("orderFlag");
-    console.log(orderType, orderFlag);
     const params = {
       searchKey: hotThemeSearch,
       hId: Number(readingId),
@@ -457,7 +454,6 @@ class HotContentQuery extends React.Component {
       searchPro : (hotWeiboTypeFlag ?
         searchWeibo : (hotLanguageTypeFlag ?
           searchLanguage : searchWeb));
-    console.log(queryList);
     return (
       <div className="hot-content-query">
         <div className="hot-content-query-class clear">
