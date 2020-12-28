@@ -2,9 +2,9 @@ import React from "react";
 import  moment from "moment";
 import "moment/locale/zh-cn";
 import { Input, Select,DatePicker,Button } from "antd";
-
 import "./index.css";
 
+const { Search } = Input;
 const { RangePicker } = DatePicker;
 const { Option } = Select;
 const dateFormat = "YYYY/MM/DD";
@@ -95,19 +95,7 @@ class LiteratureContentCenter extends React.Component {
 
   render() {
     const { selectValue } = this.state;
-    const { literature: { literatureDate, literatureSearchQuery } } = this.props;
-    const selectBefore = (
-      <Select
-        value={`${selectValue}`}
-        style={{ width: 90 }}
-        onChange={this.handleSelectChange}
-      >
-        <Option value="1">标题</Option>
-        <Option value="2">全文</Option>
-        <Option value="3">摘要</Option>
-        <Option value="4">上传人</Option>
-      </Select>
-    );
+    const { literature: { literatureDate} } = this.props;
     return (
       <div>
         <div className="literature-search-btn">
@@ -115,12 +103,26 @@ class LiteratureContentCenter extends React.Component {
             style={{ marginBottom: 16 }}
             className="search-by-topic"
           >
-            <Input
-              addonBefore={selectBefore}
-              value={literatureSearchQuery}
-              allowClear
-              onChange={this.handleChange}
-            />
+            <Input.Group compact>
+              <Select
+                value={`${selectValue}`}
+                style={{ width: 90 }}
+                onChange={this.handleSelectChange}
+              >
+                <Option value="1">标题</Option>
+                <Option value="2">全文</Option>
+                <Option value="3">摘要</Option>
+                <Option value="4">上传人</Option>
+              </Select>
+              <Search
+                placeholder="请输入检索内容..."
+                size="default"
+                allowClear
+                style={{width: "230px"}}
+                onChange={this.handleChange}
+                onSearch={() => {return this.literatureSearch();}}
+              />
+            </Input.Group>
           </div>
           <span>发布时间：</span>
           <div

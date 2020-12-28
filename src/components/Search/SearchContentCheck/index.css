@@ -93,6 +93,9 @@
 .search-content-check-center{
   padding-top: 20px;
 }
+.search-content-check-center .ant-checkbox-group{
+  width:100%;
+}
 .search-content-check-center .noList{
   margin:50px auto;
   display: block;

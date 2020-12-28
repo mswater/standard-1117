@@ -49,7 +49,7 @@ class Report extends React.Component{
 
   downloadReport = (downloadUrl) => {
     const url = window.location.origin;
-    window.open(`${url}/managecenter/brief/download?fileName=${downloadUrl}`,"_blank");
+    window.open(`${url}/managecenter/brief/download?fileName=${downloadUrl}.pdf`,"_blank");
   }
 
   goNewReport(){
@@ -84,7 +84,7 @@ class Report extends React.Component{
           <span className="w10" dangerouslySetInnerHTML={{ __html: item.createUser }} />
           <span
             className="download w10"
-            onClick={() => this.downloadReport(item.url)}
+            onClick={() => this.downloadReport(item.title)}
           />
         </li>
       );
