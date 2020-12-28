@@ -55,6 +55,7 @@ class Subject extends React.Component {
 
   componentDidMount() {
     this.node.scrollIntoView();
+    localStorage.setItem("subjectOrderFlag", "false");
     const {
       fetchSubjectList,
     } = this.props;
@@ -73,7 +74,7 @@ class Subject extends React.Component {
     localStorage.setItem("subjectReadingId", "");
     localStorage.setItem("subjectDeadLine", "");
     localStorage.setItem("subjectOrderType", 1);
-    localStorage.setItem("subjectOrderFlag", "");
+    localStorage.setItem("subjectOrderFlag", "false");
     fetchSubjectSearchQuery();
     fetchSubjectThemeSearch({
       subjectStartDate:"",

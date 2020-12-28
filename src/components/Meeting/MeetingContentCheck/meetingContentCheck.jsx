@@ -48,7 +48,7 @@ class MeetingContentCheck extends React.Component {
       }
     }
     if (meetingThemeSearchFlag) {
-      if(meetingThemeSearch) {
+      if(meetingThemeSearch !== "") {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -57,8 +57,7 @@ class MeetingContentCheck extends React.Component {
         }
         arr[arr.length - 1].style.color = "#0572B8";
         arr[arr.length - 1].children[1].style.color = "#0572B8";
-      }
-      if (!meetingThemeSearch) {
+      } else {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {

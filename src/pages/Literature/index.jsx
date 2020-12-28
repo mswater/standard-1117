@@ -38,6 +38,7 @@ class Literature extends React.Component{
   componentDidMount() {
     /* eslint-disable no-nested-ternary */
     this.node.scrollIntoView();
+    localStorage.setItem("literatureOrderFlag", "false");
     const {
       fetchLiteratureList,
       fetchLiteratureContentList,
@@ -71,7 +72,7 @@ class Literature extends React.Component{
     localStorage.setItem("sharingMaterialType", "");
     localStorage.setItem("sId",null);
     localStorage.setItem("literatureOrderType", "1");
-    localStorage.setItem("literatureOrderFlag", "");
+    localStorage.setItem("literatureOrderFlag", "false");
     fetchLiteratureSearchQuery();
     fetchLiteratureDateQuery();
     fetchLiteratureDate();

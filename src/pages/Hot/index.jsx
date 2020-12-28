@@ -47,6 +47,7 @@ class Hot extends React.Component {
 
   componentDidMount() {
     this.node.scrollIntoView();
+    localStorage.setItem("orderFlag", "false");
     const {
       fetchHotList,
     } = this.props;
@@ -65,7 +66,7 @@ class Hot extends React.Component {
     localStorage.setItem("readingId", "");
     localStorage.setItem("deadLine", "");
     localStorage.setItem("orderType", 1);
-    localStorage.setItem("orderFlag", "");
+    localStorage.setItem("orderFlag", "false");
     fetchHotSearchQuery();
     fetchHotThemeSearch({
       hotStartDate: "",

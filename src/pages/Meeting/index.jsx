@@ -40,9 +40,11 @@ class Meeting extends React.Component{
 
   componentDidMount() {
     this.node.scrollIntoView();
+    localStorage.setItem("meetingOrderFlag","false");
     const {
       fetchMeetingList,
       fetchMeetingResetButton,
+      fetchMeetingThemeSearchFlag,
       home: {
         conferenceTab
       },
@@ -72,6 +74,7 @@ class Meeting extends React.Component{
       pageNum: 1,
       pageSize: 10,
     };
+    fetchMeetingThemeSearchFlag(true);
     fetchMeetingResetButton(true);
     fetchMeetingList(params);
   }
