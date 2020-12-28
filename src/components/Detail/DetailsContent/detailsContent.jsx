@@ -8,7 +8,7 @@ class DetailsContent extends React.Component {
 
   render() {
     return (
-      <div className="normal-main-with-bg">
+      <div className="normal-main-with-bg basic">
         <div className="normal-main-con clear">
           <DetailsLeft {...this.props}/>
         </div>

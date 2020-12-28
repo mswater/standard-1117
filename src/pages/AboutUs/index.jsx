@@ -47,7 +47,7 @@ class AboutUs extends React.Component{
       <div>
         <Header />
         <Nav />
-        <div className="normal-main-with-bg">
+        <div className="normal-main-with-bg basic">
           <div className="normal-main-con clear">
             <div className="left-menu fl">
               <h1>-&nbsp;关于我们&nbsp;-</h1>

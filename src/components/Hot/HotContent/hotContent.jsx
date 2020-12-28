@@ -105,7 +105,7 @@ class HotContent extends React.Component{
       );
     });
     return (
-      <div className="normal-main-with-bg">
+      <div className="normal-main-with-bg basic">
         <div className="normal-main-con clear">
           {(hotListData && hotListData.length>0) ? (
             <div className="clear">

@@ -10,7 +10,7 @@ class MeetingContent extends React.Component{
 
   render() {
     return (
-      <div className="normal-main-with-bg">
+      <div className="normal-main-with-bg basic">
         <div className="normal-main-con">
           <MeetingContentCenter {...this.props}/>
           <MeetingContentQuery {...this.props}/>

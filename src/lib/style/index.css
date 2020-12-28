@@ -7,44 +7,46 @@
 .normal-main-with-bg{
   width:100%;
   padding:50px 0;
-  background:url(../../images/normal-content-bg.jpg) center center no-repeat;
-  background-size:cover;
+}
+.basic{
+  background:url(../../images/normal-content-bg.jpg) top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.nongyexinxi{
-  background:url("../../images/nongyexinxi.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/nongyexinxi.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.nongchanpin{
-  background:url("../../images/nongchanpin.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/nongchanpin.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.nongyejixie{
-  background:url("../../images/nongyejixie.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/nongyejixie.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.nongyeziyuan{
-  background:url("../../images/nongyeziyuan.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/nongyeziyuan.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.zhiwubaohukexue{
-  background:url("../../images/zhiwubaohukexue.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/zhiwubaohukexue.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.shouyikexue{
-  background:url("../../images/shouyikexue.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/shouyikexue.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.xumukexue{
-  background:url("../../images/xumukexue.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/xumukexue.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.yuanyikexue{
-  background:url("../../images/yuanyikexue.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/yuanyikexue.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-with-bg.zuowukexue{
-  background:url("../../images/zuowukexue.jpg") center center no-repeat;
-  background-size:cover;
+  background:url("../../images/zuowukexue.jpg") top center no-repeat;
+  background-size:220%;
 }
 .normal-main-con{
   width:1200px;
