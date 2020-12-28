@@ -572,7 +572,7 @@ class SubjectContentCheck extends React.Component {
               </div>
               <div className="hot-content-check-item-click fr">
                 {username === "guest" ? "" : (
-                  <span>
+                  <span className="ml20">
                     <button
                       type="button"
                       onClick={() => {
@@ -672,7 +672,7 @@ class SubjectContentCheck extends React.Component {
                   </button>
                   <span>{cur.readnum}</span>
                   {username === "guest" ? "" : (
-                    <span>
+                    <span className="ml20">
                       <button
                         type="button"
                         onClick={() => {

@@ -303,6 +303,7 @@ class LiteratureContentCheck extends React.Component {
               <span>{cur.readnum === 0 ? 0 : cur.readnum}</span>
               <button
                 type="button"
+                className="ml20"
                 onClick={() => {
                   return this.collectArticle(cur);
                 }}

@@ -553,7 +553,7 @@ class HotContentCheck extends React.Component {
                 </button>
                 <span>{cur.readnum}</span>
                 {username === "guest" ? "" : (
-                  <span>
+                  <span className="ml20">
                     <button
                       type="button"
                       onClick={() => {
