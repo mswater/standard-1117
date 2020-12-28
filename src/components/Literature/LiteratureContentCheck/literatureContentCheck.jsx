@@ -95,9 +95,8 @@ class LiteratureContentCheck extends React.Component {
   }
 
   toDetails = (detailId) =>{
-    localStorage.setItem("articleType", "2");
     const url = window.location.origin;
-    window.open(`${url}/detail/${detailId}`,"_blank");
+    window.open(`${url}/detail/2/${detailId}`,"_blank");
   };
 
   // 分页

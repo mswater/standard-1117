@@ -68,7 +68,7 @@ const DevRouter = () => {
       />
       <Route
         exact
-        path="/detail/:detailId"
+        path="/detail/:type/:detailId"
         target="_blank"
         component={routesAuthority(role ? Details : Login)}
       />

@@ -118,7 +118,7 @@ const ProdRouter = () => {
       />
       <Route
         exact
-        path="/detail/:detailId"
+        path="/detail/:type/:detailId"
         component={routesAuthority(role ? Details : Login)}
       />
       <Route

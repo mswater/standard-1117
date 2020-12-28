@@ -158,9 +158,8 @@ class HotContentCheck extends React.Component {
   };
 
   toDetails = (detailId) => {
-    localStorage.setItem("articleType", "1");
     const url = window.location.origin;
-    window.open(`${url}/detail/${detailId}`, "_blank");
+    window.open(`${url}/detail/1/${detailId}`, "_blank");
   };
 
   onCheckAllChange = (e) => {

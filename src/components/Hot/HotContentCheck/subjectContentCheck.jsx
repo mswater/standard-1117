@@ -185,13 +185,14 @@ class SubjectContentCheck extends React.Component {
 
   toDetails = (detailId) => {
     const subjectContact = localStorage.getItem("subjectContact");
+    let articleType;
     if (subjectContact === "4" || subjectContact === "5") {
-      localStorage.setItem("articleType", (9 - Number(subjectContact)).toString());
+      articleType = (9 - Number(subjectContact)).toString();
     } else {
-      localStorage.setItem("articleType", "1");
+      articleType = "1";
     }
     const url = window.location.origin;
-    window.open(`${url}/detail/${detailId}`, "_blank");
+    window.open(`${url}/detail/${articleType}/${detailId}`, "_blank");
   };
 
   onCheckAllChange = (e) => {

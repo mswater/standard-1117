@@ -16,7 +16,8 @@ class DetailsLeft extends React.Component {
 
   render() {
     // 文章类型 = 4 国内  5  国外   表示国内文献和海外文献
-    const articleType = localStorage.getItem("articleType");
+    const {match:{params}}=this.props;
+    const articleType = params.type;
     const {
       article: {
         articleDetailData,

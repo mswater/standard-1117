@@ -26,11 +26,10 @@ class Details extends React.Component{
   componentDidMount() {
     this.node.scrollIntoView();
     const {match:{params}}=this.props;
-    const articleType = localStorage.getItem("articleType");
     const {
       fetchArticleDetail,
     } = this.props;
-    fetchArticleDetail(params.detailId, articleType);
+    fetchArticleDetail(params.detailId, params.type);
   }
 
 

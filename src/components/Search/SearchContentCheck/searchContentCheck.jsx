@@ -200,15 +200,16 @@ class SearchContentCheck extends React.Component {
 
   searchDetails = (detailId) => {
     const searchContact = localStorage.getItem("searchContact");
+    let articleType;
     if(searchContact === "4" || searchContact === "5") {
-      localStorage.setItem("articleType", (9 - Number(searchContact)).toString());
+      articleType = (9 - Number(searchContact)).toString();
     }else if(searchContact === "9"){
-      localStorage.setItem("articleType", "2");
+      articleType = "2";
     }else{
-      localStorage.setItem("articleType", "1");
+      articleType = "1";
     }
     const url = window.location.origin;
-    window.open(`${url}/detail/${detailId}`,"_blank");
+    window.open(`${url}/detail/${articleType}/${detailId}`,"_blank");
   };
 
   onChange = (checkedList) => {
