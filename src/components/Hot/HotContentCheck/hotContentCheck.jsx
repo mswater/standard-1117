@@ -4,8 +4,6 @@ import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
 import empty from "../../../images/empty.png";
 
-
-const CheckboxGroup = Checkbox.Group;
 const sortArrFirst = [{
   value: "发布时间",
   flag: null,
@@ -67,19 +65,19 @@ class HotContentCheck extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const {
-      hot:{
-        hotContentListData:{
-          timeCompare:nextTimeCompare,
-          page:{
+      hot: {
+        hotContentListData: {
+          timeCompare: nextTimeCompare,
+          page: {
             resultList: currentResultList,
           }
         }
       }
     } = nextProps;
     const {
-      hot:{
-        hotContentListData:{
-          timeCompare:currentTimeCompare,
+      hot: {
+        hotContentListData: {
+          timeCompare: currentTimeCompare,
         }
       }
     } = this.props;
@@ -99,14 +97,14 @@ class HotContentCheck extends React.Component {
 
   componentDidUpdate() {
     const {
-      hot:{
+      hot: {
         hotThemeSearch,
         hotThemeSearchFlag,
         hotResetButtonFlag
       }
     } = this.props;
     this.addEvent();
-    if(hotResetButtonFlag || hotThemeSearchFlag){
+    if (hotResetButtonFlag || hotThemeSearchFlag) {
       for (let i = 0; i < sortArrSecond.length; i += 1) {
         sortArrSecond[i].flag = null;
       }
@@ -115,7 +113,7 @@ class HotContentCheck extends React.Component {
       }
     }
     if (hotThemeSearchFlag) {
-      if(hotThemeSearch !== "") {
+      if (hotThemeSearch !== "") {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -124,7 +122,7 @@ class HotContentCheck extends React.Component {
         }
         arr[arr.length - 1].style.color = "#0572B8";
         arr[arr.length - 1].children[1].style.color = "#0572B8";
-      }else{
+      } else {
         const { classSort } = this;
         const arr = classSort.children;
         for (let i = 0; i < arr.length; i += 1) {
@@ -140,12 +138,12 @@ class HotContentCheck extends React.Component {
     }
   }
 
-  componentWillUnmount(){
-    for(let i = 0; i < sortArrFirst.length;){
+  componentWillUnmount() {
+    for (let i = 0; i < sortArrFirst.length;) {
       sortArrFirst[i].flag = null;
       i += 1;
     }
-    for(let i = 0; i < sortArrSecond.length;){
+    for (let i = 0; i < sortArrSecond.length;) {
       sortArrSecond[i].flag = null;
       i += 1;
     }
@@ -153,7 +151,7 @@ class HotContentCheck extends React.Component {
 
   optionsFunc = (data) => {
     const optionsArr = [];
-    for (let i = 0; i < data.length; i+=1) {
+    for (let i = 0; i < data.length; i += 1) {
       optionsArr.push(data[i].id.toString());
     }
     return optionsArr;
@@ -162,21 +160,21 @@ class HotContentCheck extends React.Component {
   toDetails = (detailId) => {
     localStorage.setItem("articleType", "1");
     const url = window.location.origin;
-    window.open(`${url}/detail/${detailId}`,"_blank");
+    window.open(`${url}/detail/${detailId}`, "_blank");
   };
 
   onCheckAllChange = (e) => {
     const {
-      hot:{
-        hotContentListData:{
-          page:{
+      hot: {
+        hotContentListData: {
+          page: {
             resultList,
           }
         }
       }
     } = this.props;
     this.setState({
-      checkedList: e.target.checked ?  this.optionsFunc(resultList): [],
+      checkedList: e.target.checked ? this.optionsFunc(resultList) : [],
       indeterminate: false,
       checkAll: e.target.checked,
       selectNumber: e.target.checked ? this.optionsFunc(resultList).length : 0
@@ -185,9 +183,9 @@ class HotContentCheck extends React.Component {
 
   onChange = (list) => {
     const {
-      hot:{
-        hotContentListData:{
-          page:{
+      hot: {
+        hotContentListData: {
+          page: {
             resultList,
           }
         }
@@ -204,7 +202,6 @@ class HotContentCheck extends React.Component {
   };
 
 
-
   clearAll = () => {
     this.setState({
       checkedList: [],
@@ -214,18 +211,18 @@ class HotContentCheck extends React.Component {
     });
   };
 
-  download = () =>{
+  download = () => {
     const {
       fetchDownload,
     } = this.props;
     const { checkedList } = this.state;
     console.log(checkedList);
-    const item ={
+    const item = {
       ids: checkedList
     };
-    if (checkedList.length === 0){
+    if (checkedList.length === 0) {
       message.error("请选择要操作的对象！");
-    }else{
+    } else {
       fetchDownload(item);
       message.success("pdf已经生成，请到个人主页-我的下载查看！");
     }
@@ -252,25 +249,25 @@ class HotContentCheck extends React.Component {
     const params = {
       searchKey: hotThemeSearch,
       hId: Number(readingId),
-      sourceType:Number(hotContact),
+      sourceType: Number(hotContact),
       webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
         (hotLanguageTypeFlag ? [] : ((hotSearchQuery.length > 0) ?
           hotSearchQuery : []))),
       proList: hotWeiboTypeFlag ? [] : (hotProListFlag ?
-        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]): []),
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : []),
       languageList: hotWeiboTypeFlag ? [] : (hotLanguageTypeFlag ?
-        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]): []),
+        ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : []),
       order: (orderFlag === "false") ? "desc" : "asc",
-      orderType:!orderType ? 1 : Number(orderType),
-      startDate:hotStartDate,
-      endDate:hotEndDate,
+      orderType: !orderType ? 1 : Number(orderType),
+      startDate: hotStartDate,
+      endDate: hotEndDate,
       pageNum: page,
-      pageSize:10
+      pageSize: 10
     };
     fetchHotContentList(params);
   };
 
-  collectArticle = (obj) =>{
+  collectArticle = (obj) => {
     const {
       id,
       iscollect
@@ -280,11 +277,11 @@ class HotContentCheck extends React.Component {
       fetchArticleCancelCollect,
     } = this.props;
     const hotContact = localStorage.getItem("hotContact");
-    const item ={
-      cid:id,
-      type:Number(hotContact),
+    const item = {
+      cid: id,
+      type: Number(hotContact),
     };
-    if(iscollect === 1){
+    if (iscollect === 1) {
       return fetchArticleCancelCollect(item, () => {
         obj.iscollect = 0;
       });
@@ -297,9 +294,9 @@ class HotContentCheck extends React.Component {
 
   toggleList = (id) => {
     const {
-      hot:{
-        hotContentListData:{
-          page:{
+      hot: {
+        hotContentListData: {
+          page: {
             resultList,
           }
         }
@@ -315,7 +312,7 @@ class HotContentCheck extends React.Component {
           fetchSameList(cur.id);
         }
       }
-      if(id !== index) {
+      if (id !== index) {
         cur.flag = false;
       }
     });
@@ -329,8 +326,8 @@ class HotContentCheck extends React.Component {
   resultListFunc = (data) => {
     const { resultListArr } = this.state;
     const {
-      article:{
-        sameCountData:{
+      article: {
+        sameCountData: {
           cid,
           samecount
         }
@@ -340,7 +337,7 @@ class HotContentCheck extends React.Component {
       data.forEach((item) => {
         /* eslint-disable-next-line */
         item.flag = false;
-        if(cid === item.id) {
+        if (cid === item.id) {
           item.samecount = samecount;
         }
       });
@@ -348,19 +345,19 @@ class HotContentCheck extends React.Component {
     }
     resultListArr.forEach((item) => {
       /* eslint-disable-next-line */
-      if(cid === item.id) {
+      if (cid === item.id) {
         item.samecount = samecount;
       }
     });
     return resultListArr;
   };
 
-  sortFunc = (orderType, idx) =>{
+  sortFunc = (orderType, idx) => {
     const {
       fetchHotContentList,
       fetchHotThemeSearchFlag,
       fetchHotResetButton,
-      hot:{
+      hot: {
         hotProListFlag,
         hotThemeSearch,
         hotSearchQuery,
@@ -377,14 +374,14 @@ class HotContentCheck extends React.Component {
     let orderFlag;
     if (orderType !== 3) {
       sortArr.map((cur, index) => {
-        if(index === idx){
-          if(cur.flag !== null){
+        if (index === idx) {
+          if (cur.flag !== null) {
             cur.flag = !cur.flag;
-          }else{
+          } else {
             cur.flag = false;
           }
           orderFlag = cur.flag;
-        }else{
+        } else {
           cur.flag = null;
         }
       });
@@ -398,7 +395,7 @@ class HotContentCheck extends React.Component {
     const params = {
       searchKey: hotThemeSearch,
       hId: Number(readingId),
-      sourceType:Number(hotContact),
+      sourceType: Number(hotContact),
       webList: hotWeiboTypeFlag ? [] : (hotProListFlag ? [] :
         (hotLanguageTypeFlag ? [] :
           ((hotSearchQuery.length > 0) ? hotSearchQuery : []))),
@@ -406,18 +403,18 @@ class HotContentCheck extends React.Component {
         ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : []),
       languageList: hotLanguageTypeFlag ?
         ((hotSearchQuery.length > 0) ? hotSearchQuery : ["全部"]) : [],
-      order:(!orderFlag) ? "desc" : "asc",
+      order: (!orderFlag) ? "desc" : "asc",
       orderType,
-      startDate:hotStartDate,
-      endDate:hotEndDate,
+      startDate: hotStartDate,
+      endDate: hotEndDate,
       pageNum: 1,
-      pageSize:10
+      pageSize: 10
     };
     fetchHotResetButton(false);
     fetchHotThemeSearchFlag(false);
     fetchHotContentList(params);
-    localStorage.setItem("orderType",orderType);
-    localStorage.setItem("orderFlag",orderFlag);
+    localStorage.setItem("orderType", orderType);
+    localStorage.setItem("orderFlag", orderFlag);
   };
 
   checkType() {
@@ -446,14 +443,14 @@ class HotContentCheck extends React.Component {
   render() {
     const username = localStorage.getItem("username");
     const hotContact = localStorage.getItem("hotContact");
-    const { indeterminate, checkAll, checkedList, selectNumber} = this.state;
+    const { indeterminate, checkAll, checkedList, selectNumber } = this.state;
     const {
-      hot:{
+      hot: {
         fetchHotContentListLoading,
       },
-      hot:{
-        hotContentListData:{
-          page:{
+      hot: {
+        hotContentListData: {
+          page: {
             resultList,
             rowCount,
             pageNow
@@ -461,39 +458,37 @@ class HotContentCheck extends React.Component {
         },
         hotThemeSearch
       },
-      article:{
+      article: {
         sameListData,
       },
     } = this.props;
     const sameList = sameListData
-      && sameListData.map((cur,index) => {
-        return(
+      && sameListData.map((cur, index) => {
+        return (
           <li key={index.toString()}>
             <span
-              onClick={() => {return this.toDetails(cur.id);}}
+              onClick={() => {
+                return this.toDetails(cur.id);
+              }}
             >
-              <b />
+              <b/>
               {cur.fArticleTitle}
             </span>
-            <span>发布时间：{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+            <span>发布时间：{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
             <span>来源：{cur.fJobName}</span>
           </li>
         );
       });
 
     const item = this.resultListFunc(resultList)
-      && this.resultListFunc(resultList).map((cur,index) => {
+      && this.resultListFunc(resultList).map((cur, index) => {
         return (
           <div className="hot-content-check-item" key={cur.id}>
             <div className="hot-content-check-item-title clear">
               <div className="fl">
                 {username === "guest" ? "" :
                   (
-                    <CheckboxGroup
-                      options={[cur.id ? cur.id.toString() : ""]}
-                      value={checkedList}
-                      onChange={this.onChange}
-                    />
+                    <Checkbox value={cur.id ? cur.id.toString() : ""}/>
                   )
                 }
                 <span
@@ -519,7 +514,7 @@ class HotContentCheck extends React.Component {
                         [{cur.flag ? "点击收起" : "点击展开"}
                         <b>{cur.samecount}</b>篇重复文章]
                       </span>
-                    ):""
+                    ) : ""
                 }
               </span>
             </div>
@@ -529,14 +524,14 @@ class HotContentCheck extends React.Component {
               onClick={() => {
                 return this.toDetails(cur.id);
               }}
-              dangerouslySetInnerHTML={{ __html:`${cur.fArticleIntroduction}${"..."}`}}
+              dangerouslySetInnerHTML={{ __html: `${cur.fArticleIntroduction}${"..."}` }}
             />
             <div className="hot-content-check-item-bottom clear">
               <div className="fl">
                 {hotContact === "2" ? (
                   <div>
                     <span>发布时间：</span>
-                    <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+                    <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
                     <span>转发</span>
                     <span>{cur.repost}</span>
                     <span>评论</span>
@@ -548,7 +543,7 @@ class HotContentCheck extends React.Component {
                   </div>) : (
                   <div>
                     <span>发布时间：</span>
-                    <span>{(cur.fFetchtime || "").split(" ").splice(0,1)}</span>
+                    <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
                     <span>来源：</span>
                     <span>{cur.fJobName}</span>
                   </div>
@@ -569,8 +564,8 @@ class HotContentCheck extends React.Component {
                     >
                       {
                         (cur.iscollect === 1) ?
-                          <Icon theme="filled" type="star" style={{color:"#F6BD4E"}} />
-                          : <Icon theme="outlined" type="star" style={{color:"#797979"}}/>
+                          <Icon theme="filled" type="star" style={{ color: "#F6BD4E" }}/>
+                          : <Icon theme="outlined" type="star" style={{ color: "#797979" }}/>
                       }
                     </button>
                     <span>{cur.iscollect ? cur.iscollect : 0}</span>
@@ -595,7 +590,9 @@ class HotContentCheck extends React.Component {
         <button
           key={index.toString()}
           type="button"
-          onClick={() => {return this.sortFunc(cur.id, index);}}
+          onClick={() => {
+            return this.sortFunc(cur.id, index);
+          }}
         >
           <span>{cur.value}</span>
           <Icon
@@ -612,10 +609,14 @@ class HotContentCheck extends React.Component {
             <div className="fl">
               排序：
             </div>
-            <div className="fl" ref={(ref) => {this.classSort = ref;}}>
+            <div className="fl" ref={(ref) => {
+              this.classSort = ref;
+            }}>
               {sortItem}
               {(hotThemeSearch) && (
-                <button type="button" onClick={() => {return this.sortFunc(3,"");}}>
+                <button type="button" onClick={() => {
+                  return this.sortFunc(3, "");
+                }}>
                   <span>相关性</span><Icon type="arrow-down"/>
                 </button>
               )}
@@ -661,7 +662,15 @@ class HotContentCheck extends React.Component {
         {
           fetchHotContentListLoading ? <div className="spin"><Spin/></div> :
             <div className="hot-content-check-center">
-              {item.length > 0 ? item : <img src={empty} className="noList" alt=""/> }
+              {item.length > 0 ?
+                (
+                  <Checkbox.Group
+                    value={checkedList}
+                    onChange={this.onChange}
+                  >
+                    {item}
+                  </Checkbox.Group>
+                ) : <img src={empty} className="noList" alt=""/>}
             </div>
         }
         {!rowCount ? "" :
