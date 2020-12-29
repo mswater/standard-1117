@@ -637,11 +637,11 @@ class SubjectContentCheck extends React.Component {
               </div>
               <div
                 className="hot-content-check-item-text"
-                title={cur.fArticleIntroduction}
+                title={cur.fArticleContent}
                 onClick={() => {
                   return this.toDetails(cur.id);
                 }}
-                dangerouslySetInnerHTML={{ __html: `${cur.fArticleIntroduction}${"..."}` }}
+                dangerouslySetInnerHTML={{ __html: `${cur.fArticleContent}${"..."}` }}
               />
               <div className="hot-content-check-item-bottom clear">
                 <div className="fl">

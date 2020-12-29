@@ -93,11 +93,11 @@ class HotContentItem extends React.Component{
         </div>
         <div
           className="hot-content-check-item-text"
-          title={data.fArticleContent.substr(0,130)}
+          title={data.fArticleContent}
           onClick={() => {
             return this.toDetails(data.id);
           }}
-          dangerouslySetInnerHTML={{ __html: `${data.fArticleIntroduction}${"..."}` }}
+          dangerouslySetInnerHTML={{ __html: `${data.fArticleContent}${"..."}` }}
         />
         <div className="hot-content-check-item-bottom clear">
           <div className="fl">
