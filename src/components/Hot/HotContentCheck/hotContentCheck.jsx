@@ -2,6 +2,7 @@ import React from "react";
 import { Checkbox, Icon, Pagination, Spin, message } from "antd";
 import "./index.css";
 import { siblings } from "../../../lib/tools/utils";
+import HotContentItem from "../../Common/Items/HotContentItem.jsx";
 import empty from "../../../images/empty.png";
 
 const sortArrFirst = [{
@@ -157,11 +158,6 @@ class HotContentCheck extends React.Component {
     return optionsArr;
   };
 
-  toDetails = (detailId) => {
-    const url = window.location.origin;
-    window.open(`${url}/detail/1/${detailId}`, "_blank");
-  };
-
   onCheckAllChange = (e) => {
     const {
       hot: {
@@ -264,31 +260,6 @@ class HotContentCheck extends React.Component {
     };
     fetchHotContentList(params);
   };
-
-  collectArticle = (obj) => {
-    const {
-      id,
-      iscollect
-    } = obj;
-    const {
-      fetchArticleCollect,
-      fetchArticleCancelCollect,
-    } = this.props;
-    const hotContact = localStorage.getItem("hotContact");
-    const item = {
-      cid: id,
-      type: Number(hotContact),
-    };
-    if (iscollect === 1) {
-      return fetchArticleCancelCollect(item, () => {
-        obj.iscollect = 0;
-      });
-    }
-    return fetchArticleCollect(item, () => {
-      obj.iscollect = 1;
-    });
-  };
-
 
   toggleList = (id) => {
     const {
@@ -456,130 +427,11 @@ class HotContentCheck extends React.Component {
         },
         hotThemeSearch
       },
-      article: {
-        sameListData,
-      },
     } = this.props;
-    const sameList = sameListData
-      && sameListData.map((cur, index) => {
-        return (
-          <li key={index.toString()}>
-            <span
-              onClick={() => {
-                return this.toDetails(cur.id);
-              }}
-            >
-              <b/>
-              {cur.fArticleTitle}
-            </span>
-            <span>发布时间：{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
-            <span>来源：{cur.fJobName}</span>
-          </li>
-        );
-      });
-
     const item = this.resultListFunc(resultList)
-      && this.resultListFunc(resultList).map((cur, index) => {
+      && this.resultListFunc(resultList).map((cur) => {
         return (
-          <div className="hot-content-check-item" key={cur.id}>
-            <div className="hot-content-check-item-title clear">
-              <div className="fl">
-                {username === "guest" ? "" :
-                  (
-                    <Checkbox value={cur.id ? cur.id.toString() : ""}/>
-                  )
-                }
-                <span
-                  className="hot-content-title"
-                  onClick={() => {
-                    return this.toDetails(cur.id);
-                  }}
-                  dangerouslySetInnerHTML={{
-                    __html: cur.fArticleTitleColour
-                  }}
-                />
-              </div>
-              <span
-                onClick={() => {
-                  return this.toggleList(index);
-                }}
-                className="repeat-article fr"
-              >
-                {
-                  (cur.samecount && cur.samecount > 0) ?
-                    (
-                      <span>
-                        [{cur.flag ? "点击收起" : "点击展开"}
-                        <b>{cur.samecount}</b>篇重复文章]
-                      </span>
-                    ) : ""
-                }
-              </span>
-            </div>
-            <div
-              className="hot-content-check-item-text"
-              title={cur.fArticleIntroduction}
-              onClick={() => {
-                return this.toDetails(cur.id);
-              }}
-              dangerouslySetInnerHTML={{ __html: `${cur.fArticleIntroduction}${"..."}` }}
-            />
-            <div className="hot-content-check-item-bottom clear">
-              <div className="fl">
-                {hotContact === "2" ? (
-                  <div>
-                    <span>发布时间：</span>
-                    <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
-                    <span>转发</span>
-                    <span>{cur.repost}</span>
-                    <span>评论</span>
-                    <span>{cur.comments}</span>
-                    <span>赞</span>
-                    <span>{cur.mlike}</span>
-                    <span>来源：</span>
-                    <span>{cur.fJobName}</span>
-                  </div>) : (
-                  <div>
-                    <span>发布时间：</span>
-                    <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
-                    <span>来源：</span>
-                    <span>{cur.fJobName}</span>
-                  </div>
-                )}
-              </div>
-              <div className="hot-content-check-item-click fr">
-                <button type="button" className="read-num">
-                  <Icon type="eye"/>
-                </button>
-                <span>{cur.readnum}</span>
-                {username === "guest" ? "" : (
-                  <span className="ml20">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        return this.collectArticle(cur);
-                      }}
-                    >
-                      {
-                        (cur.iscollect === 1) ?
-                          <Icon theme="filled" type="star" style={{ color: "#F6BD4E" }}/>
-                          : <Icon theme="outlined" type="star" style={{ color: "#797979" }}/>
-                      }
-                    </button>
-                    <span>{cur.iscollect ? cur.iscollect : 0}</span>
-                  </span>
-                )
-                }
-              </div>
-            </div>
-            {(cur.flag) && (
-              <div className="same-article-list-container">
-                <ul className="same-article-list">
-                  {sameList}
-                </ul>
-              </div>
-            )}
-          </div>
+          <HotContentItem key={cur.id} data={cur} />
         );
       });
     const sortArr = hotContact === "2" ? sortArrSecond : sortArrFirst;

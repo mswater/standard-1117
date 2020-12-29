@@ -121,7 +121,9 @@ export const fetchArticleCollect = (params, func) => {
       .then((response) => {
         if (response.status === 200) {
           dispatch({ type: "SAVE_GET_ARTICLE_COLLECT", payload: response.data.contents});
-          func();
+          if(func){
+            func();
+          }
         }
         dispatch({ type: "FETCHING_GET_ARTICLE_COLLECT", payload: false });
       })
@@ -141,7 +143,9 @@ export const fetchArticleCancelCollect = (params, func) => {
       .then((response) => {
         if (response.status === 200) {
           dispatch({ type: "SAVE_GET_ARTICLE_CANCEL_COLLECT", payload: response.data.contents});
-          func();
+          if(func){
+            func();
+          }
         }
         dispatch({ type: "FETCHING_GET_ARTICLE_CANCEL_COLLECT", payload: false });
       })

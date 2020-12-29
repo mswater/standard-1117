@@ -10,7 +10,7 @@ class SubjectNews extends React.Component{
 
   newsDetails = (reportUrl) => {
     const url = window.location.origin;
-    window.open(`${url}/managecenter/brief/download?fileName=${reportUrl}`,"_blank");
+    window.open(`${url}/managecenter/brief/download?fileName=${reportUrl}.pdf`,"_blank");
   };
 
   goReportPage = () => {
@@ -35,7 +35,7 @@ class SubjectNews extends React.Component{
           <a
             rel="noopener noreferrer"
             className="clear"
-            onClick={() => this.newsDetails(cur.url)}
+            onClick={() => this.newsDetails(cur.title)}
           >
             <label>{cur.title}</label>
             <span className="fr">{cur.creattime.split(" ")[0]}</span>
