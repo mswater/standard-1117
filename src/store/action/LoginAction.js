@@ -24,7 +24,6 @@ export const fetchGetLogin = (params, _history) => {
           localStorage.setItem("realName", response.data.data.realname);
           localStorage.setItem("roleName", response.data.data.roleName);
           window.location.reload();
-          dispatch({ type: "SAVE_GET_LOGIN", payload: response.data.data });
         }
         dispatch({ type: "FETCHING_GET_LOGIN", payload: false });
         if(response.data.status === "NG"){
@@ -59,8 +58,6 @@ export const fetchGuestLogin = () => {
           localStorage.setItem("username", response.data.data.username);
           localStorage.setItem("realName", response.data.data.realname);
           localStorage.setItem("roleName", response.data.data.roleName);
-          // window.location.reload();
-          dispatch({ type: "SAVE_GET_LOGIN", payload: response.data.data });
         }
         dispatch({ type: "FETCHING_GET_LOGIN", payload: false });
         if(response.data.status === "NG"){

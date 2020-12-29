@@ -23,7 +23,7 @@ const loginReducer = (state = init, action) => {
         ...state,
         fetchGetLoginLoading: action.payload,
       };
-    case "SAVE_GET_HISTORY":
+    case "SAVE_GET_LOGIN":
       return {
         ...state,
         loginData: action.payload,
