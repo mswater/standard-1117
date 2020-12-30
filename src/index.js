@@ -14,10 +14,39 @@ import reducer from "./store/reducer/index.js";
 
 import "./lib/style/index.css";
 import App from "./App.jsx";
+import { getLogin } from "./service/api.js";
 
 const env = process.env.NODE_ENV;
 
 const initialState = window.__INITIAL__STATE__ || {};
+
+const guestLogin = () => {
+  console.log("guestLogin");
+  // 游客账户登录
+  const guestInfo = {
+    "username": "guest",
+    "password": "guest",
+  };
+  return () => {
+    getLogin(guestInfo)
+      .then((response) => {
+        if (response.status === 200 && response.data.status === "OK") {
+          console.log(response.data.data);
+          localStorage.setItem("token", response.headers.token);
+          localStorage.setItem("username", response.data.data.username);
+          localStorage.setItem("realName", response.data.data.realname);
+          localStorage.setItem("roleName", response.data.data.roleName);
+        }
+        if(response.data.status === "NG"){
+          console.log(response.data.msg);
+        }
+      })
+      .catch((error) => {
+        console.dir(error);
+      });
+  };
+};
+guestLogin();
 
 const store =
   env === "production"

@@ -48,8 +48,7 @@ export const fetchGuestLogin = () => {
     "username": "guest",
     "password": "guest",
   };
-  return (dispatch) => {
-    dispatch({ type: "FETCHING_GET_LOGIN", payload: true });
+  return () => {
     getLogin(guestInfo)
       .then((response) => {
         if (response.status === 200 && response.data.status === "OK") {
@@ -58,15 +57,14 @@ export const fetchGuestLogin = () => {
           localStorage.setItem("username", response.data.data.username);
           localStorage.setItem("realName", response.data.data.realname);
           localStorage.setItem("roleName", response.data.data.roleName);
+          window.location.reload();
         }
-        dispatch({ type: "FETCHING_GET_LOGIN", payload: false });
         if(response.data.status === "NG"){
           message.error(response.data.msg);
         }
       })
       .catch((error) => {
         console.dir(error);
-        dispatch({ type: "FETCHING_GET_LOGIN", payload: false });
       });
   };
 };
