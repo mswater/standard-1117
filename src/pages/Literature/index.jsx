@@ -83,7 +83,7 @@ class Literature extends React.Component{
     return (
       <div className="literature" ref={node => this.node = node}>
         <Header />
-        <Nav />
+        <Nav {...this.props}/>
         <LiteratureContent {...this.props}/>
         <Footer {...this.props}/>
         <BackTop />

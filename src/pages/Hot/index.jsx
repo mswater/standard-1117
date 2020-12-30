@@ -80,7 +80,7 @@ class Hot extends React.Component {
     return (
       <div className="hot" ref={node => this.node = node}>
         <Header/>
-        <Nav />
+        <Nav {...this.props}/>
         <HotContent {...this.props}/>
         <Footer {...this.props}/>
         <BackTop />

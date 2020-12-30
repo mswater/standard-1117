@@ -108,7 +108,7 @@ class Search extends React.Component{
     return (
       <div className="search" ref={node => this.node = node}>
         <Header />
-        <Nav />
+        <Nav {...this.props}/>
         <SearchContent {...this.props}/>
         <Footer {...this.props}/>
         <BackTop />

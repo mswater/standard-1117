@@ -68,7 +68,7 @@ class Home extends React.Component{
     return (
       <div ref={node => this.node = node}>
         <NewHeader />
-        <Nav />
+        <Nav {...this.props}/>
         <div className="index-con-with-bg">
           <div className="industry-trends">
             <IndexConTitle title={titleList.industry}/>

@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { Modal } from "antd";
 import { getMenuCode, } from "../../../lib/tools/utils.js";
 
@@ -88,13 +86,4 @@ class Nav extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ...state
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(withRouter(Nav));
+export default Nav;

@@ -99,7 +99,7 @@ class Meeting extends React.Component{
     return (
       <div className="meeting" ref={node => this.node = node}>
         <Header />
-        <Nav />
+        <Nav {...this.props}/>
         <MeetingContent {...this.props}/>
         <Footer {...this.props}/>
         <BackTop />

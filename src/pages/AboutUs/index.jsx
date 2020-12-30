@@ -46,7 +46,7 @@ class AboutUs extends React.Component{
     return (
       <div>
         <Header />
-        <Nav />
+        <Nav {...this.props}/>
         <div className="normal-main-with-bg basic">
           <div className="normal-main-con clear">
             <div className="left-menu fl">

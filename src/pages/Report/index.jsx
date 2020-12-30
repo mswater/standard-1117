@@ -92,7 +92,7 @@ class Report extends React.Component{
     return (
       <div>
         <Header />
-        <Nav />
+        <Nav {...this.props}/>
         <div className="report-con">
           <div className="report-top clear">
             <div className="report-search fl">
