@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Modal, Tooltip, Button} from "antd";
-import { fetchGetExit } from "../../../store/action/LoginAction.js";
+import { fetchGetExit, fetchGuestLogin } from "../../../store/action/LoginAction.js";
 import tipsImg from "../../../images/tips.png";
 
 const { confirm } = Modal;
@@ -11,6 +11,15 @@ class UserInfo extends React.Component{
   constructor(props) {
     super(props);
     this.state = {};
+  }
+
+  componentWillMount() {
+    const {fetchGuestLogin} = this.props;
+    const token = localStorage.getItem("token");
+    if(!token){
+      // 静默登录
+      fetchGuestLogin();
+    }
   }
 
   showConfirm() {
@@ -125,5 +134,6 @@ export default connect(
   mapStateToProps,
   {
     fetchGetExit,
+    fetchGuestLogin,
   },
 )(withRouter(UserInfo));

@@ -30,31 +30,7 @@ axios.interceptors.response.use(
     if (response.data.code &&
       (response.data.code === 2 || response.data.code === 21 || response.data.code === 22)
     ) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("username");
-      localStorage.removeItem("realName");
-      localStorage.removeItem("roleName");
-      // 游客账户登录
-      const guestInfo = {
-        "username": "guest",
-        "password": "guest",
-      };
-      getLogin(guestInfo)
-        .then((response) => {
-          if (response.status === 200 && response.data.status === "OK") {
-            localStorage.setItem("token", response.headers.token);
-            localStorage.setItem("username", response.data.data.username);
-            localStorage.setItem("realName", response.data.data.realname);
-            localStorage.setItem("roleName", response.data.data.roleName);
-          }
-          if(response.data.status === "NG"){
-            message.error(response.data.msg);
-          }
-          return window.location = "/";
-        })
-        .catch((error) => {
-          console.dir(error);
-        });
+      message.error(response.data.msg);
     }
     return response;
   },
