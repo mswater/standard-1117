@@ -123,16 +123,6 @@ export const fetchLiteratureDate = (params = ["", ""]) => {
 };
 
 /**
- * 文献中心 保存关键词右边输入的搜索
- */
-
-export const fetchLiteratureSearchValue = (params = "") => {
-  return (dispatch) => {
-    dispatch({type: "SAVE_LITERATURE_SEARCH_VALUE", payload: params});
-  };
-};
-
-/**
  * 文献中心 判断按钮是否重新渲染回到默认第一个
  */
 

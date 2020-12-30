@@ -17,7 +17,6 @@ const init = {
   literatureThemeSearchFlag: false,
   literatureDateQuery: [],
   literatureDate: ["", ""],
-  literatureSearchValue: "",
   literatureWebsite:[],
   literatureResetButtonFlag:false,
   literatureCollect:"",
@@ -71,11 +70,6 @@ const hotReducer = (state = init, action) => {
       return {
         ...state,
         literatureDate: action.payload,
-      };
-    case "SAVE_LITERATURE_SEARCH_VALUE":
-      return {
-        ...state,
-        literatureSearchValue: action.payload,
       };
     case "SAVE_LITERATURE_WEBSITE":
       return {
