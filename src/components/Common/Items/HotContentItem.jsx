@@ -1,12 +1,6 @@
 import React from "react";
 import "./index.css";
 import { Checkbox, Icon } from "antd";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-import {
-  fetchArticleCollect,
-  fetchArticleCancelCollect,
-} from "../../../store/action/ArticleAction.js";
 
 class HotContentItem extends React.Component{
   constructor(props) {
@@ -152,17 +146,4 @@ class HotContentItem extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    hot: state.hot,
-    article:state.article,
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {
-    fetchArticleCollect,
-    fetchArticleCancelCollect,
-  },
-)(withRouter(HotContentItem));
+export default HotContentItem;

@@ -57,9 +57,9 @@ export const fetchGuestLogin = () => {
           localStorage.setItem("username", response.data.data.username);
           localStorage.setItem("realName", response.data.data.realname);
           localStorage.setItem("roleName", response.data.data.roleName);
-          var userAgent = window.navigator.userAgent;
-          //IE浏览器
-          if (userAgent.indexOf('NET') != -1 && userAgent.indexOf("rv") != -1) {
+          const userAgent = window.navigator.userAgent;
+          // IE浏览器
+          if (userAgent.indexOf("NET") !== -1 && userAgent.indexOf("rv") !== -1) {
             window.location.reload();
           }
         }

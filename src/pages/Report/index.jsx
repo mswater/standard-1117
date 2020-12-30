@@ -141,7 +141,7 @@ class Report extends React.Component{
             />
           </div>
         </div>
-        <Footer />
+        <Footer {...this.props}/>
       </div>
     );
   }

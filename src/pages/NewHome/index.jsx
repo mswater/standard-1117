@@ -17,6 +17,7 @@ import {
   fetchBriefReport,
   fetchMeeting,
   fetchAboardMeeting,
+  changeConferenceTab,
 } from "../../store/action/HomeAction.js";
 
 class Home extends React.Component{
@@ -88,7 +89,7 @@ class Home extends React.Component{
             <SubjectNews {...this.props} />
           </div>
         </div>
-        <Footer />
+        <Footer {...this.props}/>
       </div>
     );
   }
@@ -107,6 +108,7 @@ export default connect(
     fetchBriefReport,
     fetchMeeting,
     fetchAboardMeeting,
+    changeConferenceTab,
   },
 )(withRouter(Home));
 

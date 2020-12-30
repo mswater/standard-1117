@@ -101,7 +101,7 @@ class Meeting extends React.Component{
         <Header />
         <Nav />
         <MeetingContent {...this.props}/>
-        <Footer />
+        <Footer {...this.props}/>
         <BackTop />
       </div>
     );

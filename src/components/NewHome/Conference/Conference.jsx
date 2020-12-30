@@ -1,8 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { Spin } from "antd";
-import { changeConferenceTab,} from "../../../store/action/HomeAction";
 import {siblings} from "../../../lib/tools/utils";
 import "./index.css";
 
@@ -128,16 +125,4 @@ class Conference extends React.Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ...state
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  {
-    changeConferenceTab
-  },
-)(withRouter(Conference));
-
+export default Conference;

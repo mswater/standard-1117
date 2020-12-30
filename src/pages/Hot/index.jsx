@@ -82,7 +82,7 @@ class Hot extends React.Component {
         <Header/>
         <Nav />
         <HotContent {...this.props}/>
-        <Footer/>
+        <Footer {...this.props}/>
         <BackTop />
       </div>
     );

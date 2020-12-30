@@ -431,7 +431,7 @@ class HotContentCheck extends React.Component {
     const item = this.resultListFunc(resultList)
       && this.resultListFunc(resultList).map((cur) => {
         return (
-          <HotContentItem key={cur.id} data={cur} />
+          <HotContentItem key={cur.id} data={cur} {...this.props} />
         );
       });
     const sortArr = hotContact === "2" ? sortArrSecond : sortArrFirst;

@@ -1,6 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
 import { Select } from "antd";
 import "./index.css";
 import { getMenuCode, } from "../../../lib/tools/utils.js";
@@ -102,13 +100,4 @@ class Footer extends React.Component {
   };
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ...state
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(withRouter(Footer));
+export default Footer;

@@ -25,11 +25,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/chaochao11/react.git"
+    "url": "https://github.com/mswater/standard-1117.git"
   },
   "author": "Aly",
   "license": "ISC",
-  "homepage": "https://github.com/chaochao11/react",
+  "homepage": "https://github.com/mswater/standard-1117",
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "antd": "^3.26.20",

@@ -85,7 +85,7 @@ class Literature extends React.Component{
         <Header />
         <Nav />
         <LiteratureContent {...this.props}/>
-        <Footer />
+        <Footer {...this.props}/>
         <BackTop />
       </div>
     );

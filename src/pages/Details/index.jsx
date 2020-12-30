@@ -39,7 +39,7 @@ class Details extends React.Component{
         <Header />
         <Nav />
         <DetailsContent {...this.props}/>
-        <Footer />
+        <Footer {...this.props}/>
         <BackTop />
       </div>
     );

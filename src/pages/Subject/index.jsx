@@ -90,7 +90,7 @@ class Subject extends React.Component {
         <Header/>
         <Nav />
         <SubjectContent {...this.props}/>
-        <Footer/>
+        <Footer {...this.props}/>
         <BackTop />
       </div>
     );

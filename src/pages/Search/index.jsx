@@ -110,7 +110,7 @@ class Search extends React.Component{
         <Header />
         <Nav />
         <SearchContent {...this.props}/>
-        <Footer />
+        <Footer {...this.props}/>
         <BackTop />
       </div>
     );
