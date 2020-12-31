@@ -1,15 +1,7 @@
 import {
-  getHotEnglishWords,
-  getHotInformation,
   getHotTopic,
-  getHotWords,
   getBriefReport,
-  getActiveAuthor,
-  getNewestLiterature,
-  getSubject,
   getStat,
-  getRecommendtLiterature,
-  getHotSubject,
   getMeeting
 } from "./../../service/api.js";
 

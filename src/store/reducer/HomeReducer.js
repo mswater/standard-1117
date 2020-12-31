@@ -24,7 +24,7 @@ const init = {
 };
 const homeReducer = (state = init, action) => {
   switch (action.type) {
-      // 热点监测
+    // 热点监测
     case "FETCHING_GET_TOPIC":
       return {
         ...state,
