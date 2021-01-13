@@ -9,29 +9,14 @@ import ForgotPassword from "./../pages/ForgotPassword/index.jsx";
 import NewPassword from "./../pages/NewPassword/index.jsx";
 import Meeting from "./../pages/Meeting/index.jsx";
 import Search from "./../pages/Search/index.jsx";
+import Home from "./../pages/NewHome/index.jsx";
+import Literature from "../pages/Literature/index.jsx";
 
 const role = localStorage.getItem("token");
-const Home = Loadable({
-  loader: () => {
-    return import(/* webpackChunkName: "home" */ "./../pages/NewHome/index.jsx");
-  },
-  loading() {
-    return <div>Loading...</div>;
-  },
-});
 
 const Hot = Loadable({
   loader: () => {
     return import(/* webpackChunkName: "hot" */ "../pages/Hot/index.jsx");
-  },
-  loading() {
-    return <div>Loading...</div>;
-  },
-});
-
-const Literature = Loadable({
-  loader: () => {
-    return import(/* webpackChunkName: "literature" */ "../pages/Literature/index.jsx");
   },
   loading() {
     return <div>Loading...</div>;
