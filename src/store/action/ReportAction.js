@@ -26,4 +26,9 @@ export const fetchSearchReport = () => {
     dispatch({type: "BEGIN_FETCH_REPORT_DATA", payload: true});
   };
 };
+export const setSearchReportValue = (params) => {
+  return (dispatch) => {
+    dispatch({type: "SET_REPORT_SEARCH_VALUE", payload:params});
+  };
+};
 

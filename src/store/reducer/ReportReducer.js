@@ -9,6 +9,7 @@ const init = {
       rowCount:0,
     },
   },
+  searchReportValue:"",
 };
 const reportReducer = (state = init, action) => {
   switch (action.type) {
@@ -26,6 +27,11 @@ const reportReducer = (state = init, action) => {
       return {
         ...state,
         reportData: action.payload,
+      };
+    case "SET_REPORT_SEARCH_VALUE":
+      return {
+        ...state,
+        searchReportValue: action.payload,
       };
     default:
       return state;

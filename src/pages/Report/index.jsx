@@ -6,7 +6,7 @@ import "./index.css";
 import Header from "../../components/Common/Header/header.jsx";
 import Nav from "../../components/Common/Nav/nav.jsx";
 import Footer from "../../components/Common/Footer/footer.jsx";
-import {fetchReportList} from "../../store/action/ReportAction.js";
+import {fetchReportList, setSearchReportValue} from "../../store/action/ReportAction.js";
 
 const { Search } = Input;
 
@@ -43,7 +43,9 @@ class Report extends React.Component{
     };
     const {
       fetchReportList,
+      setSearchReportValue,
     } = this.props;
+    setSearchReportValue(value);
     fetchReportList(params);
   };
 
@@ -54,7 +56,24 @@ class Report extends React.Component{
 
   previewReport = (previewUrl) => {
     const url = window.location.origin;
-    window.open(`${url}/managecenter/upload/${previewUrl}.pdf`,"_blank");
+    const token = localStorage.getItem("token");
+    window.open(`${url}/managecenter/upload/${previewUrl}.pdf?uid=${token}`,"_blank");
+  }
+
+  paginationFunc = (page) => {
+    const {
+      fetchReportList,
+      report:{
+        searchReportValue,
+      }
+    } = this.props;
+    console.log(searchReportValue, page);
+    const params = {
+      searchCont: searchReportValue,
+      pageNum: page,
+      pageSize: 10
+    };
+    fetchReportList(params);
   }
 
   goNewReport(){
@@ -62,7 +81,6 @@ class Report extends React.Component{
     const token = localStorage.getItem("token");
     window.open(`${url}/managecenter/brief/add?uid=${token}`,"_blank");
   }
-
 
   render(){
     const roleName = localStorage.getItem("roleName");
@@ -168,6 +186,7 @@ export default connect(
   mapStateToProps,
   {
     fetchReportList,
+    setSearchReportValue,
   },
 )(withRouter(Report));
 
