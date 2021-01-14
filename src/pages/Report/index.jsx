@@ -52,6 +52,11 @@ class Report extends React.Component{
     window.open(`${url}/managecenter/brief/download?fileName=${downloadUrl}.pdf`,"_blank");
   }
 
+  previewReport = (previewUrl) => {
+    const url = window.location.origin;
+    window.open(`${url}/managecenter/upload/${previewUrl}.pdf`,"_blank");
+  }
+
   goNewReport(){
     const url = window.location.origin;
     const token = localStorage.getItem("token");
@@ -78,7 +83,12 @@ class Report extends React.Component{
       return (
         <li key={item.id} className="clear">
           <span className="w10">{index+1}</span>
-          <span className="w30" dangerouslySetInnerHTML={{ __html: item.title }} />
+          <span
+            className="w30"
+            dangerouslySetInnerHTML={{ __html: item.title }}
+            style={{cursor:"pointer"}}
+            onClick={() => this.previewReport(item.title)}
+          />
           <span className="w30">{item.creattime}</span>
           <span className="w10" dangerouslySetInnerHTML={{ __html: item.typeName }} />
           <span className="w10" dangerouslySetInnerHTML={{ __html: item.createUser }} />
