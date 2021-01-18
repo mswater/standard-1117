@@ -1,10 +1,18 @@
 .subject-news ul{
-  margin-top:80px;
+  margin-top:20px;
   margin-bottom:15px;
 }
 .subject-news li{
   height:32px;
   margin-top:25px;
+  list-style:none;
+}
+.subject-news li:before{
+  content:"\B7";
+  float:left;
+  line-height:32px;
+  font-size:32px;
+  font-weight:bold;
 }
 .subject-news li a{
   display:block;
@@ -14,8 +22,10 @@
   color:rgba(81,78,78,1);
 }
 .subject-news li label{
-  width:240px;
+  float:left;
+  width:260px;
   height:32px;
+  margin-left:10px;
   font-size:16px;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -24,7 +34,7 @@
 }
 .subject-news-con{
   position:relative;
-  height:300px;
+  height:356px;
 }
 .subject-news-con .single-more{
   position:absolute;

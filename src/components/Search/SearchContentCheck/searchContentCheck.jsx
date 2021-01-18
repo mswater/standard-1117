@@ -638,21 +638,25 @@ class SearchContentCheck extends React.Component {
                   />
                 </a>
                 : ((renderSearchContact === "4" || renderSearchContact === "5") ? (
-                  <span
-                    className="search-content-title"
-                    onClick={() => {
-                      return this.searchDetails(cur.gid);
-                    }}
-                    dangerouslySetInnerHTML={{ __html: cur.title }}
-                  />
+                  <div className="search-content-left fl">
+                    <span
+                      className="search-content-title"
+                      onClick={() => {
+                        return this.searchDetails(cur.gid);
+                      }}
+                      dangerouslySetInnerHTML={{ __html: cur.title }}
+                    />
+                  </div>
                 ) : ((renderSearchContact === "9") ? (
-                  <span
-                    className="search-content-title"
-                    onClick={() => {
-                      return this.searchDetails(cur.fileName);
-                    }}
-                    dangerouslySetInnerHTML={{ __html: cur.fArticleTitle }}
-                  />
+                  <div className="search-content-left fl">
+                    <span
+                      className="search-content-title"
+                      onClick={() => {
+                        return this.searchDetails(cur.fileName);
+                      }}
+                      dangerouslySetInnerHTML={{ __html: cur.fArticleTitle }}
+                    />
+                  </div>
                 ) : (
                   <div className="search-content-left fl">
                     {username === "guest" ? "" :
@@ -674,15 +678,6 @@ class SearchContentCheck extends React.Component {
                   </div>
                 )))
               }
-              <span
-                onClick={()=>{return this.toggleList(index);}}
-                className="repeat-article fr"
-              >
-                {
-                  (cur.samecount && cur.samecount >0) ?
-                    (<span>[{cur.flag ? "点击收起" : "点击展开"}<b>{cur.samecount}</b>篇重复文章]</span>):""
-                }
-              </span>
             </div>
             {(renderSearchContact === "6") ?
               (

@@ -8,10 +8,10 @@ class SubjectNews extends React.Component{
     this.state = {};
   }
 
-  newsDetails = (reportUrl) => {
+  previewReport = (previewUrl) => {
     const url = window.location.origin;
-    window.open(`${url}/managecenter/brief/download?fileName=${reportUrl}.pdf`,"_blank");
-  };
+    window.open(`${url}/managecenter/upload/${previewUrl}.pdf`,"_blank");
+  }
 
   goReportPage = () => {
     const { props } = this;
@@ -35,7 +35,7 @@ class SubjectNews extends React.Component{
           <a
             rel="noopener noreferrer"
             className="clear"
-            onClick={() => this.newsDetails(cur.title)}
+            onClick={() => this.previewReport(cur.title)}
           >
             <label>{cur.title}</label>
             <span className="fr">{cur.creattime.split(" ")[0]}</span>

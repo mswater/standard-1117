@@ -56,8 +56,7 @@ class Report extends React.Component{
 
   previewReport = (previewUrl) => {
     const url = window.location.origin;
-    const token = localStorage.getItem("token");
-    window.open(`${url}/managecenter/upload/${previewUrl}.pdf?uid=${token}`,"_blank");
+    window.open(`${url}/managecenter/upload/${previewUrl}.pdf`,"_blank");
   }
 
   paginationFunc = (page) => {

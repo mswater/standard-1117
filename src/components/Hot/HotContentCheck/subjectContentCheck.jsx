@@ -596,7 +596,7 @@ class SubjectContentCheck extends React.Component {
       });
     } else {
       item = this.resultListFunc(resultList) &&
-        this.resultListFunc(resultList).map((cur, index) => {
+        this.resultListFunc(resultList).map((cur) => {
           return (
             <div className="hot-content-check-item" key={cur.id}>
               <div className="hot-content-check-item-title clear">
@@ -618,22 +618,6 @@ class SubjectContentCheck extends React.Component {
                     }}
                   />
                 </div>
-                <span
-                  onClick={() => {
-                    return this.toggleList(index);
-                  }}
-                  className="repeat-article fr"
-                >
-                  {
-                    (cur.samecount && cur.samecount > 0) ?
-                      (
-                        <span>
-                          [{cur.flag ? "点击收起" : "点击展开"}
-                          <b>{cur.samecount}</b>篇重复文章]
-                        </span>
-                      ) : ""
-                  }
-                </span>
               </div>
               <div
                 className="hot-content-check-item-text"
