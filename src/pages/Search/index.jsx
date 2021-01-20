@@ -42,6 +42,7 @@ class Search extends React.Component{
 
   componentDidMount() {
     this.node.scrollIntoView();
+    localStorage.setItem("searchOrderFlag", "false");
     const {
       fetchSearch,
       fetchHeaderSearch,
@@ -93,7 +94,7 @@ class Search extends React.Component{
     localStorage.setItem("searchClassType", "");
     localStorage.setItem("searchContent", "");
     localStorage.setItem("searchOrderType",!headerSearchContent ? "1" : "3");
-    localStorage.setItem("searchOrderFlag", "");
+    localStorage.setItem("searchOrderFlag", "false");
     fetchSearchDateQuery();
     fetchSearchQuery();
     fetchHeaderSearch();
