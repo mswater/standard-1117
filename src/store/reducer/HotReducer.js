@@ -31,7 +31,9 @@ const init = {
   hotContentListData:{
     page:{
       resultList:[],
-      rowCount:0
+      rowCount:0,
+      pageCount:0,
+      pageNow:0,
     },
     webList:[],
     proList:[],
@@ -41,7 +43,9 @@ const init = {
   subjectContentListData:{
     page:{
       resultList:[],
-      rowCount:0
+      rowCount:0,
+      pageCount:0,
+      pageNow:0,
     },
     webList:[],
     proList:[],

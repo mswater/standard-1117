@@ -7,7 +7,9 @@ const init = {
   literatureContentListData:{
     page:{
       resultList:[],
-      rowCount:0
+      rowCount:0,
+      pageCount:0,
+      pageNow:0,
     },
     webList:[],
     proList:[]

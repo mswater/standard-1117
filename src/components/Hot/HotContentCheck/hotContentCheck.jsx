@@ -422,7 +422,7 @@ class HotContentCheck extends React.Component {
           page: {
             resultList,
             rowCount,
-            pageNow
+            pageNow,
           }
         },
         hotThemeSearch
@@ -530,9 +530,10 @@ class HotContentCheck extends React.Component {
               total={rowCount}
               onChange={this.paginationFunc}
               itemRender={itemRender}
-              className="pagination"
+              className={`pagination ${rowCount > 50 ? "hide-last-page-num" : ""}`}
               pageSize={10}
               current={pageNow}
+              showTotal={total => `共 ${Math.ceil(total / 10)} 页`}
             />
           </div>
         }
