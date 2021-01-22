@@ -17,22 +17,6 @@ const sortArrSecond = [{
   value: "发布时间",
   flag: null,
   id: 1
-},{
-  value: "浏览量",
-  flag: null,
-  id: 2
-}, {
-  value: "转发数",
-  flag: null,
-  id: 4
-}, {
-  value: "评论数",
-  flag: null,
-  id: 5
-}, {
-  value: "点赞数",
-  flag: null,
-  id: 6
 }];
 // 国内文献，海外文献 排序方式  searchContact = 4 或者 searchContact = 5
 const sortArrThird = [{
@@ -738,37 +722,24 @@ class SearchContentCheck extends React.Component {
             }
             <div className="search-content-check-item-bottom clear">
               <div className="fl">
-                { /* eslint-disable no-nested-ternary */ }
-                {renderSearchContact === "2" ? (
-                  <div>
-                    <span>发布时间：</span>
-                    <span>{(cur.fFetchtime|| "").split(" ").splice(0,1)}</span>
-                    <span>转发</span>
-                    <span>{cur.repost||0}</span>
-                    <span>评论</span>
-                    <span>{cur.comments||0}</span>
-                    <span>赞</span>
-                    <span>{cur.mlike||0}</span>
-                    <span>来源：</span>
-                    <span>{cur.fJobName}</span>
-                  </div>
-                ): (
-                  (renderSearchContact === "4" || renderSearchContact === "5") ?
-                    (
-                      <div>
-                        <div className="search_box">
-                          <span>发表年份：</span>
-                          <span>{cur.year}年</span>
-                          <span>创建时间：</span>
-                          <span>{cur.createTime}</span>
-                          <span>作者：</span>
-                          <span>{cur.author}</span>
-                          <span>期刊：</span>
-                          <span>{cur.journalName}</span>
-                        </div>
+                {(renderSearchContact === "4" || renderSearchContact === "5") ?
+                  (
+                    <div>
+                      <div className="search_box">
+                        <span>发表年份：</span>
+                        <span>{cur.year}年</span>
+                        <span>创建时间：</span>
+                        <span>{cur.createTime}</span>
+                        <span>作者：</span>
+                        <span>{cur.author}</span>
+                        <span>期刊：</span>
+                        <span>{cur.journalName}</span>
                       </div>
-                    ):(
-                      renderSearchContact === "6" ? (
+                    </div>
+                  ):
+                  (
+                    renderSearchContact === "6" ?
+                      (
                         <div className="search_container">
                           <div className="search_box">
                             <span>会议时间：</span>
@@ -786,16 +757,17 @@ class SearchContentCheck extends React.Component {
                               </a>
                             </span>
                           </div>
-                        </div>):
-                        (
-                          <div>
-                            <span>发布时间：</span>
-                            <span>{(cur.fFetchtime|| "").split(" ").splice(0,1)}</span>
-                            <span>来源：</span>
-                            <span>{cur.fJobName}</span>
-                          </div>
-                        )
-                    ))
+                        </div>
+                      ):
+                      (
+                        <div>
+                          <span>发布时间：</span>
+                          <span>{(cur.fFetchtime|| "").split(" ").splice(0,1)}</span>
+                          <span>来源：</span>
+                          <span>{cur.fJobName}</span>
+                        </div>
+                      )
+                  )
                 }
               </div>
               { /* eslint-disable no-nested-ternary */ }

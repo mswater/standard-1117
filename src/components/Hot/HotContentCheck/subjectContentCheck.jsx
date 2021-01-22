@@ -17,18 +17,6 @@ const sortArrSecond = [{
   value: "发布时间",
   flag: null,
   id: 1
-}, {
-  value: "转发数",
-  flag: null,
-  id: 4
-}, {
-  value: "评论数",
-  flag: null,
-  id: 5
-}, {
-  value: "点赞数",
-  flag: null,
-  id: 6
 }];
 // 国内文献，海外文献 排序方式  searchContact = 4 或者 searchContact = 5
 const sortArrThird = [{
@@ -629,26 +617,12 @@ class SubjectContentCheck extends React.Component {
               />
               <div className="hot-content-check-item-bottom clear">
                 <div className="fl">
-                  {subjectContact === "2" ? (
-                    <div>
-                      <span>发布时间：</span>
-                      <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
-                      <span>转发</span>
-                      <span>{cur.repost}</span>
-                      <span>评论</span>
-                      <span>{cur.comments}</span>
-                      <span>赞</span>
-                      <span>{cur.mlike}</span>
-                      <span>来源：</span>
-                      <span>{cur.fJobName}</span>
-                    </div>) : (
-                    <div>
-                      <span>发布时间：</span>
-                      <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
-                      <span>来源：</span>
-                      <span>{cur.fJobName}</span>
-                    </div>
-                  )}
+                  <div>
+                    <span>发布时间：</span>
+                    <span>{(cur.fFetchtime || "").split(" ").splice(0, 1)}</span>
+                    <span>来源：</span>
+                    <span>{cur.fJobName}</span>
+                  </div>
                 </div>
                 <div className="hot-content-check-item-click fr">
                   <button type="button" className="read-num">

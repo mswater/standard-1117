@@ -60,7 +60,6 @@ class HotContentItem extends React.Component{
 
   render() {
     const username = localStorage.getItem("username");
-    const hotContact = localStorage.getItem("hotContact");
     const {
       data
     } = this.props;
@@ -95,26 +94,12 @@ class HotContentItem extends React.Component{
         />
         <div className="hot-content-check-item-bottom clear">
           <div className="fl">
-            {hotContact === "2" ? (
-              <div>
-                <span>发布时间：</span>
-                <span>{(data.fFetchtime || "").split(" ").splice(0, 1)}</span>
-                <span>转发</span>
-                <span>{data.repost}</span>
-                <span>评论</span>
-                <span>{data.comments}</span>
-                <span>赞</span>
-                <span>{data.mlike}</span>
-                <span>来源：</span>
-                <span>{data.fJobName}</span>
-              </div>) : (
-              <div>
-                <span>发布时间：</span>
-                <span>{(data.fFetchtime || "").split(" ").splice(0, 1)}</span>
-                <span>来源：</span>
-                <span>{data.fJobName}</span>
-              </div>
-            )}
+            <div>
+              <span>发布时间：</span>
+              <span>{(data.fFetchtime || "").split(" ").splice(0, 1)}</span>
+              <span>来源：</span>
+              <span>{data.fJobName}</span>
+            </div>
           </div>
           <div className="hot-content-check-item-click fr">
             <button type="button" className="read-num">

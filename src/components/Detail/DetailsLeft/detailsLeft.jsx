@@ -15,7 +15,7 @@ class DetailsLeft extends React.Component {
   }
 
   render() {
-    // 文章类型 = 4 国内  5  国外   表示国内文献和海外文献
+    // 文章类型 = 4 国内  5 国外  2 资料共享  1 其他
     const {match:{params}}=this.props;
     const articleType = params.type;
     const {
@@ -105,7 +105,7 @@ class DetailsLeft extends React.Component {
                       <h2>{articleDetailData.fArticleTitle}</h2>
                       <p>
                         <span>发表时间：{articleDetailData.fArticleTime}</span>
-                        <span>来源期刊：{articleDetailData.fJobName}</span>
+                        <span>来源：{articleDetailData.fJobName}</span>
                         {
                           articleDetailData.fPageUrl !== "" ? (
                             <span>

@@ -18,18 +18,6 @@ const sortArrSecond = [{
   value: "发布时间",
   flag: null,
   id: 1
-}, {
-  value: "转发数",
-  flag: null,
-  id: 4
-}, {
-  value: "评论数",
-  flag: null,
-  id: 5
-}, {
-  value: "点赞数",
-  flag: null,
-  id: 6
 }];
 
 function itemRender(current, type, originalElement){
