@@ -18,7 +18,11 @@ const sortArrSecond = [{
   value: "发布时间",
   flag: null,
   id: 1
-}];
+},{
+  value: "浏览量",
+  flag: null,
+  id: 2
+},];
 
 function itemRender(current, type, originalElement){
   if (type === "prev") {

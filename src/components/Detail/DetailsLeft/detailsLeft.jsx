@@ -1,5 +1,5 @@
 import React from "react";
-import { Spin } from "antd";
+import { Modal, Spin } from "antd";
 
 import "./index.css";
 
@@ -12,6 +12,36 @@ class DetailsLeft extends React.Component {
   downloadFile = (downloadUrl) => {
     const url = window.location.origin;
     window.open(`${url}/managecenter/upload/${downloadUrl}`,"_blank");
+  }
+
+  goOriginalPage = (links) => {
+    if(links.length === 1){
+      window.open(links[0],"_blank");
+    }else{
+      const linkItems = links.map((cur) => {
+        return (
+          <p>
+            <a
+              href={cur}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {cur}
+            </a>
+          </p>
+        );
+      });
+      Modal.info({
+        title : "请选择以下链接查看原文",
+        width : 600,
+        okText : "好的",
+        content : (
+          <div>
+            {linkItems}
+          </div>
+        )
+      });
+    }
   }
 
   render() {
@@ -50,9 +80,8 @@ class DetailsLeft extends React.Component {
                         {
                           articleDetailData.linkLs.length > 0 ? (
                             <a
-                              target="_blank"
                               rel="noopener noreferrer"
-                              href={articleDetailData.linkLs[0]}
+                              onClick={() => this.goOriginalPage(articleDetailData.linkLs)}
                               className="fr"
                             >
                               阅读原文&gt;&gt;

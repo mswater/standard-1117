@@ -17,6 +17,10 @@ const sortArrSecond = [{
   value: "发布时间",
   flag: null,
   id: 1
+},{
+  value: "浏览量",
+  flag: null,
+  id: 2
 }];
 // 国内文献，海外文献 排序方式  searchContact = 4 或者 searchContact = 5
 const sortArrThird = [{

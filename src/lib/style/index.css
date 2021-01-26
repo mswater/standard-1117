@@ -62,3 +62,6 @@
 .hide-last-page-num li:nth-last-child(2){
   display:none;
 }
+.ant-modal-confirm-body .ant-modal-confirm-content a{
+  font-size:14px;
+}
