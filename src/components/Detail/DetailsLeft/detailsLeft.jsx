@@ -20,7 +20,7 @@ class DetailsLeft extends React.Component {
     }else{
       const linkItems = links.map((cur) => {
         return (
-          <p>
+          <p className="clearfix">
             <a
               href={cur}
               target="_blank"
@@ -32,9 +32,11 @@ class DetailsLeft extends React.Component {
         );
       });
       Modal.info({
-        title : "请选择以下链接查看原文",
+        title : "请根据需要，自行选择以下原文链接进行全文阅读：",
         width : 600,
-        okText : "好的",
+        className : "detail-link-modal",
+        closable : true,
+        maskClosable : true,
         content : (
           <div>
             {linkItems}
