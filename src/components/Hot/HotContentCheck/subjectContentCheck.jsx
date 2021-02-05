@@ -449,9 +449,9 @@ class SubjectContentCheck extends React.Component {
         (subjectLanguageTypeFlag ? null :
           ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]))),
       proList: subjectProListFlag ?
-        ((subjectSearchQuery.length > 0) ? ["全部"] : subjectSearchQuery) : null,
+        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]) : null,
       languageList: subjectLanguageTypeFlag ?
-        ((subjectSearchQuery.length > 0) ? ["全部"] : subjectSearchQuery) : null,
+        ((subjectSearchQuery.length > 0) ? subjectSearchQuery : ["全部"]) : null,
       order: (!orderFlag) ? "desc" : "asc",
       orderType,
       startDate: subjectStartDate,

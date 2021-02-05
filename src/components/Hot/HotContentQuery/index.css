@@ -131,6 +131,10 @@
 .hot-query-center .large{
   width:33%;
 }
+.hot-query-center .current{
+  color: #0572B8;
+  border: 1px solid #0572B8;
+}
 .hot-content-query-select .query-top .anticon svg{
   color:#D1D1D1;
   margin-right:15px;

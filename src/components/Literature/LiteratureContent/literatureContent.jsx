@@ -23,8 +23,8 @@ class LiteratureContent extends React.Component{
         literatureSelectQuery
       }
     } = this.props;
-    const orderType = localStorage.getItem("sharingOrderType");
-    const orderFlag = localStorage.getItem("sharingOrderFlag");
+    const orderType = localStorage.getItem("literatureOrderType");
+    const orderFlag = localStorage.getItem("literatureOrderFlag");
     const obj ={
       searchWord:literatureSearchQuery,
       sid: sId,
