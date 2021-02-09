@@ -82,7 +82,7 @@ class LiteratureContentCenter extends React.Component {
       orderType:!orderType ? 1 : Number(orderType),
       pageNum:1,
       pageSize:10,
-      sid: sId,
+      sid: sId ? Number(sId) : "",
     };
     const date = [startTime, endTime];
     fetchLiteratureSearchQuery(literatureSearchQuery);

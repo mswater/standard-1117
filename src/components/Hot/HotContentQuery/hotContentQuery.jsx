@@ -15,6 +15,8 @@ class HotContentQuery extends React.Component {
   }
 
   componentDidMount() {
+    // 重置微博列表
+    weiboArr = ["原创微博", "转发微博"];
     const {
       hot:{
         hotContentListData,

@@ -59,6 +59,9 @@ class Hot extends React.Component {
     const {
       fetchHotSearchQuery,
       fetchHotThemeSearch,
+      fetchHotResetWeibo,
+      fetchHotResetLanguage,
+      fetchHotProList,
     } = this.props;
     localStorage.setItem("hotContact", 1);
     localStorage.setItem("hotClassType", "");
@@ -73,6 +76,9 @@ class Hot extends React.Component {
       hotEndDate: "",
       searchKey:""
     });
+    fetchHotResetWeibo(false);
+    fetchHotResetLanguage(false);
+    fetchHotProList(false);
   }
 
 

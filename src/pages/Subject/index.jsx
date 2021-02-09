@@ -67,6 +67,9 @@ class Subject extends React.Component {
     const {
       fetchSubjectSearchQuery,
       fetchSubjectThemeSearch,
+      fetchSubjectResetWeibo,
+      fetchSubjectResetLanguage,
+      fetchSubjectProList,
     } = this.props;
     localStorage.setItem("subjectContact", 1);
     localStorage.setItem("subjectClassType", "");
@@ -81,6 +84,9 @@ class Subject extends React.Component {
       subjectEndDate:"",
       searchKey:""
     });
+    fetchSubjectResetWeibo(false);
+    fetchSubjectResetLanguage(false);
+    fetchSubjectProList(false);
   }
 
 

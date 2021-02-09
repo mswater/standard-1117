@@ -114,7 +114,7 @@ class LiteratureContentCheck extends React.Component {
     const orderFlag = localStorage.getItem("literatureOrderFlag");
     const params = {
       searchWord:literatureSearchQuery,
-      sid: sId ? Number(sId) : null,
+      sid: sId ? Number(sId) : "",
       searchType:literatureSelectQuery,
       starTime:literatureDateQuery[0],
       endTime:literatureDateQuery[1],
@@ -211,7 +211,7 @@ class LiteratureContentCheck extends React.Component {
       orderType,
       pageNum:1,
       pageSize:10,
-      sid: sId ? Number(sId) : null,
+      sid: sId ? Number(sId) : "",
     };
     fetchLiteratureResetButton(false);
     fetchLiteratureThemeSearchFlag(false);

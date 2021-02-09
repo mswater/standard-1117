@@ -88,7 +88,10 @@ class Search extends React.Component{
       fetchSearchDateQuery,
       fetchSearchQuery,
       headerSearchContent,
-      fetchHeaderSearch
+      fetchHeaderSearch,
+      fetchSearchResetWeibo,
+      fetchSearchProList,
+      fetchSearchLanguageList,
     } = this.props;
     localStorage.setItem("searchContact", "1");
     localStorage.setItem("searchClassType", "");
@@ -98,6 +101,9 @@ class Search extends React.Component{
     fetchSearchDateQuery();
     fetchSearchQuery();
     fetchHeaderSearch();
+    fetchSearchResetWeibo(false);
+    fetchSearchProList(false);
+    fetchSearchLanguageList(false);
   }
 
 

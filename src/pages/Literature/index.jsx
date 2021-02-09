@@ -49,7 +49,7 @@ class Literature extends React.Component{
       }
     } = this.props;
     const obj = {
-      sid:null,
+      sid:"",
       searchWord: literatureSearchQuery,
       searchType:literatureSelectQuery,
       starTime:literatureDateQuery[0],
@@ -70,7 +70,7 @@ class Literature extends React.Component{
       fetchLiteratureDate,
     } = this.props;
     localStorage.setItem("sharingMaterialType", "");
-    localStorage.setItem("sId",null);
+    localStorage.setItem("sId","");
     localStorage.setItem("literatureOrderType", "1");
     localStorage.setItem("literatureOrderFlag", "false");
     fetchLiteratureSearchQuery();

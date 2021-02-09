@@ -9,6 +9,8 @@ let weiboArr = ["原创微博", "转发微博"];
 
 class SearchContentQuery extends React.Component {
   componentDidMount() {
+    // 重置微博列表
+    weiboArr = ["原创微博", "转发微博"];
     const {
       search:{
         searchData,
@@ -325,6 +327,9 @@ class SearchContentQuery extends React.Component {
     }
     if(item === "原创微博"){
       weiboArr = ["原创微博"];
+    }
+    if(searchWeiboTypeFlag && (item === "全部")){
+      weiboArr = ["原创微博", "转发微博"];
     }
   };
 

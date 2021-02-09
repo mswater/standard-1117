@@ -15,6 +15,8 @@ class SubjectContentQuery extends React.Component {
   }
 
   componentDidMount() {
+    // 重置微博列表
+    weiboArr = ["原创微博", "转发微博"];
     const {
       hot:{
         subjectContentListData,
@@ -471,7 +473,11 @@ class SubjectContentQuery extends React.Component {
           key={index.toString()}
           title={cur}
           onClick={() => this.searchItem(cur,index)}
-          className={`fl ${renderContactNumber === 4 ? "large" : ""}`}
+          className={
+            `fl
+            ${index === clickIndex ? "current" : ""}
+            ${renderContactNumber === 4 ? "large" : ""}`
+          }
         >
           {cur}
         </div>

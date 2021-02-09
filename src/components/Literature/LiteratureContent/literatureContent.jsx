@@ -27,7 +27,7 @@ class LiteratureContent extends React.Component{
     const orderFlag = localStorage.getItem("literatureOrderFlag");
     const obj ={
       searchWord:literatureSearchQuery,
-      sid: sId,
+      sid: sId ? Number(sId) : "",
       searchType:literatureSelectQuery,
       starTime:literatureDateQuery[0],
       endTime:literatureDateQuery[1],
